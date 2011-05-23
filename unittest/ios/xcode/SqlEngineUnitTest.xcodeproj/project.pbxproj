@@ -1,0 +1,261 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		217A0D8F134EB04000D7FE9B /* SqlEngineTestCase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217A0D8B134EB04000D7FE9B /* SqlEngineTestCase.cpp */; };
+		217A0D90134EB04000D7FE9B /* SqlEngineTestParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217A0D8D134EB04000D7FE9B /* SqlEngineTestParser.cpp */; };
+		217A0D91134EB04000D7FE9B /* SqlEngineTestQuery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217A0D8E134EB04000D7FE9B /* SqlEngineTestQuery.cpp */; };
+		217A0D93134EB05500D7FE9B /* cppunitmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217A0D92134EB05500D7FE9B /* cppunitmain.cpp */; };
+		217A0D9B134EB18700D7FE9B /* SQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217A0D99134EB18700D7FE9B /* SQLParser.cpp */; };
+		217A0D9C134EB18700D7FE9B /* SQLQuery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217A0D9A134EB18700D7FE9B /* SQLQuery.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		217A0D7D134EB00800D7FE9B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		217A0D7F134EB00800D7FE9B /* SqlEngineUnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SqlEngineUnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		217A0D8B134EB04000D7FE9B /* SqlEngineTestCase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestCase.cpp; path = ../../SqlEngineTestCase.cpp; sourceTree = "<group>"; };
+		217A0D8C134EB04000D7FE9B /* SqlEngineTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SqlEngineTestCase.h; path = ../../SqlEngineTestCase.h; sourceTree = "<group>"; };
+		217A0D8D134EB04000D7FE9B /* SqlEngineTestParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestParser.cpp; path = ../../SqlEngineTestParser.cpp; sourceTree = "<group>"; };
+		217A0D8E134EB04000D7FE9B /* SqlEngineTestQuery.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestQuery.cpp; path = ../../SqlEngineTestQuery.cpp; sourceTree = "<group>"; };
+		217A0D92134EB05500D7FE9B /* cppunitmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cppunitmain.cpp; path = ../../../cppunitmain.cpp; sourceTree = "<group>"; };
+		217A0D96134EB17600D7FE9B /* SQLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLParser.h; sourceTree = "<group>"; };
+		217A0D97134EB17600D7FE9B /* SQLQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLQuery.h; sourceTree = "<group>"; };
+		217A0D99134EB18700D7FE9B /* SQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLParser.cpp; sourceTree = "<group>"; };
+		217A0D9A134EB18700D7FE9B /* SQLQuery.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLQuery.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		217A0D7C134EB00800D7FE9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		217A0D74134EB00800D7FE9B = {
+			isa = PBXGroup;
+			children = (
+				217A0D95134EB17600D7FE9B /* Headers */,
+				217A0D98134EB18700D7FE9B /* Sources */,
+				217A0D82134EB00800D7FE9B /* SqlEngineUnitTest */,
+				217A0D94134EB06000D7FE9B /* Tests */,
+				217A0D80134EB00800D7FE9B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		217A0D80134EB00800D7FE9B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				217A0D7F134EB00800D7FE9B /* SqlEngineUnitTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		217A0D82134EB00800D7FE9B /* SqlEngineUnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				217A0D92134EB05500D7FE9B /* cppunitmain.cpp */,
+			);
+			path = SqlEngineUnitTest;
+			sourceTree = "<group>";
+		};
+		217A0D94134EB06000D7FE9B /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				217A0D8B134EB04000D7FE9B /* SqlEngineTestCase.cpp */,
+				217A0D8C134EB04000D7FE9B /* SqlEngineTestCase.h */,
+				217A0D8D134EB04000D7FE9B /* SqlEngineTestParser.cpp */,
+				217A0D8E134EB04000D7FE9B /* SqlEngineTestQuery.cpp */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		217A0D95134EB17600D7FE9B /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				217A0D96134EB17600D7FE9B /* SQLParser.h */,
+				217A0D97134EB17600D7FE9B /* SQLQuery.h */,
+			);
+			name = Headers;
+			path = ../../../include;
+			sourceTree = "<group>";
+		};
+		217A0D98134EB18700D7FE9B /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				217A0D99134EB18700D7FE9B /* SQLParser.cpp */,
+				217A0D9A134EB18700D7FE9B /* SQLQuery.cpp */,
+			);
+			name = Sources;
+			path = ../../../src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		217A0D7E134EB00800D7FE9B /* SqlEngineUnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 217A0D88134EB00800D7FE9B /* Build configuration list for PBXNativeTarget "SqlEngineUnitTest" */;
+			buildPhases = (
+				217A0D7B134EB00800D7FE9B /* Sources */,
+				217A0D7C134EB00800D7FE9B /* Frameworks */,
+				217A0D7D134EB00800D7FE9B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SqlEngineUnitTest;
+			productName = SqlEngineUnitTest;
+			productReference = 217A0D7F134EB00800D7FE9B /* SqlEngineUnitTest */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		217A0D76134EB00800D7FE9B /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 217A0D79134EB00800D7FE9B /* Build configuration list for PBXProject "SqlEngineUnitTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 217A0D74134EB00800D7FE9B;
+			productRefGroup = 217A0D80134EB00800D7FE9B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				217A0D7E134EB00800D7FE9B /* SqlEngineUnitTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		217A0D7B134EB00800D7FE9B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				217A0D8F134EB04000D7FE9B /* SqlEngineTestCase.cpp in Sources */,
+				217A0D90134EB04000D7FE9B /* SqlEngineTestParser.cpp in Sources */,
+				217A0D91134EB04000D7FE9B /* SqlEngineTestQuery.cpp in Sources */,
+				217A0D93134EB05500D7FE9B /* cppunitmain.cpp in Sources */,
+				217A0D9B134EB18700D7FE9B /* SQLParser.cpp in Sources */,
+				217A0D9C134EB18700D7FE9B /* SQLQuery.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		217A0D86134EB00800D7FE9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../include,
+					/opt/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lcppunit";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		217A0D87134EB00800D7FE9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../../include,
+					/opt/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_LDFLAGS = "-lcppunit";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		217A0D89134EB00800D7FE9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		217A0D8A134EB00800D7FE9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		217A0D79134EB00800D7FE9B /* Build configuration list for PBXProject "SqlEngineUnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				217A0D86134EB00800D7FE9B /* Debug */,
+				217A0D87134EB00800D7FE9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		217A0D88134EB00800D7FE9B /* Build configuration list for PBXNativeTarget "SqlEngineUnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				217A0D89134EB00800D7FE9B /* Debug */,
+				217A0D8A134EB00800D7FE9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 217A0D76134EB00800D7FE9B /* Project object */;
+}

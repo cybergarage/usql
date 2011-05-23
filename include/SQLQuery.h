@@ -1,0 +1,4 @@
+class SQLQuery {
+public:
+	SQLQuery();
+};

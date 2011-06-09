@@ -1,0 +1,203 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		212FC49813A082A200855DE6 /* sqlparse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212FC49713A082A200855DE6 /* sqlparse.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		212FC48013A0815600855DE6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		212FC48213A0815600855DE6 /* sqlparse */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sqlparse; sourceTree = BUILT_PRODUCTS_DIR; };
+		212FC49713A082A200855DE6 /* sqlparse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; name = sqlparse.cpp; path = ../../../sqlparse.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		212FC47F13A0815600855DE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		212FC47713A0815500855DE6 = {
+			isa = PBXGroup;
+			children = (
+				212FC48513A0815600855DE6 /* sqlparse */,
+				212FC48313A0815600855DE6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		212FC48313A0815600855DE6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				212FC48213A0815600855DE6 /* sqlparse */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		212FC48513A0815600855DE6 /* sqlparse */ = {
+			isa = PBXGroup;
+			children = (
+				212FC49713A082A200855DE6 /* sqlparse.cpp */,
+			);
+			path = sqlparse;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		212FC48113A0815600855DE6 /* sqlparse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 212FC48B13A0815600855DE6 /* Build configuration list for PBXNativeTarget "sqlparse" */;
+			buildPhases = (
+				212FC47E13A0815600855DE6 /* Sources */,
+				212FC47F13A0815600855DE6 /* Frameworks */,
+				212FC48013A0815600855DE6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sqlparse;
+			productName = sqlparse;
+			productReference = 212FC48213A0815600855DE6 /* sqlparse */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		212FC47913A0815500855DE6 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 212FC47C13A0815500855DE6 /* Build configuration list for PBXProject "sqlparse" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 212FC47713A0815500855DE6;
+			productRefGroup = 212FC48313A0815600855DE6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				212FC48113A0815600855DE6 /* sqlparse */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		212FC47E13A0815600855DE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				212FC49813A082A200855DE6 /* sqlparse.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		212FC48913A0815600855DE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /opt/local/include;
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		212FC48A13A0815600855DE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /opt/local/include;
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		212FC48C13A0815600855DE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		212FC48D13A0815600855DE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		212FC47C13A0815500855DE6 /* Build configuration list for PBXProject "sqlparse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				212FC48913A0815600855DE6 /* Debug */,
+				212FC48A13A0815600855DE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		212FC48B13A0815600855DE6 /* Build configuration list for PBXNativeTarget "sqlparse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				212FC48C13A0815600855DE6 /* Debug */,
+				212FC48D13A0815600855DE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 212FC47913A0815500855DE6 /* Project object */;
+}

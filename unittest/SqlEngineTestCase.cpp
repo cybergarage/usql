@@ -1,19 +1,4 @@
-#include "SqlEngineTestCase.h"
+#define BOOST_TEST_MODULE GeometoryTest
+#define BOOST_TEST_DYN_LINK
 
-CPPUNIT_TEST_SUITE_REGISTRATION(SqlEngineTestCase);
-
-////////////////////////////////////////
-// setUp
-////////////////////////////////////////
-
-void SqlEngineTestCase::setUp()
-{
-}
-
-////////////////////////////////////////
-// tearDown
-////////////////////////////////////////
-
-void SqlEngineTestCase::tearDown()
-{
-}
+#include <boost/test/unit_test.hpp>

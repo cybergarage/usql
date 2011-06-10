@@ -1,40 +1,27 @@
+/******************************************************************
+*
+* C declarations
+*
+******************************************************************/
 
-/*
-  <reserved word>    ::= 
-         ABSOLUTE | ACTION | ADD | ALL | ALLOCATE | ALTER | AND | ANY | ARE 
-     |     AS | ASC | ASSERTION | AT | AUTHORIZATION | AVG 
-     |     BEGIN | BETWEEN | BIT | BIT_LENGTH | BOTH | BY 
-     |     CASCADE | CASCADED | CASE | CAST | CATALOG | CHAR | CHARACTER | CHARACTER_LENGTH 
-     |     CHAR_LENGTH | CHECK | CLOSE | COALESCE | COLLATE | COLLATION | COLUMN | COMMIT 
-     |     CONNECT | CONNECTION | CONSTRAINT | CONSTRAINTS | CONTINUE | CONVERT | CORRESPONDING 
-     |     CREATE | CROSS | CURRENT | CURRENT_DATE | CURRENT_TIME | CURRENT_TIMESTAMP | CURRENT_USER | CURSOR 
-     |     DATE | DAY | DEALLOCATE | DEC | DECIMAL | DECLARE | DEFAULT 
-     |     DEFERRABLE | DEFERRED | DELETE | DESC | DESCRIBE | DESCRIPTOR | DIAGNOSTICS 
-     |     DISCONNECT | DISTINCT | DOMAIN | DOUBLE | DROP 
-     |     ELSE | END | END -EXEC | ESCAPE | EXCEPT | EXCEPTION | EXEC | EXECUTE | EXISTS | EXTERNAL | EXTRACT 
-     |     FALSE | FETCH | FIRST | FLOAT | FOR | FOREIGN | FOUND | FROM | FULL 
-     |     GET | GLOBAL | GO | GOTO | GRANT | GROUP 
-     |     HAVING | HOUR 
-     |     IDENTITY | IMMEDIATE | IN | INDICATOR | INITIALLY | INNER | INPUT | INSENSITIVE 
-     |     INSERT | INT | INTEGER | INTERSECT | INTERVAL | INTO | IS | ISOLATION 
-     |     JOIN 
-     |     KEY 
-     |     LANGUAGE | LAST | LEADING | LEFT | LEVEL | LIKE | LOCAL | LOWER 
-     |     MATCH | MAX | MIN | MINUTE | MODULE | MONTH 
-     |     NAMES | NATIONAL | NATURAL | NCHAR | NEXT | NO | NOT | NULL | NULLIF | NUMERIC 
-     |     OCTET_LENGTH | OF | ON | ONLY | OPEN | OPTION | OR | ORDER | OUTER | OUTPUT | OVERLAPS 
-     |     PAD | PARTIAL | POSITION | PRECISION | PREPARE | PRESERVE | PRIMARY | PRIOR | PRIVILEGES | PROCEDURE | PUBLIC 
-     |     READ | REAL | REFERENCES | RELATIVE | RESTRICT | REVOKE | RIGHT | ROLLBACK | ROWS 
-     |     SCHEMA | SCROLL | SECOND | SECTION | SELECT | SESSION | SESSION_USER | SET 
-     |     SIZE | SMALLINT | SOME | SPACE | SQL | SQLCODE | SQLERROR | SQLSTATE | SUBSTRING | SUM | SYSTEM_USER 
-     |     TABLE | TEMPORARY | THEN | TIME | TIMESTAMP | TIMEZONE_HOUR | TIMEZONE_MINUTE 
-     |     TO | TRAILING | TRANSACTION | TRANSLATE | TRANSLATION | TRIM | TRUE 
-     |     UNION | UNIQUE | UNKNOWN | UPDATE | UPPER | USAGE | USER | USING 
-     |     VALUE | VALUES | VARCHAR | VARYING | VIEW 
-     |     WHEN | WHENEVER | WHERE | WITH | WORK | WRITE 
-     |     YEAR 
-     |     ZONE
-*/
+%{
+%}
+
+/******************************************************************
+*
+* Bison declarations
+*
+******************************************************************/
+
+%union {
+    int     intergerValue;
+    float   floatValue;
+    char    *stringValue;
+}
+
+%token <intergerValue> INTEGER_VALUE
+%token <floatValue> FLOAT_VALUE
+%token <stringValue> STRING_VALUE
 
 /******************************************************************
 * Reserved Word
@@ -50,7 +37,7 @@
 %token DATE DAY DEALLOCATE DEC DECIMAL DECLARE DEFAULT 
 %token DEFERRABLE DEFERRED DELETE DESC DESCRIBE DESCRIPTOR DIAGNOSTICS 
 %token DISCONNECT DISTINCT DOMAIN DOUBLE DROP 
-%token ELSE END END -EXEC ESCAPE EXCEPT EXCEPTION EXEC EXECUTE EXISTS EXTERNAL EXTRACT 
+%token ELSE END ESCAPE EXCEPT EXCEPTION EXEC EXECUTE EXISTS EXTERNAL EXTRACT 
 %token FALSE FETCH FIRST FLOAT FOR FOREIGN FOUND FROM FULL 
 %token GET GLOBAL GO GOTO GRANT GROUP 
 %token HAVING HOUR 
@@ -73,6 +60,19 @@
 %token WHEN WHENEVER WHERE WITH WORK WRITE 
 %token YEAR 
 %token ZONE
+/*
+%token END-EXEC
+*/
+
+%start QuerySpecification
+
+/******************************************************************
+*
+* Grammar rules
+*
+******************************************************************/
+
+%%
 
 /******************************************************************
  SQL special character
@@ -109,7 +109,7 @@ QualifiedName
 ******************************************************************/
 
 Identifier
-	: [ <introducer> <character set specification> ] <actual identifier>
+	: STRING_VALUE
 	;
 /*
 	: [ <introducer> <character set specification> ] <actual identifier>
@@ -122,6 +122,31 @@ Identifier
 QualifiedIdentifier
 	: Identifier
 	;
+
+/******************************************************************
+ Search Condition
+******************************************************************/
+
+ValueExpression
+    : StringValueExpression
+/*
+    | <numeric value expression>
+    | <datetime value expression>
+    | <interval value expression>
+*/
+    ;
+
+/******************************************************************
+ Query expression components
+******************************************************************/
+
+StringValueExpression
+    : STRING_VALUE
+/*
+    | <character value expression> 
+    | <bit value expression>
+*/
+    ;
 
 /******************************************************************
  Queries
@@ -148,9 +173,18 @@ SelectSublists
 	;
 
 SelectSublist
-	: <derived column>
+	: DerivedColumn
+/*
 	| <qualifier> <period> Asterisk
+*/
 	;
+
+DerivedColumn
+    : ValueExpression
+/*
+    <value expression> [ <as clause> ]
+*/
+    ;
 
 TableExpression
 	: FromClause
@@ -175,7 +209,18 @@ TableReference
 	: TableName
 	;
 /*
-        | <table name> [ <correlation specification> ]
+    | <table name> [ <correlation specification> ]
 	| <derived table> <correlation specification>
 	| <joined table>
 */
+
+%%
+
+/******************************************************************
+*
+* Additional C codes
+*
+******************************************************************/
+
+
+

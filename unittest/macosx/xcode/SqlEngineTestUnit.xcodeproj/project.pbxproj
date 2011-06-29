@@ -1,0 +1,213 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		213F869F13BAE4C00059444A /* SqlEngineTestCase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213F869B13BAE4C00059444A /* SqlEngineTestCase.cpp */; };
+		213F86A013BAE4C00059444A /* SqlEngineTestParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213F869D13BAE4C00059444A /* SqlEngineTestParser.cpp */; };
+		213F86A113BAE4C00059444A /* SqlEngineTestQuery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213F869E13BAE4C00059444A /* SqlEngineTestQuery.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		21F69A5813BAE289004D23C9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		213F869B13BAE4C00059444A /* SqlEngineTestCase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestCase.cpp; path = ../../SqlEngineTestCase.cpp; sourceTree = "<group>"; };
+		213F869C13BAE4C00059444A /* SqlEngineTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SqlEngineTestCase.h; path = ../../SqlEngineTestCase.h; sourceTree = "<group>"; };
+		213F869D13BAE4C00059444A /* SqlEngineTestParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestParser.cpp; path = ../../SqlEngineTestParser.cpp; sourceTree = "<group>"; };
+		213F869E13BAE4C00059444A /* SqlEngineTestQuery.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestQuery.cpp; path = ../../SqlEngineTestQuery.cpp; sourceTree = "<group>"; };
+		21F69A5A13BAE289004D23C9 /* SqlEngineTestUnit */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SqlEngineTestUnit; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		21F69A5713BAE289004D23C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		213F869A13BAE4B10059444A /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				213F869B13BAE4C00059444A /* SqlEngineTestCase.cpp */,
+				213F869C13BAE4C00059444A /* SqlEngineTestCase.h */,
+				213F869D13BAE4C00059444A /* SqlEngineTestParser.cpp */,
+				213F869E13BAE4C00059444A /* SqlEngineTestQuery.cpp */,
+			);
+			name = UnitTest;
+			sourceTree = "<group>";
+		};
+		21F69A4F13BAE289004D23C9 = {
+			isa = PBXGroup;
+			children = (
+				213F869A13BAE4B10059444A /* UnitTest */,
+				21F69A5B13BAE289004D23C9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		21F69A5B13BAE289004D23C9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21F69A5A13BAE289004D23C9 /* SqlEngineTestUnit */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		21F69A5913BAE289004D23C9 /* SqlEngineTestUnit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21F69A6313BAE289004D23C9 /* Build configuration list for PBXNativeTarget "SqlEngineTestUnit" */;
+			buildPhases = (
+				21F69A5613BAE289004D23C9 /* Sources */,
+				21F69A5713BAE289004D23C9 /* Frameworks */,
+				21F69A5813BAE289004D23C9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SqlEngineTestUnit;
+			productName = SqlEngineTestUnit;
+			productReference = 21F69A5A13BAE289004D23C9 /* SqlEngineTestUnit */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21F69A5113BAE289004D23C9 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 21F69A5413BAE289004D23C9 /* Build configuration list for PBXProject "SqlEngineTestUnit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 21F69A4F13BAE289004D23C9;
+			productRefGroup = 21F69A5B13BAE289004D23C9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				21F69A5913BAE289004D23C9 /* SqlEngineTestUnit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21F69A5613BAE289004D23C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				213F869F13BAE4C00059444A /* SqlEngineTestCase.cpp in Sources */,
+				213F86A013BAE4C00059444A /* SqlEngineTestParser.cpp in Sources */,
+				213F86A113BAE4C00059444A /* SqlEngineTestQuery.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		21F69A6113BAE289004D23C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /opt/local/include;
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		21F69A6213BAE289004D23C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /opt/local/include;
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		21F69A6413BAE289004D23C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				OTHER_LDFLAGS = "-lboost_unit_test_framework";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		21F69A6513BAE289004D23C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				OTHER_LDFLAGS = "-lboost_unit_test_framework";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21F69A5413BAE289004D23C9 /* Build configuration list for PBXProject "SqlEngineTestUnit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21F69A6113BAE289004D23C9 /* Debug */,
+				21F69A6213BAE289004D23C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21F69A6313BAE289004D23C9 /* Build configuration list for PBXNativeTarget "SqlEngineTestUnit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21F69A6413BAE289004D23C9 /* Debug */,
+				21F69A6513BAE289004D23C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 21F69A5113BAE289004D23C9 /* Project object */;
+}

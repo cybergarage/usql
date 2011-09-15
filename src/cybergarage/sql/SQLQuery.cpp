@@ -1,5 +1,7 @@
-#include <SQLQuery.h>
+//#include <cybergarage/sql/SQLQuery.h>
 
+/*
 SQLQuery::SQLQuery()
 {
 }
+*/

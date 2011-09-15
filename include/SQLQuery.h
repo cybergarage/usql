@@ -1,4 +1,0 @@
-class SQLQuery {
-public:
-	SQLQuery();
-};

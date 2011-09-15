@@ -1,8 +1,17 @@
-all: SQL92Lexer.h
+all: SQL92Parser.cpp GQLParser.cpp
 
-SQL92Lexer.h : SQL92.g
-	java -classpath ./antlr-3.4-complete.jar org.antlr.Tool -verbose SQL92.g
+SQL92Parser.cpp : SQL92.g
+	java -classpath ./lib/antlr-3.4-complete.jar org.antlr.Tool $<
+	mv SQL92Lexer.c SQL92Lexer.cpp
+	mv SQL92Parser.c SQL92Parser.cpp
+
+GQLParser.cpp : GQL.g
+	java -classpath ./lib/antlr-3.4-complete.jar org.antlr.Tool $<
+	mv GQLLexer.c GQLLexer.cpp
+	mv GQLParser.c GQLParser.cpp
 
 clean:
 	rm -f *.cpp *.h
-
+	rm -rf output
+	rm SQL92.tokens
+	rm GQL.tokens

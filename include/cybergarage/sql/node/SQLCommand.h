@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* GQLParser.h
+* SQLCommand.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,20 +10,16 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_GQLPARSER_H
-#define CG_USQL_GQLPARSER_H
+#ifndef CG_USQL_SQCOMMAND_H
+#define CG_USQL_SQCOMMAND_H
 
-#include <cybergarage/sql/SQLParser.h>
+#include <cybergarage/sql/SQLNode.h>
 
 namespace uSQL {
 
-class GQLParser  : public SQLParser {
-
+class SQLCommand : public SQLNode {
 public:
-
-	GQLParser();
-
-	bool parse(const std::string &queryString);
+	SQLCommand();
 };
 
 }

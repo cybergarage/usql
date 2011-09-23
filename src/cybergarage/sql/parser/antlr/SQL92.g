@@ -1,3 +1,15 @@
+/******************************************************************
+*
+* uSQL for C++
+*
+* SQL92.g
+*
+* Copyright (C) Satoshi Konno 2011
+*
+* This is licensed under BSD-style license, see file COPYING.
+*
+******************************************************************/
+
 grammar SQL92;
 
 options
@@ -5,56 +17,44 @@ options
     language=C;
 }
 
-tokens
+@lexer::header
 {
-	DOUBLE_QUOTE	= '"';
-	PERCENT		= '%';
-	AMPERSAND	= '&';
-	QUOTE		= '\'';
-	LEFT_PAREN	= '(';
-	RIGHT_PAREA	= ')';
-	ASTERISK	= '*';
-	PLUS_SIGN	= '+';
-	COMMA		= ',';
-	MINUS_SIGN	= '-';
-	PERIOD		= '.';
-	SOLIDUS		= '/';
-	COLON		= ':';
+/******************************************************************
+*
+* uSQL for C++
+*
+* SQL92Lexer for ANTLR
+*
+* Copyright (C) Satoshi Konno 2011
+*
+* This is licensed under BSD-style license, see file COPYING.
+*
+******************************************************************/
 }
 
-@members
+@parser::header
 {
+/******************************************************************
+*
+* uSQL for C++
+*
+* SQL92Parser for ANTLR
+*
+* Copyright (C) Satoshi Konno 2011
+*
+* This is licensed under BSD-style license, see file COPYING.
+*
+******************************************************************/
+}
 
-/*
- #include "SQL92Lexer.h"
+@lexer::includes
+{
+    #include <cybergarage/sql/SQLParser.h>
+}
 
- int main(int argc, char * argv[])
- {
-
-    pANTLR3_INPUT_STREAM           input;
-    pSQL92Lexer               lex;
-    pANTLR3_COMMON_TOKEN_STREAM    tokens;
-    pSQL92Parser              parser;
-
-    input  = antlr3AsciiFileStreamNew          ((pANTLR3_UINT8)argv[1]);
-    lex    = SQL92LexerNew                (input);
-    tokens = antlr3CommonTokenStreamSourceNew  (ANTLR3_SIZE_HINT, TOKENSOURCE(lex));
-    parser = SQL92ParserNew               (tokens);
-
-    parser  ->expr(parser);
-
-    // Must manually clean up
-    //
-    parser ->free(parser);
-    tokens ->free(tokens);
-    lex    ->free(lex);
-    input  ->close(input);
-
-    return 0;
- }
-
-*/
-
+@parser::includes
+{
+    #include <cybergarage/sql/SQLParser.h>
 }
 
 /*------------------------------------------------------------------

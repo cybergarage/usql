@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* GQLParser.h
+* SQLStatement.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,22 +10,12 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_GQLPARSER_H
-#define CG_USQL_GQLPARSER_H
+#ifndef CG_USQL_SQLQUERY_H
+#define CG_USQL_SQLQUERY_H
 
-#include <cybergarage/sql/SQLParser.h>
-
-namespace uSQL {
-
-class GQLParser  : public SQLParser {
-
+class SQLStatement {
 public:
-
-	GQLParser();
-
-	bool parse(const std::string &queryString);
+	SQLStatement();
 };
-
-}
 
 #endif

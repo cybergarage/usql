@@ -1,10 +1,22 @@
+/******************************************************************
+*
+* uSQL for C++
+*
+* GQL.g
+*
+* Copyright (C) Satoshi Konno 2011
+*
+* This is licensed under BSD-style license, see file COPYING.
+*
+******************************************************************/
+
 grammar GQL;
 
 options
 {
     language = C;
 }
-
+ 
 @lexer::includes
 {
     #include <cybergarage/sql/SQLParser.h>

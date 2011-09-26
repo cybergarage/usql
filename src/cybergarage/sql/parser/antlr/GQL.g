@@ -16,7 +16,7 @@ options
 {
     language = C;
 }
- 
+
 @lexer::includes
 {
     #include <cybergarage/sql/SQLParser.h>
@@ -32,11 +32,28 @@ options
  *------------------------------------------------------------------*/
 
 statement [uSQL::SQLParser *sqlParser]
+	@init {
+		uSQL::SQLStatement *stmt = new uSQL::SQLStatement();
+		sqlParser->addStatement(stmt);
+		sqlParser->pushNode(stmt);
+	}
+	@after {
+		sqlParser->popNode();
+	}
 	: select_statement
 	;	
 
 select_statement
-	: SELECT ASTERISK FROM table_name (where_section)? (sort_section)?
+	@init {
+		uSQL::SQLCommand *cmd = new uSQL::SQLCommand();
+		cmd->setCommandType(uSQL::SQLCommand:SELECT);
+		sqlParser->pushNode(cmd);
+	}
+	@after {
+		sqlParser->popNode();
+	}
+	: SELECT ASTERISK FROM table_name (where_section)? (sort_section)? {
+	  }
 	;
 
 table_name

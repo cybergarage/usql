@@ -18,8 +18,30 @@
 namespace uSQL {
 
 class SQLCommand : public SQLNode {
+
 public:
+
+    static const int UNKOWN;
+    static const int SELECT;
+    static const int UPDATE;
+    static const int INSERT;
+    static const int DELETE;
+
+private:
+
+    int commandType;
+    
+public:
+
 	SQLCommand();
+
+    void setCommandType(int commandType) {
+        this->commandType = commandType;
+    }
+
+    int getCommandType() {
+        return this->commandType;
+    }
 };
 
 }

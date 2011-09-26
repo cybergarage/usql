@@ -10,12 +10,18 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLQUERY_H
-#define CG_USQL_SQLQUERY_H
+#ifndef CG_USQL_SQLSTATEMENT_H
+#define CG_USQL_SQLSTATEMENT_H
 
-class SQLStatement {
+#include <cybergarage/sql/SQLNode.h>
+
+namespace uSQL {
+
+class SQLStatement : public SQLNode {
 public:
 	SQLStatement();
 };
+
+}
 
 #endif

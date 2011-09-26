@@ -12,6 +12,6 @@
 
 #include <cybergarage/sql/SQLStatement.h>
 
-SQLStatement::SQLStatement()
+uSQL::SQLStatement::SQLStatement()
 {
 }

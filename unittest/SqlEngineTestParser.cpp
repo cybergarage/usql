@@ -1,6 +1,6 @@
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(SQLParserTest)
+BOOST_AUTO_TEST_CASE(SQLParserGQLTest)
 {
     /*
     Window window;

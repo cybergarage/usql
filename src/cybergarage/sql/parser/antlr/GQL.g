@@ -25,6 +25,8 @@ options
 @parser::includes
 {
     #include <cybergarage/sql/SQLParser.h>
+    
+    #define CG_ANTLR3_STRING_2_UTF8(str) ((const char *)str->chars)
 }
   
 /*------------------------------------------------------------------
@@ -35,29 +37,37 @@ statement [uSQL::SQLParser *sqlParser]
 	@init {
 		uSQL::SQLStatement *stmt = new uSQL::SQLStatement();
 		sqlParser->addStatement(stmt);
-		sqlParser->pushNode(stmt);
 	}
-	@after {
-		sqlParser->popNode();
-	}
-	: select_statement
+	: select_statement[stmt]
 	;	
 
-select_statement
-	@init {
-		uSQL::SQLCommand *cmd = new uSQL::SQLCommand();
-		cmd->setCommandType(uSQL::SQLCommand:SELECT);
-		sqlParser->pushNode(cmd);
+select_statement [uSQL::SQLStatement *sqlStmt]
+	: SELECT ASTERISK FROM tl=table_list 
+	/*
+	(where_section)? (sort_section)? 
+	*/
+	{
+		uSQL::SQLSelect *sqlCmd = new uSQL::SQLSelect();
+		sqlStmt->addChildNode(sqlCmd);
+		
+		sqlStmt->addChildNode(tl);
 	}
-	@after {
-		sqlParser->popNode();
-	}
-	: SELECT ASTERISK FROM table_name (where_section)? (sort_section)? {
-	  }
 	;
 
-table_name
+table_name [uSQL::SQLFrom *sqlFrom]
 	: ID
+	{
+		uSQL::SQLTable *sqlTable = new uSQL::SQLTable();
+		sqlTable->setName(CG_ANTLR3_STRING_2_UTF8($ID.text));
+		sqlFrom->addChildNode(sqlTable);
+	}
+	;
+
+table_list returns [uSQL::SQLFrom *sqlFrom]
+	@init {
+		sqlFrom = new uSQL::SQLFrom();
+	}
+	: (table_name[sqlFrom])+
 	;
 
 where_section 
@@ -138,14 +148,13 @@ COMMENT
 	|   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
 	;
 
-/*
 WS  :   ( ' '
 		| '\t'
 		| '\r'
 		| '\n'
 		) {$channel=HIDDEN;}
 	;
-
+/*
 STRING
 	:  '\'' ( ESC_SEQ | ~('\\'|'\'') )* '\''
 	;
@@ -183,37 +192,30 @@ DIGIT	    : '0'..'9'
             ;
 */
 
-fragment
 ASTERISK
 	: '*'
 	;
 	
-fragment
 EQ
 	: '='
 	;
 
-fragment
 OP_LT
 	: '<'
 	;
 	
-fragment
 LE
 	: '<='
 	;
 	
-fragment
 GT
 	: '>'
 	;
 
-fragment
 GE	
 	: '>='
 	;
 	
-fragment
 NOTEQ
 	: '!='
 	;

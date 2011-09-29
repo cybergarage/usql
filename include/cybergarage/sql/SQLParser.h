@@ -19,6 +19,7 @@
 
 #include <cybergarage/sql/SQLStatement.h>
 #include <cybergarage/sql/SQLNode.h>
+#include <cybergarage/sql/SQLNodes.h>
 
 namespace uSQL {
 
@@ -27,7 +28,6 @@ class SQLParser {
 private:
 
     std::vector<SQLStatement *> statements;
-    std::stack<SQLNode *> parserStack;
     
 public:
 
@@ -46,23 +46,6 @@ public:
             return NULL;
         return statements.at(0);
     }
-
-    void pushNode(SQLNode *node)
-    {
-        parserStack.push(node);
-    }
-
-    void popNode()
-    {
-        parserStack.pop();
-    }
-    
-    SQLNode *peekNode()
-    {
-        return parserStack.top();
-    }
-
-
 
 };
 

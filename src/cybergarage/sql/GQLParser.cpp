@@ -15,8 +15,6 @@
 #include <cybergarage/sql/parser/antlr/GQLLexer.h>
 #include <cybergarage/sql/parser/antlr/GQLParser.h>
 
-//using namespace uSQL;
-
 uSQL::GQLParser::GQLParser()
 {
 }

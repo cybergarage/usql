@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* SQLStatement.h
+* SQLFrom.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,23 +10,25 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLSTATEMENT_H
-#define CG_USQL_SQLSTATEMENT_H
+#ifndef CG_USQL_SQLFROM_H
+#define CG_USQL_SQLFROM_H
 
 #include <cybergarage/sql/SQLNode.h>
 
 namespace uSQL {
 
-class SQLStatement : public SQLNode {
+class SQLFrom : public SQLNode {
 
 public:
-	
-    SQLStatement();
-    
-	void output(std::ostream &os)
-    {
+
+	SQLFrom() {
+    	setType(FROM);
     }
 
+	void output(std::ostream &os)
+    {
+    	os << "FROM";
+    }
 };
 
 }

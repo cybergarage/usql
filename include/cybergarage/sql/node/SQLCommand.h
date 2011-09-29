@@ -10,8 +10,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQCOMMAND_H
-#define CG_USQL_SQCOMMAND_H
+#ifndef CG_USQL_SQLCOMMAND_H
+#define CG_USQL_SQLCOMMAND_H
 
 #include <cybergarage/sql/SQLNode.h>
 
@@ -33,7 +33,9 @@ private:
     
 public:
 
-	SQLCommand();
+	SQLCommand() {
+    	setType(COMMAND);
+    }
 
     void setCommandType(int commandType) {
         this->commandType = commandType;
@@ -41,6 +43,21 @@ public:
 
     int getCommandType() {
         return this->commandType;
+    }
+};
+
+class SQLSelect : public SQLCommand {
+
+public:
+
+	SQLSelect()
+    {
+    	setCommandType(SELECT);
+    }
+
+	void output(std::ostream &os)
+    {
+    	os << "SELECT";
     }
 };
 

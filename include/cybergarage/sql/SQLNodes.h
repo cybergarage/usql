@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* SQLStatement.h
+* SQLNodes.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,25 +10,11 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLSTATEMENT_H
-#define CG_USQL_SQLSTATEMENT_H
+#ifndef CG_USQL_SQLNODES_H
+#define CG_USQL_SQLNODES_H
 
-#include <cybergarage/sql/SQLNode.h>
-
-namespace uSQL {
-
-class SQLStatement : public SQLNode {
-
-public:
-	
-    SQLStatement();
-    
-	void output(std::ostream &os)
-    {
-    }
-
-};
-
-}
+#include <cybergarage/sql/node/SQLCommand.h>
+#include <cybergarage/sql/node/SQLFrom.h>
+#include <cybergarage/sql/node/SQLTable.h>
 
 #endif

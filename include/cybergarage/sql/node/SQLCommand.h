@@ -55,9 +55,10 @@ public:
     	setCommandType(SELECT);
     }
 
-	void output(std::ostream &os)
+    std::string &toString(std::string &buf)
     {
-    	os << "SELECT";
+    	buf = "SELECT";
+        return buf;
     }
 };
 

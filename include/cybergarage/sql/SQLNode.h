@@ -45,13 +45,13 @@ public:
     static const int FROM;
     static const int TABLE;
     
-protected:
+private:
     
     int type;
 
 	SQLNode *parent;
 	SQLNodeList children;
-        
+
 public:
 
 	SQLNode();
@@ -72,10 +72,6 @@ public:
         return this->parent;
     }
 
-	bool hasParentNode() {
-    	return (getParentNode() != NULL) ? true : false;
-    }
-    
     void addChildNode(SQLNode *node) {
         node->setParentNode(this);
     	children.addNode(node);
@@ -96,13 +92,7 @@ public:
     	return children.getNode(index);
     }
     
-	virtual void output(std::ostream &os) = 0;
-	void outputAll(std::ostream &os);
-    
-    std::string &toString(std::string &buf);
-    
-    friend std::ostream & operator << (std::ostream &os, const SQLNode & node);
-
+    virtual std::string &toString(std::string &buf) = 0;
 };
 
 }

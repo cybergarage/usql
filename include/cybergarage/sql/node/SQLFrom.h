@@ -25,9 +25,10 @@ public:
     	setType(FROM);
     }
 
-	void output(std::ostream &os)
+    std::string &toString(std::string &buf)
     {
-    	os << "FROM";
+    	buf = "FROM";
+        return buf;
     }
 };
 

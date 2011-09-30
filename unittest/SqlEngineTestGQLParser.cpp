@@ -1,6 +1,7 @@
 #include <string>
 #include <boost/test/unit_test.hpp>
 #include <cybergarage/sql/GQLParser.h>
+#include <boost/algorithm/string.hpp>
 
 using namespace std;
 using namespace uSQL;
@@ -8,9 +9,16 @@ using namespace uSQL;
 BOOST_AUTO_TEST_CASE(SQLParserTest)
 {
 	GQLParser gqlParser;
+
+    string sql = "SELECT * FROM SAMPLE";
     
-    BOOST_CHECK(gqlParser.parse("SELECT * FROM SAMPLE"));
-    string buf;
-    gqlParser.getStatement()->toString(buf);
-    cout << buf << endl;
+    BOOST_CHECK(gqlParser.parse(sql));
+    
+    string parseResult;
+    gqlParser.getStatement()->toString(parseResult);
+    boost::trim(parseResult);
+ 
+    BOOST_CHECK(sql.compare(parseResult) == 0);
+       
+    cout << parseResult << endl;
 }

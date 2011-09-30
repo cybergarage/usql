@@ -81,11 +81,11 @@
 		213F869A13BAE4B10059444A /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
-				2153464A14342C5C00C748CC /* SqlEngineTestGQLParser.cpp */,
 				213F869B13BAE4C00059444A /* SqlEngineTestCase.cpp */,
 				213F869C13BAE4C00059444A /* SqlEngineTestCase.h */,
 				213F869D13BAE4C00059444A /* SqlEngineTestParser.cpp */,
 				213F869E13BAE4C00059444A /* SqlEngineTestQuery.cpp */,
+				2153464A14342C5C00C748CC /* SqlEngineTestGQLParser.cpp */,
 			);
 			name = UnitTest;
 			sourceTree = "<group>";

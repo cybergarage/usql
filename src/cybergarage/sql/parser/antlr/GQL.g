@@ -47,9 +47,13 @@ select_statement [uSQL::SQLStatement *sqlStmt]
 	(where_section)? (sort_section)? 
 	*/
 	{
+		// SELECT
 		uSQL::SQLSelect *sqlCmd = new uSQL::SQLSelect();
 		sqlStmt->addChildNode(sqlCmd);
-		
+
+		// ASTERISK
+
+		// TABLE		
 		sqlStmt->addChildNode(tl);
 	}
 	;

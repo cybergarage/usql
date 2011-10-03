@@ -41,9 +41,13 @@ class SQLNode {
 
 public:
 
+    static const int CONDITION;
     static const int COMMAND;
     static const int FROM;
     static const int TABLE;
+    static const int ROW;
+    static const int ROWS;
+    static const int WHERE;
     
 private:
     

@@ -50,13 +50,11 @@ class SQLSelect : public SQLCommand {
 
 public:
 
-	SQLSelect()
-    {
+	SQLSelect() {
     	setCommandType(SELECT);
     }
 
-    std::string &toString(std::string &buf)
-    {
+    std::string &toString(std::string &buf) {
     	buf = "SELECT";
         return buf;
     }

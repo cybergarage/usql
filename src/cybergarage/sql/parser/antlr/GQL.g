@@ -42,9 +42,13 @@ statement [uSQL::SQLParser *sqlParser]
 	;	
 
 select_statement [uSQL::SQLStatement *sqlStmt]
-	: SELECT ASTERISK FROM tl=table_list 
+	@init {
+		tl = NULL;
+		ws = NULL;
+	}
+	: SELECT ASTERISK FROM tl=table_list (ws=where_section)? 
 	/*
-	(where_section)? (sort_section)? 
+	 (sort_section)? 
 	*/
 	{
 		// SELECT
@@ -52,38 +56,55 @@ select_statement [uSQL::SQLStatement *sqlStmt]
 		sqlStmt->addChildNode(sqlCmd);
 
 		// ASTERISK
+		uSQL::SQLRows *sqlRows = new uSQL::SQLRows();
+		sqlStmt->addChildNode(sqlRows);
+		uSQL::SQLRow *sqlRow = new uSQL::SQLRow();
+		sqlRow->setName("*");
+		sqlRows->addChildNode(sqlRow);
 
 		// TABLE		
 		sqlStmt->addChildNode(tl);
+		
+		// WHERE		
+		if (ws)
+			sqlStmt->addChildNode(ws);
 	}
 	;
 
 table_name [uSQL::SQLFrom *sqlFrom]
-	: ID
-	{
+	: ID {
 		uSQL::SQLTable *sqlTable = new uSQL::SQLTable();
 		sqlTable->setName(CG_ANTLR3_STRING_2_UTF8($ID.text));
 		sqlFrom->addChildNode(sqlTable);
-	}
+	  }
 	;
 
 table_list returns [uSQL::SQLFrom *sqlFrom]
 	@init {
 		sqlFrom = new uSQL::SQLFrom();
 	}
-	: (table_name[sqlFrom])+
+	: (table_name[sqlFrom]) (COMMA table_name[sqlFrom])*
 	;
 
-where_section 
-	: WHERE condition_list
+where_section returns [uSQL::SQLWhere *sqlWhere]
+	@init {
+		sqlWhere = new uSQL::SQLWhere();
+	}
+	: WHERE condition_list[sqlWhere]
 	;
 	
-condition_list
-	: condition (AND condition)*
+condition_list [uSQL::SQLWhere *sqlWhere]
+	: condition[sqlWhere] (AND condition[sqlWhere])*
 	;
 
-condition
-	: property condition_operator value
+condition [uSQL::SQLWhere *sqlWhere]
+	: property condition_operator value {
+		uSQL::SQLCondition *sqlCond = new uSQL::SQLCondition();
+		sqlCond->setName(CG_ANTLR3_STRING_2_UTF8($property.text));
+		sqlCond->setOperation(CG_ANTLR3_STRING_2_UTF8($condition_operator.text));
+		sqlCond->setValue(CG_ANTLR3_STRING_2_UTF8($value.text));
+		sqlWhere->addChildNode(sqlCond);
+	  }
 	| property IN value
 	| ANCESTOR  IS
 	;
@@ -224,6 +245,10 @@ NOTEQ
 	: '!='
 	;
 
+COMMA
+	: ','
+	;
+	
 fragment 
 A	: 'A'
 	| 'a'

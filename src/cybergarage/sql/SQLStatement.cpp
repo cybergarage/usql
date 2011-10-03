@@ -19,9 +19,13 @@ uSQL::SQLStatement::SQLStatement()
 
 static void CgSQLStatementToString(std::ostringstream &oss, uSQL::SQLNode *node)
 {
-    std::string buf;
-    oss << node->toString(buf);
-    oss << " ";
+    std::string nodeStr;
+    node->toString(nodeStr);
+    
+    if (0 < nodeStr.length()) {
+	    oss << nodeStr;
+	    oss << " ";
+    }
     
     int numChildren = node->numChildNodes();
     for (int n=0; n<numChildren; n++)

@@ -10,7 +10,8 @@ BOOST_AUTO_TEST_CASE(SQLParserTest)
 {
 	GQLParser gqlParser;
 
-    string sql = "SELECT * FROM SAMPLE";
+    //string sql = "SELECT * FROM SAMPLE";
+    string sql = "SELECT * FROM SAMPLE WHERE A = B";
     
     BOOST_CHECK(gqlParser.parse(sql));
     

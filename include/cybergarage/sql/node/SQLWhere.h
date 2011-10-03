@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* SQLFrom.h
+* SQLWhere.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,23 +10,23 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLFROM_H
-#define CG_USQL_SQLFROM_H
+#ifndef CG_USQL_SQLWHERE_H
+#define CG_USQL_SQLWHERE_H
 
 #include <cybergarage/sql/SQLNode.h>
 
 namespace uSQL {
 
-class SQLFrom : public SQLNode {
+class SQLWhere : public SQLNode {
 
 public:
 
-	SQLFrom() {
-    	setType(FROM);
+	SQLWhere() {
+    	setType(WHERE);
     }
 
     std::string &toString(std::string &buf) {
-    	buf = "FROM";
+    	buf = "WHERE";
         return buf;
     }
 };

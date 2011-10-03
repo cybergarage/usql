@@ -30,7 +30,7 @@ public:
     	setType(TABLE);
     }
 
-	void setName(const char *name) {
+	void setName(const std::string &name) {
     	this->name = name;
     }
     
@@ -38,8 +38,7 @@ public:
     	return this->name.c_str();
     }
 
-    std::string &toString(std::string &buf)
-    {
+    std::string &toString(std::string &buf) {
     	buf = name;
         return buf;
     }

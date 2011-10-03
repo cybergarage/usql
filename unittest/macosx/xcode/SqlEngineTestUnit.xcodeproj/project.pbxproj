@@ -15,6 +15,7 @@
 		213F86A113BAE4C00059444A /* SqlEngineTestQuery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213F869E13BAE4C00059444A /* SqlEngineTestQuery.cpp */; };
 		214E449B1421E771003C918D /* SQL92Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214E449A1421E771003C918D /* SQL92Parser.cpp */; };
 		2153464B14342C5C00C748CC /* SqlEngineTestGQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2153464A14342C5C00C748CC /* SqlEngineTestGQLParser.cpp */; };
+		216C2261143993AE001A53DC /* SQLCondition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216C2260143993AE001A53DC /* SQLCondition.cpp */; };
 		21C12A00142C011C00C41192 /* SQLNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C129FF142C011C00C41192 /* SQLNode.cpp */; };
 		21C12A07142C0F6F00C41192 /* SQLCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C12A06142C0F6F00C41192 /* SQLCommand.cpp */; };
 		21C6B8A1141F079B0087512F /* SQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C6B898141F079B0087512F /* SQLParser.cpp */; };
@@ -52,6 +53,11 @@
 		215346471434251D00C748CC /* SQLTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLTable.h; path = node/SQLTable.h; sourceTree = "<group>"; };
 		215346491434261400C748CC /* SQLNodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLNodes.h; sourceTree = "<group>"; };
 		2153464A14342C5C00C748CC /* SqlEngineTestGQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestGQLParser.cpp; path = ../../SqlEngineTestGQLParser.cpp; sourceTree = "<group>"; };
+		216C21DB14398629001A53DC /* SQLRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLRow.h; path = node/SQLRow.h; sourceTree = "<group>"; };
+		216C21DC14398629001A53DC /* SQLRows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLRows.h; path = node/SQLRows.h; sourceTree = "<group>"; };
+		216C225E14398FEE001A53DC /* SQLCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLCondition.h; path = node/SQLCondition.h; sourceTree = "<group>"; };
+		216C225F14398FEE001A53DC /* SQLWhere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLWhere.h; path = node/SQLWhere.h; sourceTree = "<group>"; };
+		216C2260143993AE001A53DC /* SQLCondition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLCondition.cpp; path = node/SQLCondition.cpp; sourceTree = "<group>"; };
 		21C129FF142C011C00C41192 /* SQLNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLNode.cpp; sourceTree = "<group>"; };
 		21C12A02142C013000C41192 /* SQLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLNode.h; sourceTree = "<group>"; };
 		21C12A04142C0F5400C41192 /* SQLCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLCommand.h; path = node/SQLCommand.h; sourceTree = "<group>"; };
@@ -93,6 +99,10 @@
 		21C12A03142C0F4200C41192 /* node */ = {
 			isa = PBXGroup;
 			children = (
+				216C225E14398FEE001A53DC /* SQLCondition.h */,
+				216C225F14398FEE001A53DC /* SQLWhere.h */,
+				216C21DB14398629001A53DC /* SQLRow.h */,
+				216C21DC14398629001A53DC /* SQLRows.h */,
 				215346461434251D00C748CC /* SQLFrom.h */,
 				215346471434251D00C748CC /* SQLTable.h */,
 				21C12A04142C0F5400C41192 /* SQLCommand.h */,
@@ -103,6 +113,7 @@
 		21C12A05142C0F5A00C41192 /* node */ = {
 			isa = PBXGroup;
 			children = (
+				216C2260143993AE001A53DC /* SQLCondition.cpp */,
 				21C12A06142C0F6F00C41192 /* SQLCommand.cpp */,
 			);
 			name = node;
@@ -272,6 +283,7 @@
 				21C12A00142C011C00C41192 /* SQLNode.cpp in Sources */,
 				21C12A07142C0F6F00C41192 /* SQLCommand.cpp in Sources */,
 				2153464B14342C5C00C748CC /* SqlEngineTestGQLParser.cpp in Sources */,
+				216C2261143993AE001A53DC /* SQLCondition.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

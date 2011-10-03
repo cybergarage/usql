@@ -14,7 +14,11 @@
 #define CG_USQL_SQLNODES_H
 
 #include <cybergarage/sql/node/SQLCommand.h>
+#include <cybergarage/sql/node/SQLCondition.h>
 #include <cybergarage/sql/node/SQLFrom.h>
+#include <cybergarage/sql/node/SQLRow.h>
+#include <cybergarage/sql/node/SQLRows.h>
 #include <cybergarage/sql/node/SQLTable.h>
+#include <cybergarage/sql/node/SQLWhere.h>
 
 #endif

@@ -13,7 +13,7 @@
 #include <cybergarage/sql/node/SQLCommand.h>
 
 const int uSQL::SQLCommand::UNKOWN = -1;
-const int uSQL::SQLCommand::SELECT = 1;
-const int uSQL::SQLCommand::UPDATE = 2;
-const int uSQL::SQLCommand::INSERT = 3;
-const int uSQL::SQLCommand::DELETE = 4;
+const int uSQL::SQLCommand::SELECT = 0;
+const int uSQL::SQLCommand::UPDATE = 1;
+const int uSQL::SQLCommand::INSERT = 2;
+const int uSQL::SQLCommand::DELETE = 3;

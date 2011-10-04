@@ -1,25 +1,53 @@
+/******************************************************************
+*
+* uSQL for C++
+*
+* SQLEngineTestGQLParser.cpp
+*
+* Copyright (C) Satoshi Konno 2011
+*
+* This is licensed under BSD-style license, see file COPYING.
+*
+******************************************************************/
+
 #include <string>
+#include <vector>
+
 #include <boost/test/unit_test.hpp>
-#include <cybergarage/sql/GQLParser.h>
 #include <boost/algorithm/string.hpp>
+
+#include <cybergarage/sql/GQLParser.h>
 
 using namespace std;
 using namespace uSQL;
 
-BOOST_AUTO_TEST_CASE(SQLParserTest)
+BOOST_AUTO_TEST_CASE(SQLParserGQLTest)
 {
+
 	GQLParser gqlParser;
 
-    //string sql = "SELECT * FROM SAMPLE";
-    string sql = "SELECT * FROM SAMPLE WHERE A = B";
+	vector<string> gqlStrings;
     
-    BOOST_CHECK(gqlParser.parse(sql));
-    
-    string parseResult;
-    gqlParser.getStatement()->toString(parseResult);
-    boost::trim(parseResult);
- 
-    BOOST_CHECK(sql.compare(parseResult) == 0);
-       
-    cout << parseResult << endl;
+    gqlStrings.push_back("SELECT * FROM SAMPLE");
+    gqlStrings.push_back("SELECT * FROM SAMPLE WHERE A = B");
+    gqlStrings.push_back("SELECT * FROM SAMPLE LIMIT 10");
+
+	
+	vector<string>::iterator gqlString = gqlStrings.begin();
+	while(gqlString != gqlStrings.end()) {
+    	
+        cout << "I : " << *gqlString << endl;
+        
+	    BOOST_CHECK(gqlParser.parse(*gqlString));
+        
+	    string parseResult;
+	    gqlParser.getStatement()->toString(parseResult);
+	    boost::trim(parseResult);
+        
+        cout << "O : " << parseResult << endl;
+        
+	    BOOST_CHECK(parseResult.compare(*gqlString) == 0);
+        
+		gqlString++;
+	}
 }

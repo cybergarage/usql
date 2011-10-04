@@ -21,6 +21,10 @@ const int uSQL::SQLNode::ROW = 4;
 const int uSQL::SQLNode::ROWS = 5;
 const int uSQL::SQLNode::CONDITION = 6;
 const int uSQL::SQLNode::WHERE = 7;
+const int uSQL::SQLNode::ORDER = 8;
+const int uSQL::SQLNode::ORDERS = 9;
+const int uSQL::SQLNode::LIMIT = 10;
+const int uSQL::SQLNode::OFFSET = 11;
 
 uSQL::SQLNode::SQLNode()
 {

@@ -24,9 +24,11 @@ options
 
 @parser::includes
 {
+	#include <string.h>
     #include <cybergarage/sql/SQLParser.h>
     
     #define CG_ANTLR3_STRING_2_UTF8(str) ((const char *)str->chars)
+    #define CG_ANTLR3_STRING_2_INT(str) (str->chars ? atoi((const char *)str->chars) : 0)
 }
   
 /*------------------------------------------------------------------
@@ -45,11 +47,11 @@ select_statement [uSQL::SQLStatement *sqlStmt]
 	@init {
 		tl = NULL;
 		ws = NULL;
+		sc = NULL;
+		ls = NULL;
+		os = NULL;
 	}
-	: SELECT ASTERISK FROM tl=table_list (ws=where_section)? 
-	/*
-	 (sort_section)? 
-	*/
+	: SELECT ASTERISK FROM tl=table_list (ws=where_section)? (sc=sort_section)? (ls=limit_section)? (os=offset_section)? 
 	{
 		// SELECT
 		uSQL::SQLSelect *sqlCmd = new uSQL::SQLSelect();
@@ -68,6 +70,18 @@ select_statement [uSQL::SQLStatement *sqlStmt]
 		// WHERE		
 		if (ws)
 			sqlStmt->addChildNode(ws);
+			
+		// LIMIT		
+		if (ls)
+			sqlStmt->addChildNode(ls);
+
+		// OFFSET		
+		if (os)
+			sqlStmt->addChildNode(os);
+
+		// WHERE		
+		if (sc)
+			sqlStmt->addChildNode(sc);
 	}
 	;
 
@@ -118,22 +132,59 @@ condition_operator
 	| NOTEQ
 	;
 
-sort_section
-	: ORDER BY property sort_specification_list
+sort_section returns [uSQL::SQLOrders *sqlOrders]
+	@init {
+		sqlOrders = new uSQL::SQLOrders();
+	}
+	: ORDER BY sort_specification_list[sqlOrders]
 	;
 	
-sort_specification_list
-	: sort_specification (AND sort_specification)*
+sort_specification_list [uSQL::SQLOrders *sqlOrders]
+	: sort_specification[sqlOrders] (AND sort_specification[sqlOrders])*
 	;
 	
-sort_specification
-	: property ordering_specification
+sort_specification [uSQL::SQLOrders *sqlOrders]
+	: property ordering_specification {
+		uSQL::SQLOrder *sqlOrder = new uSQL::SQLOrder();
+		sqlOrder->setName(CG_ANTLR3_STRING_2_UTF8($property.text));
+		sqlOrder->setOrder(CG_ANTLR3_STRING_2_UTF8($ordering_specification.text));
+		sqlOrders->addChildNode(sqlOrder);
+	  }
 	;
 
 ordering_specification
 	: ASC
 	| DESC
 	;
+
+limit_section returns [uSQL::SQLLimit *sqlLimit]
+	@init {
+		sqlLimit = new uSQL::SQLLimit();
+	}
+	: LIMIT (limit_offset[sqlLimit])? DIGIT {
+		sqlLimit->setCount(CG_ANTLR3_STRING_2_INT($DIGIT.text));
+	  }
+	;
+
+limit_offset [uSQL::SQLLimit *sqlLimit]
+	: COMMA DIGIT {
+		sqlLimit->setOffset(CG_ANTLR3_STRING_2_INT($DIGIT.text));
+	}
+	;
+
+offset_section returns [uSQL::SQLOffset *sqlOffset]
+	@init {
+		sqlOffset = new uSQL::SQLOffset();
+	}
+	: OFFSET DIGIT {
+		sqlOffset->setValue(CG_ANTLR3_STRING_2_INT($DIGIT.text));
+	  }
+	;
+
+
+/*------------------------------------------------------------------
+ * LEXER RULES
+ *------------------------------------------------------------------*/
 
 property
 	: ID 
@@ -142,15 +193,10 @@ property
 value
 	: ID
 	;
-			
-/*------------------------------------------------------------------
- * LEXER RULES
- *------------------------------------------------------------------*/
 
-/*
 NUMBER	    : (DIGIT)+
             ;
-
+/*
 WHITESPACE  : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+
               {
                  $channel = HIDDEN;
@@ -211,11 +257,10 @@ fragment
 UNICODE_ESC
 	:   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
 	;
-
+*/
 fragment
 DIGIT	    : '0'..'9'
             ;
-*/
 
 ASTERISK
 	: '*'

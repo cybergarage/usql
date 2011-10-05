@@ -51,9 +51,12 @@ public:
     
     std::string &toString(std::string &buf) {
 		std::ostringstream oss;
-		oss << "LIMIT " << this->offset;
-        if (0 < this->count)
-        	oss << ", " << this->count;
+        oss << "LIMIT ";
+        if (0 < this->offset) {
+            oss << this->offset;
+        	oss << ", ";
+        }
+        oss << this->count;
 		buf = oss.str();
         return buf;
     }

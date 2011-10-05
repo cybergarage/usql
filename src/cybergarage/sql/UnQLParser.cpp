@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* GQLParser.cpp
+* UnQLParser.cpp
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -11,15 +11,15 @@
 ******************************************************************/
 
 #include <antlr3.h>
-#include <cybergarage/sql/GQLParser.h>
-#include <cybergarage/sql/parser/antlr/GQLLexer.h>
-#include <cybergarage/sql/parser/antlr/GQLParser.h>
+#include <cybergarage/sql/UnQLParser.h>
+#include <cybergarage/sql/parser/antlr/UnQLLexer.h>
+#include <cybergarage/sql/parser/antlr/UnQLParser.h>
 
-uSQL::GQLParser::GQLParser()
+uSQL::UnQLParser::UnQLParser()
 {
 }
 
-bool uSQL::GQLParser::parse(const std::string &queryString)
+bool uSQL::UnQLParser::parse(const std::string &queryString)
 {
     //input  = antlr3AsciiFileStreamNew          ((pANTLR3_UINT8)argv[1]);
     pANTLR3_INPUT_STREAM input  = antlr3NewAsciiStringCopyStream(
@@ -27,9 +27,9 @@ bool uSQL::GQLParser::parse(const std::string &queryString)
                 (ANTLR3_UINT32)queryString.length(),
                 (pANTLR3_UINT8)"");
     
-    pGQLLexer lexer = GQLLexerNew(input);
+    pUnQLLexer lexer = UnQLLexerNew(input);
     pANTLR3_COMMON_TOKEN_STREAM tokens = antlr3CommonTokenStreamSourceNew(ANTLR3_SIZE_HINT, TOKENSOURCE(lexer));
-    pGQLParser parser = GQLParserNew(tokens);
+    pUnQLParser parser = UnQLParserNew(tokens);
 
     parser->statement(parser, this);
 

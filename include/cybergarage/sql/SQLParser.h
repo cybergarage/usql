@@ -32,9 +32,11 @@ private:
 public:
 
 	SQLParser();
+    
+    virtual ~SQLParser();
 
 	virtual bool parse(const std::string &queryString) = 0;
-
+    
     void addStatement(SQLStatement *stmt)
     {
         statements.push_back(stmt);
@@ -46,6 +48,10 @@ public:
             return NULL;
         return statements.at(0);
     }
+
+private:
+
+    void clear();
 
 };
 

@@ -64,6 +64,8 @@ public:
 
 	SQLNode();
 
+    virtual ~SQLNode();
+    
     void setType(int type) {
         this->type = type;
     }

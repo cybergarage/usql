@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* SQLParser.cpp
+* UnQLParser.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,21 +10,22 @@
 *
 ******************************************************************/
 
-#include <antlr3.h>
+#ifndef CG_USQL_UNQLPARSER_H
+#define CG_USQL_UNQLPARSER_H
+
 #include <cybergarage/sql/SQLParser.h>
 
-uSQL::SQLParser::SQLParser()
-{
+namespace uSQL {
+
+class UnQLParser  : public SQLParser {
+
+public:
+
+	UnQLParser();
+
+	bool parse(const std::string &queryString);
+};
+
 }
 
-uSQL::SQLParser::~SQLParser()
-{
-    clear();
-}
-
-void uSQL::SQLParser::clear()
-{
-    for (std::vector<SQLStatement *>::iterator stmt = statements.begin(); stmt != statements.end(); stmt++)
-        delete *stmt;
-    statements.clear();
-}
+#endif

@@ -23,21 +23,18 @@ using namespace uSQL;
 
 BOOST_AUTO_TEST_CASE(SQLParserGQLTest)
 {
-
-	GQLParser gqlParser;
-
 	vector<string> gqlStrings;
     
-    gqlStrings.push_back("SELECT * FROM SAMPLE");
-    gqlStrings.push_back("SELECT * FROM SAMPLE WHERE A = B");
-    gqlStrings.push_back("SELECT * FROM SAMPLE LIMIT 10");
-
+    gqlStrings.push_back("SELECT * FROM SAMPLE1");
+    gqlStrings.push_back("SELECT * FROM SAMPLE2 WHERE A = B");
+    gqlStrings.push_back("SELECT * FROM SAMPLE3 LIMIT 10");
 	
 	vector<string>::iterator gqlString = gqlStrings.begin();
 	while(gqlString != gqlStrings.end()) {
     	
         cout << "I : " << *gqlString << endl;
         
+        GQLParser gqlParser;
 	    BOOST_CHECK(gqlParser.parse(*gqlString));
         
 	    string parseResult;

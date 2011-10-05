@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* GQL.g
+* UnQL.g
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,7 +10,7 @@
 *
 ******************************************************************/
 
-grammar GQL;
+grammar UnQL;
 
 options
 {

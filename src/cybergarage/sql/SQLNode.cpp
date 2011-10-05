@@ -30,3 +30,10 @@ uSQL::SQLNode::SQLNode()
 {
 	setParentNode(NULL);
 }
+
+uSQL::SQLNode::~SQLNode()
+{
+    for (SQLNodeList::iterator node = children.begin(); node != children.end(); node++)
+        delete *node;
+}
+

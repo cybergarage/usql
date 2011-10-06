@@ -40,10 +40,10 @@ statement [uSQL::SQLParser *sqlParser]
 		uSQL::SQLStatement *stmt = new uSQL::SQLStatement();
 		sqlParser->addStatement(stmt);
 	}
-	: select_statement[stmt]
+	: select_stmt[stmt]
 	;	
 
-select_statement [uSQL::SQLStatement *sqlStmt]
+select_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {
 		tl = NULL;
 		ws = NULL;
@@ -51,7 +51,7 @@ select_statement [uSQL::SQLStatement *sqlStmt]
 		ls = NULL;
 		os = NULL;
 	}
-	: SELECT ASTERISK FROM tl=table_list (ws=where_section)? (ss=sort_section)? (ls=limit_section)? (os=offset_section)? 
+	: SELECT (compound_operator)? ASTERISK FROM tl=table_list (ws=where_section)? (ss=sort_section)? (ls=limit_section)? (os=offset_section)? 
 	{
 		// SELECT
 		uSQL::SQLSelect *sqlCmd = new uSQL::SQLSelect();
@@ -86,6 +86,64 @@ select_statement [uSQL::SQLStatement *sqlStmt]
 	}
 	;
 
+select_core
+	: SELECT (DISTINCT | ALL)? (expr)? (AS name)? 
+	  (FROM)?
+	  (WHERE expr)?
+	  (GROUP BY expr (',' expr)* (OFFSET expr)? (HAVING expr)?)?
+	;
+
+compound_operator
+	: UNION (ALL)?
+	| INTERSECT
+	| EXCEPT
+	;
+name
+	: STRING
+	;
+
+expr
+	: property
+	| integer_literal
+	| real_literal
+	| string_literal
+	| true
+	| false
+	| '{' (name ':' expr) (',' name ':' expr )* '}'
+	| ']' expr (',' expr )* ']'
+	;
+
+property
+	: STRING 
+	;
+
+integer_literal
+	: NUMBER
+	;
+
+real_literal
+	: FLOAT
+	;
+
+string_literal
+	: STRING
+	;
+
+true
+	: 'true'
+	;
+	
+false
+	: 'false'
+	;
+	
+	
+	
+	
+	
+	
+	
+	
 table_name [uSQL::SQLFrom *sqlFrom]
 	: ID {
 		uSQL::SQLTable *sqlTable = new uSQL::SQLTable();
@@ -183,85 +241,12 @@ offset_section returns [uSQL::SQLOffset *sqlOffset]
 	;
 
 
+value 	: STRING	
+	;
 /*------------------------------------------------------------------
  * LEXER RULES
  *------------------------------------------------------------------*/
 
-property
-	: ID 
-	;
-
-value
-	: ID
-	;
-
-NUMBER	    : (DIGIT)+
-            ;
-/*
-WHITESPACE  : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+
-              {
-                 $channel = HIDDEN;
-              }
-            ;
-*/
-/*
-INT :	'0'..'9'+
-	;
-
-FLOAT
-	:   ('0'..'9')+ '.' ('0'..'9')* EXPONENT?
-	|   '.' ('0'..'9')+ EXPONENT?
-	|   ('0'..'9')+ EXPONENT
-	;
-*/
-
-COMMENT
-	:   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
-	|   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
-	;
-
-WS  :   ( ' '
-		| '\t'
-		| '\r'
-		| '\n'
-		) {$channel=HIDDEN;}
-	;
-/*
-STRING
-	:  '\'' ( ESC_SEQ | ~('\\'|'\'') )* '\''
-	;
-
-CHAR:  '\'' ( ESC_SEQ | ~('\''|'\\') ) '\''
-	;
-
-fragment
-EXPONENT : ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
-
-fragment
-HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
-
-fragment
-ESC_SEQ
-	:   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
-	|   UNICODE_ESC
-	|   OCTAL_ESC
-	;
-
-fragment
-OCTAL_ESC
-	:   '\\' ('0'..'3') ('0'..'7') ('0'..'7')
-	|   '\\' ('0'..'7') ('0'..'7')
-	|   '\\' ('0'..'7')
-	;
-
-fragment
-UNICODE_ESC
-	:   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
-	;
-*/
-fragment
-DIGIT	    : '0'..'9'
-            ;
 
 ASTERISK
 	: '*'
@@ -425,11 +410,19 @@ Z	: 'Z'
 	| 'z'
 	;
 
+ALL
+	: A L L
+	;
+	
 ANCESTOR
 	: A N C E S T O R
 	;
 AND
 	: A N D
+	;
+
+AS
+	: A S
 	;
 
 ASC
@@ -443,13 +436,33 @@ BY
 DESC
 	: D E S C
 	;
+
+DISTINCT
+	: D I S T I N C T
+	;
+	
+EXCEPT
+	: E X C E P T
+	;
 	
 FROM
 	: F R O M
 	;
 
+GROUP
+	: G R O U P
+	;
+		
+HAVING
+	: H A V I N G
+	;
+	
 IN
 	: I N
+	;
+
+INTERSECT
+	: I?N?T?E?R?S?E?C?T
 	;
 
 IS
@@ -472,6 +485,10 @@ SELECT
 	: S E L E C T
 	;
 
+UNION
+	: U N I O N
+	;
+
 WHERE
 	: W H E R E
 	;
@@ -479,4 +496,71 @@ WHERE
 ID  
 	: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
 	;
+
+NUMBER	    : (DIGIT)+
+            ;
+/*
+WHITESPACE  : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+
+              {
+                 $channel = HIDDEN;
+              }
+            ;
+*/
+FLOAT
+	:   ('0'..'9')+ '.' ('0'..'9')* EXPONENT?
+	|   '.' ('0'..'9')+ EXPONENT?
+	|   ('0'..'9')+ EXPONENT
+	;
+
+COMMENT
+	:   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
+	|   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
+	;
+
+WS  :   ( ' '
+		| '\t'
+		| '\r'
+		| '\n'
+		) {$channel=HIDDEN;}
+	;
+
+STRING
+	:  ( ESC_SEQ | ~('\\'|'\'') )*
+//	:  '\'' ( ESC_SEQ | ~('\\'|'\'') )* '\''
+	;
+
+fragment
+ESC_SEQ
+	:   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
+	|   UNICODE_ESC
+	|   OCTAL_ESC
+	;
+
+fragment
+OCTAL_ESC
+	:   '\\' ('0'..'3') ('0'..'7') ('0'..'7')
+	|   '\\' ('0'..'7') ('0'..'7')
+	|   '\\' ('0'..'7')
+	;
+
+fragment
+UNICODE_ESC
+	:   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+	;
+	
+/*
+
+CHAR:  '\'' ( ESC_SEQ | ~('\''|'\\') ) '\''
+	;
+*/
+fragment
+EXPONENT : ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
+
+fragment
+HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
+
+fragment
+DIGIT	    : '0'..'9'
+            ;
+
 

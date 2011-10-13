@@ -1,0 +1,213 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		212D74891446C232003632AD /* leveldb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212D74881446C232003632AD /* leveldb.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		21CBB66D1446C13900EC94F5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		212D74881446C232003632AD /* leveldb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = leveldb.cpp; path = ../../leveldb.cpp; sourceTree = SOURCE_ROOT; };
+		21CBB66F1446C13900EC94F5 /* leveldb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = leveldb; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		21CBB66C1446C13900EC94F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		212D74871446C219003632AD /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				212D74881446C232003632AD /* leveldb.cpp */,
+			);
+			name = Src;
+			sourceTree = "<group>";
+		};
+		21CBB6641446C13900EC94F5 = {
+			isa = PBXGroup;
+			children = (
+				212D74871446C219003632AD /* Src */,
+				21CBB6701446C13900EC94F5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		21CBB6701446C13900EC94F5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21CBB66F1446C13900EC94F5 /* leveldb */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		21CBB66E1446C13900EC94F5 /* leveldb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21CBB6791446C13900EC94F5 /* Build configuration list for PBXNativeTarget "leveldb" */;
+			buildPhases = (
+				21CBB66B1446C13900EC94F5 /* Sources */,
+				21CBB66C1446C13900EC94F5 /* Frameworks */,
+				21CBB66D1446C13900EC94F5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = leveldb;
+			productName = leveldb;
+			productReference = 21CBB66F1446C13900EC94F5 /* leveldb */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21CBB6661446C13900EC94F5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 21CBB6691446C13900EC94F5 /* Build configuration list for PBXProject "leveldb" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 21CBB6641446C13900EC94F5;
+			productRefGroup = 21CBB6701446C13900EC94F5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				21CBB66E1446C13900EC94F5 /* leveldb */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21CBB66B1446C13900EC94F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				212D74891446C232003632AD /* leveldb.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		21CBB6771446C13900EC94F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ledit",
+					"-lleveldb",
+				);
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		21CBB6781446C13900EC94F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_LDFLAGS = (
+					"-ledit",
+					"-lleveldb",
+				);
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		21CBB67A1446C13900EC94F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		21CBB67B1446C13900EC94F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21CBB6691446C13900EC94F5 /* Build configuration list for PBXProject "leveldb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21CBB6771446C13900EC94F5 /* Debug */,
+				21CBB6781446C13900EC94F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21CBB6791446C13900EC94F5 /* Build configuration list for PBXNativeTarget "leveldb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21CBB67A1446C13900EC94F5 /* Debug */,
+				21CBB67B1446C13900EC94F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 21CBB6661446C13900EC94F5 /* Project object */;
+}

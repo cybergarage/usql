@@ -32,7 +32,9 @@ options
 }
   
 /*------------------------------------------------------------------
+ *
  * PARSER RULES
+ *
  *------------------------------------------------------------------*/
 
 statement [uSQL::SQLParser *sqlParser]
@@ -41,7 +43,15 @@ statement [uSQL::SQLParser *sqlParser]
 		sqlParser->addStatement(stmt);
 	}
 	: select_stmt[stmt]
+	| create_collection_stmt[stmt]
+	| insert_stmt[stmt]
 	;	
+
+/******************************************************************
+*
+* SELECT
+*
+******************************************************************/
 
 select_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {
@@ -98,56 +108,11 @@ compound_operator
 	| INTERSECT
 	| EXCEPT
 	;
-name
-	: STRING
-	;
 
-expr
-	: property
-	| integer_literal
-	| real_literal
-	| string_literal
-	| true
-	| false
-	| '{' (name ':' expr) (',' name ':' expr )* '}'
-	| ']' expr (',' expr )* ']'
-	;
-
-property
-	: STRING 
-	;
-
-integer_literal
-	: NUMBER
-	;
-
-real_literal
-	: FLOAT
-	;
-
-string_literal
-	: STRING
-	;
-
-true
-	: 'true'
-	;
-	
-false
-	: 'false'
-	;
-	
-	
-	
-	
-	
-	
-	
-	
 table_name [uSQL::SQLFrom *sqlFrom]
-	: ID {
+	: STRING {
 		uSQL::SQLTable *sqlTable = new uSQL::SQLTable();
-		sqlTable->setName(CG_ANTLR3_STRING_2_UTF8($ID.text));
+		sqlTable->setName(CG_ANTLR3_STRING_2_UTF8($STRING.text));
 		sqlFrom->addChildNode(sqlTable);
 	  }
 	;
@@ -241,8 +206,89 @@ offset_section returns [uSQL::SQLOffset *sqlOffset]
 	;
 
 
-value 	: STRING	
+value 	
+	: STRING	
 	;
+
+
+/******************************************************************
+*
+* CREATE
+*
+******************************************************************/
+
+create_collection_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {
+	}
+	: CREATE COLLECTION collection_name OPTIONS expr
+	{
+	}
+	;
+
+collection_name
+	: STRING
+	;
+
+/******************************************************************
+*
+* INSERT
+*
+******************************************************************/
+
+insert_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {
+	}
+	: INSERT INTO collection_name VALUE expr
+	{
+	}
+	;
+
+/******************************************************************
+*
+* COMMON
+*
+******************************************************************/
+
+name
+	: STRING
+	;
+
+expr
+	: property
+	| integer_literal
+	| real_literal
+	| string_literal
+	| true
+	| false
+	| '{' (name ':' expr) (',' name ':' expr )* '}'
+	| ']' expr (',' expr )* ']'
+	;
+
+property
+	: STRING 
+	;
+
+integer_literal
+	: NUMBER
+	;
+
+real_literal
+	: FLOAT
+	;
+
+string_literal
+	: STRING
+	;
+
+true
+	: 'true'
+	;
+	
+false
+	: 'false'
+	;
+	
+
 /*------------------------------------------------------------------
  * LEXER RULES
  *------------------------------------------------------------------*/
@@ -433,6 +479,14 @@ BY
 	: B Y
 	;
 
+CREATE
+	: C R E A T E
+	;
+
+COLLECTION
+	: C O L L E C T IO N
+	;
+
 DESC
 	: D E S C
 	;
@@ -461,8 +515,16 @@ IN
 	: I N
 	;
 
+INSERT
+	: I N S E R T
+	;
+
 INTERSECT
-	: I?N?T?E?R?S?E?C?T
+	: I N T E R S E C T
+	;
+
+INTO
+	: I N T O
 	;
 
 IS
@@ -475,6 +537,10 @@ LIMIT
 	
 OFFSET
 	: O F F S E T
+	;
+
+OPTIONS
+	: O P T I O N S
 	;
 
 ORDER
@@ -491,6 +557,10 @@ UNION
 
 WHERE
 	: W H E R E
+	;
+
+VALUE
+	: V A L U E
 	;
 	
 ID  

@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* SQLRow.h
+* SQLColumn.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,36 +10,23 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLROW_H
-#define CG_USQL_SQLROW_H
+#ifndef CG_USQL_SQLROWS_H
+#define CG_USQL_SQLROWS_H
 
-#include <string>
 #include <cybergarage/sql/SQLNode.h>
 
 namespace uSQL {
 
-class SQLRow : public SQLNode {
+class SQLColumn : public SQLNode {
 
-private:
-
-	std::string name;
-    
 public:
 
-	SQLRow() {
-    	setType(ROW);
-    }
-
-	void setName(const std::string &name) {
-    	this->name = name;
-    }
-    
-    const char *getName() {
-    	return this->name.c_str();
+	SQLColumn() {
+    	setType(COLUMNS);
     }
 
     std::string &toString(std::string &buf) {
-    	buf = name;
+    	buf = "";
         return buf;
     }
 };

@@ -43,7 +43,7 @@
 /* Begin PBXFileReference section */
 		210EFA771420807D00632849 /* GQLLexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GQLLexer.cpp; sourceTree = "<group>"; };
 		210EFA781420807D00632849 /* GQLLexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQLLexer.h; sourceTree = "<group>"; };
-		210EFA791420807D00632849 /* GQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GQLParser.cpp; sourceTree = "<group>"; };
+		210EFA791420807D00632849 /* GQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = GQLParser.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		210EFA7A1420807D00632849 /* GQLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQLParser.h; sourceTree = "<group>"; };
 		210EFA7E142080ED00632849 /* GQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GQLParser.cpp; sourceTree = "<group>"; };
 		210EFA801420861D00632849 /* GQLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQLParser.h; sourceTree = "<group>"; };
@@ -52,10 +52,10 @@
 		214E449A1421E771003C918D /* SQL92Parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQL92Parser.cpp; sourceTree = "<group>"; };
 		215346461434251D00C748CC /* SQLFrom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLFrom.h; path = node/SQLFrom.h; sourceTree = "<group>"; };
 		215346471434251D00C748CC /* SQLTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLTable.h; path = node/SQLTable.h; sourceTree = "<group>"; };
-		215346491434261400C748CC /* SQLNodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLNodes.h; sourceTree = "<group>"; };
+		215346491434261400C748CC /* SQLNodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = SQLNodes.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2153464A14342C5C00C748CC /* SqlEngineTestGQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestGQLParser.cpp; path = ../../SqlEngineTestGQLParser.cpp; sourceTree = "<group>"; };
-		216C21DB14398629001A53DC /* SQLRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLRow.h; path = node/SQLRow.h; sourceTree = "<group>"; };
-		216C21DC14398629001A53DC /* SQLRows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLRows.h; path = node/SQLRows.h; sourceTree = "<group>"; };
+		216C21DB14398629001A53DC /* SQLColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; name = SQLColumn.h; path = node/SQLColumn.h; sourceTree = "<group>"; };
+		216C21DC14398629001A53DC /* SQLColumns.h */ = {isa = PBXFileReference; fileEncoding = 4; lineEnding = 2; name = SQLColumns.h; path = node/SQLColumns.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		216C225E14398FEE001A53DC /* SQLCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLCondition.h; path = node/SQLCondition.h; sourceTree = "<group>"; };
 		216C225F14398FEE001A53DC /* SQLWhere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLWhere.h; path = node/SQLWhere.h; sourceTree = "<group>"; };
 		216C2260143993AE001A53DC /* SQLCondition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLCondition.cpp; path = node/SQLCondition.cpp; sourceTree = "<group>"; };
@@ -118,8 +118,8 @@
 				21EE4977143AA1160010A7D1 /* SQLOrders.h */,
 				216C225E14398FEE001A53DC /* SQLCondition.h */,
 				216C225F14398FEE001A53DC /* SQLWhere.h */,
-				216C21DB14398629001A53DC /* SQLRow.h */,
-				216C21DC14398629001A53DC /* SQLRows.h */,
+				216C21DB14398629001A53DC /* SQLColumn.h */,
+				216C21DC14398629001A53DC /* SQLColumns.h */,
 				215346461434251D00C748CC /* SQLFrom.h */,
 				215346471434251D00C748CC /* SQLTable.h */,
 				21C12A04142C0F5400C41192 /* SQLCommand.h */,
@@ -271,6 +271,9 @@
 /* Begin PBXProject section */
 		21F69A5113BAE289004D23C9 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 21F69A5413BAE289004D23C9 /* Build configuration list for PBXProject "SqlEngineTestUnit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;

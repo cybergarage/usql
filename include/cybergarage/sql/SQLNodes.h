@@ -20,8 +20,8 @@
 #include <cybergarage/sql/node/SQLOffset.h>
 #include <cybergarage/sql/node/SQLOrder.h>
 #include <cybergarage/sql/node/SQLOrders.h>
-#include <cybergarage/sql/node/SQLRow.h>
-#include <cybergarage/sql/node/SQLRows.h>
+#include <cybergarage/sql/node/SQLColumn.h>
+#include <cybergarage/sql/node/SQLColumns.h>
 #include <cybergarage/sql/node/SQLTable.h>
 #include <cybergarage/sql/node/SQLWhere.h>
 

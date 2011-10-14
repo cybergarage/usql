@@ -49,8 +49,8 @@ public:
     static const int OFFSET;
     static const int ORDER;
     static const int ORDERS;
-    static const int ROW;
-    static const int ROWS;
+    static const int COLUMN;
+    static const int COLUMNS;
     static const int WHERE;
     
 private:

@@ -68,11 +68,11 @@ select_stmt [uSQL::SQLStatement *sqlStmt]
 		sqlStmt->addChildNode(sqlCmd);
 
 		// ASTERISK
-		uSQL::SQLRows *sqlRows = new uSQL::SQLRows();
-		sqlStmt->addChildNode(sqlRows);
-		uSQL::SQLRow *sqlRow = new uSQL::SQLRow();
-		sqlRow->setName("*");
-		sqlRows->addChildNode(sqlRow);
+		uSQL::SQLColumns *SQLColumns = new uSQL::SQLColumns();
+		sqlStmt->addChildNode(SQLColumns);
+		uSQL::SQLColumn *SQLColumn = new uSQL::SQLColumn();
+		SQLColumn->setName("*");
+		SQLColumns->addChildNode(SQLColumn);
 
 		// TABLE		
 		sqlStmt->addChildNode(tl);
@@ -484,7 +484,7 @@ CREATE
 	;
 
 COLLECTION
-	: C O L L E C T IO N
+	: C O L L E C T I O N
 	;
 
 DESC

@@ -26,6 +26,7 @@ public:
     static const int UPDATE;
     static const int INSERT;
     static const int DELETE;
+    static const int CREATE;
 
 private:
 
@@ -56,6 +57,62 @@ public:
 
     std::string &toString(std::string &buf) {
     	buf = "SELECT";
+        return buf;
+    }
+};
+
+class SQLUpdate : public SQLCommand {
+
+public:
+
+	SQLUpdate() {
+    	setCommandType(UPDATE);
+    }
+
+    std::string &toString(std::string &buf) {
+    	buf = "UPDATE";
+        return buf;
+    }
+};
+
+class SQLInsert : public SQLCommand {
+
+public:
+
+	SQLInsert() {
+    	setCommandType(INSERT);
+    }
+
+    std::string &toString(std::string &buf) {
+    	buf = "INSERT";
+        return buf;
+    }
+};
+
+class SQLDelete : public SQLCommand {
+
+public:
+
+	SQLDelete() {
+    	setCommandType(DELETE);
+    }
+
+    std::string &toString(std::string &buf) {
+    	buf = "DELETE";
+        return buf;
+    }
+};
+
+class SQLCreate : public SQLCommand {
+
+public:
+
+	SQLCreate() {
+    	setCommandType(CREATE);
+    }
+
+    std::string &toString(std::string &buf) {
+    	buf = "CREATE";
         return buf;
     }
 };

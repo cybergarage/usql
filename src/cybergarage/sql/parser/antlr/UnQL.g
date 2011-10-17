@@ -222,6 +222,9 @@ create_collection_stmt [uSQL::SQLStatement *sqlStmt]
 	}
 	: CREATE COLLECTION collection_name OPTIONS expr
 	{
+		// CREATE
+		uSQL::SQLCreate *sqlCmd = new uSQL::SQLCreate();
+		sqlStmt->addChildNode(sqlCmd);
 	}
 	;
 

@@ -25,6 +25,8 @@ const int uSQL::SQLNode::ORDER = 8;
 const int uSQL::SQLNode::ORDERS = 9;
 const int uSQL::SQLNode::LIMIT = 10;
 const int uSQL::SQLNode::OFFSET = 11;
+const int uSQL::SQLNode::COLLECTION = 12;
+const int uSQL::SQLNode::EXPRESSION = 13;
 
 uSQL::SQLNode::SQLNode()
 {

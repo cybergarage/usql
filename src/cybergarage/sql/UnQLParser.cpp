@@ -21,7 +21,6 @@ uSQL::UnQLParser::UnQLParser()
 
 bool uSQL::UnQLParser::parse(const std::string &queryString)
 {
-    //input  = antlr3AsciiFileStreamNew          ((pANTLR3_UINT8)argv[1]);
     pANTLR3_INPUT_STREAM input  = antlr3NewAsciiStringCopyStream(
     			(pANTLR3_UINT8)queryString.c_str(), 
                 (ANTLR3_UINT32)queryString.length(),
@@ -38,8 +37,6 @@ bool uSQL::UnQLParser::parse(const std::string &queryString)
         parserResult = false;
     }
     
-    // Must manually clean up
-    //
     parser->free(parser);
     tokens->free(tokens);
     lexer->free(lexer);

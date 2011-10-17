@@ -10,18 +10,18 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLROWS_H
-#define CG_USQL_SQLROWS_H
+#ifndef CG_USQL_SQLCOLUMNS_H
+#define CG_USQL_SQLCOLUMNS_H
 
 #include <cybergarage/sql/SQLNode.h>
 
 namespace uSQL {
 
-class SQLColumn : public SQLNode {
+class SQLColumns : public SQLNode {
 
 public:
 
-	SQLColumn() {
+	SQLColumns() {
     	setType(COLUMNS);
     }
 

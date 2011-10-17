@@ -41,6 +41,7 @@ class SQLNode {
 
 public:
 
+    static const int COLLECTION;
     static const int CONDITION;
     static const int COMMAND;
     static const int FROM;
@@ -52,6 +53,7 @@ public:
     static const int COLUMN;
     static const int COLUMNS;
     static const int WHERE;
+    static const int EXPRESSION;
     
 private:
     

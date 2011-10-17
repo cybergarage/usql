@@ -13,8 +13,10 @@
 #ifndef CG_USQL_SQLNODES_H
 #define CG_USQL_SQLNODES_H
 
+#include <cybergarage/sql/node/SQLCollection.h>
 #include <cybergarage/sql/node/SQLCommand.h>
 #include <cybergarage/sql/node/SQLCondition.h>
+#include <cybergarage/sql/node/SQLExpression.h>
 #include <cybergarage/sql/node/SQLFrom.h>
 #include <cybergarage/sql/node/SQLLimit.h>
 #include <cybergarage/sql/node/SQLOffset.h>

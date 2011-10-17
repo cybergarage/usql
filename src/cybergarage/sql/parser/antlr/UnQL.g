@@ -97,10 +97,10 @@ select_stmt [uSQL::SQLStatement *sqlStmt]
 	;
 
 select_core
-	: SELECT (DISTINCT | ALL)? (expr)? (AS name)? 
+	: SELECT (DISTINCT | ALL)? (expression)? (AS name)? 
 	  (FROM)?
-	  (WHERE expr)?
-	  (GROUP BY expr (',' expr)* (OFFSET expr)? (HAVING expr)?)?
+	  (WHERE expression)?
+	  (GROUP BY expression (',' expression)* (OFFSET expression)? (HAVING expression)?)?
 	;
 
 compound_operator
@@ -218,13 +218,23 @@ value
 ******************************************************************/
 
 create_collection_stmt [uSQL::SQLStatement *sqlStmt]
-	@init {
+	@init {	
+		expr = NULL;
 	}
-	: CREATE COLLECTION collection_name OPTIONS expr
+	: CREATE COLLECTION collection_name (OPTIONS expr=expression)?
 	{
 		// CREATE
 		uSQL::SQLCreate *sqlCmd = new uSQL::SQLCreate();
 		sqlStmt->addChildNode(sqlCmd);
+		
+		// Collection
+		uSQL::SQLCollection *sqlCollection = new uSQL::SQLCollection();
+		sqlCollection->setName(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
+		sqlCmd->addChildNode(sqlCollection);
+
+		// Expression 
+		if (expr)
+			sqlCmd->addChildNode(expr);
 	}
 	;
 
@@ -241,7 +251,7 @@ collection_name
 insert_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {
 	}
-	: INSERT INTO collection_name VALUE expr
+	: INSERT INTO collection_name VALUE expression
 	{
 	}
 	;
@@ -256,15 +266,18 @@ name
 	: STRING
 	;
 
-expr
-	: property
-	| integer_literal
+expression returns [uSQL::SQLExpression *sqlExpr]
+	@init {
+		sqlExpr = new uSQL::SQLExpression();
+	}
+	/* : property */
+	: integer_literal
 	| real_literal
 	| string_literal
-	| true
-	| false
-	| '{' (name ':' expr) (',' name ':' expr )* '}'
-	| ']' expr (',' expr )* ']'
+	| true_literal
+	| false_literal
+	| '{' (name ':' expression) (',' name ':' expression )* '}'
+	| ']' expression (',' expression )* ']'
 	;
 
 property
@@ -283,11 +296,11 @@ string_literal
 	: STRING
 	;
 
-true
+true_literal
 	: 'true'
 	;
 	
-false
+false_literal
 	: 'false'
 	;
 	
@@ -598,7 +611,7 @@ WS  :   ( ' '
 	;
 
 STRING
-	:  ( ESC_SEQ | ~('\\'|'\'') )*
+	:  ( ~('\\'|'\'') )*
 //	:  '\'' ( ESC_SEQ | ~('\\'|'\'') )* '\''
 	;
 

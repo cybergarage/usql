@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* SQLColumn.h
+* SQLColumns.h
 *
 * Copyright (C) Satoshi Konno 2011
 *

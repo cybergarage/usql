@@ -58,11 +58,11 @@ select_statement [uSQL::SQLStatement *sqlStmt]
 		sqlStmt->addChildNode(sqlCmd);
 
 		// ASTERISK
-		uSQL::SQLColumns *SQLColumns = new uSQL::SQLColumns();
-		sqlStmt->addChildNode(SQLColumns);
-		uSQL::SQLColumn *SQLColumn = new uSQL::SQLColumn();
-		SQLColumn->setName("*");
-		SQLColumns->addChildNode(SQLColumn);
+		uSQL::SQLColumns *sqlColumns = new uSQL::SQLColumns();
+		sqlStmt->addChildNode(sqlColumns);
+		uSQL::SQLColumn *sqlColumn = new uSQL::SQLColumn();
+		sqlColumn->setName("*");
+		sqlColumns->addChildNode(sqlColumn);
 
 		// TABLE		
 		sqlStmt->addChildNode(tl);

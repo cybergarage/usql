@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* SQLExpression.h
+* SQLValue.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,33 +10,30 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLEXPRESSION_H
-#define CG_USQL_SQLEXPRESSION_H
+#ifndef CG_USQL_SQLVALUE_H
+#define CG_USQL_SQLVALUE_H
 
-#include <cybergarage/sql/SQLNode.h>
+#include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
 
-class SQLExpression : public SQLNode {
+class SQLValue : public SQLExpression {
 
-	std::string value;
-    
 public:
 
-	SQLExpression() {
-    	setType(EXPRESSION);
+	SQLValue() {
+    	setType(VALUE);
     }
-    
-	void setValue(const std::string &value) {
-    	this->value = value;
-    }
-    
-    const char *getValue() {
-    	return this->value.c_str();
+
+	SQLValue(SQLExpression *exprNode) {
+    	setType(VALUE);
+        setValue(exprNode->getValue());
     }
     
     std::string &toString(std::string &buf) {
-    	buf = this->value;
+		std::ostringstream oss;
+        oss << "VALUE " << getValue();
+		buf = oss.str();
         return buf;
     }
 };

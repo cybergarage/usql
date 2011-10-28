@@ -27,15 +27,18 @@ public:
     static const int INSERT;
     static const int DELETE;
     static const int CREATE;
+    static const int DROP;
 
 private:
 
     int commandType;
-    
+	bool asyncFlag;
+        
 public:
 
 	SQLCommand() {
     	setType(COMMAND);
+        setAsyncEnabled(false);
     }
 
     void setCommandType(int commandType) {
@@ -44,6 +47,18 @@ public:
 
     int getCommandType() {
         return this->commandType;
+    }
+
+    void setAsyncEnabled(bool asyncFlag) {
+        this->asyncFlag = asyncFlag;
+    }
+
+    bool isAsync() {
+        return this->asyncFlag;
+    }
+
+    bool isSync() {
+        return !this->asyncFlag;
     }
 };
 
@@ -84,7 +99,7 @@ public:
     }
 
     std::string &toString(std::string &buf) {
-    	buf = "INSERT";
+    	buf = "INSERT INTO";
         return buf;
     }
 };
@@ -112,7 +127,21 @@ public:
     }
 
     std::string &toString(std::string &buf) {
-    	buf = "CREATE";
+    	buf = "CREATE COLLECTION";
+        return buf;
+    }
+};
+
+class SQLDrop : public SQLCommand {
+
+public:
+
+	SQLDrop() {
+    	setCommandType(DROP);
+    }
+
+    std::string &toString(std::string &buf) {
+    	buf = "DROP COLLECTION";
         return buf;
     }
 };

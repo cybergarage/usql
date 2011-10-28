@@ -25,8 +25,9 @@ BOOST_AUTO_TEST_CASE(SQLParserUnQLTest)
 {
 	vector<string> unqlStrings;
     
-    unqlStrings.push_back("CREATE COLLECTION abc");
-    unqlStrings.push_back("CREATE COLLECTION def");
+	unqlStrings.push_back("CREATE COLLECTION abc");
+	unqlStrings.push_back("CREATE COLLECTION def");
+    unqlStrings.push_back("INSERT INTO abc VALUE 1234");
 
 	vector<string>::iterator unqlString = unqlStrings.begin();
 	while(unqlString != unqlStrings.end()) {

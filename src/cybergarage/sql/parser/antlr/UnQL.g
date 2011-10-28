@@ -44,6 +44,7 @@ statement [uSQL::SQLParser *sqlParser]
 	}
 	: select_stmt[stmt]
 	| create_collection_stmt[stmt]
+	| drop_collection_stmt[stmt]
 	| insert_stmt[stmt]
 	;	
 
@@ -101,6 +102,99 @@ select_core
 	  (FROM)?
 	  (WHERE expression)?
 	  (GROUP BY expression (',' expression)* (OFFSET expression)? (HAVING expression)?)?
+	;
+
+/******************************************************************
+*
+* CREATE
+*
+******************************************************************/
+
+create_collection_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {	
+		expr = NULL;
+	}
+	: CREATE COLLECTION collection_name (OPTIONS expr=expression)?
+	{
+		// CREATE
+		uSQL::SQLCreate *sqlCmd = new uSQL::SQLCreate();
+		sqlStmt->addChildNode(sqlCmd);
+		
+		// Collection
+		uSQL::SQLCollection *sqlCollection = new uSQL::SQLCollection();
+		sqlCollection->setName(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
+		sqlCmd->addChildNode(sqlCollection);
+
+		// Expression 
+		if (expr)
+			sqlCmd->addChildNode(expr);
+	}
+	;
+
+/******************************************************************
+*
+* DROP
+*
+******************************************************************/
+
+drop_collection_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {	
+	}
+	: DROP COLLECTION collection_name
+	{
+		// CREATE
+		uSQL::SQLDrop *sqlCmd = new uSQL::SQLDrop();
+		sqlStmt->addChildNode(sqlCmd);
+		
+		// Collection
+		uSQL::SQLCollection *sqlCollection = new uSQL::SQLCollection();
+		sqlCollection->setName(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
+		sqlCmd->addChildNode(sqlCollection);
+	}
+	;
+
+/******************************************************************
+*
+* INSERT
+*
+******************************************************************/
+
+insert_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {
+		isAsync = false;
+		expr = NULL;
+	}
+	: (isAsync=sync_operator)? INSERT INTO collection_name VALUE expr=expression
+	{
+		// INSERT
+		uSQL::SQLInsert *sqlCmd = new uSQL::SQLInsert();
+		sqlCmd->setAsyncEnabled(isAsync);
+		sqlStmt->addChildNode(sqlCmd);
+
+		// Collection
+		uSQL::SQLCollection *sqlCollection = new uSQL::SQLCollection();
+		sqlCollection->setName(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
+		sqlCmd->addChildNode(sqlCollection);
+		
+		// Value
+		uSQL::SQLValue *sqlValue = new uSQL::SQLValue(expr);
+		sqlCmd->addChildNode(sqlValue);
+	}
+	;
+
+/******************************************************************
+*
+* COMMON
+*
+******************************************************************/
+
+sync_operator returns [bool isAync]
+	: SYNC {
+		isAync = false;
+	  }
+	| ASYNC {
+		isAync = true;
+	  }
 	;
 
 compound_operator
@@ -210,59 +304,11 @@ value
 	: STRING	
 	;
 
-
-/******************************************************************
-*
-* CREATE
-*
-******************************************************************/
-
-create_collection_stmt [uSQL::SQLStatement *sqlStmt]
-	@init {	
-		expr = NULL;
-	}
-	: CREATE COLLECTION collection_name (OPTIONS expr=expression)?
-	{
-		// CREATE
-		uSQL::SQLCreate *sqlCmd = new uSQL::SQLCreate();
-		sqlStmt->addChildNode(sqlCmd);
-		
-		// Collection
-		uSQL::SQLCollection *sqlCollection = new uSQL::SQLCollection();
-		sqlCollection->setName(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
-		sqlCmd->addChildNode(sqlCollection);
-
-		// Expression 
-		if (expr)
-			sqlCmd->addChildNode(expr);
-	}
-	;
-
-collection_name
+name
 	: STRING
 	;
 
-/******************************************************************
-*
-* INSERT
-*
-******************************************************************/
-
-insert_stmt [uSQL::SQLStatement *sqlStmt]
-	@init {
-	}
-	: INSERT INTO collection_name VALUE expression
-	{
-	}
-	;
-
-/******************************************************************
-*
-* COMMON
-*
-******************************************************************/
-
-name
+collection_name
 	: STRING
 	;
 
@@ -271,11 +317,21 @@ expression returns [uSQL::SQLExpression *sqlExpr]
 		sqlExpr = new uSQL::SQLExpression();
 	}
 	/* : property */
-	: integer_literal
-	| real_literal
-	| string_literal
-	| true_literal
-	| false_literal
+	: integer_literal {
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($integer_literal.text));
+	  }
+	| real_literal {
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($real_literal.text));
+	  }
+	| string_literal {
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($string_literal.text));
+	  }
+	| true_literal {
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($true_literal.text));
+	  }
+	| false_literal {
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($false_literal.text));
+	  }
 	| '{' (name ':' expression) (',' name ':' expression )* '}'
 	| ']' expression (',' expression )* ']'
 	;
@@ -491,6 +547,10 @@ ASC
 	: A S C
 	;
 	
+ASYNC
+	: A S Y N C
+	;
+	
 BY
 	: B Y
 	;
@@ -509,6 +569,10 @@ DESC
 
 DISTINCT
 	: D I S T I N C T
+	;
+
+DROP
+	: D R O P
 	;
 	
 EXCEPT
@@ -567,6 +631,10 @@ SELECT
 	: S E L E C T
 	;
 
+SYNC
+	: S Y N C
+	;
+
 UNION
 	: U N I O N
 	;
@@ -579,10 +647,6 @@ VALUE
 	: V A L U E
 	;
 	
-ID  
-	: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
-	;
-
 NUMBER	    : (DIGIT)+
             ;
 /*
@@ -611,7 +675,10 @@ WS  :   ( ' '
 	;
 
 STRING
-	:  ( ~('\\'|'\'') )*
+	: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+//    : ( ESC_SEQ | ~('\\'|'\'') )*
+//	: ('a'..'z'|'A'..'Z'|'0'..'9'|'_')+
+//	:  ( ~('\\'|'\'') )*
 //	:  '\'' ( ESC_SEQ | ~('\\'|'\'') )* '\''
 	;
 

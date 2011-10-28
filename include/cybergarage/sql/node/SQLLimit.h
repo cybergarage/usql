@@ -13,7 +13,6 @@
 #ifndef CG_USQL_SQLLIMIT_H
 #define CG_USQL_SQLLIMIT_H
 
-#include <sstream>
 #include <cybergarage/sql/SQLNode.h>
 
 namespace uSQL {

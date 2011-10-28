@@ -63,6 +63,7 @@
 		216C225E14398FEE001A53DC /* SQLCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLCondition.h; path = node/SQLCondition.h; sourceTree = "<group>"; };
 		216C225F14398FEE001A53DC /* SQLWhere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLWhere.h; path = node/SQLWhere.h; sourceTree = "<group>"; };
 		216C2260143993AE001A53DC /* SQLCondition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLCondition.cpp; path = node/SQLCondition.cpp; sourceTree = "<group>"; };
+		2170FCFC145A9C8200B578EF /* SQLValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLValue.h; path = node/SQLValue.h; sourceTree = "<group>"; };
 		21C129FF142C011C00C41192 /* SQLNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLNode.cpp; sourceTree = "<group>"; };
 		21C12A02142C013000C41192 /* SQLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLNode.h; sourceTree = "<group>"; };
 		21C12A04142C0F5400C41192 /* SQLCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLCommand.h; path = node/SQLCommand.h; sourceTree = "<group>"; };
@@ -117,6 +118,7 @@
 		21C12A03142C0F4200C41192 /* node */ = {
 			isa = PBXGroup;
 			children = (
+				2170FCFC145A9C8200B578EF /* SQLValue.h */,
 				21529E6D144C018600F05CDD /* SQLExpression.h */,
 				21529E6B144BFCFF00F05CDD /* SQLCollection.h */,
 				21EE497B143AA68D0010A7D1 /* SQLLimit.h */,
@@ -260,6 +262,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 21F69A6313BAE289004D23C9 /* Build configuration list for PBXNativeTarget "SqlEngineTestUnit" */;
 			buildPhases = (
+				216900CD145A4358008DF010 /* ShellScript */,
 				21F69A5613BAE289004D23C9 /* Sources */,
 				21F69A5713BAE289004D23C9 /* Frameworks */,
 				21F69A5813BAE289004D23C9 /* CopyFiles */,
@@ -297,6 +300,22 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		216900CD145A4358008DF010 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd $SRCROOT/../../../src/cybergarage/sql/parser/antlr/\nmake";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		21F69A5613BAE289004D23C9 /* Sources */ = {

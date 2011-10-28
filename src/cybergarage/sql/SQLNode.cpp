@@ -27,6 +27,7 @@ const int uSQL::SQLNode::LIMIT = 10;
 const int uSQL::SQLNode::OFFSET = 11;
 const int uSQL::SQLNode::COLLECTION = 12;
 const int uSQL::SQLNode::EXPRESSION = 13;
+const int uSQL::SQLNode::VALUE = 14;
 
 uSQL::SQLNode::SQLNode()
 {

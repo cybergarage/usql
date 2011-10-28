@@ -18,3 +18,4 @@ const int uSQL::SQLCommand::UPDATE = 1;
 const int uSQL::SQLCommand::INSERT = 2;
 const int uSQL::SQLCommand::DELETE = 3;
 const int uSQL::SQLCommand::CREATE = 4;
+const int uSQL::SQLCommand::DROP = 5;

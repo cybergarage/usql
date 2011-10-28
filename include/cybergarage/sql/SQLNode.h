@@ -15,6 +15,7 @@
 
 #include <vector>
 #include <iostream>
+#include <sstream>
 
 namespace uSQL {
 
@@ -54,6 +55,7 @@ public:
     static const int COLUMNS;
     static const int WHERE;
     static const int EXPRESSION;
+    static const int VALUE;
     
 private:
     

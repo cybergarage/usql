@@ -28,6 +28,11 @@ BOOST_AUTO_TEST_CASE(SQLParserUnQLTest)
 	unqlStrings.push_back("CREATE COLLECTION abc");
 	unqlStrings.push_back("CREATE COLLECTION def");
     unqlStrings.push_back("INSERT INTO abc VALUE 1234");
+    unqlStrings.push_back("INSERT INTO abc VALUE 3.141592653");
+    //unqlStrings.push_back("INSERT INTO abc VALUE \"This is a string\"");
+    //unqlStrings.push_back("INSERT INTO abc VALUE ["this","is","an","array"]")";
+    //unqlStrings.push_back("INSERT INTO abc VALUE { type: "message", content: "This is an object" }";
+    unqlStrings.push_back("SELECT FROM abc");
 
 	vector<string>::iterator unqlString = unqlStrings.begin();
 	while(unqlString != unqlStrings.end()) {

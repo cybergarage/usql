@@ -62,18 +62,11 @@ select_stmt [uSQL::SQLStatement *sqlStmt]
 		ls = NULL;
 		os = NULL;
 	}
-	: SELECT (compound_operator)? ASTERISK FROM tl=table_list (ws=where_section)? (ss=sort_section)? (ls=limit_section)? (os=offset_section)? 
+	: SELECT (compound_operator)? FROM tl=table_list (ws=where_section)? (ss=sort_section)? (ls=limit_section)? (os=offset_section)? 
 	{
 		// SELECT
 		uSQL::SQLSelect *sqlCmd = new uSQL::SQLSelect();
 		sqlStmt->addChildNode(sqlCmd);
-
-		// ASTERISK
-		uSQL::SQLColumns *SQLColumns = new uSQL::SQLColumns();
-		sqlStmt->addChildNode(SQLColumns);
-		uSQL::SQLColumn *SQLColumn = new uSQL::SQLColumn();
-		SQLColumn->setName("*");
-		SQLColumns->addChildNode(SQLColumn);
 
 		// TABLE		
 		sqlStmt->addChildNode(tl);
@@ -309,7 +302,7 @@ name
 	;
 
 collection_name
-	: STRING
+	: ID
 	;
 
 expression returns [uSQL::SQLExpression *sqlExpr]
@@ -646,34 +639,28 @@ WHERE
 VALUE
 	: V A L U E
 	;
+
+/******************************************************************
+*
+* COMMON
+*
+******************************************************************/
 	
-NUMBER	    : (DIGIT)+
-            ;
-/*
-WHITESPACE  : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+
-              {
-                 $channel = HIDDEN;
-              }
-            ;
-*/
+ID  
+	: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+    	;
+
+NUMBER 
+	: '0'..'9'+
+	;
+
 FLOAT
 	:   ('0'..'9')+ '.' ('0'..'9')* EXPONENT?
 	|   '.' ('0'..'9')+ EXPONENT?
 	|   ('0'..'9')+ EXPONENT
 	;
 
-COMMENT
-	:   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
-	|   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
-	;
-
-WS  :   ( ' '
-		| '\t'
-		| '\r'
-		| '\n'
-		) {$channel=HIDDEN;}
-	;
-
+/*
 STRING
 	: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
 //    : ( ESC_SEQ | ~('\\'|'\'') )*
@@ -681,31 +668,15 @@ STRING
 //	:  ( ~('\\'|'\'') )*
 //	:  '\'' ( ESC_SEQ | ~('\\'|'\'') )* '\''
 	;
+*/
 
-fragment
-ESC_SEQ
-	:   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
-	|   UNICODE_ESC
-	|   OCTAL_ESC
-	;
-
-fragment
-OCTAL_ESC
-	:   '\\' ('0'..'3') ('0'..'7') ('0'..'7')
-	|   '\\' ('0'..'7') ('0'..'7')
-	|   '\\' ('0'..'7')
-	;
-
-fragment
-UNICODE_ESC
-	:   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
-	;
-	
-/*
+STRING
+    :  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
+    ;
 
 CHAR:  '\'' ( ESC_SEQ | ~('\''|'\\') ) '\''
-	;
-*/
+    ;
+
 fragment
 EXPONENT : ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
 
@@ -713,7 +684,20 @@ fragment
 HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
 
 fragment
-DIGIT	    : '0'..'9'
-            ;
+ESC_SEQ
+    :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
+    |   UNICODE_ESC
+    |   OCTAL_ESC
+    ;
 
+fragment
+OCTAL_ESC
+    :   '\\' ('0'..'3') ('0'..'7') ('0'..'7')
+    |   '\\' ('0'..'7') ('0'..'7')
+    |   '\\' ('0'..'7')
+    ;
 
+fragment
+UNICODE_ESC
+    :   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+    ;

@@ -27,6 +27,7 @@
 		21E7FE6B143CE36700CB6A56 /* UnQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E7FE68143CE36600CB6A56 /* UnQLParser.cpp */; };
 		21EE497A143AA1350010A7D1 /* SQLOrder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EE4979143AA1350010A7D1 /* SQLOrder.cpp */; };
 		21EE498A143AB61B0010A7D1 /* SqlEngineTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EE4989143AB61B0010A7D1 /* SqlEngineTestMain.cpp */; };
+		21FFD86C145D543400589229 /* SqlEngineTestCaseReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FFD86A145D543400589229 /* SqlEngineTestCaseReader.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -90,6 +91,8 @@
 		21EE497C143AA68D0010A7D1 /* SQLOffset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLOffset.h; path = node/SQLOffset.h; sourceTree = "<group>"; };
 		21EE4989143AB61B0010A7D1 /* SqlEngineTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestMain.cpp; path = ../../SqlEngineTestMain.cpp; sourceTree = "<group>"; };
 		21F69A5A13BAE289004D23C9 /* SqlEngineTestUnit */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SqlEngineTestUnit; sourceTree = BUILT_PRODUCTS_DIR; };
+		21FFD86A145D543400589229 /* SqlEngineTestCaseReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestCaseReader.cpp; path = ../../SqlEngineTestCaseReader.cpp; sourceTree = "<group>"; };
+		21FFD86B145D543400589229 /* SqlEngineTestCaseReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SqlEngineTestCaseReader.h; path = ../../SqlEngineTestCaseReader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,11 +109,13 @@
 		213F869A13BAE4B10059444A /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
-				21529E6E144C0FE600F05CDD /* SqlEngineTestUnQLParser.cpp */,
+				21FFD86B145D543400589229 /* SqlEngineTestCaseReader.h */,
+				21FFD86A145D543400589229 /* SqlEngineTestCaseReader.cpp */,
 				21E7FE61143CD0FF00CB6A56 /* SqlEngineTestBase.cpp */,
 				21EE4989143AB61B0010A7D1 /* SqlEngineTestMain.cpp */,
 				213F869E13BAE4C00059444A /* SqlEngineTestQuery.cpp */,
 				2153464A14342C5C00C748CC /* SqlEngineTestGQLParser.cpp */,
+				21529E6E144C0FE600F05CDD /* SqlEngineTestUnQLParser.cpp */,
 			);
 			name = UnitTest;
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 				21E7FE6A143CE36700CB6A56 /* UnQLLexer.cpp in Sources */,
 				21E7FE6B143CE36700CB6A56 /* UnQLParser.cpp in Sources */,
 				21529E6F144C0FE600F05CDD /* SqlEngineTestUnQLParser.cpp in Sources */,
+				21FFD86C145D543400589229 /* SqlEngineTestCaseReader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

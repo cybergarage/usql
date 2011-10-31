@@ -197,9 +197,9 @@ compound_operator
 	;
 
 table_name [uSQL::SQLFrom *sqlFrom]
-	: STRING {
+	: ID {
 		uSQL::SQLTable *sqlTable = new uSQL::SQLTable();
-		sqlTable->setName(CG_ANTLR3_STRING_2_UTF8($STRING.text));
+		sqlTable->setName(CG_ANTLR3_STRING_2_UTF8($ID.text));
 		sqlFrom->addChildNode(sqlTable);
 	  }
 	;
@@ -294,11 +294,11 @@ offset_section returns [uSQL::SQLOffset *sqlOffset]
 
 
 value 	
-	: STRING	
+	: ID	
 	;
 
 name
-	: STRING
+	: ID
 	;
 
 collection_name
@@ -330,7 +330,7 @@ expression returns [uSQL::SQLExpression *sqlExpr]
 	;
 
 property
-	: STRING 
+	: ID 
 	;
 
 integer_literal
@@ -342,7 +342,7 @@ real_literal
 	;
 
 string_literal
-	: STRING
+	: ID
 	;
 
 true_literal
@@ -662,7 +662,10 @@ FLOAT
 
 /*
 STRING
-	: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+	: ID
+	//: ('\'')? ID ('\'')?
+//	:  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
+//	: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
 //    : ( ESC_SEQ | ~('\\'|'\'') )*
 //	: ('a'..'z'|'A'..'Z'|'0'..'9'|'_')+
 //	:  ( ~('\\'|'\'') )*
@@ -670,9 +673,12 @@ STRING
 	;
 */
 
+/*
 STRING
-    :  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
-    ;
+	: '"' ID '"'
+	//:  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
+	;
+*/
 
 CHAR:  '\'' ( ESC_SEQ | ~('\''|'\\') ) '\''
     ;

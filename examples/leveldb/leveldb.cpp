@@ -11,6 +11,7 @@
 
 #include <cybergarage/sql/UnQLParser.h>
 
+using namespace std;
 using namespace uSQL;
 
 const char * prompt(EditLine *e);
@@ -73,13 +74,22 @@ int main(int argc, char *argv[]) {
 		
 		/* In order to use our history we have to explicitly add commands
 		 to the history */
-		if (count > 0) {
-			history(myhistory, &ev, H_ENTER, line);
-			printf("You typed \"%s\"\n", line);
-		}
+		if (count <= 0)
+            continue;
+            
+        history(myhistory, &ev, H_ENTER, line);
+        printf("You typed \"%s\"\n", line);
+
+        UnQLParser unqlParser;
+        unqlParser.parse(line);
+        
+        /*
+	    string parseResult;
+	    unqlParser.getStatement()->toString(parseResult);
+	    boost::trim(parseResult);
+        */
 	}
-	
-	
+
 	/* Clean up our memory */
 	history_end(myhistory);
 	el_end(el);

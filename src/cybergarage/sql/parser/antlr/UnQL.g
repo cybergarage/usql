@@ -325,8 +325,15 @@ expression returns [uSQL::SQLExpression *sqlExpr]
 	| false_literal {
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($false_literal.text));
 	  }
-	| '{' (name ':' expression) (',' name ':' expression )* '}'
-	| ']' expression (',' expression )* ']'
+	  /*
+	| jsstring_literal {
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($jsstring_literal.text));
+	  }
+	  */
+	| '{' (name ':' expression) (',' name ':' expression )* '}' {
+	  }
+	| '[' expression (',' expression )* ']' {
+	  }	
 	;
 
 property
@@ -342,7 +349,7 @@ real_literal
 	;
 
 string_literal
-	: ID
+	: STRING
 	;
 
 true_literal
@@ -353,6 +360,10 @@ false_literal
 	: 'false'
 	;
 	
+jsstring_literal
+	: '{' (name ':' expression) (',' name ':' expression )* '}'
+	| '[' expression (',' expression )* ']'
+	;
 
 /*------------------------------------------------------------------
  * LEXER RULES
@@ -645,6 +656,13 @@ VALUE
 * COMMON
 *
 ******************************************************************/
+
+WS  :   ( ' '
+        | '\t'
+        | '\r'
+        | '\n'
+        ) {$channel=HIDDEN;}
+    ;
 	
 ID  
 	//: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
@@ -660,26 +678,6 @@ FLOAT
 	|   '.' ('0'..'9')+ EXPONENT?
 	|   ('0'..'9')+ EXPONENT
 	;
-/*
-STRING
-	: ID
-	//: ('\'')? ID ('\'')?
-//	:  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
-//	: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
-//    : ( ESC_SEQ | ~('\\'|'\'') )*
-//	: ('a'..'z'|'A'..'Z'|'0'..'9'|'_')+
-//	:  ( ~('\\'|'\'') )*
-//	:  '\'' ( ESC_SEQ | ~('\\'|'\'') )* '\''
-	;
-*/
-
-/*
-STRING
-	: '"' ID '"'
-	//:  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
-	;
-*/
-
 
 STRING
 	:  '"' ( EscapeSequence | ~('\\'| '"') )* '"' 

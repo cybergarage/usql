@@ -9,6 +9,10 @@
 #include <histedit.h>
 #include <leveldb/db.h>
 
+#include <cybergarage/sql/UnQLParser.h>
+
+using namespace uSQL;
+
 const char * prompt(EditLine *e);
 void testfunction();
 
@@ -28,6 +32,8 @@ void testfunction()
 
 int main(int argc, char *argv[]) {
 	
+    UnQLParser unqlParser;
+
 	/* This holds all the state for our line editor */
 	EditLine *el;
 	

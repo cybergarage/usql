@@ -7,8 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		212ADBCB14682496004E5FBF /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 212ADBC81468246C004E5FBF /* SqlEngineLib.dylib */; };
 		212D74891446C232003632AD /* leveldb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212D74881446C232003632AD /* leveldb.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		212ADBC71468246C004E5FBF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 212ADBC31468246A004E5FBF /* SqlEngineLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 212FB5DA14681D420067F07B;
+			remoteInfo = SqlEngineLib;
+		};
+		212ADBC914682490004E5FBF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 212ADBC31468246A004E5FBF /* SqlEngineLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 212FB5D914681D420067F07B;
+			remoteInfo = SqlEngineLib;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		21CBB66D1446C13900EC94F5 /* CopyFiles */ = {
@@ -23,6 +41,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		212ADBC31468246A004E5FBF /* SqlEngineLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SqlEngineLib.xcodeproj; path = ../../../../lib/macosx/xcode/SqlEngineLib.xcodeproj; sourceTree = "<group>"; };
 		212D74881446C232003632AD /* leveldb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = leveldb.cpp; path = ../../leveldb.cpp; sourceTree = SOURCE_ROOT; };
 		21CBB66F1446C13900EC94F5 /* leveldb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = leveldb; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -32,12 +51,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				212ADBCB14682496004E5FBF /* SqlEngineLib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		212ADBC41468246A004E5FBF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				212ADBC81468246C004E5FBF /* SqlEngineLib.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		212D74871446C219003632AD /* Src */ = {
 			isa = PBXGroup;
 			children = (
@@ -46,10 +74,19 @@
 			name = Src;
 			sourceTree = "<group>";
 		};
+		213FE63E146821F4000F36F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				212ADBC31468246A004E5FBF /* SqlEngineLib.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		21CBB6641446C13900EC94F5 = {
 			isa = PBXGroup;
 			children = (
 				212D74871446C219003632AD /* Src */,
+				213FE63E146821F4000F36F2 /* Frameworks */,
 				21CBB6701446C13900EC94F5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,6 +113,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				212ADBCA14682490004E5FBF /* PBXTargetDependency */,
 			);
 			name = leveldb;
 			productName = leveldb;
@@ -100,12 +138,28 @@
 			mainGroup = 21CBB6641446C13900EC94F5;
 			productRefGroup = 21CBB6701446C13900EC94F5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 212ADBC41468246A004E5FBF /* Products */;
+					ProjectRef = 212ADBC31468246A004E5FBF /* SqlEngineLib.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				21CBB66E1446C13900EC94F5 /* leveldb */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		212ADBC81468246C004E5FBF /* SqlEngineLib.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = SqlEngineLib.dylib;
+			remoteRef = 212ADBC71468246C004E5FBF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		21CBB66B1446C13900EC94F5 /* Sources */ = {
@@ -117,6 +171,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		212ADBCA14682490004E5FBF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SqlEngineLib;
+			targetProxy = 212ADBC914682490004E5FBF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		21CBB6771446C13900EC94F5 /* Debug */ = {
@@ -139,6 +201,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../../include;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -163,6 +226,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../../include;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = (
 					"-ledit",

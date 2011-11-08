@@ -6,6 +6,8 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+#include <stdlib.h>
+#include <unistd.h>
 #include <histedit.h>
 #include <leveldb/db.h>
 
@@ -16,6 +18,7 @@ using namespace uSQL;
 
 const char * prompt(EditLine *e);
 void testfunction();
+void usage();
 
 const char * prompt(EditLine *e) 
 {
@@ -31,8 +34,56 @@ void testfunction()
 //  assert(status.ok());
 }
 
+void usage()
+{
+    cout << "Usage: leveldb [OPTIONS] FILE" << endl;
+    cout << "Miscellaneous:" << endl;
+    cout << "-h\tproduce this help message:" << endl;
+}
+
 int main(int argc, char *argv[]) {
-	
+
+    int ch;
+    while ((ch = getopt(argc, argv, "hf:")) != -1) {
+        switch (ch) {
+        case 'h':
+            {
+                usage();
+                exit(EXIT_SUCCESS);
+            }
+            break;
+        case 'f':
+            /*
+            if ((fd = open(optarg, O_RDONLY, 0)) < 0) {
+                (void)fprintf(stderr,
+                                 "myname: %s: %s\n", optarg, strerror(errno));
+                             exit(1);
+                     }
+            */
+            break;
+        case '?':
+        default:
+            {
+                usage();
+                exit(EXIT_SUCCESS);
+            }
+        }
+     }
+    argc -= optind;
+    argv += optind;
+    
+    if (argc <= 0) {
+        cout << "bison: missing operand after `bison'" << endl;
+        cout << "Try `bison --help' for more information." << endl;
+        exit(EXIT_FAILURE);
+    }
+    
+    leveldb::DB* db;
+    leveldb::Options options;
+    options.create_if_missing = true;
+    leveldb::Status status = leveldb::DB::Open(options, "/tmp/testdb", &db);    
+    status.ok();
+    
     UnQLParser unqlParser;
 
 	/* This holds all the state for our line editor */
@@ -81,13 +132,8 @@ int main(int argc, char *argv[]) {
         printf("You typed \"%s\"\n", line);
 
         UnQLParser unqlParser;
-        unqlParser.parse(line);
-        
-        /*
-	    string parseResult;
-	    unqlParser.getStatement()->toString(parseResult);
-	    boost::trim(parseResult);
-        */
+        if (unqlParser.parse(line) == false) {
+        }
 	}
 
 	/* Clean up our memory */
@@ -95,5 +141,5 @@ int main(int argc, char *argv[]) {
 	el_end(el);
 	
 	
-	return 0;
+	return EXIT_SUCCESS;
 }

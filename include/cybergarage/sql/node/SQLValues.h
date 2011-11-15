@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* SQLValue.h
+* SQLValules.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,35 +10,23 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLVALUE_H
-#define CG_USQL_SQLVALUE_H
+#ifndef CG_USQL_SQLVALUES_H
+#define CG_USQL_SQLVALUES_H
 
 #include <cybergarage/sql/SQLNode.h>
 
 namespace uSQL {
 
-class SQLValue : public SQLNode {
+class SQLValules : public SQLNode {
 
-	std::string value;
-    
 public:
 
-	SQLValue() {
-    	setType(VALUE);
-    }
-    
-	void setValue(const std::string &value) {
-    	this->value = value;
-    }
-    
-    const char *getValue() {
-    	return this->value.c_str();
+	SQLValules() {
+    	setType(VALUES);
     }
     
     std::string &toString(std::string &buf) {
-		std::ostringstream oss;
-        oss << "VALUE " << getValue();
-		buf = oss.str();
+    	buf = "";
         return buf;
     }
 };

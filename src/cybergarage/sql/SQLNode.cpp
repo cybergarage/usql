@@ -28,6 +28,8 @@ const int uSQL::SQLNode::OFFSET = 11;
 const int uSQL::SQLNode::COLLECTION = 12;
 const int uSQL::SQLNode::EXPRESSION = 13;
 const int uSQL::SQLNode::VALUE = 14;
+const int uSQL::SQLNode::VALUES = 15;
+const int uSQL::SQLNode::DICTIONARY = 16;
 
 uSQL::SQLNode::SQLNode()
 {

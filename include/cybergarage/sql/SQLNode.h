@@ -45,6 +45,7 @@ public:
     static const int COLLECTION;
     static const int CONDITION;
     static const int COMMAND;
+    static const int DICTIONARY;
     static const int FROM;
     static const int TABLE;
     static const int LIMIT;
@@ -56,6 +57,7 @@ public:
     static const int WHERE;
     static const int EXPRESSION;
     static const int VALUE;
+    static const int VALUES;
     
 private:
     

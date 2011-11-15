@@ -49,6 +49,8 @@
 		2171176814681E9A00088931 /* SQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171175014681E9A00088931 /* SQLParser.cpp */; };
 		2171176914681E9A00088931 /* SQLStatement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171175114681E9A00088931 /* SQLStatement.cpp */; };
 		2171176A14681E9A00088931 /* UnQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171175214681E9A00088931 /* UnQLParser.cpp */; };
+		21C746EB1472050F00A3F635 /* SQLDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C746E91472050F00A3F635 /* SQLDictionary.h */; };
+		21C746EC1472050F00A3F635 /* SQLValues.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C746EA1472050F00A3F635 /* SQLValues.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +100,8 @@
 		2171175014681E9A00088931 /* SQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLParser.cpp; sourceTree = "<group>"; };
 		2171175114681E9A00088931 /* SQLStatement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLStatement.cpp; sourceTree = "<group>"; };
 		2171175214681E9A00088931 /* UnQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnQLParser.cpp; sourceTree = "<group>"; };
+		21C746E91472050F00A3F635 /* SQLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLDictionary.h; sourceTree = "<group>"; };
+		21C746EA1472050F00A3F635 /* SQLValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLValues.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,8 @@
 		2171170214681E7D00088931 /* node */ = {
 			isa = PBXGroup;
 			children = (
+				21C746E91472050F00A3F635 /* SQLDictionary.h */,
+				21C746EA1472050F00A3F635 /* SQLValues.h */,
 				2171170314681E7D00088931 /* SQLCollection.h */,
 				2171170414681E7D00088931 /* SQLColumn.h */,
 				2171170514681E7D00088931 /* SQLColumns.h */,
@@ -303,6 +309,8 @@
 				2171176114681E9A00088931 /* SQL92Parser.h in Headers */,
 				2171176314681E9A00088931 /* UnQLLexer.h in Headers */,
 				2171176514681E9A00088931 /* UnQLParser.h in Headers */,
+				21C746EB1472050F00A3F635 /* SQLDictionary.h in Headers */,
+				21C746EC1472050F00A3F635 /* SQLValues.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

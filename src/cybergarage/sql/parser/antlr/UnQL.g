@@ -170,8 +170,8 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 		sqlCmd->addChildNode(sqlCollection);
 		
 		// Value
-		uSQL::SQLValue *sqlValue = new uSQL::SQLValue(expr);
-		sqlCmd->addChildNode(sqlValue);
+		//uSQL::SQLValue *sqlValue = new uSQL::SQLValue(expr);
+		//sqlCmd->addChildNode(sqlValue);
 	}
 	;
 
@@ -200,6 +200,11 @@ table_name [uSQL::SQLFrom *sqlFrom]
 	: ID {
 		uSQL::SQLTable *sqlTable = new uSQL::SQLTable();
 		sqlTable->setName(CG_ANTLR3_STRING_2_UTF8($ID.text));
+		sqlFrom->addChildNode(sqlTable);
+	  }
+	| string_literal {
+		uSQL::SQLTable *sqlTable = new uSQL::SQLTable();
+		sqlTable->setName(CG_ANTLR3_STRING_2_UTF8($string_literal.text));
 		sqlFrom->addChildNode(sqlTable);
 	  }
 	;
@@ -303,6 +308,7 @@ name
 
 collection_name
 	: ID
+	| string_literal
 	;
 
 expression returns [uSQL::SQLExpression *sqlExpr]
@@ -666,7 +672,7 @@ WS  :   ( ' '
 	
 ID  
 	//: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
-	: ('a'..'z'|'A'..'Z'|'_')('a'..'z'|'A'..'Z'|'_'|'-'|'0'..'9')*
+	: ('a'..'z'|'A'..'Z'|'_'|'/')('a'..'z'|'A'..'Z'|'_'|'-'|'/'|'0'..'9')*
     	;
 
 NUMBER 

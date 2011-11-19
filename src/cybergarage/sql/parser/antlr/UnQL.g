@@ -154,10 +154,11 @@ drop_collection_stmt [uSQL::SQLStatement *sqlStmt]
 
 insert_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {
+		SQLValue *sqlValue = new uSQL::SQLValue();
 		isAsync = false;
 		expr = NULL;
 	}
-	: (isAsync=sync_operator)? INSERT INTO collection_name VALUE expr=expression
+	: (isAsync=sync_operator)? INSERT INTO collection_name VALUE expression
 	{
 		// INSERT
 		uSQL::SQLInsert *sqlCmd = new uSQL::SQLInsert();
@@ -170,8 +171,7 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 		sqlCmd->addChildNode(sqlCollection);
 		
 		// Value
-		//uSQL::SQLValue *sqlValue = new uSQL::SQLValue(expr);
-		//sqlCmd->addChildNode(sqlValue);
+		sqlCmd->addChildNode(sqlValue);
 	}
 	;
 
@@ -311,9 +311,10 @@ collection_name
 	| string_literal
 	;
 
-expression returns [uSQL::SQLExpression *sqlExpr]
+expression /*[uSQL::SQLExpression *parentSqlExpr]*/
 	@init {
-		sqlExpr = new uSQL::SQLExpression();
+		SQLExpression sqlExpr = new uSQL::SQLExpression();
+		//parentSqlExpr->addExpression(sqlExpr);
 	}
 	/* : property */
 	: integer_literal {
@@ -336,10 +337,12 @@ expression returns [uSQL::SQLExpression *sqlExpr]
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($jsstring_literal.text));
 	  }
 	  */
-	| '{' (name ':' expression) (',' name ':' expression )* '}' {
+	  /*
+	| '{' (dictionary_literal[sqlExpr]) (',' dictionary_literal[sqlExpr])* '}' {
 	  }
 	| '[' expression (',' expression )* ']' {
 	  }	
+	  */
 	;
 
 property
@@ -365,7 +368,11 @@ true_literal
 false_literal
 	: 'false'
 	;
-	
+
+dictionary_literal [uSQL::SQLExpression *sqlExpr]
+	: name ':' expression
+	;
+		
 jsstring_literal
 	: '{' (name ':' expression) (',' name ':' expression )* '}'
 	| '[' expression (',' expression )* ']'

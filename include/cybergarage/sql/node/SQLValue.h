@@ -28,8 +28,9 @@ public:
     }
     
     std::string &toString(std::string &buf) {
+    	std::string exprString;
 		std::ostringstream oss;
-        oss << "VALUE " << getValue();
+        oss << "VALUE " << SQLExpression::toString(exprString) ;
 		buf = oss.str();
         return buf;
     }

@@ -50,6 +50,7 @@ public:
     static const int TABLE;
     static const int LIMIT;
     static const int OFFSET;
+    static const int OPTION;
     static const int ORDER;
     static const int ORDERS;
     static const int COLUMN;

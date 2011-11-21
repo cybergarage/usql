@@ -90,12 +90,14 @@ select_stmt [uSQL::SQLStatement *sqlStmt]
 	}
 	;
 
+/*
 select_core
 	: SELECT (DISTINCT | ALL)? (expression)? (AS name)? 
 	  (FROM)?
 	  (WHERE expression)?
 	  (GROUP BY expression (',' expression)* (OFFSET expression)? (HAVING expression)?)?
 	;
+*/
 
 /******************************************************************
 *
@@ -105,9 +107,9 @@ select_core
 
 create_collection_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {	
-		expr = NULL;
+		uSQL::SQLOption *sqlOpt = new uSQL::SQLOption();
 	}
-	: CREATE COLLECTION collection_name (OPTIONS expr=expression)?
+	: CREATE COLLECTION collection_name (OPTIONS expression[sqlOpt])?
 	{
 		// CREATE
 		uSQL::SQLCreate *sqlCmd = new uSQL::SQLCreate();
@@ -118,9 +120,11 @@ create_collection_stmt [uSQL::SQLStatement *sqlStmt]
 		sqlCollection->setName(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
 		sqlCmd->addChildNode(sqlCollection);
 
-		// Expression 
-		if (expr)
-			sqlCmd->addChildNode(expr);
+		// Option 
+		if (sqlOpt->hasExpressions())
+			sqlCmd->addChildNode(sqlOpt);
+		else 
+			delete sqlOpt;
 	}
 	;
 
@@ -154,11 +158,10 @@ drop_collection_stmt [uSQL::SQLStatement *sqlStmt]
 
 insert_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {
-		SQLValue *sqlValue = new uSQL::SQLValue();
+		uSQL::SQLValue *sqlValue = new uSQL::SQLValue();
 		isAsync = false;
-		expr = NULL;
 	}
-	: (isAsync=sync_operator)? INSERT INTO collection_name VALUE expression
+	: (isAsync=sync_operator)? INSERT INTO collection_name VALUE expression[sqlValue]
 	{
 		// INSERT
 		uSQL::SQLInsert *sqlCmd = new uSQL::SQLInsert();
@@ -311,10 +314,10 @@ collection_name
 	| string_literal
 	;
 
-expression /*[uSQL::SQLExpression *parentSqlExpr]*/
+expression [uSQL::SQLExpression *parentSqlExpr]
 	@init {
-		SQLExpression sqlExpr = new uSQL::SQLExpression();
-		//parentSqlExpr->addExpression(sqlExpr);
+		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
+		parentSqlExpr->addExpression(sqlExpr);
 	}
 	/* : property */
 	: integer_literal {
@@ -337,9 +340,9 @@ expression /*[uSQL::SQLExpression *parentSqlExpr]*/
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($jsstring_literal.text));
 	  }
 	  */
-	  /*
 	| '{' (dictionary_literal[sqlExpr]) (',' dictionary_literal[sqlExpr])* '}' {
 	  }
+	  /*
 	| '[' expression (',' expression )* ']' {
 	  }	
 	  */
@@ -370,13 +373,26 @@ false_literal
 	;
 
 dictionary_literal [uSQL::SQLExpression *sqlExpr]
-	: name ':' expression
+	@init {
+		uSQL::SQLExpression *valueParentExpr = new uSQL::SQLExpression();
+	}
+	@after {
+		delete valueParentExpr;
+	}
+	: name ':' expression[valueParentExpr] {
+		sqlExpr->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
+		uSQL::SQLExpression *valueExpr = valueParentExpr->getExpression(0);
+		if (valueExpr)
+			sqlExpr->setValue(valueExpr->getValue());
+	  }
 	;
-		
+
+/*		
 jsstring_literal
 	: '{' (name ':' expression) (',' name ':' expression )* '}'
 	| '[' expression (',' expression )* ']'
 	;
+*/
 
 /*------------------------------------------------------------------
  * LEXER RULES

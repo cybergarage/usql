@@ -315,37 +315,34 @@ collection_name
 	;
 
 expression [uSQL::SQLExpression *parentSqlExpr]
-	@init {
-		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
-		parentSqlExpr->addExpression(sqlExpr);
-	}
 	/* : property */
 	: integer_literal {
+		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($integer_literal.text));
+		parentSqlExpr->addExpression(sqlExpr);
 	  }
 	| real_literal {
+		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($real_literal.text));
+		parentSqlExpr->addExpression(sqlExpr);
 	  }
 	| string_literal {
+		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($string_literal.text));
+		parentSqlExpr->addExpression(sqlExpr);
 	  }
 	| true_literal {
+		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($true_literal.text));
+		parentSqlExpr->addExpression(sqlExpr);
 	  }
 	| false_literal {
+		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($false_literal.text));
+		parentSqlExpr->addExpression(sqlExpr);
 	  }
-	  /*
-	| jsstring_literal {
-		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($jsstring_literal.text));
-	  }
-	  */
-	| '{' (dictionary_literal[sqlExpr]) (',' dictionary_literal[sqlExpr])* '}' {
-	  }
-	  /*
-	| '[' expression (',' expression )* ']' {
-	  }	
-	  */
+	| '{' (dictionary_literal[parentSqlExpr]) (',' dictionary_literal[parentSqlExpr])* '}'
+	| '[' array_literal[parentSqlExpr] (',' array_literal[parentSqlExpr] )* ']'
 	;
 
 property
@@ -372,7 +369,7 @@ false_literal
 	: 'false'
 	;
 
-dictionary_literal [uSQL::SQLExpression *sqlExpr]
+dictionary_literal [uSQL::SQLExpression *parentSqlExpr]
 	@init {
 		uSQL::SQLExpression *valueParentExpr = new uSQL::SQLExpression();
 	}
@@ -380,13 +377,28 @@ dictionary_literal [uSQL::SQLExpression *sqlExpr]
 		delete valueParentExpr;
 	}
 	: name ':' expression[valueParentExpr] {
-		sqlExpr->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
 		uSQL::SQLExpression *valueExpr = valueParentExpr->getExpression(0);
-		if (valueExpr)
-			sqlExpr->setValue(valueExpr->getValue());
+		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
+		sqlExpr->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
+		sqlExpr->setValue(valueExpr ? valueExpr->getValue() : "");
+		parentSqlExpr->addExpression(sqlExpr);
 	  }
 	;
 
+array_literal [uSQL::SQLExpression *parentSqlExpr]
+	@init {
+		uSQL::SQLExpression *valueParentExpr = new uSQL::SQLExpression();
+	}
+	@after {
+		delete valueParentExpr;
+	}
+	: expression[valueParentExpr] {
+ 		uSQL::SQLExpression *valueExpr = valueParentExpr->getExpression(0);
+		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
+		sqlExpr->setValue(valueExpr ? valueExpr->getValue() : "");
+		parentSqlExpr->addExpression(sqlExpr);
+	  }
+	;
 /*		
 jsstring_literal
 	: '{' (name ':' expression) (',' name ':' expression )* '}'

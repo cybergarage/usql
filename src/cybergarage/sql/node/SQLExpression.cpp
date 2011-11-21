@@ -30,25 +30,26 @@ std::string &uSQL::SQLExpression::toString(std::string &buf)
     }
 
 	std::ostringstream oss;
-	oss << "OFFSET " << this->value;
         
 	if (hasDictionary) {
     	oss << "{";
 	    for (SQLExpressions::iterator expr=expressions.begin(); expr != expressions.end(); expr++) {
     		if (expr != expressions.begin())
 		    	oss << ",";
-            oss << (*expr)->getName() << ": " << (*expr)->getValue();
+            oss << (*expr)->getName() << ":" << (*expr)->getValue();
     	}
     	oss << "}";
     }
     else {
-    	oss << "[";
+        if (1 < expressionsCount)
+            oss << "[";
 	    for (SQLExpressions::iterator expr=expressions.begin(); expr != expressions.end(); expr++) {
     		if (expr != expressions.begin())
 		    	oss << ",";
             oss << (*expr)->getValue();
     	}
-    	oss << "]";
+        if (1 < expressionsCount)
+            oss << "]";
     }
     
     buf = oss.str();

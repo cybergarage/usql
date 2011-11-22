@@ -88,7 +88,7 @@ select_statement [uSQL::SQLStatement *sqlStmt]
 
 table_name [uSQL::SQLFrom *sqlFrom]
 	: ID {
-		uSQL::SQLTable *sqlTable = new uSQL::SQLTable();
+		uSQL::SQLDataSource *sqlTable = new uSQL::SQLDataSource();
 		sqlTable->setName(CG_ANTLR3_STRING_2_UTF8($ID.text));
 		sqlFrom->addChildNode(sqlTable);
 	  }

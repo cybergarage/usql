@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* SQLTable.h
+* SQLDataSource.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,15 +10,15 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLTABLE_H
-#define CG_USQL_SQLTABLE_H
+#ifndef CG_USQL_SQLDATASOURCE_H
+#define CG_USQL_SQLDATASOURCE_H
 
 #include <string>
 #include <cybergarage/sql/SQLNode.h>
 
 namespace uSQL {
 
-class SQLTable : public SQLNode {
+class SQLDataSource : public SQLNode {
 
 private:
 
@@ -26,8 +26,8 @@ private:
     
 public:
 
-	SQLTable() {
-    	setType(TABLE);
+	SQLDataSource() {
+    	setType(DATASOURCE);
     }
 
 	void setName(const std::string &name) {

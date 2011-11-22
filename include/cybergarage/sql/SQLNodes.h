@@ -27,7 +27,7 @@
 #include <cybergarage/sql/node/SQLOrders.h>
 #include <cybergarage/sql/node/SQLColumn.h>
 #include <cybergarage/sql/node/SQLColumns.h>
-#include <cybergarage/sql/node/SQLTable.h>
+#include <cybergarage/sql/node/SQLDataSource.h>
 #include <cybergarage/sql/node/SQLValue.h>
 #include <cybergarage/sql/node/SQLWhere.h>
 

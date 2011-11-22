@@ -45,9 +45,9 @@ public:
     static const int COLLECTION;
     static const int CONDITION;
     static const int COMMAND;
+    static const int DATASOURCE;
     static const int DICTIONARY;
     static const int FROM;
-    static const int TABLE;
     static const int LIMIT;
     static const int OFFSET;
     static const int OPTION;

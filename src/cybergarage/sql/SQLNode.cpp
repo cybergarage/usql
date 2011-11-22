@@ -16,7 +16,7 @@
 
 const int uSQL::SQLNode::COMMAND = 1;
 const int uSQL::SQLNode::FROM = 2;
-const int uSQL::SQLNode::TABLE = 3;
+const int uSQL::SQLNode::DATASOURCE = 3;
 const int uSQL::SQLNode::COLUMN = 4;
 const int uSQL::SQLNode::COLUMNS = 5;
 const int uSQL::SQLNode::CONDITION = 6;

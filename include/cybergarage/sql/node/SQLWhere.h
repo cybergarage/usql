@@ -17,16 +17,19 @@
 
 namespace uSQL {
 
-class SQLWhere : public SQLNode {
+class SQLWhere : public SQLExpression {
 
 public:
 
 	SQLWhere() {
     	setType(WHERE);
     }
-
+    
     std::string &toString(std::string &buf) {
-    	buf = "WHERE";
+    	std::string exprString;
+		std::ostringstream oss;
+        oss << "WHERE " << SQLExpression::toString(exprString) ;
+		buf = oss.str();
         return buf;
     }
 };

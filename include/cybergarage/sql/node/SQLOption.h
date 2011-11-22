@@ -19,8 +19,6 @@ namespace uSQL {
 
 class SQLOption : public SQLExpression {
 
-	std::string value;
-    
 public:
 
 	SQLOption() {

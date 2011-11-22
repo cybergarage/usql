@@ -54,6 +54,7 @@ statement [uSQL::SQLParser *sqlParser]
 *
 ******************************************************************/
 
+/*
 select_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {
 		tl = NULL;
@@ -89,16 +90,88 @@ select_stmt [uSQL::SQLStatement *sqlStmt]
 
 	}
 	;
-
-/*
-select_core
-	: SELECT (DISTINCT | ALL)? (expression)? (AS name)? 
-	  (FROM)?
-	  (WHERE expression)?
-	  (GROUP BY expression (',' expression)* (OFFSET expression)? (HAVING expression)?)?
-	;
 */
 
+select_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {
+		// SELECT
+		uSQL::SQLSelect *sqlSelect = new uSQL::SQLSelect();
+		sqlStmt->addChildNode(sqlSelect);
+
+		ss = NULL;
+		ls = NULL;
+		os = NULL;
+	}
+	: select_core[sqlStmt] (ss=sort_section)? (ls=limit_section)? (os=offset_section)? 
+	{
+		// ORDER BY		
+		if (ss)
+			sqlStmt->addChildNode(ss);
+			
+		// LIMIT		
+		if (ls)
+			sqlStmt->addChildNode(ls);
+
+		// OFFSET
+		if (os)
+			sqlStmt->addChildNode(os);
+	}
+	;
+
+select_core [uSQL::SQLStatement *sqlStmt]
+	@init {
+		uSQL::SQLValue *sqlValue = new uSQL::SQLValue();
+		fromSection = NULL;
+		whereSection = NULL;
+	}
+	: SELECT (DISTINCT | ALL)? (expression[sqlValue])? (AS name)? 
+	  (fromSection = from_section)? 
+	  (whereSection = where_section)? /*
+	  (GROUP BY expression (',' expression)* (OFFSET expression)? (HAVING expression)?)?  */ {
+	  
+		// VALUE 
+		if (sqlValue->hasExpressions())
+			sqlStmt->addChildNode(sqlValue);
+		else 
+			delete sqlValue;
+			
+		// FROM
+		if (fromSection)		
+			sqlStmt->addChildNode(fromSection);
+			
+		// WHERE
+		if (whereSection)		
+			sqlStmt->addChildNode(whereSection);
+	  }
+	;
+
+from_section returns [uSQL::SQLFrom *sqlFrom]
+	@init {
+		sqlFrom = new uSQL::SQLFrom();
+	}
+	: (FROM table_name[sqlFrom]) (COMMA table_name[sqlFrom])*
+	;
+
+table_name [uSQL::SQLFrom *sqlFrom]
+	: dataSource = data_source {
+		sqlFrom->addChildNode(dataSource);
+	  }
+	;
+
+data_source returns [uSQL::SQLDataSource *sqlDataSource]
+	: (collection_name) {
+		sqlDataSource = new uSQL::SQLDataSource();
+		sqlDataSource->setName(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
+	  }
+	;
+
+where_section returns [uSQL::SQLWhere *sqlWhere]
+	@init {
+		sqlWhere = new uSQL::SQLWhere();
+	}
+	: WHERE expression[sqlWhere]
+	;
+	
 /******************************************************************
 *
 * CREATE
@@ -109,8 +182,7 @@ create_collection_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {	
 		uSQL::SQLOption *sqlOpt = new uSQL::SQLOption();
 	}
-	: CREATE COLLECTION collection_name (OPTIONS expression[sqlOpt])?
-	{
+	: CREATE COLLECTION collection_name (OPTIONS expression[sqlOpt])? {
 		// CREATE
 		uSQL::SQLCreate *sqlCmd = new uSQL::SQLCreate();
 		sqlStmt->addChildNode(sqlCmd);
@@ -125,7 +197,7 @@ create_collection_stmt [uSQL::SQLStatement *sqlStmt]
 			sqlCmd->addChildNode(sqlOpt);
 		else 
 			delete sqlOpt;
-	}
+	  }
 	;
 
 /******************************************************************
@@ -197,49 +269,6 @@ compound_operator
 	: UNION (ALL)?
 	| INTERSECT
 	| EXCEPT
-	;
-
-table_name [uSQL::SQLFrom *sqlFrom]
-	: ID {
-		uSQL::SQLTable *sqlTable = new uSQL::SQLTable();
-		sqlTable->setName(CG_ANTLR3_STRING_2_UTF8($ID.text));
-		sqlFrom->addChildNode(sqlTable);
-	  }
-	| string_literal {
-		uSQL::SQLTable *sqlTable = new uSQL::SQLTable();
-		sqlTable->setName(CG_ANTLR3_STRING_2_UTF8($string_literal.text));
-		sqlFrom->addChildNode(sqlTable);
-	  }
-	;
-
-table_list returns [uSQL::SQLFrom *sqlFrom]
-	@init {
-		sqlFrom = new uSQL::SQLFrom();
-	}
-	: (table_name[sqlFrom]) (COMMA table_name[sqlFrom])*
-	;
-
-where_section returns [uSQL::SQLWhere *sqlWhere]
-	@init {
-		sqlWhere = new uSQL::SQLWhere();
-	}
-	: WHERE condition_list[sqlWhere]
-	;
-	
-condition_list [uSQL::SQLWhere *sqlWhere]
-	: condition[sqlWhere] (AND condition[sqlWhere])*
-	;
-
-condition [uSQL::SQLWhere *sqlWhere]
-	: property condition_operator value {
-		uSQL::SQLCondition *sqlCond = new uSQL::SQLCondition();
-		sqlCond->setName(CG_ANTLR3_STRING_2_UTF8($property.text));
-		sqlCond->setOperation(CG_ANTLR3_STRING_2_UTF8($condition_operator.text));
-		sqlCond->setValue(CG_ANTLR3_STRING_2_UTF8($value.text));
-		sqlWhere->addChildNode(sqlCond);
-	  }
-	| property IN value
-	| ANCESTOR  IS
 	;
 
 condition_operator
@@ -341,8 +370,8 @@ expression [uSQL::SQLExpression *parentSqlExpr]
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($false_literal.text));
 		parentSqlExpr->addExpression(sqlExpr);
 	  }
-	| '{' (dictionary_literal[parentSqlExpr]) (',' dictionary_literal[parentSqlExpr])* '}'
-	| '[' array_literal[parentSqlExpr] (',' array_literal[parentSqlExpr] )* ']'
+	| '{' (dictionary_literal[parentSqlExpr]) (COMMA dictionary_literal[parentSqlExpr])* '}'
+	| '[' array_literal[parentSqlExpr] (COMMA array_literal[parentSqlExpr] )* ']'
 	;
 
 property
@@ -619,11 +648,19 @@ DISTINCT
 DROP
 	: D R O P
 	;
-	
+
+EACH
+	: E A C H
+	;
+		
 EXCEPT
 	: E X C E P T
 	;
-	
+
+FLATTEN
+	: F L A T T E N
+	;
+		
 FROM
 	: F R O M
 	;
@@ -707,7 +744,7 @@ WS  :   ( ' '
 	
 ID  
 	//: ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
-	: ('a'..'z'|'A'..'Z'|'_'|'/')('a'..'z'|'A'..'Z'|'_'|'-'|'/'|'0'..'9')*
+	: ('a'..'z'|'A'..'Z'|'_'|'/')('a'..'z'|'A'..'Z'|'_'|'-'|'/'|'.'|'0'..'9')*
     	;
 
 NUMBER 

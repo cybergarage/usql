@@ -35,8 +35,7 @@ BOOST_AUTO_TEST_CASE(SQLParserUnQLTest)
     unqlStrings.push_back("INSERT INTO abc VALUE {type:\"message\",content:\"This is an object\"}");
     
     unqlStrings.push_back("SELECT FROM abc");
-    unqlStrings.push_back("SELECT {type:\"message\",content:\"This is an object\"} FROM abc;");
-    unqlStrings.push_back("SELECT { x:abc.type, y:abc.content.x, z:abc.content.x } FROM abc;");
+    unqlStrings.push_back("SELECT {x:abc.type,y:abc.content.x,z:abc.content.x} FROM abc");
     //unqlStrings.push_back("SELECT { x:abc.type, y:abc.content.x, z:abc.content.x+50 } FROM abc;");
 
 	vector<string>::iterator unqlString = unqlStrings.begin();

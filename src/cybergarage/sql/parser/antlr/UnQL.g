@@ -120,20 +120,20 @@ select_stmt [uSQL::SQLStatement *sqlStmt]
 
 select_core [uSQL::SQLStatement *sqlStmt]
 	@init {
-		uSQL::SQLValue *sqlValue = new uSQL::SQLValue();
+		uSQL::SQLColumn *sqlColumn = new uSQL::SQLColumn();
 		fromSection = NULL;
 		whereSection = NULL;
 	}
-	: SELECT (DISTINCT | ALL)? (expression[sqlValue])? (AS name)? 
+	: SELECT (DISTINCT | ALL)? (expression[sqlColumn])? (AS name)? 
 	  (fromSection = from_section)? 
 	  (whereSection = where_section)? /*
 	  (GROUP BY expression (',' expression)* (OFFSET expression)? (HAVING expression)?)?  */ {
 	  
 		// VALUE 
-		if (sqlValue->hasExpressions())
-			sqlStmt->addChildNode(sqlValue);
+		if (sqlColumn->hasExpressions())
+			sqlStmt->addChildNode(sqlColumn);
 		else 
-			delete sqlValue;
+			delete sqlColumn;
 			
 		// FROM
 		if (fromSection)		
@@ -344,8 +344,12 @@ collection_name
 	;
 
 expression [uSQL::SQLExpression *parentSqlExpr]
-	/* : property */
-	: integer_literal {
+	: property {
+		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($property.text));
+		parentSqlExpr->addExpression(sqlExpr);
+	  }
+	| integer_literal {
 		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($integer_literal.text));
 		parentSqlExpr->addExpression(sqlExpr);

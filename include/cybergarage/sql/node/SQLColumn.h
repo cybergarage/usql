@@ -18,28 +18,16 @@
 
 namespace uSQL {
 
-class SQLColumn : public SQLNode {
+class SQLColumn : public SQLExpression {
 
-private:
-
-	std::string name;
-    
 public:
 
 	SQLColumn() {
     	setType(COLUMN);
     }
-
-	void setName(const std::string &name) {
-    	this->name = name;
-    }
     
-    const char *getName() {
-    	return this->name.c_str();
-    }
-
     std::string &toString(std::string &buf) {
-    	buf = name;
+        SQLExpression::toString(buf) ;
         return buf;
     }
 };

@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* SQLWhere.h
+* SQLFunction.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,25 +10,25 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLWHERE_H
-#define CG_USQL_SQLWHERE_H
+#ifndef CG_USQL_SQLFUNCTION_H
+#define CG_USQL_SQLFUNCTION_H
 
 #include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
 
-class SQLWhere : public SQLExpression {
+class SQLFunction : public SQLExpression {
 
 public:
 
-	SQLWhere() {
-    	setType(WHERE);
+	SQLFunction() {
+    	setType(FUNCTION);
     }
     
     std::string &toString(std::string &buf) {
     	std::string exprString;
 		std::ostringstream oss;
-        oss << "WHERE " << SQLExpression::toString(exprString) ;
+        oss << getName() << "(" << SQLExpression::toString(exprString) << ")";
 		buf = oss.str();
         return buf;
     }

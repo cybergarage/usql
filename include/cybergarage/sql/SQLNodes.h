@@ -22,11 +22,12 @@
 #include <cybergarage/sql/node/SQLFrom.h>
 #include <cybergarage/sql/node/SQLLimit.h>
 #include <cybergarage/sql/node/SQLOffset.h>
+#include <cybergarage/sql/node/SQLOperator.h>
 #include <cybergarage/sql/node/SQLOption.h>
 #include <cybergarage/sql/node/SQLOrder.h>
 #include <cybergarage/sql/node/SQLOrders.h>
 #include <cybergarage/sql/node/SQLColumn.h>
-//#include <cybergarage/sql/node/SQLColumns.h>
+#include <cybergarage/sql/node/SQLFunction.h>
 #include <cybergarage/sql/node/SQLDataSource.h>
 #include <cybergarage/sql/node/SQLValue.h>
 #include <cybergarage/sql/node/SQLWhere.h>

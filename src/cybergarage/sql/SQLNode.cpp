@@ -18,7 +18,7 @@ const int uSQL::SQLNode::COMMAND = 1;
 const int uSQL::SQLNode::FROM = 2;
 const int uSQL::SQLNode::DATASOURCE = 3;
 const int uSQL::SQLNode::COLUMN = 4;
-const int uSQL::SQLNode::COLUMNS = 5;
+const int uSQL::SQLNode::FUNCTION = 5;
 const int uSQL::SQLNode::CONDITION = 6;
 const int uSQL::SQLNode::WHERE = 7;
 const int uSQL::SQLNode::ORDER = 8;
@@ -31,6 +31,7 @@ const int uSQL::SQLNode::VALUE = 14;
 const int uSQL::SQLNode::VALUES = 15;
 const int uSQL::SQLNode::DICTIONARY = 16;
 const int uSQL::SQLNode::OPTION = 17;
+const int uSQL::SQLNode::OPERATOR = 18;
 
 uSQL::SQLNode::SQLNode()
 {

@@ -48,8 +48,10 @@ public:
     static const int DATASOURCE;
     static const int DICTIONARY;
     static const int FROM;
+    static const int FUNCTION;
     static const int LIMIT;
     static const int OFFSET;
+    static const int OPERATOR;
     static const int OPTION;
     static const int ORDER;
     static const int ORDERS;

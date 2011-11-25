@@ -19,15 +19,43 @@ namespace uSQL {
 
 class SQLOperator : public SQLExpression {
 
+    static const int UNKNOWN;
+    static const int EQ;
+    static const int LT;
+    static const int LE;
+    static const int GT;
+    static const int GE;
+    static const int NOTEQ;
+    static const int AND;
+    static const int OR;
+
+public:
+	
+    int value;
+
 public:
 
 	SQLOperator() {
     	setType(OPERATOR);
     }
     
-    std::string &toString(std::string &buf) {
-        return buf;
+    void setValue(int value) {
+    	this->value = value;
     }
+
+	int getValue() {
+    	return this->value;
+    }
+    
+    SQLExpression *getLeftExpression() {
+    	return getExpression(0);
+    }
+        
+    SQLExpression *getRightExpression() {
+    	return getExpression(1);
+    }
+
+    std::string &toString(std::string &buf);
 };
 
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2113D290147A0DB600159DE8 /* SQLOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 2113D28F147A0DB600159DE8 /* SQLOption.h */; };
+		21576115147F6CA0002BFFAF /* SQLOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21576114147F6CA0002BFFAF /* SQLOperator.cpp */; };
 		2171171714681E7D00088931 /* GQLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170114681E7D00088931 /* GQLParser.h */; };
 		2171171814681E7D00088931 /* SQLCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170314681E7D00088931 /* SQLCollection.h */; };
 		2171171914681E7D00088931 /* SQLColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170414681E7D00088931 /* SQLColumn.h */; };
@@ -63,6 +64,7 @@
 		212FB5DE14681D420067F07B /* SqlEngineLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SqlEngineLib-Prefix.pch"; sourceTree = "<group>"; };
 		212FB5DF14681D420067F07B /* SqlEngineLibProj.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SqlEngineLibProj.xcconfig; sourceTree = "<group>"; };
 		212FB5E014681D420067F07B /* SqlEngineLibTarget.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SqlEngineLibTarget.xcconfig; sourceTree = "<group>"; };
+		21576114147F6CA0002BFFAF /* SQLOperator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLOperator.cpp; sourceTree = "<group>"; };
 		2171170114681E7D00088931 /* GQLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQLParser.h; sourceTree = "<group>"; };
 		2171170314681E7D00088931 /* SQLCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLCollection.h; sourceTree = "<group>"; };
 		2171170414681E7D00088931 /* SQLColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLColumn.h; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 		2171172F14681E9900088931 /* node */ = {
 			isa = PBXGroup;
 			children = (
+				21576114147F6CA0002BFFAF /* SQLOperator.cpp */,
 				21881084147A3270002B768B /* SQLExpression.cpp */,
 				21CECB8E14756C5C00465DA6 /* SQLExpressions.cpp */,
 				2171173014681E9900088931 /* SQLCommand.cpp */,
@@ -412,6 +415,7 @@
 				2171176A14681E9A00088931 /* UnQLParser.cpp in Sources */,
 				21CECB8F14756C5C00465DA6 /* SQLExpressions.cpp in Sources */,
 				21881085147A3270002B768B /* SQLExpression.cpp in Sources */,
+				21576115147F6CA0002BFFAF /* SQLOperator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

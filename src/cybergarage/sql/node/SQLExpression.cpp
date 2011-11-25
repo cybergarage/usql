@@ -20,7 +20,7 @@ std::string &uSQL::SQLExpression::toString(std::string &buf)
     	buf = "";
     	return buf;
     }
-        
+
 	bool hasDictionary = false;
     for (SQLExpressions::iterator expr=expressions.begin(); expr != expressions.end(); expr++) {
     	if ((*expr)->isDictionary() == true) {
@@ -36,6 +36,16 @@ std::string &uSQL::SQLExpression::toString(std::string &buf)
 	    for (SQLExpressions::iterator expr=expressions.begin(); expr != expressions.end(); expr++) {
     		if (expr != expressions.begin())
 		    	oss << ",";
+            if ((*expr)->isOperator()) {
+            	std::string buf;
+                oss << (*expr)->toString(buf);
+            	continue;
+            }
+            if ((*expr)->isFunction()) {
+            	std::string buf;
+                oss << (*expr)->toString(buf);
+            	continue;
+            }
             oss << (*expr)->getName() << ":" << (*expr)->getValue();
     	}
     	oss << "}";
@@ -46,6 +56,16 @@ std::string &uSQL::SQLExpression::toString(std::string &buf)
 	    for (SQLExpressions::iterator expr=expressions.begin(); expr != expressions.end(); expr++) {
     		if (expr != expressions.begin())
 		    	oss << ",";
+            if ((*expr)->isOperator()) {
+            	std::string buf;
+                oss << (*expr)->toString(buf);
+            	continue;
+            }
+            if ((*expr)->isFunction()) {
+            	std::string buf;
+                oss << (*expr)->toString(buf);
+            	continue;
+            }
             oss << (*expr)->getValue();
     	}
         if (1 < expressionsCount)

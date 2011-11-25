@@ -37,7 +37,21 @@ public:
     
     bool isDictionary()
     {
+    	if (isFunction() == true)
+        	return false;
+    	if (isOperator() == true)
+        	return false;
     	return (0 < name.length()) ? true : false;
+    }
+    
+    bool isFunction()
+    {
+    	return (getType() == FUNCTION) ? true : false;
+    }
+
+    bool isOperator()
+    {
+    	return (getType() == OPERATOR) ? true : false;
     }
     
 	void setName(const std::string &value) {

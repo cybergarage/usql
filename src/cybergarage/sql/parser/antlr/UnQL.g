@@ -257,40 +257,42 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 ******************************************************************/
 
 expression [uSQL::SQLExpression *parentSqlExpr]
-	: property {
-		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
-		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($property.text));
-		parentSqlExpr->addExpression(sqlExpr);
-	  }
-	| integer_literal {
-		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
-		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($integer_literal.text));
-		parentSqlExpr->addExpression(sqlExpr);
-	  }
-	| real_literal {
-		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
-		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($real_literal.text));
-		parentSqlExpr->addExpression(sqlExpr);
-	  }
-	| string_literal {
-		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
-		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($string_literal.text));
-		parentSqlExpr->addExpression(sqlExpr);
-	  }
-	| true_literal {
-		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
-		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($true_literal.text));
-		parentSqlExpr->addExpression(sqlExpr);
-	  }
-	| false_literal {
-		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
-		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($false_literal.text));
+ 	: sqlExpr=expression_atom {
 		parentSqlExpr->addExpression(sqlExpr);
 	  }
 	| '{' (dictionary_literal[parentSqlExpr]) (COMMA dictionary_literal[parentSqlExpr])* '}'
 	| '[' array_literal[parentSqlExpr] (COMMA array_literal[parentSqlExpr] )* ']'
 	| sqlFunc=function_name '(' array_literal[sqlFunc] (COMMA array_literal[sqlFunc] )* ')' {
 		parentSqlExpr->addExpression(sqlFunc);
+	  }
+	| exprLeft=expression_atom binOper=binary_operator exprRight=expression_atom {
+		parentSqlExpr->addExpression(binOper);
+		binOper->addExpression(exprLeft);
+		binOper->addExpression(exprRight);
+	  }
+	;
+
+expression_atom returns [uSQL::SQLExpression *sqlExpr]
+	@init {
+		sqlExpr = new uSQL::SQLExpression();
+	}
+ 	: property {
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($property.text));
+	  }
+	| integer_literal {
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($integer_literal.text));
+	  }
+	| real_literal {
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($real_literal.text));
+	  }
+	| string_literal {
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($string_literal.text));
+	  }
+	| true_literal {
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($true_literal.text));
+	  }
+	| false_literal {
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($false_literal.text));
 	  }
 	;
 
@@ -319,32 +321,14 @@ false_literal
 	;
 
 dictionary_literal [uSQL::SQLExpression *parentSqlExpr]
-	@init {
-		uSQL::SQLExpression *valueParentExpr = new uSQL::SQLExpression();
-	}
-	@after {
-		delete valueParentExpr;
-	}
-	: name ':' expression[valueParentExpr] {
-		uSQL::SQLExpression *valueExpr = valueParentExpr->getExpression(0);
-		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
+	: name ':' sqlExpr=expression_atom {
 		sqlExpr->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
-		sqlExpr->setValue(valueExpr ? valueExpr->getValue() : "");
 		parentSqlExpr->addExpression(sqlExpr);
 	  }
 	;
 
 array_literal [uSQL::SQLExpression *parentSqlExpr]
-	@init {
-		uSQL::SQLExpression *valueParentExpr = new uSQL::SQLExpression();
-	}
-	@after {
-		delete valueParentExpr;
-	}
-	: expression[valueParentExpr] {
- 		uSQL::SQLExpression *valueExpr = valueParentExpr->getExpression(0);
-		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
-		sqlExpr->setValue(valueExpr ? valueExpr->getValue() : "");
+	: sqlExpr=expression_atom {
 		parentSqlExpr->addExpression(sqlExpr);
 	  }
 	;
@@ -377,12 +361,30 @@ binary_operator returns [uSQL::SQLOperator *sqlOper]
 	@init {
 		sqlOper = new uSQL::SQLOperator();
 	}
-	: EQ
-	| OP_LT
-	| LE
-	| GT
-	| GE
-	| NOTEQ
+	: EQ {
+		sqlOper->setValue(1/*uSQL::SQLOperator::EQ*/);
+	  }
+	| OP_LT {
+		sqlOper->setValue(2/*uSQL::SQLOperator::LT*/);
+	  }
+	| LE {
+		sqlOper->setValue(3/*uSQL::SQLOperator::GT*/);
+	  }
+	| GT {
+		sqlOper->setValue(4/*uSQL::SQLOperator::LE*/);
+	  }
+	| GE {
+		sqlOper->setValue(5/*uSQL::SQLOperator::GE*/);
+	  }
+	| NOTEQ {
+		sqlOper->setValue(6/*uSQL::SQLOperator::NOTEQ*/);
+	  }
+	| AND {
+		sqlOper->setValue(7/*uSQL::SQLOperator::AND*/);
+	  }
+	| OR {
+		sqlOper->setValue(8/*uSQL::SQLOperator::OR*/);
+	  }
 	;
 
 /******************************************************************
@@ -489,6 +491,7 @@ ASTERISK
 	
 EQ
 	: '='
+	| '=='
 	;
 
 OP_LT
@@ -509,6 +512,16 @@ GE
 	
 NOTEQ
 	: '!='
+	;
+
+AND
+	: A N D
+	| '&'
+	;
+
+OR
+	: O R
+	| '|'
 	;
 
 COMMA
@@ -651,9 +664,6 @@ ALL
 	
 ANCESTOR
 	: A N C E S T O R
-	;
-AND
-	: A N D
 	;
 
 AS

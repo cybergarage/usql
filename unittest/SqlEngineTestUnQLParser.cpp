@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(SQLParserUnQLTest)
     unqlStrings.push_back("SELECT MAX(a) FROM abc");
     unqlStrings.push_back("SELECT {x:abc.type,y:abc.content.x,z:abc.content.x} FROM abc");
     //unqlStrings.push_back("SELECT { x:abc.type, y:abc.content.x, z:abc.content.x+50 } FROM abc;");
-    //unqlStrings.push_back("SELECT {x:abc.type,y:abc.content.x,z:abc.content.x} FROM abc WHERE abc.type == c");
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\"");
 
 	vector<string>::iterator unqlString = unqlStrings.begin();
 	while(unqlString != unqlStrings.end()) {

@@ -101,14 +101,10 @@ public:
         	addChildNode(*node);
     }
     
-    int numChildNodes()
+    
+    SQLNodeList *getChildNodes()
     {
-    	return (int)children.size();
-    }
-
-    SQLNode *getChildNode(int index)
-    {
-    	return children.getNode(index);
+    	return &children;
     }
     
     virtual std::string &toString(std::string &buf) = 0;

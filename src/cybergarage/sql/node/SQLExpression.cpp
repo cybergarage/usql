@@ -14,7 +14,8 @@
 
 std::string &uSQL::SQLExpression::toString(std::string &buf) 
 {
-	std::size_t expressionsCount = expressions.size();
+    uSQL::SQLNodeList *expressions = getExpressions();
+	std::size_t expressionsCount = expressions->size();
     
     if (expressionsCount <= 0) {
     	buf = "";
@@ -22,51 +23,54 @@ std::string &uSQL::SQLExpression::toString(std::string &buf)
     }
 
 	bool hasDictionary = false;
-    for (SQLExpressions::iterator expr=expressions.begin(); expr != expressions.end(); expr++) {
-    	if ((*expr)->isDictionary() == true) {
+    for (int n=0; n<expressionsCount; n++) {
+        SQLExpression *expr = getExpression(n);
+    	if (expr->isDictionary() == true) {
         	hasDictionary = true;
             break;
         }
     }
-
+    
 	std::ostringstream oss;
         
 	if (hasDictionary) {
     	oss << "{";
-	    for (SQLExpressions::iterator expr=expressions.begin(); expr != expressions.end(); expr++) {
-    		if (expr != expressions.begin())
+        for (int n=0; n<expressionsCount; n++) {
+            SQLExpression *expr = getExpression(n);
+    		if (0 < n)
 		    	oss << ",";
-            if ((*expr)->isOperator()) {
+            if (expr->isOperator()) {
             	std::string buf;
-                oss << (*expr)->toString(buf);
+                oss << expr->toString(buf);
             	continue;
             }
-            if ((*expr)->isFunction()) {
+            if (expr->isFunction()) {
             	std::string buf;
-                oss << (*expr)->toString(buf);
+                oss << expr->toString(buf);
             	continue;
             }
-            oss << (*expr)->getName() << ":" << (*expr)->getValue();
+            oss << expr->getName() << ":" << expr->getValue();
     	}
     	oss << "}";
     }
     else {
         if (1 < expressionsCount)
             oss << "[";
-	    for (SQLExpressions::iterator expr=expressions.begin(); expr != expressions.end(); expr++) {
-    		if (expr != expressions.begin())
+        for (int n=0; n<expressionsCount; n++) {
+            SQLExpression *expr = getExpression(n);
+    		if (0 < n)
 		    	oss << ",";
-            if ((*expr)->isOperator()) {
+            if (expr->isOperator()) {
             	std::string buf;
-                oss << (*expr)->toString(buf);
+                oss << expr->toString(buf);
             	continue;
             }
-            if ((*expr)->isFunction()) {
+            if (expr->isFunction()) {
             	std::string buf;
-                oss << (*expr)->toString(buf);
+                oss << expr->toString(buf);
             	continue;
             }
-            oss << (*expr)->getValue();
+            oss << expr->getValue();
     	}
         if (1 < expressionsCount)
             oss << "]";

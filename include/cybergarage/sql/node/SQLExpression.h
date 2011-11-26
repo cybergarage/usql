@@ -14,7 +14,6 @@
 #define CG_USQL_SQLEXPRESSION_H
 
 #include <cybergarage/sql/SQLNode.h>
-#include <cybergarage/sql/node/SQLExpressions.h>
 
 namespace uSQL {
 
@@ -22,8 +21,6 @@ class SQLExpression : public SQLNode {
 
 	std::string name;
 	std::string value;
-    
-    SQLExpressions expressions;
     
 public:
 
@@ -71,21 +68,23 @@ public:
     }
 
     void addExpression(SQLExpression *expr) {
-        expressions.addExpression(expr);
+        addChildNode(expr);
     }
     
-    SQLExpressions *getExpressions() {
-        return &expressions;
+    SQLNodeList *getExpressions() {
+        return getChildNodes();
     }
     
     SQLExpression *getExpression(int n) {
-    	if ((expressions.size() - 1) < n)
+        SQLNodeList *expressions = getExpressions();
+    	if ((expressions->size() - 1) < n)
         	return NULL;
-        return expressions.at(n);
+        return (SQLExpression *)expressions->at(n);
     }
     
     bool hasExpressions() {
-        return (0 < expressions.size()) ? true : false;
+        SQLNodeList *expressions = getExpressions();
+        return (0 < expressions->size()) ? true : false;
     }
     
     std::string &toString(std::string &buf);

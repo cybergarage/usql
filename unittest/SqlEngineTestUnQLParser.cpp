@@ -54,6 +54,8 @@ BOOST_AUTO_TEST_CASE(SQLParserUnQLTest)
 	    boost::trim(parseResult);
         
         cout << "O : " << parseResult << endl;
+        std::string buf;
+        cout << unqlParser.getStatement()->toTreeString(buf);
         
 	    BOOST_CHECK(parseResult.compare(*unqlString) == 0);
         

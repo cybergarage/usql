@@ -24,6 +24,12 @@ public:
     SQLStatement();
     
     std::string &toString(std::string &buf);
+
+#if defined(DEBUG)
+    
+    std::string &toTreeString(std::string &buf);    
+    
+#endif
 };
 
 }

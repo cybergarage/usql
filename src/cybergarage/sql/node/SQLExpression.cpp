@@ -14,6 +14,20 @@
 
 std::string &uSQL::SQLExpression::toString(std::string &buf) 
 {
+	std::ostringstream oss;
+    
+    if (isDictionary() == true)
+        oss << getName() << ":";
+    oss << getValue();
+    
+    buf = oss.str();
+    
+    return buf;
+}
+
+/*
+std::string &uSQL::SQLExpression::toString(std::string &buf) 
+{
     uSQL::SQLNodeList *expressions = getExpressions();
 	std::size_t expressionsCount = expressions->size();
     
@@ -79,3 +93,4 @@ std::string &uSQL::SQLExpression::toString(std::string &buf)
     buf = oss.str();
     return buf;
 }
+*/

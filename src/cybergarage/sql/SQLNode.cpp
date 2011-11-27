@@ -44,3 +44,31 @@ uSQL::SQLNode::~SQLNode()
         delete *node;
 }
 
+std::string &uSQL::SQLNode::toString(std::string &buf)
+{
+    std::ostringstream oss;
+
+    std::string nodeStr;
+    toString(nodeStr);
+    
+    if (0 < nodeStr.length()) {
+	    oss << nodeStr;
+	    oss << " ";
+    }
+    
+    uSQL::SQLNodeList *childNodes = getChildNodes();
+    std::size_t numChildren = childNodes->size();
+    for (int n=0; n<numChildren; n++) {
+        std::string childNodeStr;
+        uSQL::SQLNode *childNode = childNodes->getNode(n);
+        childNode->toString(childNodeStr);
+        if (0 < childNodeStr.length()) {
+            oss << childNodeStr;
+            oss << " ";
+        }
+    }
+    
+    buf = oss.str();
+    
+    return buf;
+}

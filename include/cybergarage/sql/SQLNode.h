@@ -107,7 +107,7 @@ public:
     	return &children;
     }
     
-    virtual std::string &toString(std::string &buf) = 0;
+    virtual std::string &toString(std::string &buf);
 };
 
 }

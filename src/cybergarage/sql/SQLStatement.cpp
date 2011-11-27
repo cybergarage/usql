@@ -17,30 +17,21 @@ uSQL::SQLStatement::SQLStatement()
 {
 }
 
-static void CgSQLStatementToString(std::ostringstream &oss, uSQL::SQLNode *node)
-{
-    std::string nodeStr;
-    node->toString(nodeStr);
-    
-    if (0 < nodeStr.length()) {
-	    oss << nodeStr;
-	    oss << " ";
-    }
-    
-    uSQL::SQLNodeList *childNodes = node->getChildNodes();
-    std::size_t numChildren = childNodes->size();
-    for (int n=0; n<numChildren; n++)
-    	CgSQLStatementToString(oss, childNodes->getNode(n));
-}
-
 std::string &uSQL::SQLStatement::toString(std::string &buf)
 {
     std::ostringstream oss;
     
     uSQL::SQLNodeList *childNodes = getChildNodes();
     std::size_t numChildren = childNodes->size();
-    for (int n=0; n<numChildren; n++)
-    	CgSQLStatementToString(oss, childNodes->getNode(n));
+    for (int n=0; n<numChildren; n++) {
+        uSQL::SQLNode *childNode = childNodes->getNode(n);
+        std::string childNodeStr;
+        childNode->toString(childNodeStr);
+        if (0 < childNodeStr.length()) {
+            oss << childNodeStr;
+            oss << " ";
+        }
+    }
     
     buf = oss.str();
     
@@ -54,7 +45,7 @@ static void CgSQLStatementPrintTree(std::ostringstream &oss, uSQL::SQLNode *node
     for (int n=0; n<indent; n++)
         oss << "| ";
     std::string buf;
-    oss << "|-- " << node->toString(buf) << std::endl;
+    oss << "|-- " << node->toString(buf) << " ("<< node->getType() << ")" << std::endl;
     
     uSQL::SQLNodeList *childNodes = node->getChildNodes();
     std::size_t numChildren = childNodes->size();

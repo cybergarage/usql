@@ -160,22 +160,23 @@ condition_operator returns [uSQL::SQLOperator *sqlOper]
 	  }
 	;
 
-sort_section returns [uSQL::SQLOrders *sqlOrders]
+sort_section returns [uSQL::SQLOrderBy *sqlOrders]
 	@init {
-		sqlOrders = new uSQL::SQLOrders();
+		sqlOrders = new uSQL::SQLOrderBy();
 	}
 	: ORDER BY sort_specification_list[sqlOrders]
 	;
 	
-sort_specification_list [uSQL::SQLOrders *sqlOrders]
+sort_specification_list [uSQL::SQLOrderBy *sqlOrders]
 	: sort_specification[sqlOrders] (AND sort_specification[sqlOrders])*
 	;
 	
-sort_specification [uSQL::SQLOrders *sqlOrders]
-	: property ordering_specification {
+sort_specification [uSQL::SQLOrderBy *sqlOrders]
+	: property (ordering_specification)? {
 		uSQL::SQLOrder *sqlOrder = new uSQL::SQLOrder();
-		sqlOrder->setName(CG_ANTLR3_STRING_2_UTF8($property.text));
-		sqlOrder->setOrder(CG_ANTLR3_STRING_2_UTF8($ordering_specification.text));
+		sqlOrder->setValue(CG_ANTLR3_STRING_2_UTF8($property.text));
+		if (ordering_specification)
+			sqlOrder->setOrder(CG_ANTLR3_STRING_2_UTF8($ordering_specification.text));
 		sqlOrders->addChildNode(sqlOrder);
 	  }
 	;

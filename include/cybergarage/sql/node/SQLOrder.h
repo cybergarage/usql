@@ -14,11 +14,11 @@
 #define CG_USQL_SQLORDER_H
 
 #include <string>
-#include <cybergarage/sql/SQLNode.h>
+#include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
 
-class SQLOrder : public SQLNode {
+class SQLOrder : public SQLExpression {
 
 public:
 
@@ -28,7 +28,6 @@ public:
 
 private:
 
-	std::string name;
     int order;
     
 public:
@@ -37,18 +36,7 @@ public:
     	setType(ORDER);
     }
 
-	void setName(const std::string &name) {
-    	this->name = name;
-    }
-    
-    const char *getName() {
-    	return this->name.c_str();
-    }
-
-	void setOrder(int type) {
-    	this->order = order;
-    }
-    
+	void setOrder(int type);    
 	void setOrder(const std::string &order);
     
 	int getOrder() {

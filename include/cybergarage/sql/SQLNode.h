@@ -49,12 +49,13 @@ public:
     static const int DICTIONARY;
     static const int FROM;
     static const int FUNCTION;
+    static const int GROUPBY;
     static const int LIMIT;
     static const int OFFSET;
     static const int OPERATOR;
     static const int OPTION;
     static const int ORDER;
-    static const int ORDERS;
+    static const int ORDERBY;
     static const int COLUMN;
     static const int COLUMNS;
     static const int WHERE;

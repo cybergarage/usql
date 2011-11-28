@@ -17,12 +17,13 @@
 #include <cybergarage/sql/node/SQLCommand.h>
 #include <cybergarage/sql/node/SQLExpression.h>
 #include <cybergarage/sql/node/SQLFrom.h>
+#include <cybergarage/sql/node/SQLGroupBy.h>
 #include <cybergarage/sql/node/SQLLimit.h>
 #include <cybergarage/sql/node/SQLOffset.h>
 #include <cybergarage/sql/node/SQLOperator.h>
 #include <cybergarage/sql/node/SQLOption.h>
 #include <cybergarage/sql/node/SQLOrder.h>
-#include <cybergarage/sql/node/SQLOrders.h>
+#include <cybergarage/sql/node/SQLOrderBy.h>
 #include <cybergarage/sql/node/SQLColumn.h>
 #include <cybergarage/sql/node/SQLFunction.h>
 #include <cybergarage/sql/node/SQLDataSource.h>

@@ -30,13 +30,19 @@ static const char *CgSQLOrderValueToString(int n)
 	return CgSQLOrderStrings[n];
 }
 
-static int CgSQLOrderStringToValue(const std::string &value)
+static int CgSQLOrderStringToValue(const std::string value)
 {
 	for (int n=0; n<CgSQLOrderStringSize; n++) {
     	if (value.compare(CgSQLOrderStrings[n]) == 0)
         	return n;
     }
     return uSQL::SQLOrder::UNKOWN;
+}
+
+void uSQL::SQLOrder::setOrder(int type) 
+{
+    this->order = type;
+    setValue(CgSQLOrderValueToString(type));
 }
 
 void uSQL::SQLOrder::setOrder(const std::string &order)
@@ -46,7 +52,7 @@ void uSQL::SQLOrder::setOrder(const std::string &order)
 
 std::string &uSQL::SQLOrder::toString(std::string &buf) 
 {
-	buf = this->name;
+	buf = getValue();
     buf.append(" ");
     buf.append(CgSQLOrderValueToString(getOrder()));
     return buf;

@@ -19,7 +19,6 @@
 		2171171F14681E7D00088931 /* SQLLimit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170A14681E7D00088931 /* SQLLimit.h */; };
 		2171172014681E7D00088931 /* SQLOffset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170B14681E7D00088931 /* SQLOffset.h */; };
 		2171172114681E7D00088931 /* SQLOrder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170C14681E7D00088931 /* SQLOrder.h */; };
-		2171172214681E7D00088931 /* SQLOrders.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170D14681E7D00088931 /* SQLOrders.h */; };
 		2171172314681E7D00088931 /* SQLDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170E14681E7D00088931 /* SQLDataSource.h */; };
 		2171172414681E7D00088931 /* SQLValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170F14681E7D00088931 /* SQLValue.h */; };
 		2171172514681E7D00088931 /* SQLWhere.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171171014681E7D00088931 /* SQLWhere.h */; };
@@ -51,6 +50,8 @@
 		2171176A14681E9A00088931 /* UnQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171175214681E9A00088931 /* UnQLParser.cpp */; };
 		218AF73E147CC88900D50749 /* SQLFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = 218AF73D147CC88900D50749 /* SQLFunction.h */; };
 		218AF740147CD00900D50749 /* SQLOperator.h in Headers */ = {isa = PBXBuildFile; fileRef = 218AF73F147CD00900D50749 /* SQLOperator.h */; };
+		21DF1AF21483FCBB00671659 /* SQLGroupBy.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DF1AF01483FCBB00671659 /* SQLGroupBy.h */; };
+		21DF1AF31483FCBB00671659 /* SQLOrderBy.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DF1AF11483FCBB00671659 /* SQLOrderBy.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,7 +71,6 @@
 		2171170A14681E7D00088931 /* SQLLimit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLLimit.h; sourceTree = "<group>"; };
 		2171170B14681E7D00088931 /* SQLOffset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOffset.h; sourceTree = "<group>"; };
 		2171170C14681E7D00088931 /* SQLOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOrder.h; sourceTree = "<group>"; };
-		2171170D14681E7D00088931 /* SQLOrders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOrders.h; sourceTree = "<group>"; };
 		2171170E14681E7D00088931 /* SQLDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = SQLDataSource.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2171170F14681E7D00088931 /* SQLValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLValue.h; sourceTree = "<group>"; };
 		2171171014681E7D00088931 /* SQLWhere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLWhere.h; sourceTree = "<group>"; };
@@ -102,6 +102,8 @@
 		2171175214681E9A00088931 /* UnQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnQLParser.cpp; sourceTree = "<group>"; };
 		218AF73D147CC88900D50749 /* SQLFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLFunction.h; sourceTree = "<group>"; };
 		218AF73F147CD00900D50749 /* SQLOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOperator.h; sourceTree = "<group>"; };
+		21DF1AF01483FCBB00671659 /* SQLGroupBy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLGroupBy.h; sourceTree = "<group>"; };
+		21DF1AF11483FCBB00671659 /* SQLOrderBy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOrderBy.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,8 @@
 		2171170214681E7D00088931 /* node */ = {
 			isa = PBXGroup;
 			children = (
+				21DF1AF01483FCBB00671659 /* SQLGroupBy.h */,
+				21DF1AF11483FCBB00671659 /* SQLOrderBy.h */,
 				218AF73F147CD00900D50749 /* SQLOperator.h */,
 				218AF73D147CC88900D50749 /* SQLFunction.h */,
 				2113D28F147A0DB600159DE8 /* SQLOption.h */,
@@ -205,7 +209,6 @@
 				2171170A14681E7D00088931 /* SQLLimit.h */,
 				2171170B14681E7D00088931 /* SQLOffset.h */,
 				2171170C14681E7D00088931 /* SQLOrder.h */,
-				2171170D14681E7D00088931 /* SQLOrders.h */,
 				2171170E14681E7D00088931 /* SQLDataSource.h */,
 				2171170F14681E7D00088931 /* SQLValue.h */,
 				2171171014681E7D00088931 /* SQLWhere.h */,
@@ -291,7 +294,6 @@
 				2171171F14681E7D00088931 /* SQLLimit.h in Headers */,
 				2171172014681E7D00088931 /* SQLOffset.h in Headers */,
 				2171172114681E7D00088931 /* SQLOrder.h in Headers */,
-				2171172214681E7D00088931 /* SQLOrders.h in Headers */,
 				2171172314681E7D00088931 /* SQLDataSource.h in Headers */,
 				2171172414681E7D00088931 /* SQLValue.h in Headers */,
 				2171172514681E7D00088931 /* SQLWhere.h in Headers */,
@@ -310,6 +312,8 @@
 				2113D290147A0DB600159DE8 /* SQLOption.h in Headers */,
 				218AF73E147CC88900D50749 /* SQLFunction.h in Headers */,
 				218AF740147CD00900D50749 /* SQLOperator.h in Headers */,
+				21DF1AF21483FCBB00671659 /* SQLGroupBy.h in Headers */,
+				21DF1AF31483FCBB00671659 /* SQLOrderBy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

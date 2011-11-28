@@ -22,7 +22,7 @@ const int uSQL::SQLNode::FUNCTION = 5;
 const int uSQL::SQLNode::CONDITION = 6;
 const int uSQL::SQLNode::WHERE = 7;
 const int uSQL::SQLNode::ORDER = 8;
-const int uSQL::SQLNode::ORDERS = 9;
+const int uSQL::SQLNode::ORDERBY = 9;
 const int uSQL::SQLNode::LIMIT = 10;
 const int uSQL::SQLNode::OFFSET = 11;
 const int uSQL::SQLNode::COLLECTION = 12;
@@ -32,6 +32,7 @@ const int uSQL::SQLNode::VALUES = 15;
 const int uSQL::SQLNode::DICTIONARY = 16;
 const int uSQL::SQLNode::OPTION = 17;
 const int uSQL::SQLNode::OPERATOR = 18;
+const int uSQL::SQLNode::GROUPBY = 19;
 
 uSQL::SQLNode::SQLNode()
 {

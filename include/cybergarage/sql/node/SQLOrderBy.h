@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* SQLOrders.h
+* SQLOrderBy.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,25 +10,29 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLORDERS_H
-#define CG_USQL_SQLORDERS_H
+#ifndef CG_USQL_SQLORDERBY_H
+#define CG_USQL_SQLORDERBY_H
 
 #include <cybergarage/sql/SQLNode.h>
 
 namespace uSQL {
 
-class SQLOrders : public SQLNode {
+class SQLOrderBy : public SQLNode {
 
 public:
 
-	SQLOrders() {
-    	setType(ORDERS);
-    }
+	SQLOrderBy() {
+    	setType(ORDERBY);
+	}
 
     std::string &toString(std::string &buf) {
-    	buf = "ORDER BY";
-        return buf;
-    }
+	    std::ostringstream oss;
+	    std::string childNodeStr;
+	    oss << "ORDER BY " << childNodesToString(childNodeStr, ",");
+    	buf = oss.str();
+		return buf;
+	}
+    
 };
 
 }

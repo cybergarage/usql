@@ -115,24 +115,49 @@ condition_list [uSQL::SQLWhere *sqlWhere]
 	;
 
 condition [uSQL::SQLWhere *sqlWhere]
-	: property condition_operator value {
-		uSQL::SQLCondition *sqlCond = new uSQL::SQLCondition();
-		sqlCond->setName(CG_ANTLR3_STRING_2_UTF8($property.text));
-		sqlCond->setOperation(CG_ANTLR3_STRING_2_UTF8($condition_operator.text));
-		sqlCond->setValue(CG_ANTLR3_STRING_2_UTF8($value.text));
-		sqlWhere->addChildNode(sqlCond);
+	: exprLeft=expression_atom binOper=condition_operator exprRight=expression_atom {
+		sqlWhere->addExpression(binOper);
+		binOper->addExpression(exprLeft);
+		binOper->addExpression(exprRight);
 	  }
 	| property IN value
 	| ANCESTOR  IS
 	;
 
-condition_operator
-	: EQ
-	| OP_LT
-	| LE
-	| GT
-	| GE
-	| NOTEQ
+expression_atom returns [uSQL::SQLExpression *sqlExpr]
+	@init {
+		sqlExpr = new uSQL::SQLExpression();
+	}
+ 	: property {
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($property.text));
+	  }
+	| value {
+			sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($value.text));
+	  }
+	;
+
+condition_operator returns [uSQL::SQLOperator *sqlOper]
+	@init {
+		sqlOper = new uSQL::SQLOperator();
+	}
+	: EQ {
+		sqlOper->setValue(1/*uSQL::SQLOperator::EQ*/);
+	  }
+	| OP_LT {
+		sqlOper->setValue(2/*uSQL::SQLOperator::LT*/);
+	  }
+	| LE {
+		sqlOper->setValue(3/*uSQL::SQLOperator::GT*/);
+	  }
+	| GT {
+		sqlOper->setValue(4/*uSQL::SQLOperator::LE*/);
+	  }
+	| GE {
+		sqlOper->setValue(5/*uSQL::SQLOperator::GE*/);
+	  }
+	| NOTEQ {
+		sqlOper->setValue(6/*uSQL::SQLOperator::NOTEQ*/);
+	  }
 	;
 
 sort_section returns [uSQL::SQLOrders *sqlOrders]
@@ -194,7 +219,7 @@ property
 	;
 
 value
-	: ID
+	: STRING
 	;
 
 NUMBER	    : (DIGIT)+
@@ -228,39 +253,16 @@ WS  :   ( ' '
 		| '\n'
 		) {$channel=HIDDEN;}
 	;
-/*
+
 STRING
-	:  '\'' ( ESC_SEQ | ~('\\'|'\'') )* '\''
-	;
-
-CHAR:  '\'' ( ESC_SEQ | ~('\''|'\\') ) '\''
+	:  '"' ( EscapeSequence | ~('\\'| '"') )* '"' 
 	;
 
 fragment
-EXPONENT : ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
-
-fragment
-HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
-
-fragment
-ESC_SEQ
-	:   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
-	|   UNICODE_ESC
-	|   OCTAL_ESC
+EscapeSequence
+	:   '\\' ('\"'|'\''|'\\')
 	;
 
-fragment
-OCTAL_ESC
-	:   '\\' ('0'..'3') ('0'..'7') ('0'..'7')
-	|   '\\' ('0'..'7') ('0'..'7')
-	|   '\\' ('0'..'7')
-	;
-
-fragment
-UNICODE_ESC
-	:   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
-	;
-*/
 fragment
 DIGIT	    : '0'..'9'
             ;

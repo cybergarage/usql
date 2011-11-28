@@ -19,25 +19,10 @@ namespace uSQL {
 
 class SQLCollection : public SQLNode {
 
-    std::string name;
-    
 public:
 
 	SQLCollection() {
     	setType(COLLECTION);
-    }
-
-	void setName(const std::string &name) {
-    	this->name = name;
-    }
-    
-    const char *getName() {
-    	return this->name.c_str();
-    }
-    
-    std::string &toString(std::string &buf) {
-		buf = this->name;
-        return buf;
     }
 };
 

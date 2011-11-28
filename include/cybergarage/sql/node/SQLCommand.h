@@ -41,9 +41,7 @@ public:
         setAsyncEnabled(false);
     }
 
-    void setCommandType(int commandType) {
-        this->commandType = commandType;
-    }
+    void setCommandType(int commandType);
 
     int getCommandType() {
         return this->commandType;
@@ -69,11 +67,6 @@ public:
 	SQLSelect() {
     	setCommandType(SELECT);
     }
-
-    std::string &toString(std::string &buf) {
-    	buf = "SELECT";
-        return buf;
-    }
 };
 
 class SQLUpdate : public SQLCommand {
@@ -84,10 +77,6 @@ public:
     	setCommandType(UPDATE);
     }
 
-    std::string &toString(std::string &buf) {
-    	buf = "UPDATE";
-        return buf;
-    }
 };
 
 class SQLInsert : public SQLCommand {
@@ -96,11 +85,6 @@ public:
 
 	SQLInsert() {
     	setCommandType(INSERT);
-    }
-
-    std::string &toString(std::string &buf) {
-    	buf = "INSERT INTO";
-        return buf;
     }
 };
 
@@ -111,11 +95,6 @@ public:
 	SQLDelete() {
     	setCommandType(DELETE);
     }
-
-    std::string &toString(std::string &buf) {
-    	buf = "DELETE";
-        return buf;
-    }
 };
 
 class SQLCreate : public SQLCommand {
@@ -125,11 +104,6 @@ public:
 	SQLCreate() {
     	setCommandType(CREATE);
     }
-
-    std::string &toString(std::string &buf) {
-    	buf = "CREATE COLLECTION";
-        return buf;
-    }
 };
 
 class SQLDrop : public SQLCommand {
@@ -138,11 +112,6 @@ public:
 
 	SQLDrop() {
     	setCommandType(DROP);
-    }
-
-    std::string &toString(std::string &buf) {
-    	buf = "DROP COLLECTION";
-        return buf;
     }
 };
 

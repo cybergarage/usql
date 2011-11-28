@@ -13,11 +13,11 @@
 #ifndef CG_USQL_SQLVALUE_H
 #define CG_USQL_SQLVALUE_H
 
-#include <cybergarage/sql/node/SQLExpression.h>
+#include <cybergarage/sql/node/SQLColumn.h>
 
 namespace uSQL {
 
-class SQLValue : public SQLExpression {
+class SQLValue : public SQLColumn {
 
 public:
 
@@ -26,11 +26,11 @@ public:
     }
     
     std::string &toString(std::string &buf) {
-    	std::string exprString;
-		std::ostringstream oss;
-        oss << "VALUE " << SQLExpression::toString(exprString) ;
-		buf = oss.str();
-        return buf;
+	    std::string columnString;
+	    std::ostringstream oss;
+	    oss << "VALUE " << SQLColumn::toString(columnString);
+	    buf = oss.str();
+		return buf;
     }
 };
 

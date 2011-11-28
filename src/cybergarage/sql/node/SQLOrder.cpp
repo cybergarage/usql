@@ -51,5 +51,3 @@ std::string &uSQL::SQLOrder::toString(std::string &buf)
     buf.append(CgSQLOrderValueToString(getOrder()));
     return buf;
 }
-    
-

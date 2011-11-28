@@ -69,6 +69,9 @@ private:
 	SQLNode *parent;
 	SQLNodeList children;
 
+	std::string name;
+	std::string value;
+
 public:
 
 	SQLNode();
@@ -82,8 +85,29 @@ public:
     int getType() {
         return this->type;
     }
+    
+	void setName(const std::string &value) {
+    	this->name = value;
+    }
+    
+    const std::string &getName() {
+    	return this->name;
+    }
+    
+	void setValue(const std::string &value) {
+    	this->value = value;
+    }
+    
+    const std::string &getValue() {
+    	return this->value;
+    }
 
-    void setParentNode(SQLNode *node) {
+    bool isDictionary()
+    {
+    	return (this->name.length()) ? true : false;
+    }
+   
+   	void setParentNode(SQLNode *node) {
         this->parent = node;
     }
     
@@ -100,7 +124,11 @@ public:
 		for (SQLNodeList::iterator node = nodeList->begin(); node != nodeList->end(); node++)
         	addChildNode(*node);
     }
-    
+
+    bool hasChildNodes()
+    {
+    	return (0 < children.size()) ? true : false;
+    }
     
     SQLNodeList *getChildNodes()
     {
@@ -108,6 +136,10 @@ public:
     }
     
     virtual std::string &toString(std::string &buf);
+    
+protected:
+
+	std::string &childNodesToString(std::string &buf, std::string delim = " ");
 };
 
 }

@@ -19,6 +19,8 @@ uSQL::SQLStatement::SQLStatement()
 
 std::string &uSQL::SQLStatement::toString(std::string &buf)
 {
+	return SQLNode::toString(buf);
+/*
     std::ostringstream oss;
     
     uSQL::SQLNodeList *childNodes = getChildNodes();
@@ -34,7 +36,7 @@ std::string &uSQL::SQLStatement::toString(std::string &buf)
     }
     
     buf = oss.str();
-    
+*/    
     return buf;
 }
 

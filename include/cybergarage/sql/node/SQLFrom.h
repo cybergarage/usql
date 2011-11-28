@@ -23,12 +23,16 @@ public:
 
 	SQLFrom() {
     	setType(FROM);
-    }
+	}
 
     std::string &toString(std::string &buf) {
-    	buf = "FROM";
-        return buf;
-    }
+	    std::ostringstream oss;
+	    std::string childNodeStr;
+	    oss << "FROM " << childNodesToString(childNodeStr, ",");
+    	buf = oss.str();
+		return buf;
+	}
+    
 };
 
 }

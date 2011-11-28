@@ -19,9 +19,6 @@ namespace uSQL {
 
 class SQLExpression : public SQLNode {
 
-	std::string name;
-	std::string value;
-    
 public:
 
 	SQLExpression() {
@@ -31,18 +28,7 @@ public:
 	~SQLExpression() {
     	setType(EXPRESSION);
     }
-    
-    bool isDictionary()
-    {
-    /*
-    	if (isFunction() == true)
-        	return false;
-    	if (isOperator() == true)
-        	return false;
-    */
-    	return (0 < name.length()) ? true : false;
-    }
-    
+        
     bool isFunction()
     {
     	return (getType() == FUNCTION) ? true : false;
@@ -53,22 +39,6 @@ public:
     	return (getType() == OPERATOR) ? true : false;
     }
     
-	void setName(const std::string &value) {
-    	this->name = value;
-    }
-    
-    const char *getName() {
-    	return this->name.c_str();
-    }
-    
-	void setValue(const std::string &value) {
-    	this->value = value;
-    }
-    
-    const char *getValue() {
-    	return this->value.c_str();
-    }
-
     void addExpression(SQLExpression *expr) {
         addChildNode(expr);
     }
@@ -88,9 +58,6 @@ public:
         SQLNodeList *expressions = getExpressions();
         return (0 < expressions->size()) ? true : false;
     }
-    
-    std::string &toString(std::string &buf);
-
 };
 
 }

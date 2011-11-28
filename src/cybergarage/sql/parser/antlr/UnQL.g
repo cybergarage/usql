@@ -161,7 +161,7 @@ table_name [uSQL::SQLFrom *sqlFrom]
 data_source returns [uSQL::SQLDataSource *sqlDataSource]
 	: (collection_name) {
 		sqlDataSource = new uSQL::SQLDataSource();
-		sqlDataSource->setName(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
+		sqlDataSource->setValue(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
 	  }
 	;
 
@@ -189,7 +189,7 @@ create_collection_stmt [uSQL::SQLStatement *sqlStmt]
 		
 		// Collection
 		uSQL::SQLCollection *sqlCollection = new uSQL::SQLCollection();
-		sqlCollection->setName(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
+		sqlCollection->setValue(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
 		sqlCmd->addChildNode(sqlCollection);
 
 		// Option 
@@ -217,7 +217,7 @@ drop_collection_stmt [uSQL::SQLStatement *sqlStmt]
 		
 		// Collection
 		uSQL::SQLCollection *sqlCollection = new uSQL::SQLCollection();
-		sqlCollection->setName(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
+		sqlCollection->setValue(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
 		sqlCmd->addChildNode(sqlCollection);
 	}
 	;
@@ -242,7 +242,7 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 
 		// Collection
 		uSQL::SQLCollection *sqlCollection = new uSQL::SQLCollection();
-		sqlCollection->setName(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
+		sqlCollection->setValue(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
 		sqlCmd->addChildNode(sqlCollection);
 		
 		// Value
@@ -338,7 +338,7 @@ function_name returns [uSQL::SQLFunction *sqlFunc]
 		sqlFunc = new uSQL::SQLFunction();
 	}
 	: ID {
-		sqlFunc->setName(CG_ANTLR3_STRING_2_UTF8($ID.text));
+		sqlFunc->setValue(CG_ANTLR3_STRING_2_UTF8($ID.text));
 	  }
 	;
 

@@ -44,18 +44,52 @@ uSQL::SQLNode::~SQLNode()
         delete *node;
 }
 
-std::string &uSQL::SQLNode::toString(std::string &buf)
+static std::string CgSQLNode2String(uSQL::SQLNode *sqlNode, std::string &buf)
+{
+    std::ostringstream oss;
+    
+	const std::string name = sqlNode->getName();
+	if (0 < name.length()) {
+	    oss << name;
+	    oss << ":";
+    }
+    
+	const std::string value = sqlNode->getValue();
+	if (0 < value.length()) {
+	    oss << value;
+    }
+    
+    buf = oss.str();
+    
+    return buf;
+}
+
+static void CgSQLNodeStringAdd2OutputStream(std::string &nodeString, std::ostringstream &oss)
+{
+	if (nodeString.length() <= 0)
+    	return;
+        
+    std::string ossStr = oss.str();
+    if (0 < ossStr.length()) {
+		char lastChar = ossStr.at((ossStr.length()-1));
+    	if (lastChar != ' ')
+	    	oss << " ";
+    }
+    
+    oss << nodeString;
+}
+
+static void CgSQLNodeAdd2OutputStream(uSQL::SQLNode *sqlNode, std::ostringstream &oss)
+{
+    std::string nodeStr;
+    CgSQLNode2String(sqlNode, nodeStr);
+    CgSQLNodeStringAdd2OutputStream(nodeStr, oss);
+}
+
+std::string &uSQL::SQLNode::childNodesToString(std::string &buf, std::string delim)
 {
     std::ostringstream oss;
 
-    std::string nodeStr;
-    toString(nodeStr);
-    
-    if (0 < nodeStr.length()) {
-	    oss << nodeStr;
-	    oss << " ";
-    }
-    
     uSQL::SQLNodeList *childNodes = getChildNodes();
     std::size_t numChildren = childNodes->size();
     for (int n=0; n<numChildren; n++) {
@@ -64,8 +98,26 @@ std::string &uSQL::SQLNode::toString(std::string &buf)
         childNode->toString(childNodeStr);
         if (0 < childNodeStr.length()) {
             oss << childNodeStr;
-            oss << " ";
+            if (n < (numChildren-1))
+            	oss << delim;
         }
+    }
+    
+    buf = oss.str();
+    
+    return buf;
+}
+
+std::string &uSQL::SQLNode::toString(std::string &buf)
+{
+    std::ostringstream oss;
+
+	CgSQLNodeAdd2OutputStream(this, oss);
+
+	if (hasChildNodes() == true) {
+	    std::string childNodeStr;
+    	childNodesToString(childNodeStr);
+    	CgSQLNodeStringAdd2OutputStream(childNodeStr, oss);
     }
     
     buf = oss.str();

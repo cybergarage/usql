@@ -30,9 +30,10 @@ std::string &uSQL::SQLOperator::toString(std::string &buf)
 	uSQL::SQLExpression *exprRight = getRightExpression();
 
 	std::ostringstream oss;
-        
+	std::string exprBuf;
+            
     if (exprLeft)
-    	oss << exprLeft->getValue();
+    	oss << exprLeft->toString(exprBuf);
         
     switch (getValue()) {
   	case EQ:
@@ -65,7 +66,7 @@ std::string &uSQL::SQLOperator::toString(std::string &buf)
 	}
     
     if (exprRight)
-    	oss << exprRight->getValue();
+    	oss << exprRight->toString(exprBuf);
         
     buf = oss.str();
     

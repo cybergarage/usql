@@ -26,11 +26,11 @@ public:
     }
     
     std::string &toString(std::string &buf) {
-    	std::string exprString;
-		std::ostringstream oss;
-        oss << getName() << "(" << SQLExpression::toString(exprString) << ")";
-		buf = oss.str();
-        return buf;
+	    std::ostringstream oss;
+    	std::string childNodeStr;
+    	oss << getValue() << "(" << childNodesToString(childNodeStr, ",") << ")";
+    	buf = oss.str();
+		return buf;
     }
 };
 

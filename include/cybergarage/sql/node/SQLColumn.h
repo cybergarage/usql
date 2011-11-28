@@ -14,7 +14,7 @@
 #define CG_USQL_SQLCOLUMN_H
 
 #include <string>
-#include <cybergarage/sql/SQLNode.h>
+#include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
 
@@ -25,11 +25,8 @@ public:
 	SQLColumn() {
     	setType(COLUMN);
     }
-    
-    std::string &toString(std::string &buf) {
-        SQLExpression::toString(buf) ;
-        return buf;
-    }
+
+    std::string &toString(std::string &buf);
 };
 
 }

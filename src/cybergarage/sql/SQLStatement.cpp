@@ -20,24 +20,6 @@ uSQL::SQLStatement::SQLStatement()
 std::string &uSQL::SQLStatement::toString(std::string &buf)
 {
 	return SQLNode::toString(buf);
-/*
-    std::ostringstream oss;
-    
-    uSQL::SQLNodeList *childNodes = getChildNodes();
-    std::size_t numChildren = childNodes->size();
-    for (int n=0; n<numChildren; n++) {
-        uSQL::SQLNode *childNode = childNodes->getNode(n);
-        std::string childNodeStr;
-        childNode->toString(childNodeStr);
-        if (0 < childNodeStr.length()) {
-            oss << childNodeStr;
-            oss << " ";
-        }
-    }
-    
-    buf = oss.str();
-*/    
-    return buf;
 }
 
 #if defined(DEBUG)

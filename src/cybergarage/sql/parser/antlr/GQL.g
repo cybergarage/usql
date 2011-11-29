@@ -191,13 +191,17 @@ limit_section returns [uSQL::SQLLimit *sqlLimit]
 		sqlLimit = new uSQL::SQLLimit();
 	}
 	: LIMIT (limit_offset[sqlLimit])? NUMBER {
-		sqlLimit->setCount(CG_ANTLR3_STRING_2_INT($NUMBER.text));
+		uSQL::SQLExpression *countExpr = new uSQL::SQLExpression();
+		countExpr->setValue(CG_ANTLR3_STRING_2_UTF8($NUMBER.text));
+		sqlLimit->addChildNode(countExpr);
 	  }
 	;
 
 limit_offset [uSQL::SQLLimit *sqlLimit]
-	: COMMA NUMBER {
-		sqlLimit->setOffset(CG_ANTLR3_STRING_2_INT($NUMBER.text));
+	: NUMBER COMMA {
+		uSQL::SQLExpression *countExpr = new uSQL::SQLExpression();
+		countExpr->setValue(CG_ANTLR3_STRING_2_UTF8($NUMBER.text));
+		sqlLimit->addChildNode(countExpr);
 	}
 	;
 
@@ -206,7 +210,9 @@ offset_section returns [uSQL::SQLOffset *sqlOffset]
 		sqlOffset = new uSQL::SQLOffset();
 	}
 	: OFFSET NUMBER {
-		sqlOffset->setValue(CG_ANTLR3_STRING_2_INT($NUMBER.text));
+		uSQL::SQLExpression *offsetExpr = new uSQL::SQLExpression();
+		offsetExpr->setValue(CG_ANTLR3_STRING_2_UTF8($NUMBER.text));
+		sqlOffset->addChildNode(offsetExpr);
 	  }
 	;
 

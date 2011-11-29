@@ -54,44 +54,6 @@ statement [uSQL::SQLParser *sqlParser]
 *
 ******************************************************************/
 
-/*
-select_stmt [uSQL::SQLStatement *sqlStmt]
-	@init {
-		tl = NULL;
-		ws = NULL;
-		ss = NULL;
-		ls = NULL;
-		os = NULL;
-	}
-	: SELECT (compound_operator)? FROM tl=table_list (ws=where_section)? (ss=sort_section)? (ls=limit_section)? (os=offset_section)? 
-	{
-		// SELECT
-		uSQL::SQLSelect *sqlCmd = new uSQL::SQLSelect();
-		sqlStmt->addChildNode(sqlCmd);
-
-		// TABLE		
-		sqlStmt->addChildNode(tl);
-		
-		// WHERE		
-		if (ws)
-			sqlStmt->addChildNode(ws);
-			
-		// ORDER BY		
-		if (ss)
-			sqlStmt->addChildNode(ss);
-			
-		// LIMIT		
-		if (ls)
-			sqlStmt->addChildNode(ls);
-
-		// OFFSET		
-		if (os)
-			sqlStmt->addChildNode(os);
-
-	}
-	;
-*/
-
 select_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {
 		// SELECT
@@ -184,14 +146,41 @@ sorting_list [uSQL::SQLOrderBy *sqlOrders]
 	;
 	
 sorting_item [uSQL::SQLOrderBy *sqlOrders]
-	: property (ordering_specification)? {
+	: property (sorting_specification)? {
 		uSQL::SQLOrder *sqlOrder = new uSQL::SQLOrder();
 		sqlOrder->setValue(CG_ANTLR3_STRING_2_UTF8($property.text));
-		if (ordering_specification)
-			sqlOrder->setOrder(CG_ANTLR3_STRING_2_UTF8($ordering_specification.text));
+		if (sorting_specification)
+			sqlOrder->setOrder(CG_ANTLR3_STRING_2_UTF8($sorting_specification.text));
 		sqlOrders->addChildNode(sqlOrder);
 	  }
 	;
+
+sorting_specification
+	: ASC
+	| DESC
+	;
+
+limit_section returns [uSQL::SQLLimit *sqlLimit]
+	@init {
+		sqlLimit = new uSQL::SQLLimit();
+		offsetExpr = NULL;
+	}
+	: LIMIT (offsetExpr=expression_atom COMMA)? countExpr=expression_atom {
+		if (offsetExpr)
+			sqlLimit->addChildNode(offsetExpr);
+		sqlLimit->addChildNode(countExpr);
+	  }
+	;
+
+offset_section returns [uSQL::SQLOffset *sqlOffset]
+	@init {
+		sqlOffset = new uSQL::SQLOffset();
+	}
+	: offsetExpr=expression_atom {
+		sqlOffset->addChildNode(offsetExpr);
+	  }
+	;
+
 	
 /******************************************************************
 *
@@ -437,36 +426,6 @@ condition_operator
 	| GE
 	| NOTEQ
 	;
-
-ordering_specification
-	: ASC
-	| DESC
-	;
-
-limit_section returns [uSQL::SQLLimit *sqlLimit]
-	@init {
-		sqlLimit = new uSQL::SQLLimit();
-	}
-	: LIMIT (limit_offset[sqlLimit])? NUMBER {
-		sqlLimit->setCount(CG_ANTLR3_STRING_2_INT($NUMBER.text));
-	  }
-	;
-
-limit_offset [uSQL::SQLLimit *sqlLimit]
-	: COMMA NUMBER {
-		sqlLimit->setOffset(CG_ANTLR3_STRING_2_INT($NUMBER.text));
-	}
-	;
-
-offset_section returns [uSQL::SQLOffset *sqlOffset]
-	@init {
-		sqlOffset = new uSQL::SQLOffset();
-	}
-	: OFFSET NUMBER {
-		sqlOffset->setValue(CG_ANTLR3_STRING_2_INT($NUMBER.text));
-	  }
-	;
-
 
 value 	
 	: ID	

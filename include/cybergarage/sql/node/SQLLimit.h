@@ -19,45 +19,18 @@ namespace uSQL {
 
 class SQLLimit : public SQLNode {
 
-private:
-
-	int offset;
-    int count;
-    
 public:
 
 	SQLLimit() {
     	setType(LIMIT);
-        setOffset(0);
-        setCount(-1);
-    }
-    
-	void setOffset(int value) {
-    	this->offset = value;
-    }
-    
-	int getOffset() {
-    	return this->offset;
-    }
-
-	void setCount(int value) {
-    	this->count = value;
-    }
-    
-	int getCount() {
-    	return this->count;
     }
     
     std::string &toString(std::string &buf) {
-		std::ostringstream oss;
-        oss << "LIMIT ";
-        if (0 < this->offset) {
-            oss << this->offset;
-        	oss << ", ";
-        }
-        oss << this->count;
-		buf = oss.str();
-        return buf;
+	    std::ostringstream oss;
+	    std::string childNodeStr;
+	    oss << "LIMIT " << childNodesToString(childNodeStr);
+    	buf = oss.str();
+		return buf;
     }
 };
 

@@ -19,6 +19,8 @@ namespace uSQL {
 
 class SQLExpression : public SQLNode {
 
+	std::string name;
+    
 public:
 
 	SQLExpression() {
@@ -29,6 +31,19 @@ public:
     	setType(EXPRESSION);
     }
         
+	void setName(const std::string &value) {
+    	this->name = value;
+    }
+    
+    const std::string &getName() {
+    	return this->name;
+    }
+    
+    bool isDictionary()
+    {
+    	return (this->name.length()) ? true : false;
+    }
+   
     bool isFunction()
     {
     	return (getType() == FUNCTION) ? true : false;

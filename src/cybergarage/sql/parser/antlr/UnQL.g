@@ -102,7 +102,7 @@ select_stmt [uSQL::SQLStatement *sqlStmt]
 		ls = NULL;
 		os = NULL;
 	}
-	: select_core[sqlStmt] (ss=sort_section)? (ls=limit_section)? (os=offset_section)? 
+	: select_core[sqlStmt] (ss=sorting_section)? (ls=limit_section)? (os=offset_section)? 
 	{
 		// ORDER BY		
 		if (ss)
@@ -170,6 +170,27 @@ where_section returns [uSQL::SQLWhere *sqlWhere]
 		sqlWhere = new uSQL::SQLWhere();
 	}
 	: WHERE expression[sqlWhere]
+	;
+
+sorting_section returns [uSQL::SQLOrderBy *sqlOrders]
+	@init {
+		sqlOrders = new uSQL::SQLOrderBy();
+	}
+	: ORDER BY sorting_list[sqlOrders]
+	;
+	
+sorting_list [uSQL::SQLOrderBy *sqlOrders]
+	: sorting_item[sqlOrders] (AND sorting_item[sqlOrders])*
+	;
+	
+sorting_item [uSQL::SQLOrderBy *sqlOrders]
+	: property (ordering_specification)? {
+		uSQL::SQLOrder *sqlOrder = new uSQL::SQLOrder();
+		sqlOrder->setValue(CG_ANTLR3_STRING_2_UTF8($property.text));
+		if (ordering_specification)
+			sqlOrder->setOrder(CG_ANTLR3_STRING_2_UTF8($ordering_specification.text));
+		sqlOrders->addChildNode(sqlOrder);
+	  }
 	;
 	
 /******************************************************************
@@ -415,27 +436,6 @@ condition_operator
 	| GT
 	| GE
 	| NOTEQ
-	;
-
-sort_section returns [uSQL::SQLOrderBy *sqlOrders]
-	@init {
-		sqlOrders = new uSQL::SQLOrderBy();
-	}
-	: ORDER BY sort_specification_list[sqlOrders]
-	;
-	
-sort_specification_list [uSQL::SQLOrderBy *sqlOrders]
-	: sort_specification[sqlOrders] (AND sort_specification[sqlOrders])*
-	;
-	
-sort_specification [uSQL::SQLOrderBy *sqlOrders]
-	: property (ordering_specification)? {
-		uSQL::SQLOrder *sqlOrder = new uSQL::SQLOrder();
-		sqlOrder->setValue(CG_ANTLR3_STRING_2_UTF8($property.text));
-		if (ordering_specification)
-			sqlOrder->setOrder(CG_ANTLR3_STRING_2_UTF8($ordering_specification.text));
-		sqlOrders->addChildNode(sqlOrder);
-	  }
 	;
 
 ordering_specification

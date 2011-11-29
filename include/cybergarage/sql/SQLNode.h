@@ -70,7 +70,6 @@ private:
 	SQLNode *parent;
 	SQLNodeList children;
 
-	std::string name;
 	std::string value;
 
 public:
@@ -87,13 +86,7 @@ public:
         return this->type;
     }
     
-	void setName(const std::string &value) {
-    	this->name = value;
-    }
-    
-    const std::string &getName() {
-    	return this->name;
-    }
+    bool isSQLExpressionNode();
     
 	void setValue(const std::string &value) {
     	this->value = value;
@@ -103,11 +96,6 @@ public:
     	return this->value;
     }
 
-    bool isDictionary()
-    {
-    	return (this->name.length()) ? true : false;
-    }
-   
    	void setParentNode(SQLNode *node) {
         this->parent = node;
     }

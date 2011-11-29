@@ -21,8 +21,11 @@ std::string &uSQL::SQLColumn::toString(std::string &buf)
 
 	bool hasDictionaryValues = false;
     for (int n=0; n<expressionsCount; n++) {
-        SQLNode *expr = expressions->getNode(n);
-    	if (expr->isDictionary() == true) {
+        SQLNode *sqlNode = expressions->getNode(n);
+	    if (sqlNode->isSQLExpressionNode() == false)
+        	continue;
+        uSQL::SQLExpression *exprNode = (uSQL::SQLExpression *)sqlNode;
+    	if (exprNode->isDictionary() == true) {
         	hasDictionaryValues = true;
             break;
         }

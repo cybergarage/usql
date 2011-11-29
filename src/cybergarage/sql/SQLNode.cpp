@@ -13,6 +13,7 @@
 #include<sstream>
 
 #include <cybergarage/sql/SQLNode.h>
+#include <cybergarage/sql/node/SQLExpression.h>
 
 const int uSQL::SQLNode::COMMAND = 1;
 const int uSQL::SQLNode::FROM = 2;
@@ -45,14 +46,22 @@ uSQL::SQLNode::~SQLNode()
         delete *node;
 }
 
+bool uSQL::SQLNode::isSQLExpressionNode() 
+{
+	return (dynamic_cast<uSQL::SQLExpression *>(this)) ? true : false;
+}
+
 static std::string CgSQLNode2String(uSQL::SQLNode *sqlNode, std::string &buf)
 {
     std::ostringstream oss;
     
-	const std::string name = sqlNode->getName();
-	if (0 < name.length()) {
-	    oss << name;
-	    oss << ":";
+    if (sqlNode->isSQLExpressionNode()) {
+    	uSQL::SQLExpression *exprNode = (uSQL::SQLExpression *)sqlNode;
+		const std::string name = exprNode->getName();
+		if (0 < name.length()) {
+		    oss << name;
+		    oss << ":";
+	    }
     }
     
 	const std::string value = sqlNode->getValue();

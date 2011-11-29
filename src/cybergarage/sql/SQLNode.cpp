@@ -34,6 +34,7 @@ const int uSQL::SQLNode::DICTIONARY = 16;
 const int uSQL::SQLNode::OPTION = 17;
 const int uSQL::SQLNode::OPERATOR = 18;
 const int uSQL::SQLNode::GROUPBY = 19;
+const int uSQL::SQLNode::HAVING = 20;
 
 uSQL::SQLNode::SQLNode()
 {

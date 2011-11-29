@@ -50,6 +50,7 @@ public:
     static const int FROM;
     static const int FUNCTION;
     static const int GROUPBY;
+    static const int HAVING;
     static const int LIMIT;
     static const int OFFSET;
     static const int OPERATOR;

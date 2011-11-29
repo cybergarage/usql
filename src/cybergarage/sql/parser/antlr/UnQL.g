@@ -89,7 +89,7 @@ select_core [uSQL::SQLStatement *sqlStmt]
 	: SELECT (DISTINCT | ALL)? (expression[sqlColumn])? (AS name)? 
 	  (fromSection = from_section)? 
 	  (whereSection = where_section)? /*
-	  (GROUP BY expression (',' expression)* (OFFSET expression)? (HAVING expression)?)?  */ {
+	  (GROUP BY expression (',' expression)* (HAVING expression)?)?  */ {
 	  
 		// VALUE 
 		if (sqlColumn->hasExpressions())

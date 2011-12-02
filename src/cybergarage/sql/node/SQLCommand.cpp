@@ -19,6 +19,8 @@ const int uSQL::SQLCommand::INSERT = 2;
 const int uSQL::SQLCommand::DELETE = 3;
 const int uSQL::SQLCommand::CREATE = 4;
 const int uSQL::SQLCommand::DROP = 5;
+const int uSQL::SQLCommand::CREATE_INDEX = 6;
+const int uSQL::SQLCommand::DROP_INDEX = 7;
 
 void uSQL::SQLCommand::setCommandType(int commandType) 
 {
@@ -37,13 +39,19 @@ void uSQL::SQLCommand::setCommandType(int commandType)
 		commandValue = "INSERT INTO";
     	break;
 	case DELETE:
-		commandValue = "DELETE";
+		commandValue = "DELETE FROM";
     	break;
 	case CREATE:
 		commandValue = "CREATE COLLECTION";
     	break;
 	case DROP:
 		commandValue = "DROP COLLECTION";
+    	break;
+	case CREATE_INDEX:
+		commandValue = "CREATE INDEX";
+    	break;
+	case DROP_INDEX:
+		commandValue = "DROP INDEX";
     	break;
 	}
     

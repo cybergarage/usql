@@ -28,6 +28,8 @@ public:
     static const int DELETE;
     static const int CREATE;
     static const int DROP;
+    static const int CREATE_INDEX;
+    static const int DROP_INDEX;
 
 private:
 
@@ -112,6 +114,24 @@ public:
 
 	SQLDrop() {
     	setCommandType(DROP);
+    }
+};
+
+class SQLCreateIndex : public SQLCommand {
+
+public:
+
+	SQLCreateIndex() {
+    	setCommandType(CREATE_INDEX);
+    }
+};
+
+class SQLDropIndex : public SQLCommand {
+
+public:
+
+	SQLDropIndex() {
+    	setCommandType(DROP_INDEX);
     }
 };
 

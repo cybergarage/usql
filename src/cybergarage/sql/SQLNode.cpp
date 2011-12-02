@@ -35,6 +35,8 @@ const int uSQL::SQLNode::OPTION = 17;
 const int uSQL::SQLNode::OPERATOR = 18;
 const int uSQL::SQLNode::GROUPBY = 19;
 const int uSQL::SQLNode::HAVING = 20;
+const int uSQL::SQLNode::INDEX = 21;
+const int uSQL::SQLNode::TRANSACTION = 22;
 
 uSQL::SQLNode::SQLNode()
 {

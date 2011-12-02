@@ -13,11 +13,11 @@
 #ifndef CG_USQL_SQLHAVING_H
 #define CG_USQL_SQLHAVING_H
 
-#include <cybergarage/sql/SQLNode.h>
+#include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
 
-class SQLHaving : public SQLNode {
+class SQLHaving : public SQLExpression {
 
 public:
 

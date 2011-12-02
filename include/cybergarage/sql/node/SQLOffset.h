@@ -13,7 +13,6 @@
 #ifndef CG_USQL_SQLOFFSET_H
 #define CG_USQL_SQLOFFSET_H
 
-#include <sstream>
 #include <cybergarage/sql/SQLNode.h>
 
 namespace uSQL {

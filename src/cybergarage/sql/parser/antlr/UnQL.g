@@ -19,7 +19,6 @@ options
 
 @lexer::includes
 {
-	#include <cybergarage/sql/SQLParser.h>
 }
 
 @parser::includes
@@ -45,7 +44,11 @@ statement [uSQL::SQLParser *sqlParser]
 	: select_stmt[stmt]
 	| create_collection_stmt[stmt]
 	| drop_collection_stmt[stmt]
+	| create_index_stmt[stmt]
+	| drop_index_stmt[stmt]
 	| insert_stmt[stmt]
+	| update_stmt[stmt]
+	| delete_stmt[stmt]
 	;	
 
 /******************************************************************
@@ -60,23 +63,23 @@ select_stmt [uSQL::SQLStatement *sqlStmt]
 		uSQL::SQLSelect *sqlSelect = new uSQL::SQLSelect();
 		sqlStmt->addChildNode(sqlSelect);
 
-		ss = NULL;
-		ls = NULL;
-		os = NULL;
+		sortingSection = NULL;
+		limitSection = NULL;
+		offsetSection = NULL;
 	}
-	: select_core[sqlStmt] (ss=sorting_section)? (ls=limit_section)? (os=offset_section)? 
+	: select_core[sqlStmt] (sortingSection=sorting_section)? (limitSection=limit_section)? (offsetSection=offset_section)? 
 	{
 		// ORDER BY		
-		if (ss)
-			sqlStmt->addChildNode(ss);
+		if (sortingSection)
+			sqlStmt->addChildNode(sortingSection);
 			
 		// LIMIT		
-		if (ls)
-			sqlStmt->addChildNode(ls);
+		if (limitSection)
+			sqlStmt->addChildNode(limitSection);
 
 		// OFFSET
-		if (os)
-			sqlStmt->addChildNode(os);
+		if (offsetSection)
+			sqlStmt->addChildNode(offsetSection);
 	}
 	;
 
@@ -85,11 +88,15 @@ select_core [uSQL::SQLStatement *sqlStmt]
 		uSQL::SQLColumn *sqlColumn = new uSQL::SQLColumn();
 		fromSection = NULL;
 		whereSection = NULL;
+		groupSection = NULL;
+		havingSection = NULL;
 	}
 	: SELECT (DISTINCT | ALL)? (expression[sqlColumn])? (AS name)? 
 	  (fromSection = from_section)? 
-	  (whereSection = where_section)? /*
-	  (GROUP BY expression (',' expression)* (HAVING expression)?)?  */ {
+	  (whereSection = where_section)?
+	  (groupSection = grouping_section)? 
+	  (havingSection = having_section)? 
+	  {
 	  
 		// VALUE 
 		if (sqlColumn->hasExpressions())
@@ -104,6 +111,14 @@ select_core [uSQL::SQLStatement *sqlStmt]
 		// WHERE
 		if (whereSection)		
 			sqlStmt->addChildNode(whereSection);
+
+		// GROUP BY
+		if (groupSection)		
+			sqlStmt->addChildNode(groupSection);
+
+		// HAVING
+		if (havingSection)		
+			sqlStmt->addChildNode(havingSection);
 	  }
 	;
 
@@ -121,30 +136,36 @@ table_name [uSQL::SQLFrom *sqlFrom]
 	;
 
 data_source returns [uSQL::SQLDataSource *sqlDataSource]
-	: (collection_name) {
+	@init {
 		sqlDataSource = new uSQL::SQLDataSource();
+	}
+	: collection_name {
+		// Collection
 		sqlDataSource->setValue(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
 	  }
 	;
 
-where_section returns [uSQL::SQLWhere *sqlWhere]
+grouping_section returns [uSQL::SQLGroupBy *sqlGroupBy]
 	@init {
-		sqlWhere = new uSQL::SQLWhere();
+		sqlGroupBy = new uSQL::SQLGroupBy();
 	}
-	: WHERE expression[sqlWhere]
+	: GROUP BY expression[sqlGroupBy] (COMMA expression[sqlGroupBy])*
+	;
+	
+having_section returns [uSQL::SQLHaving *sqlHaving]
+	@init {
+		sqlHaving = new uSQL::SQLHaving();
+	}
+	: HAVING expression[sqlHaving]
 	;
 
 sorting_section returns [uSQL::SQLOrderBy *sqlOrders]
 	@init {
 		sqlOrders = new uSQL::SQLOrderBy();
 	}
-	: ORDER BY sorting_list[sqlOrders]
+	: ORDER BY sorting_item[sqlOrders] (COMMA sorting_item[sqlOrders])*
 	;
-	
-sorting_list [uSQL::SQLOrderBy *sqlOrders]
-	: sorting_item[sqlOrders] (AND sorting_item[sqlOrders])*
-	;
-	
+		
 sorting_item [uSQL::SQLOrderBy *sqlOrders]
 	: property (sorting_specification)? {
 		uSQL::SQLOrder *sqlOrder = new uSQL::SQLOrder();
@@ -192,15 +213,13 @@ create_collection_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {	
 		uSQL::SQLOption *sqlOpt = new uSQL::SQLOption();
 	}
-	: CREATE COLLECTION collection_name (OPTIONS expression[sqlOpt])? {
+	: CREATE COLLECTION collectionNode=collection_section (OPTIONS expression[sqlOpt])? {
 		// CREATE
 		uSQL::SQLCreate *sqlCmd = new uSQL::SQLCreate();
 		sqlStmt->addChildNode(sqlCmd);
 		
 		// Collection
-		uSQL::SQLCollection *sqlCollection = new uSQL::SQLCollection();
-		sqlCollection->setValue(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
-		sqlCmd->addChildNode(sqlCollection);
+		sqlCmd->addChildNode(collectionNode);
 
 		// Option 
 		if (sqlOpt->hasExpressions())
@@ -219,16 +238,54 @@ create_collection_stmt [uSQL::SQLStatement *sqlStmt]
 drop_collection_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {	
 	}
-	: DROP COLLECTION collection_name
+	: DROP COLLECTION collectionNode=collection_section
 	{
-		// CREATE
+		// DROP
 		uSQL::SQLDrop *sqlCmd = new uSQL::SQLDrop();
 		sqlStmt->addChildNode(sqlCmd);
 		
 		// Collection
-		uSQL::SQLCollection *sqlCollection = new uSQL::SQLCollection();
-		sqlCollection->setValue(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
-		sqlCmd->addChildNode(sqlCollection);
+		sqlCmd->addChildNode(collectionNode);
+	}
+	;
+
+/******************************************************************
+*
+* CREATE INDEX
+*
+******************************************************************/
+
+create_index_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {	
+	}
+	: CREATE COLLECTION_INDEX indexNode=index_section
+	{
+		// DROP
+		uSQL::SQLCreateIndex *sqlCmd = new uSQL::SQLCreateIndex();
+		sqlStmt->addChildNode(sqlCmd);
+		
+		// Collection
+		sqlCmd->addChildNode(indexNode);
+	}
+	;
+
+/******************************************************************
+*
+* DROP INDEX
+*
+******************************************************************/
+
+drop_index_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {	
+	}
+	: DROP COLLECTION_INDEX indexNode=index_section
+	{
+		// DROP
+		uSQL::SQLDropIndex *sqlCmd = new uSQL::SQLDropIndex();
+		sqlStmt->addChildNode(sqlCmd);
+		
+		// Collection
+		sqlCmd->addChildNode(indexNode);
 	}
 	;
 
@@ -243,7 +300,7 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 		uSQL::SQLValue *sqlValue = new uSQL::SQLValue();
 		isAsync = false;
 	}
-	: (isAsync=sync_operator)? INSERT INTO collection_name VALUE expression[sqlValue]
+	: (isAsync=sync_operator)? INSERT INTO collectionNode=collection_section VALUE expression[sqlValue]
 	{
 		// INSERT
 		uSQL::SQLInsert *sqlCmd = new uSQL::SQLInsert();
@@ -251,12 +308,83 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 		sqlStmt->addChildNode(sqlCmd);
 
 		// Collection
-		uSQL::SQLCollection *sqlCollection = new uSQL::SQLCollection();
-		sqlCollection->setValue(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
-		sqlCmd->addChildNode(sqlCollection);
+		sqlCmd->addChildNode(collectionNode);
 		
 		// Value
 		sqlCmd->addChildNode(sqlValue);
+	}
+	;
+
+/******************************************************************
+*
+* UPDATE
+*
+******************************************************************/
+
+update_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {
+		uSQL::SQLValue *sqlValue = new uSQL::SQLValue();
+		isAsync = false;
+		whereSection = NULL;
+	}
+	: (isAsync=sync_operator)? UPDATE INTO collectionNode=collection_section SET property_section[sqlValue] (property_section[sqlValue])* (whereSection = where_section)?
+
+	{
+		// INSERT
+		uSQL::SQLUpdate *sqlCmd = new uSQL::SQLUpdate();
+		sqlCmd->setAsyncEnabled(isAsync);
+		sqlStmt->addChildNode(sqlCmd);
+
+		// Collection
+		sqlCmd->addChildNode(collectionNode);
+		
+		// Value
+		sqlCmd->addChildNode(sqlValue);
+
+		// WHERE
+		if (whereSection)		
+			sqlStmt->addChildNode(whereSection);
+	}
+	;
+
+property_section [uSQL::SQLValue *sqlValue]
+	@init {
+		
+	}
+	: property '=' expr=expression_atom
+
+	{
+		expr->setName(CG_ANTLR3_STRING_2_UTF8($property.text));
+		sqlValue->addChildNode(expr);
+	}
+	;
+
+/******************************************************************
+*
+* DELETE
+*
+******************************************************************/
+
+delete_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {
+		uSQL::SQLValue *sqlValue = new uSQL::SQLValue();
+		isAsync = false;
+		whereSection = NULL;
+	}
+	: (isAsync=sync_operator)? DELETE FROM collectionNode=collection_section (whereSection = where_section)?
+
+	{
+		// DELETE
+		uSQL::SQLDelete *sqlCmd = new uSQL::SQLDelete();
+		sqlCmd->setAsyncEnabled(isAsync);
+		sqlStmt->addChildNode(sqlCmd);
+
+		// Collection
+		sqlCmd->addChildNode(collectionNode);
+		
+		// WHERE
+		if (whereSection)		
+			sqlStmt->addChildNode(whereSection);
 	}
 	;
 
@@ -435,9 +563,39 @@ name
 	: ID
 	;
 
+collection_section returns [uSQL::SQLCollection *sqlCollection]
+	@init {
+		sqlCollection = new uSQL::SQLCollection();
+	}
+	: collection_name {
+		sqlCollection->setValue(CG_ANTLR3_STRING_2_UTF8($collection_name.text));
+	  }
+	;
+
 collection_name
 	: ID
 	| string_literal
+	;
+	
+index_section returns [uSQL::SQLIndex *sqlIndex]
+	@init {
+		sqlIndex = new uSQL::SQLIndex();
+	}
+	: index_name {
+		sqlIndex->setValue(CG_ANTLR3_STRING_2_UTF8($index_name.text));
+	  }
+	;
+
+index_name
+	: ID
+	| string_literal
+	;
+
+where_section returns [uSQL::SQLWhere *sqlWhere]
+	@init {
+		sqlWhere = new uSQL::SQLWhere();
+	}
+	: WHERE expression[sqlWhere]
 	;
 
 /*------------------------------------------------------------------
@@ -654,6 +812,10 @@ DESC
 	: D E S C
 	;
 
+DELETE
+	: D E L E T E
+	;
+
 DISTINCT
 	: D I S T I N C T
 	;
@@ -688,6 +850,10 @@ HAVING
 	
 IN
 	: I N
+	;
+
+COLLECTION_INDEX
+	: I N D E X
 	;
 
 INSERT
@@ -726,12 +892,20 @@ SELECT
 	: S E L E C T
 	;
 
+SET
+	: S E T
+	;
+
 SYNC
 	: S Y N C
 	;
 
 UNION
 	: U N I O N
+	;
+
+UPDATE
+	: U P D A T E
 	;
 
 WHERE

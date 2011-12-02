@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* SQLLimit.h
+* SQLTransaction.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -10,30 +10,21 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLLIMIT_H
-#define CG_USQL_SQLLIMIT_H
+#ifndef CG_USQL_SQLTRANSACTION_H
+#define CG_USQL_SQLTRANSACTION_H
 
 #include <cybergarage/sql/SQLNode.h>
 
 namespace uSQL {
 
-class SQLLimit : public SQLNode {
+class SQLTransaction : public SQLNode {
 
 public:
 
-	SQLLimit() {
-    	setType(LIMIT);
-    }
-    
-    std::string &toString(std::string &buf) {
-	    std::ostringstream oss;
-	    std::string childNodeStr;
-	    oss << "LIMIT " << childNodesToString(childNodeStr, ",");
-    	buf = oss.str();
-		return buf;
+	SQLTransaction() {
+    	setType(TRANSACTION);
     }
 };
 
 }
-
 #endif

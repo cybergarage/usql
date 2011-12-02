@@ -28,6 +28,15 @@ BOOST_AUTO_TEST_CASE(SQLParserUnQLTest)
 	unqlStrings.push_back("CREATE COLLECTION abc");
 	unqlStrings.push_back("CREATE COLLECTION def");
     
+	unqlStrings.push_back("DROP COLLECTION abc");
+	unqlStrings.push_back("DROP COLLECTION def");
+
+	unqlStrings.push_back("CREATE INDEX abc");
+	unqlStrings.push_back("CREATE INDEX def");
+    
+	unqlStrings.push_back("DROP INDEX abc");
+	unqlStrings.push_back("DROP INDEX def");
+    
     unqlStrings.push_back("INSERT INTO abc VALUE 1234");
     unqlStrings.push_back("INSERT INTO abc VALUE 3.141592653");
     unqlStrings.push_back("INSERT INTO abc VALUE \"This is a string\"");
@@ -38,9 +47,29 @@ BOOST_AUTO_TEST_CASE(SQLParserUnQLTest)
     unqlStrings.push_back("SELECT a FROM abc");
     unqlStrings.push_back("SELECT MAX(a) FROM abc");
     unqlStrings.push_back("SELECT {x:abc.type,y:abc.content.x,z:abc.content.x} FROM abc");
-    //unqlStrings.push_back("SELECT { x:abc.type, y:abc.content.x, z:abc.content.x+50 } FROM abc;");
+    //unqlStrings.push_back("SELECT { x:abc.type,y:abc.content.x,z:abc.content.x+50 } FROM abc");
     unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\"");
+    
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" GROUP BY abc.name");
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" GROUP BY abc.name,abc.date");
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" GROUP BY abc.name,abc.date HAVING abc.type");
+    
+    
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" ORDER BY abc.name ASC");
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" ORDER BY abc.name DESC");
+    //unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" ORDER BY abc.name ASC, abc.type ASC");
+    //unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" ORDER BY abc.name DESC, abc.type ASC");
 
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" LIMIT 10");
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" LIMIT 0,10");
+    //unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" OFFSET 10");
+    //unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" LIMIT 0,10 OFFSET 10");
+
+    unqlStrings.push_back("UPDATE abc set abc.type==\"message\"");
+    
+    unqlStrings.push_back("DELETE FROM abc");
+    unqlStrings.push_back("DELETE FROM abc WHERE abc==1234");
+    
 	vector<string>::iterator unqlString = unqlStrings.begin();
 	while(unqlString != unqlStrings.end()) {
     	
@@ -53,11 +82,14 @@ BOOST_AUTO_TEST_CASE(SQLParserUnQLTest)
 	    unqlParser.getStatement()->toString(parseResult);
 	    boost::trim(parseResult);
         
-        cout << "O : " << parseResult << endl;
-        std::string buf;
-        cout << unqlParser.getStatement()->toTreeString(buf);
-        
-	    BOOST_CHECK(parseResult.compare(*unqlString) == 0);
+        int compareResult = parseResult.compare(*unqlString);
+	    BOOST_CHECK(compareResult == 0);
+
+        if (compareResult != 0) {
+	        cout << "O : " << parseResult << endl;
+	        std::string buf;
+    	    cout << unqlParser.getStatement()->toTreeString(buf);
+        }
         
 		unqlString++;
 	}

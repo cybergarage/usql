@@ -42,7 +42,6 @@ static int CgSQLOrderStringToValue(const std::string value)
 void uSQL::SQLOrder::setOrder(int type) 
 {
     this->order = type;
-    setValue(CgSQLOrderValueToString(type));
 }
 
 void uSQL::SQLOrder::setOrder(const std::string &order)
@@ -52,8 +51,8 @@ void uSQL::SQLOrder::setOrder(const std::string &order)
 
 std::string &uSQL::SQLOrder::toString(std::string &buf) 
 {
-	buf = getValue();
-    buf.append(" ");
-    buf.append(CgSQLOrderValueToString(getOrder()));
-    return buf;
+	std::ostringstream oss;
+	oss << getValue() << " " << CgSQLOrderValueToString(getOrder());
+	buf = oss.str();
+	return buf;
 }

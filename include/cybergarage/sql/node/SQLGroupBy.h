@@ -13,11 +13,11 @@
 #ifndef CG_USQL_SQLGROUPBY_H
 #define CG_USQL_SQLGROUPBY_H
 
-#include <cybergarage/sql/SQLNode.h>
+#include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
 
-class SQLGroupBy : public SQLNode {
+class SQLGroupBy : public SQLExpression {
 
 public:
 

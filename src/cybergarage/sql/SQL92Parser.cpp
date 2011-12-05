@@ -30,12 +30,17 @@ bool uSQL::SQL92Parser::parse(const std::string &queryString)
     pANTLR3_COMMON_TOKEN_STREAM tokens = antlr3CommonTokenStreamSourceNew(ANTLR3_SIZE_HINT, TOKENSOURCE(lexer));
     pSQL92Parser parser = SQL92ParserNew(tokens);
 
-    parser->statement(parser);
+    parser->statement_list(parser, this);
+    
+    bool parserResult = true;
+    if (0 < parser->pParser->rec->state->errorCount) {
+        parserResult = false;
+    }
 
     parser->free(parser);
     tokens->free(tokens);
     lexer->free(lexer);
     input->close(input);
     
-	return true;
+	return parserResult;
 }

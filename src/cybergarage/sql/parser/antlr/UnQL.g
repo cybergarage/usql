@@ -23,7 +23,6 @@ options
 
 @parser::includes
 {
-	#include <string.h>
 	#include <cybergarage/sql/SQLParser.h>
     
 	#define CG_ANTLR3_STRING_2_UTF8(str) ((const char *)str->chars)
@@ -35,6 +34,10 @@ options
  * PARSER RULES
  *
  *------------------------------------------------------------------*/
+
+statement_list [uSQL::SQLParser *sqlParser]
+	: statement[sqlParser] (SEMICOLON statement[sqlParser])*
+	;	
 
 statement [uSQL::SQLParser *sqlParser]
 	@init {
@@ -186,7 +189,7 @@ limit_section returns [uSQL::SQLLimit *sqlLimit]
 		sqlLimit = new uSQL::SQLLimit();
 		offsetExpr = NULL;
 	}
-	: LIMIT (offsetExpr=expression_atom COMMA)? countExpr=expression_atom {
+	: LIMIT (offsetExpr=expression_literal COMMA)? countExpr=expression_literal {
 		if (offsetExpr)
 			sqlLimit->addChildNode(offsetExpr);
 		sqlLimit->addChildNode(countExpr);
@@ -197,11 +200,10 @@ offset_section returns [uSQL::SQLOffset *sqlOffset]
 	@init {
 		sqlOffset = new uSQL::SQLOffset();
 	}
-	: offsetExpr=expression_atom {
+	: offsetExpr=expression_literal {
 		sqlOffset->addChildNode(offsetExpr);
 	  }
 	;
-
 	
 /******************************************************************
 *
@@ -351,7 +353,7 @@ property_section [uSQL::SQLValue *sqlValue]
 	@init {
 		
 	}
-	: property '=' expr=expression_atom
+	: property '=' expr=expression_literal
 
 	{
 		expr->setName(CG_ANTLR3_STRING_2_UTF8($property.text));
@@ -367,7 +369,6 @@ property_section [uSQL::SQLValue *sqlValue]
 
 delete_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {
-		uSQL::SQLValue *sqlValue = new uSQL::SQLValue();
 		isAsync = false;
 		whereSection = NULL;
 	}
@@ -395,7 +396,7 @@ delete_stmt [uSQL::SQLStatement *sqlStmt]
 ******************************************************************/
 
 expression [uSQL::SQLExpression *parentSqlExpr]
- 	: sqlExpr=expression_atom {
+ 	: sqlExpr=expression_literal {
 		parentSqlExpr->addExpression(sqlExpr);
 	  }
 	| '{' (dictionary_literal[parentSqlExpr]) (COMMA dictionary_literal[parentSqlExpr])* '}'
@@ -403,70 +404,56 @@ expression [uSQL::SQLExpression *parentSqlExpr]
 	| sqlFunc=function_name '(' array_literal[sqlFunc] (COMMA array_literal[sqlFunc] )* ')' {
 		parentSqlExpr->addExpression(sqlFunc);
 	  }
-	| exprLeft=expression_atom binOper=binary_operator exprRight=expression_atom {
+	| exprLeft=expression_literal binOper=binary_operator exprRight=expression_literal {
 		parentSqlExpr->addExpression(binOper);
 		binOper->addExpression(exprLeft);
 		binOper->addExpression(exprRight);
 	  }
 	;
 
-expression_atom returns [uSQL::SQLExpression *sqlExpr]
+expression_literal returns [uSQL::SQLExpression *sqlExpr]
 	@init {
 		sqlExpr = new uSQL::SQLExpression();
 	}
- 	: property {
-		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($property.text));
+ 	: expression_literal_value[sqlExpr]
+ 	;
+
+expression_literal_value [uSQL::SQLExpression *sqlExpr]
+ 	: property_literal {
+		sqlExpr->setLiteralType(uSQL::SQLExpression::PROPERTY);
+		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($property_literal.text));
 	  }
 	| integer_literal {
+		sqlExpr->setLiteralType(uSQL::SQLExpression::INTEGER);
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($integer_literal.text));
 	  }
 	| real_literal {
+		sqlExpr->setLiteralType(uSQL::SQLExpression::REAL);
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($real_literal.text));
 	  }
 	| string_literal {
+		sqlExpr->setLiteralType(1/*uSQL::SQLExpression::STRING*/);
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($string_literal.text));
 	  }
 	| true_literal {
+		sqlExpr->setLiteralType(uSQL::SQLExpression::BOOLEAN);
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($true_literal.text));
 	  }
 	| false_literal {
+		sqlExpr->setLiteralType(uSQL::SQLExpression::BOOLEAN);
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($false_literal.text));
 	  }
 	;
 
-property
-	: ID 
-	;
-
-integer_literal
-	: NUMBER
-	;
-
-real_literal
-	: FLOAT
-	;
-
-string_literal
-	: STRING
-	;
-
-true_literal
-	: 'true'
-	;
-	
-false_literal
-	: 'false'
-	;
-
 dictionary_literal [uSQL::SQLExpression *parentSqlExpr]
-	: name ':' sqlExpr=expression_atom {
+	: name ':' sqlExpr=expression_literal {
 		sqlExpr->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
 		parentSqlExpr->addExpression(sqlExpr);
 	  }
 	;
 
 array_literal [uSQL::SQLExpression *parentSqlExpr]
-	: sqlExpr=expression_atom {
+	: sqlExpr=expression_literal {
 		parentSqlExpr->addExpression(sqlExpr);
 	  }
 	;
@@ -474,30 +461,17 @@ array_literal [uSQL::SQLExpression *parentSqlExpr]
 function_name returns [uSQL::SQLFunction *sqlFunc]
 	@init {
 		sqlFunc = new uSQL::SQLFunction();
+		sqlFunc->setLiteralType(uSQL::SQLExpression::FUNCTION);
 	}
 	: ID {
 		sqlFunc->setValue(CG_ANTLR3_STRING_2_UTF8($ID.text));
 	  }
 	;
 
-function_literal [uSQL::SQLExpression *parentSqlExpr]
-	@init {
-		uSQL::SQLExpression *valueParentExpr = new uSQL::SQLExpression();
-	}
-	@after {
-		delete valueParentExpr;
-	}
-	: expression[valueParentExpr] {
- 		uSQL::SQLExpression *valueExpr = valueParentExpr->getExpression(0);
-		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
-		sqlExpr->setValue(valueExpr ? valueExpr->getValue() : "");
-		parentSqlExpr->addExpression(sqlExpr);
-	  }
-	;
-
 binary_operator returns [uSQL::SQLOperator *sqlOper]
 	@init {
 		sqlOper = new uSQL::SQLOperator();
+		sqlOper->setLiteralType(uSQL::SQLExpression::OPERATOR);
 	}
 	: EQ {
 		sqlOper->setValue(1/*uSQL::SQLOperator::EQ*/);
@@ -523,6 +497,30 @@ binary_operator returns [uSQL::SQLOperator *sqlOper]
 	| OR {
 		sqlOper->setValue(8/*uSQL::SQLOperator::OR*/);
 	  }
+	;
+
+property_literal
+	: ID 
+	;
+
+integer_literal
+	: NUMBER
+	;
+
+real_literal
+	: FLOAT
+	;
+
+string_literal
+	: STRING
+	;
+
+true_literal
+	: T R U E
+	;
+	
+false_literal
+	: F A L S E
 	;
 
 /******************************************************************
@@ -553,6 +551,10 @@ condition_operator
 	| GT
 	| GE
 	| NOTEQ
+	;
+
+property
+	: ID 
 	;
 
 value 	
@@ -644,6 +646,10 @@ OR
 
 COMMA
 	: ','
+	;
+
+SEMICOLON
+	: ';'
 	;
 	
 fragment 

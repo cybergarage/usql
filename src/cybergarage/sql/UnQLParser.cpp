@@ -30,7 +30,7 @@ bool uSQL::UnQLParser::parse(const std::string &queryString)
     pANTLR3_COMMON_TOKEN_STREAM tokens = antlr3CommonTokenStreamSourceNew(ANTLR3_SIZE_HINT, TOKENSOURCE(lexer));
     pUnQLParser parser = UnQLParserNew(tokens);
 
-    parser->statement(parser, this);
+    parser->statement_list(parser, this);
 
     bool parserResult = true;
     if (0 < parser->pParser->rec->state->errorCount) {

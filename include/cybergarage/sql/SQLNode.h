@@ -47,6 +47,7 @@ public:
     static const int COLUMN;
     static const int COLUMNS;
     static const int COMMAND;
+    static const int DATACOLUMN;
     static const int DATASOURCE;
     static const int DICTIONARY;
     static const int EXPRESSION;

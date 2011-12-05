@@ -19,18 +19,44 @@ namespace uSQL {
 
 class SQLExpression : public SQLNode {
 
-	std::string name;
+	std::string name;    
+	int literalType;
+    
+public:
+
+    static const int UNKOWN;
+    static const int STRING;
+    static const int PROPERTY;
+    static const int INTEGER;
+    static const int REAL;
+    static const int BOOLEAN;
+    static const int OPERATOR;
+    static const int FUNCTION;
+    static const int SELECT;
+    static const int BLOB;
+    static const int NIL;
+    static const int CURRENT_TIME;
+    static const int CURRENT_DATE;
+    static const int CURRENT_TIMESTAMP;
     
 public:
 
 	SQLExpression() {
     	setType(EXPRESSION);
+    	setLiteralType(UNKOWN);
     }
     
 	~SQLExpression() {
-    	setType(EXPRESSION);
     }
         
+    void setLiteralType(int type) {
+        this->literalType = type;
+    }
+    
+    int getLiteralType() {
+        return this->literalType;
+    }
+    
 	void setName(const std::string &value) {
     	this->name = value;
     }

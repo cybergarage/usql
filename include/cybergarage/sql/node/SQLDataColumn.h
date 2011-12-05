@@ -2,7 +2,7 @@
 *
 * uSQL for C++
 *
-* SQLDataSource.h
+* SQLDataColumn.h
 *
 * Copyright (C) Satoshi Konno 2011
 *
@@ -13,17 +13,18 @@
 #ifndef CG_USQL_SQLDATASOURCE_H
 #define CG_USQL_SQLDATASOURCE_H
 
-#include <cybergarage/sql/SQLNode.h>
+#include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
 
-class SQLDataSource : public SQLNode {
+class SQLDataColumn : public SQLExpression {
 
 public:
 
 	SQLDataSource() {
-    	setType(DATASOURCE);
+    	setType(DATACOLUMN);
     }
+
 };
 
 }

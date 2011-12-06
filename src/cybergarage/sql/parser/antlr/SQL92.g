@@ -438,12 +438,12 @@ delete_stmt [uSQL::SQLStatement *sqlStmt]
 ******************************************************************/
 
 expression [uSQL::SQLExpression *parentSqlExpr]
+	@init {
+	}
  	: sqlExpr=expression_literal {
 		parentSqlExpr->addExpression(sqlExpr);
 	  }
-	| '{' (dictionary_literal[parentSqlExpr]) (COMMA dictionary_literal[parentSqlExpr])* '}'
-	| '[' array_literal[parentSqlExpr] (COMMA array_literal[parentSqlExpr] )* ']'
-	| sqlFunc=function_name '(' array_literal[sqlFunc] (COMMA array_literal[sqlFunc] )* ')' {
+	| sqlFunc=function_name '(' (function_value[sqlFunc])? ')' {
 		parentSqlExpr->addExpression(sqlFunc);
 	  }
 	| exprLeft=expression_literal binOper=binary_operator exprRight=expression_literal {
@@ -477,26 +477,17 @@ expression_literal_value [uSQL::SQLExpression *sqlExpr]
 		sqlExpr->setLiteralType(1/*uSQL::SQLExpression::STRING*/);
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($string_literal.text));
 	  }
-	| true_literal {
-		sqlExpr->setLiteralType(uSQL::SQLExpression::BOOLEAN);
-		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($true_literal.text));
+	| NIL {
+		sqlExpr->setLiteralType(10/*uSQL::SQLExpression::NIL*/);
 	  }
-	| false_literal {
-		sqlExpr->setLiteralType(uSQL::SQLExpression::BOOLEAN);
-		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($false_literal.text));
+	| CURRENT_TIME {
+		sqlExpr->setLiteralType(11/*uSQL::SQLExpression::CURRENT_TIME*/);
 	  }
-	;
-
-dictionary_literal [uSQL::SQLExpression *parentSqlExpr]
-	: name ':' sqlExpr=expression_literal {
-		sqlExpr->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
-		parentSqlExpr->addExpression(sqlExpr);
+	| CURRENT_DATE {
+		sqlExpr->setLiteralType(12/*uSQL::SQLExpression::CURRENT_DATE*/);
 	  }
-	;
-
-array_literal [uSQL::SQLExpression *parentSqlExpr]
-	: sqlExpr=expression_literal {
-		parentSqlExpr->addExpression(sqlExpr);
+	| CURRENT_TIMESTAMP {
+		sqlExpr->setLiteralType(13/*uSQL::SQLExpression::CURRENT_TIMESTAMP*/);
 	  }
 	;
 
@@ -509,7 +500,17 @@ function_name returns [uSQL::SQLFunction *sqlFunc]
 		sqlFunc->setValue(CG_ANTLR3_STRING_2_UTF8($ID.text));
 	  }
 	;
-
+	
+function_value [uSQL::SQLFunction *sqlFunc]
+	: expression[sqlFunc] (COMMA expression[sqlFunc])*
+	| ASTERISK {
+		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
+		sqlExpr->setLiteralType(1/*uSQL::SQLExpression::STRING*/);
+		sqlExpr->setValue("*");
+		sqlExpr->addExpression(sqlFunc);
+	}
+	;
+	
 binary_operator returns [uSQL::SQLOperator *sqlOper]
 	@init {
 		sqlOper = new uSQL::SQLOperator();
@@ -907,6 +908,18 @@ COLLECTION_INDEX
 	: I N D E X
 	;
 
+CURRENT_DATE
+	: C U R R E N T '_' D A T E
+	;
+
+CURRENT_TIME
+	: C U R R E N T '_' T I M E
+	;
+
+CURRENT_TIMESTAMP
+	: C U R R E N T '_' T I M E S T A M P
+	;
+	
 INSERT
 	: I N S E R T
 	;
@@ -925,6 +938,10 @@ IS
 
 LIMIT
 	: L I M I T
+	;
+	
+NIL
+	: N U L L
 	;
 	
 OFFSET

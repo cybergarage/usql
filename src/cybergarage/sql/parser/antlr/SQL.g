@@ -10,7 +10,7 @@
 *
 ******************************************************************/
 
-grammar UnQL;
+grammar SQL;
 
 options
 {
@@ -399,9 +399,7 @@ expression [uSQL::SQLExpression *parentSqlExpr]
  	: sqlExpr=expression_literal {
 		parentSqlExpr->addExpression(sqlExpr);
 	  }
-	| '{' (dictionary_literal[parentSqlExpr]) (COMMA dictionary_literal[parentSqlExpr])* '}'
-	| '[' array_literal[parentSqlExpr] (COMMA array_literal[parentSqlExpr] )* ']'
-	| sqlFunc=function_name '(' array_literal[sqlFunc] (COMMA array_literal[sqlFunc] )* ')' {
+	| sqlFunc=function_name '(' (function_value[sqlFunc])? ')' {
 		parentSqlExpr->addExpression(sqlFunc);
 	  }
 	| exprLeft=expression_literal binOper=binary_operator exprRight=expression_literal {
@@ -409,6 +407,8 @@ expression [uSQL::SQLExpression *parentSqlExpr]
 		binOper->addExpression(exprLeft);
 		binOper->addExpression(exprRight);
 	  }
+	| '{' (dictionary_literal[parentSqlExpr]) (COMMA dictionary_literal[parentSqlExpr])* '}'
+	| '[' array_literal[parentSqlExpr] (COMMA array_literal[parentSqlExpr] )* ']'
 	;
 
 expression_literal returns [uSQL::SQLExpression *sqlExpr]
@@ -443,6 +443,18 @@ expression_literal_value [uSQL::SQLExpression *sqlExpr]
 		sqlExpr->setLiteralType(uSQL::SQLExpression::BOOLEAN);
 		sqlExpr->setValue(CG_ANTLR3_STRING_2_UTF8($false_literal.text));
 	  }
+	| NIL {
+		sqlExpr->setLiteralType(10/*uSQL::SQLExpression::NIL*/);
+	  }
+	| CURRENT_TIME {
+		sqlExpr->setLiteralType(11/*uSQL::SQLExpression::CURRENT_TIME*/);
+	  }
+	| CURRENT_DATE {
+		sqlExpr->setLiteralType(12/*uSQL::SQLExpression::CURRENT_DATE*/);
+	  }
+	| CURRENT_TIMESTAMP {
+		sqlExpr->setLiteralType(13/*uSQL::SQLExpression::CURRENT_TIMESTAMP*/);
+	  }
 	;
 
 dictionary_literal [uSQL::SQLExpression *parentSqlExpr]
@@ -466,6 +478,16 @@ function_name returns [uSQL::SQLFunction *sqlFunc]
 	: ID {
 		sqlFunc->setValue(CG_ANTLR3_STRING_2_UTF8($ID.text));
 	  }
+	;
+
+function_value [uSQL::SQLFunction *sqlFunc]
+	: expression[sqlFunc] (COMMA expression[sqlFunc])*
+	| ASTERISK {
+		uSQL::SQLExpression *sqlExpr = new uSQL::SQLExpression();
+		sqlExpr->setLiteralType(1/*uSQL::SQLExpression::STRING*/);
+		sqlExpr->setValue("*");
+		sqlExpr->addExpression(sqlFunc);
+	}
 	;
 
 binary_operator returns [uSQL::SQLOperator *sqlOper]
@@ -814,6 +836,18 @@ COLLECTION
 	: C O L L E C T I O N
 	;
 
+CURRENT_DATE
+	: C U R R E N T '_' D A T E
+	;
+
+CURRENT_TIME
+	: C U R R E N T '_' T I M E
+	;
+
+CURRENT_TIMESTAMP
+	: C U R R E N T '_' T I M E S T A M P
+	;
+
 DESC
 	: D E S C
 	;
@@ -880,6 +914,10 @@ IS
 
 LIMIT
 	: L I M I T
+	;
+
+NIL
+	: N U L L
 	;
 	
 OFFSET

@@ -18,6 +18,8 @@
 
 #include <cybergarage/sql/UnQLParser.h>
 
+#include "SqlEngineTestCase.h"
+
 using namespace std;
 using namespace uSQL;
 
@@ -30,22 +32,7 @@ BOOST_AUTO_TEST_CASE(SQLParserLeveldbTest)
     unqlStrings.push_back("INSERT INTO /tmp/testdb VALUE {type:\"message\"}");
     unqlStrings.push_back("INSERT INTO \"/tmp/testdb\" VALUE {type:\"message\"}");
 
-	vector<string>::iterator unqlString = unqlStrings.begin();
-	while(unqlString != unqlStrings.end()) {
-    	
-        cout << "I : " << *unqlString << endl;
-        
-        UnQLParser unqlParser;
-	    BOOST_CHECK(unqlParser.parse(*unqlString));
-        
-	    string parseResult;
-	    unqlParser.getStatement()->toString(parseResult);
-	    boost::trim(parseResult);
-        
-        cout << "O : " << parseResult << endl;
-        
-	    BOOST_CHECK(parseResult.compare(*unqlString) == 0);
-        
-		unqlString++;
-	}
+    UnQLParser unqlParser;
+    SqlEngineTestCase sqlTestCase(&unqlParser);
+    sqlTestCase.parse(unqlStrings);
 }

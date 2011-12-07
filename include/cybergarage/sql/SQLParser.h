@@ -35,7 +35,7 @@ public:
     
     virtual ~SQLParser();
 
-	virtual bool parse(const std::string &queryString) = 0;
+	virtual bool parse(const std::string &queryString);
     
     void addStatement(SQLStatement *stmt)
     {

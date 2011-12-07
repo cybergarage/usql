@@ -16,22 +16,22 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 
-#include <cybergarage/sql/GQLParser.h>
+#include <cybergarage/sql/SQL92Parser.h>
 
 #include "SqlEngineTestCase.h"
 
 using namespace std;
 using namespace uSQL;
 
-BOOST_AUTO_TEST_CASE(SQLParserGQLTest)
+BOOST_AUTO_TEST_CASE(SQLParser92Test)
 {
-	vector<string> gqlStrings;
+	vector<string> sqlStrings;
  
-    gqlStrings.push_back("SELECT * FROM SAMPLE1");
-    gqlStrings.push_back("SELECT * FROM SAMPLE2 WHERE A = B");
-    gqlStrings.push_back("SELECT * FROM SAMPLE3 LIMIT 10");
+    sqlStrings.push_back("SELECT * FROM SAMPLE1");
+    sqlStrings.push_back("SELECT * FROM SAMPLE2 WHERE A = B");
+    sqlStrings.push_back("SELECT * FROM SAMPLE3 LIMIT 10");
 
-	GQLParser gqlParser;
-    SqlEngineTestCase sqlTestCase(&gqlParser);
-    sqlTestCase.parse(gqlStrings);
+	SQL92Parser sqlParser;
+    SqlEngineTestCase sqlTestCase(&sqlParser);
+    sqlTestCase.parse(sqlStrings);
 }

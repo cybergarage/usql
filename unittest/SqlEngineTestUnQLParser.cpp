@@ -18,6 +18,8 @@
 
 #include <cybergarage/sql/UnQLParser.h>
 
+#include "SqlEngineTestCase.h"
+
 using namespace std;
 using namespace uSQL;
 
@@ -70,27 +72,7 @@ BOOST_AUTO_TEST_CASE(SQLParserUnQLTest)
     unqlStrings.push_back("DELETE FROM abc");
     unqlStrings.push_back("DELETE FROM abc WHERE abc==1234");
     
-	vector<string>::iterator unqlString = unqlStrings.begin();
-	while(unqlString != unqlStrings.end()) {
-    	
-        cout << "I : " << *unqlString << endl;
-        
-        UnQLParser unqlParser;
-	    BOOST_CHECK(unqlParser.parse(*unqlString));
-        
-	    string parseResult;
-	    unqlParser.getStatement()->toString(parseResult);
-	    boost::trim(parseResult);
-        
-        int compareResult = parseResult.compare(*unqlString);
-	    BOOST_CHECK(compareResult == 0);
-
-        if (compareResult != 0) {
-	        cout << "O : " << parseResult << endl;
-	        std::string buf;
-    	    cout << unqlParser.getStatement()->toTreeString(buf);
-        }
-        
-		unqlString++;
-	}
+    UnQLParser unqlParser;
+    SqlEngineTestCase sqlTestCase(&unqlParser);
+    sqlTestCase.parse(unqlStrings);
 }

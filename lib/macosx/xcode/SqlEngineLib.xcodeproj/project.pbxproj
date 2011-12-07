@@ -32,23 +32,15 @@
 		2171175314681E9A00088931 /* GQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171172E14681E9900088931 /* GQLParser.cpp */; };
 		2171175414681E9A00088931 /* SQLCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171173014681E9900088931 /* SQLCommand.cpp */; };
 		2171175614681E9A00088931 /* SQLOrder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171173214681E9900088931 /* SQLOrder.cpp */; };
-		2171175814681E9A00088931 /* GQLLexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171173914681E9900088931 /* GQLLexer.cpp */; };
-		2171175914681E9A00088931 /* GQLLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171173A14681E9900088931 /* GQLLexer.h */; };
-		2171175A14681E9A00088931 /* GQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171173B14681E9900088931 /* GQLParser.cpp */; };
-		2171175B14681E9A00088931 /* GQLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171173C14681E9900088931 /* GQLParser.h */; };
-		2171175E14681E9A00088931 /* SQL92Lexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171174314681E9900088931 /* SQL92Lexer.cpp */; };
-		2171175F14681E9A00088931 /* SQL92Lexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171174414681E9900088931 /* SQL92Lexer.h */; };
-		2171176014681E9A00088931 /* SQL92Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171174514681E9900088931 /* SQL92Parser.cpp */; };
-		2171176114681E9A00088931 /* SQL92Parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171174614681E9900088931 /* SQL92Parser.h */; };
-		2171176214681E9A00088931 /* UnQLLexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171174A14681E9A00088931 /* UnQLLexer.cpp */; };
-		2171176314681E9A00088931 /* UnQLLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171174B14681E9A00088931 /* UnQLLexer.h */; };
-		2171176414681E9A00088931 /* UnQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171174C14681E9A00088931 /* UnQLParser.cpp */; };
-		2171176514681E9A00088931 /* UnQLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171174D14681E9A00088931 /* UnQLParser.h */; };
 		2171176614681E9A00088931 /* SQL92Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171174E14681E9A00088931 /* SQL92Parser.cpp */; };
 		2171176714681E9A00088931 /* SQLNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171174F14681E9A00088931 /* SQLNode.cpp */; };
 		2171176814681E9A00088931 /* SQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171175014681E9A00088931 /* SQLParser.cpp */; };
 		2171176914681E9A00088931 /* SQLStatement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171175114681E9A00088931 /* SQLStatement.cpp */; };
 		2171176A14681E9A00088931 /* UnQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2171175214681E9A00088931 /* UnQLParser.cpp */; };
+		217B30A3148F31AA00194C2F /* SQLLexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217B309F148F31AA00194C2F /* SQLLexer.cpp */; };
+		217B30A4148F31AA00194C2F /* SQLLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 217B30A0148F31AA00194C2F /* SQLLexer.h */; };
+		217B30A5148F31AA00194C2F /* SQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217B30A1148F31AA00194C2F /* SQLParser.cpp */; };
+		217B30A6148F31AA00194C2F /* SQLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 217B30A2148F31AA00194C2F /* SQLParser.h */; };
 		21822F44148C9BF40086A091 /* SQLDataColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 21822F43148C9BF40086A091 /* SQLDataColumn.h */; };
 		21822F8F148CBC8A0086A091 /* SQLExpression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21822F8E148CBC8A0086A091 /* SQLExpression.cpp */; };
 		218AF73E147CC88900D50749 /* SQLFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = 218AF73D147CC88900D50749 /* SQLFunction.h */; };
@@ -89,23 +81,15 @@
 		2171172E14681E9900088931 /* GQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GQLParser.cpp; sourceTree = "<group>"; };
 		2171173014681E9900088931 /* SQLCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLCommand.cpp; sourceTree = "<group>"; };
 		2171173214681E9900088931 /* SQLOrder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLOrder.cpp; sourceTree = "<group>"; };
-		2171173914681E9900088931 /* GQLLexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GQLLexer.cpp; sourceTree = "<group>"; };
-		2171173A14681E9900088931 /* GQLLexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQLLexer.h; sourceTree = "<group>"; };
-		2171173B14681E9900088931 /* GQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = GQLParser.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		2171173C14681E9900088931 /* GQLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQLParser.h; sourceTree = "<group>"; };
-		2171174314681E9900088931 /* SQL92Lexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQL92Lexer.cpp; sourceTree = "<group>"; };
-		2171174414681E9900088931 /* SQL92Lexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQL92Lexer.h; sourceTree = "<group>"; };
-		2171174514681E9900088931 /* SQL92Parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQL92Parser.cpp; sourceTree = "<group>"; };
-		2171174614681E9900088931 /* SQL92Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQL92Parser.h; sourceTree = "<group>"; };
-		2171174A14681E9A00088931 /* UnQLLexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnQLLexer.cpp; sourceTree = "<group>"; };
-		2171174B14681E9A00088931 /* UnQLLexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnQLLexer.h; sourceTree = "<group>"; };
-		2171174C14681E9A00088931 /* UnQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = UnQLParser.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		2171174D14681E9A00088931 /* UnQLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnQLParser.h; sourceTree = "<group>"; };
 		2171174E14681E9A00088931 /* SQL92Parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQL92Parser.cpp; sourceTree = "<group>"; };
 		2171174F14681E9A00088931 /* SQLNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLNode.cpp; sourceTree = "<group>"; };
 		2171175014681E9A00088931 /* SQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLParser.cpp; sourceTree = "<group>"; };
 		2171175114681E9A00088931 /* SQLStatement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLStatement.cpp; sourceTree = "<group>"; };
 		2171175214681E9A00088931 /* UnQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnQLParser.cpp; sourceTree = "<group>"; };
+		217B309F148F31AA00194C2F /* SQLLexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLLexer.cpp; sourceTree = "<group>"; };
+		217B30A0148F31AA00194C2F /* SQLLexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLLexer.h; sourceTree = "<group>"; };
+		217B30A1148F31AA00194C2F /* SQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLParser.cpp; sourceTree = "<group>"; };
+		217B30A2148F31AA00194C2F /* SQLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLParser.h; sourceTree = "<group>"; };
 		21822F43148C9BF40086A091 /* SQLDataColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLDataColumn.h; sourceTree = "<group>"; };
 		21822F8E148CBC8A0086A091 /* SQLExpression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLExpression.cpp; sourceTree = "<group>"; };
 		218AF73D147CC88900D50749 /* SQLFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLFunction.h; sourceTree = "<group>"; };
@@ -191,7 +175,6 @@
 		2171170014681E7D00088931 /* sql */ = {
 			isa = PBXGroup;
 			children = (
-				2171170114681E7D00088931 /* GQLParser.h */,
 				2171170214681E7D00088931 /* node */,
 				2171171114681E7D00088931 /* SQL92Parser.h */,
 				2171171214681E7D00088931 /* SQLNode.h */,
@@ -199,6 +182,7 @@
 				2171171414681E7D00088931 /* SQLParser.h */,
 				2171171514681E7D00088931 /* SQLStatement.h */,
 				2171171614681E7D00088931 /* UnQLParser.h */,
+				2171170114681E7D00088931 /* GQLParser.h */,
 			);
 			path = sql;
 			sourceTree = "<group>";
@@ -242,7 +226,6 @@
 		2171172D14681E9900088931 /* sql */ = {
 			isa = PBXGroup;
 			children = (
-				2171172E14681E9900088931 /* GQLParser.cpp */,
 				2171172F14681E9900088931 /* node */,
 				2171173314681E9900088931 /* parser */,
 				2171174E14681E9A00088931 /* SQL92Parser.cpp */,
@@ -250,6 +233,7 @@
 				2171175014681E9A00088931 /* SQLParser.cpp */,
 				2171175114681E9A00088931 /* SQLStatement.cpp */,
 				2171175214681E9A00088931 /* UnQLParser.cpp */,
+				2171172E14681E9900088931 /* GQLParser.cpp */,
 			);
 			path = sql;
 			sourceTree = "<group>";
@@ -277,18 +261,10 @@
 		2171173414681E9900088931 /* antlr */ = {
 			isa = PBXGroup;
 			children = (
-				2171173914681E9900088931 /* GQLLexer.cpp */,
-				2171173A14681E9900088931 /* GQLLexer.h */,
-				2171173B14681E9900088931 /* GQLParser.cpp */,
-				2171173C14681E9900088931 /* GQLParser.h */,
-				2171174314681E9900088931 /* SQL92Lexer.cpp */,
-				2171174414681E9900088931 /* SQL92Lexer.h */,
-				2171174514681E9900088931 /* SQL92Parser.cpp */,
-				2171174614681E9900088931 /* SQL92Parser.h */,
-				2171174A14681E9A00088931 /* UnQLLexer.cpp */,
-				2171174B14681E9A00088931 /* UnQLLexer.h */,
-				2171174C14681E9A00088931 /* UnQLParser.cpp */,
-				2171174D14681E9A00088931 /* UnQLParser.h */,
+				217B309F148F31AA00194C2F /* SQLLexer.cpp */,
+				217B30A0148F31AA00194C2F /* SQLLexer.h */,
+				217B30A1148F31AA00194C2F /* SQLParser.cpp */,
+				217B30A2148F31AA00194C2F /* SQLParser.h */,
 			);
 			path = antlr;
 			sourceTree = "<group>";
@@ -318,12 +294,6 @@
 				2171172914681E7D00088931 /* SQLParser.h in Headers */,
 				2171172A14681E7D00088931 /* SQLStatement.h in Headers */,
 				2171172B14681E7D00088931 /* UnQLParser.h in Headers */,
-				2171175914681E9A00088931 /* GQLLexer.h in Headers */,
-				2171175B14681E9A00088931 /* GQLParser.h in Headers */,
-				2171175F14681E9A00088931 /* SQL92Lexer.h in Headers */,
-				2171176114681E9A00088931 /* SQL92Parser.h in Headers */,
-				2171176314681E9A00088931 /* UnQLLexer.h in Headers */,
-				2171176514681E9A00088931 /* UnQLParser.h in Headers */,
 				2113D290147A0DB600159DE8 /* SQLOption.h in Headers */,
 				218AF73E147CC88900D50749 /* SQLFunction.h in Headers */,
 				218AF740147CD00900D50749 /* SQLOperator.h in Headers */,
@@ -333,6 +303,8 @@
 				21D9EBDA1488CC2D008D60E9 /* SQLIndex.h in Headers */,
 				21D9EBDD1488D2EA008D60E9 /* SQLTransaction.h in Headers */,
 				21822F44148C9BF40086A091 /* SQLDataColumn.h in Headers */,
+				217B30A4148F31AA00194C2F /* SQLLexer.h in Headers */,
+				217B30A6148F31AA00194C2F /* SQLParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,12 +378,6 @@
 				2171175314681E9A00088931 /* GQLParser.cpp in Sources */,
 				2171175414681E9A00088931 /* SQLCommand.cpp in Sources */,
 				2171175614681E9A00088931 /* SQLOrder.cpp in Sources */,
-				2171175814681E9A00088931 /* GQLLexer.cpp in Sources */,
-				2171175A14681E9A00088931 /* GQLParser.cpp in Sources */,
-				2171175E14681E9A00088931 /* SQL92Lexer.cpp in Sources */,
-				2171176014681E9A00088931 /* SQL92Parser.cpp in Sources */,
-				2171176214681E9A00088931 /* UnQLLexer.cpp in Sources */,
-				2171176414681E9A00088931 /* UnQLParser.cpp in Sources */,
 				2171176614681E9A00088931 /* SQL92Parser.cpp in Sources */,
 				2171176714681E9A00088931 /* SQLNode.cpp in Sources */,
 				2171176814681E9A00088931 /* SQLParser.cpp in Sources */,
@@ -420,6 +386,8 @@
 				21576115147F6CA0002BFFAF /* SQLOperator.cpp in Sources */,
 				21188E1014835CA5002FEE2F /* SQLColumn.cpp in Sources */,
 				21822F8F148CBC8A0086A091 /* SQLExpression.cpp in Sources */,
+				217B30A3148F31AA00194C2F /* SQLLexer.cpp in Sources */,
+				217B30A5148F31AA00194C2F /* SQLParser.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

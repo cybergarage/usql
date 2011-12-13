@@ -88,24 +88,25 @@ select_stmt [uSQL::SQLStatement *sqlStmt]
 
 select_core [uSQL::SQLStatement *sqlStmt]
 	@init {
-		uSQL::SQLColumn *sqlColumn = new uSQL::SQLColumn();
+		columnSection = NULL;
 		fromSection = NULL;
 		whereSection = NULL;
 		groupSection = NULL;
 		havingSection = NULL;
 	}
-	: SELECT (DISTINCT | ALL)? (expression[sqlColumn])? (AS name)? 
+	: SELECT (DISTINCT | ALL)?
+	  (columnSection = result_column_section)
 	  (fromSection = from_section)? 
 	  (whereSection = where_section)?
 	  (groupSection = grouping_section)? 
 	  (havingSection = having_section)? 
 	  {
 	  
-		// VALUE 
-		if (sqlColumn->hasExpressions())
-			sqlStmt->addChildNode(sqlColumn);
+		// COLUMN 
+		if (columnSection->hasExpressions())
+			sqlStmt->addChildNode(columnSection);
 		else 
-			delete sqlColumn;
+			delete columnSection;
 			
 		// FROM
 		if (fromSection)		
@@ -122,6 +123,18 @@ select_core [uSQL::SQLStatement *sqlStmt]
 		// HAVING
 		if (havingSection)		
 			sqlStmt->addChildNode(havingSection);
+	  }
+	;
+
+result_column_section returns [uSQL::SQLColumn *sqlColumn]
+	@init {
+		sqlColumn = new uSQL::SQLColumn();
+	}
+	: ASTERISK {
+		uSQL::SQLAsterisk *sqlAsterisk = new uSQL::SQLAsterisk();
+		sqlColumn->addExpression(sqlAsterisk);
+	  }
+	| (expression[sqlColumn])? (AS name)? {
 	  }
 	;
 
@@ -325,11 +338,11 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 
 update_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {
-		uSQL::SQLValue *sqlValue = new uSQL::SQLValue();
+		uSQL::SQLSet *sqlSet = new uSQL::SQLSet();
 		isAsync = false;
 		whereSection = NULL;
 	}
-	: (isAsync=sync_operator)? UPDATE INTO collectionNode=collection_section SET property_section[sqlValue] (property_section[sqlValue])* (whereSection = where_section)?
+	: (isAsync=sync_operator)? UPDATE collectionNode=collection_section SET property_section[sqlSet] (COMMA property_section[sqlSet])* (whereSection = where_section)?
 
 	{
 		// INSERT
@@ -340,8 +353,8 @@ update_stmt [uSQL::SQLStatement *sqlStmt]
 		// Collection
 		sqlCmd->addChildNode(collectionNode);
 		
-		// Value
-		sqlCmd->addChildNode(sqlValue);
+		// Set
+		sqlCmd->addChildNode(sqlSet);
 
 		// WHERE
 		if (whereSection)		
@@ -349,15 +362,23 @@ update_stmt [uSQL::SQLStatement *sqlStmt]
 	}
 	;
 
-property_section [uSQL::SQLValue *sqlValue]
+property_section [uSQL::SQLSet *sqlSet]
 	@init {
 		
 	}
-	: property '=' expr=expression_literal
+	: property SINGLE_EQ exprRight=expression_literal
 
 	{
-		expr->setName(CG_ANTLR3_STRING_2_UTF8($property.text));
-		sqlValue->addChildNode(expr);
+		uSQL::SQLOperator *sqlOper = new uSQL::SQLOperator();
+		sqlOper->setLiteralType(uSQL::SQLExpression::OPERATOR);
+		sqlOper->setValue(1/*uSQL::SQLOperator::SEQ*/);
+		sqlSet->addChildNode(sqlOper);
+		
+		uSQL::SQLExpression *exprLeft = new uSQL::SQLExpression();
+		exprLeft->setValue(CG_ANTLR3_STRING_2_UTF8($property.text));
+		sqlOper->addExpression(exprLeft);
+		
+		sqlOper->addExpression(exprRight);
 	}
 	;
 
@@ -495,29 +516,32 @@ binary_operator returns [uSQL::SQLOperator *sqlOper]
 		sqlOper = new uSQL::SQLOperator();
 		sqlOper->setLiteralType(uSQL::SQLExpression::OPERATOR);
 	}
-	: EQ {
-		sqlOper->setValue(1/*uSQL::SQLOperator::EQ*/);
+	: SINGLE_EQ {
+		sqlOper->setValue(1/*uSQL::SQLOperator::SEQ*/);
+	  }
+	| DOUBLE_EQ {
+		sqlOper->setValue(2/*uSQL::SQLOperator::DEQ*/);
 	  }
 	| OP_LT {
-		sqlOper->setValue(2/*uSQL::SQLOperator::LT*/);
+		sqlOper->setValue(3/*uSQL::SQLOperator::LT*/);
 	  }
 	| LE {
-		sqlOper->setValue(3/*uSQL::SQLOperator::GT*/);
+		sqlOper->setValue(4/*uSQL::SQLOperator::GT*/);
 	  }
 	| GT {
-		sqlOper->setValue(4/*uSQL::SQLOperator::LE*/);
+		sqlOper->setValue(5/*uSQL::SQLOperator::LE*/);
 	  }
 	| GE {
-		sqlOper->setValue(5/*uSQL::SQLOperator::GE*/);
+		sqlOper->setValue(6/*uSQL::SQLOperator::GE*/);
 	  }
 	| NOTEQ {
-		sqlOper->setValue(6/*uSQL::SQLOperator::NOTEQ*/);
+		sqlOper->setValue(7/*uSQL::SQLOperator::NOTEQ*/);
 	  }
 	| AND {
-		sqlOper->setValue(7/*uSQL::SQLOperator::AND*/);
+		sqlOper->setValue(8/*uSQL::SQLOperator::AND*/);
 	  }
 	| OR {
-		sqlOper->setValue(8/*uSQL::SQLOperator::OR*/);
+		sqlOper->setValue(9/*uSQL::SQLOperator::OR*/);
 	  }
 	;
 
@@ -567,7 +591,8 @@ compound_operator
 	;
 
 condition_operator
-	: EQ
+	: SINGLE_EQ
+	| DOUBLE_EQ
 	| OP_LT
 	| LE
 	| GT
@@ -631,9 +656,12 @@ ASTERISK
 	: '*'
 	;
 	
-EQ
+SINGLE_EQ
 	: '='
-	| '=='
+	;
+
+DOUBLE_EQ
+	: '=='
 	;
 
 OP_LT

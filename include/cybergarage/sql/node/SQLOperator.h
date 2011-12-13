@@ -20,7 +20,8 @@ namespace uSQL {
 class SQLOperator : public SQLExpression {
 
     static const int UNKNOWN;
-    static const int EQ;
+    static const int SEQ;
+    static const int DEQ;
     static const int LT;
     static const int LE;
     static const int GT;

@@ -38,6 +38,7 @@ const int uSQL::SQLNode::HAVING = 20;
 const int uSQL::SQLNode::INDEX = 21;
 const int uSQL::SQLNode::TRANSACTION = 22;
 const int uSQL::SQLNode::DATACOLUMN = 24;
+const int uSQL::SQLNode::SET = 25;
 
 uSQL::SQLNode::SQLNode()
 {

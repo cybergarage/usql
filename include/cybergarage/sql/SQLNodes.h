@@ -26,6 +26,7 @@
 #include <cybergarage/sql/node/SQLOption.h>
 #include <cybergarage/sql/node/SQLOrder.h>
 #include <cybergarage/sql/node/SQLOrderBy.h>
+#include <cybergarage/sql/node/SQLSet.h>
 #include <cybergarage/sql/node/SQLTransaction.h>
 #include <cybergarage/sql/node/SQLColumn.h>
 #include <cybergarage/sql/node/SQLFunction.h>

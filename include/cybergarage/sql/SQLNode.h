@@ -62,6 +62,7 @@ public:
     static const int OPTION;
     static const int ORDER;
     static const int ORDERBY;
+    static const int SET;
     static const int TRANSACTION;
     static const int WHERE;
     static const int VALUE;

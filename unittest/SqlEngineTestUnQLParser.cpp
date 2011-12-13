@@ -67,7 +67,8 @@ BOOST_AUTO_TEST_CASE(SQLParserUnQLTest)
     //unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" OFFSET 10");
     //unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" LIMIT 0,10 OFFSET 10");
 
-    unqlStrings.push_back("UPDATE abc set abc.type==\"message\"");
+    unqlStrings.push_back("UPDATE abc SET abc.type=\"message\"");
+    //unqlStrings.push_back("UPDATE abc SET abc.id=\"0123456789\",abc.type=\"message\"");
     
     unqlStrings.push_back("DELETE FROM abc");
     unqlStrings.push_back("DELETE FROM abc WHERE abc==1234");

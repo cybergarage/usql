@@ -15,14 +15,15 @@
 #include <cybergarage/sql/node/SQLOperator.h>
 
 const int uSQL::SQLOperator::UNKNOWN = 0;
-const int uSQL::SQLOperator::EQ = 1;
-const int uSQL::SQLOperator::LT = 2;
-const int uSQL::SQLOperator::GT = 3;
-const int uSQL::SQLOperator::LE = 4;
-const int uSQL::SQLOperator::GE = 5;
-const int uSQL::SQLOperator::NOTEQ = 6;
-const int uSQL::SQLOperator::AND = 7;
-const int uSQL::SQLOperator::OR = 8;
+const int uSQL::SQLOperator::SEQ = 1;
+const int uSQL::SQLOperator::DEQ = 2;
+const int uSQL::SQLOperator::LT = 3;
+const int uSQL::SQLOperator::GT = 4;
+const int uSQL::SQLOperator::LE = 5;
+const int uSQL::SQLOperator::GE = 6;
+const int uSQL::SQLOperator::NOTEQ = 7;
+const int uSQL::SQLOperator::AND = 8;
+const int uSQL::SQLOperator::OR = 9;
 
 std::string &uSQL::SQLOperator::toString(std::string &buf) 
 {
@@ -36,7 +37,10 @@ std::string &uSQL::SQLOperator::toString(std::string &buf)
     	oss << exprLeft->toString(exprBuf);
         
     switch (getValue()) {
-  	case EQ:
+  	case SEQ:
+    	oss << "=";
+    	break;
+  	case DEQ:
     	oss << "==";
     	break;
   	case NOTEQ:

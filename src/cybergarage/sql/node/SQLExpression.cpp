@@ -26,3 +26,15 @@ const int uSQL::SQLExpression::NIL = 10;
 const int uSQL::SQLExpression::CURRENT_TIME = 11;
 const int uSQL::SQLExpression::CURRENT_DATE = 12;
 const int uSQL::SQLExpression::CURRENT_TIMESTAMP = 13;
+const int uSQL::SQLExpression::ASTERISK = 14;
+
+void uSQL::SQLExpression::setLiteralType(int type)
+{
+    this->literalType = type;
+    
+    switch (this->literalType) {
+    case NIL:
+    	setValue("NULL");
+        break;
+	}
+}

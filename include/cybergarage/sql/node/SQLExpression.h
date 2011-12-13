@@ -38,6 +38,7 @@ public:
     static const int CURRENT_TIME;
     static const int CURRENT_DATE;
     static const int CURRENT_TIMESTAMP;
+    static const int ASTERISK;
     
 public:
 
@@ -49,9 +50,7 @@ public:
 	~SQLExpression() {
     }
         
-    void setLiteralType(int type) {
-        this->literalType = type;
-    }
+    void setLiteralType(int type);
     
     int getLiteralType() {
         return this->literalType;
@@ -101,6 +100,16 @@ public:
     }
 };
 
-}
+class SQLAsterisk : public SQLExpression {
 
+public:
+
+	SQLAsterisk() {
+    	setLiteralType(ASTERISK);
+    	setValue("*");
+    }
+
+};
+
+}
 #endif

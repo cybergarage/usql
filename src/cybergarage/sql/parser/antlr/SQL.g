@@ -27,6 +27,10 @@ options
     
 	#define CG_ANTLR3_STRING_2_UTF8(str) ((const char *)str->chars)
 	#define CG_ANTLR3_STRING_2_INT(str) (str->chars ? atoi((const char *)str->chars) : 0)
+	inline void CG_ANTLR3_SQLNODE_ADDNODES(uSQL::SQLNode *parentNode, uSQL::SQLNodeList *sqlNodes) {
+		for (uSQL::SQLNodeList::iterator node = sqlNodes->begin(); node != sqlNodes->end(); node++)
+			parentNode->addChildNode(*node);
+	}
 }
   
 /*------------------------------------------------------------------
@@ -416,20 +420,27 @@ delete_stmt [uSQL::SQLStatement *sqlStmt]
 *
 ******************************************************************/
 
-expression [uSQL::SQLExpression *parentSqlExpr]
+expression [uSQL::SQLNode *parentNode]
+	@init {
+		uSQL::SQLNodeList sqlNodeList;
+	}
+ 	: expression_list[sqlNodeList] {
+ 		CG_ANTLR3_SQLNODE_ADDNODES(parentNode, &sqlNodeList);
+	  }
+	;
+
+expression_list [uSQL::SQLNodeList &sqlNodeList]
  	: sqlExpr=expression_literal {
-		parentSqlExpr->addExpression(sqlExpr);
+		sqlNodeList.push_back(sqlExpr);
 	  }
-	| sqlFunc=function_name '(' (function_value[sqlFunc])? ')' {
-		parentSqlExpr->addExpression(sqlFunc);
+	| sqlFunc=expression_function {
+		sqlNodeList.push_back(sqlFunc);
 	  }
-	| exprLeft=expression_literal binOper=binary_operator exprRight=expression_literal {
-		parentSqlExpr->addExpression(binOper);
-		binOper->addExpression(exprLeft);
-		binOper->addExpression(exprRight);
+	| sqlOper=expression_operator {
+		sqlExprs.push_back(sqlOper);
 	  }
-	| '{' (dictionary_literal[parentSqlExpr]) (COMMA dictionary_literal[parentSqlExpr])* '}'
-	| '[' array_literal[parentSqlExpr] (COMMA array_literal[parentSqlExpr] )* ']'
+	| '{' (expression_dictionary[sqlNodeList]) (COMMA expression_dictionary[sqlNodeList])* '}'
+	| '[' expression_array[sqlNodeList] (COMMA expression_array[sqlNodeList] )* ']'
 	;
 
 expression_literal returns [uSQL::SQLExpression *sqlExpr]
@@ -478,6 +489,13 @@ expression_literal_value [uSQL::SQLExpression *sqlExpr]
 	  }
 	;
 
+expression_dictionary [uSQL::SQLNodeList &sqlNodeList]
+	: name ':' sqlExpr=expression_literal {
+		sqlExpr->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
+		sqlNodeList.push_back(sqlExpr);
+	  }
+	;
+
 dictionary_literal [uSQL::SQLExpression *parentSqlExpr]
 	: name ':' sqlExpr=expression_literal {
 		sqlExpr->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
@@ -485,9 +503,25 @@ dictionary_literal [uSQL::SQLExpression *parentSqlExpr]
 	  }
 	;
 
+expression_array [uSQL::SQLNodeList &sqlNodeList]
+	: sqlExpr=expression_literal {
+		sqlNodeList.push_back(sqlExpr);
+	  }
+	;
+
 array_literal [uSQL::SQLExpression *parentSqlExpr]
 	: sqlExpr=expression_literal {
 		parentSqlExpr->addExpression(sqlExpr);
+	  }
+	;
+
+expression_function returns [uSQL::SQLFunction *sqlFunc]
+	@init {
+		sqlFunc = new uSQL::SQLFunction();
+		sqlFunc->setLiteralType(uSQL::SQLExpression::FUNCTION);
+	}
+	: ID '(' (function_value[sqlFunc])? ')' {
+		sqlFunc->setValue(CG_ANTLR3_STRING_2_UTF8($ID.text));
 	  }
 	;
 
@@ -509,6 +543,15 @@ function_value [uSQL::SQLFunction *sqlFunc]
 		sqlExpr->setValue("*");
 		sqlExpr->addExpression(sqlFunc);
 	}
+	;
+
+expression_operator returns [uSQL::SQLOperator *sqlOpeExpr]
+	@init {
+		uSQL::SQLNodeList binOperExprs;
+	}
+	: expression_list[binOperExprs] sqlBinOpeExpr=binary_operator expression_list[binOperExprs] {
+ 		CG_ANTLR3_SQLNODE_ADDNODES(sqlBinOpeExpr, &binOperExprs);
+	  }
 	;
 
 binary_operator returns [uSQL::SQLOperator *sqlOper]

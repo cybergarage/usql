@@ -436,8 +436,14 @@ expression_list [uSQL::SQLNodeList &sqlNodeList]
 	| sqlFunc=expression_function {
 		sqlNodeList.push_back(sqlFunc);
 	  }
-	| sqlOper=expression_operator {
-		sqlExprs.push_back(sqlOper);
+	| leftBinOper=expression_operator (logicOper=logical_operator rightBinOper=expression_operator)* {
+		if (logicOper && rightBinOper) {
+			logicOper->addExpression(leftBinOper);
+			logicOper->addExpression(rightBinOper);
+			sqlNodeList.push_back(logicOper);
+		}
+		else
+			sqlNodeList.push_back(leftBinOper);
 	  }
 	| '{' (expression_dictionary[sqlNodeList]) (COMMA expression_dictionary[sqlNodeList])* '}'
 	| '[' expression_array[sqlNodeList] (COMMA expression_array[sqlNodeList] )* ']'
@@ -546,11 +552,10 @@ function_value [uSQL::SQLFunction *sqlFunc]
 	;
 
 expression_operator returns [uSQL::SQLOperator *sqlOpeExpr]
-	@init {
-		uSQL::SQLNodeList binOperExprs;
-	}
-	: expression_list[binOperExprs] sqlBinOpeExpr=binary_operator expression_list[binOperExprs] {
- 		CG_ANTLR3_SQLNODE_ADDNODES(sqlBinOpeExpr, &binOperExprs);
+	: leftExpr=expression_literal sqlBinOpeExpr=binary_operator rightExpr=expression_literal {
+		sqlOpeExpr = sqlBinOpeExpr;
+		sqlOpeExpr->addExpression(leftExpr);
+		sqlOpeExpr->addExpression(rightExpr);
 	  }
 	;
 
@@ -580,7 +585,14 @@ binary_operator returns [uSQL::SQLOperator *sqlOper]
 	| NOTEQ {
 		sqlOper->setValue(7/*uSQL::SQLOperator::NOTEQ*/);
 	  }
-	| AND {
+	;
+
+logical_operator returns [uSQL::SQLOperator *sqlOper]
+	@init {
+		sqlOper = new uSQL::SQLOperator();
+		sqlOper->setLiteralType(uSQL::SQLExpression::OPERATOR);
+	}
+	: AND {
 		sqlOper->setValue(8/*uSQL::SQLOperator::AND*/);
 	  }
 	| OR {

@@ -18,8 +18,8 @@ const int uSQL::SQLOperator::UNKNOWN = 0;
 const int uSQL::SQLOperator::SEQ = 1;
 const int uSQL::SQLOperator::DEQ = 2;
 const int uSQL::SQLOperator::LT = 3;
-const int uSQL::SQLOperator::GT = 4;
-const int uSQL::SQLOperator::LE = 5;
+const int uSQL::SQLOperator::LE = 4;
+const int uSQL::SQLOperator::GT = 5;
 const int uSQL::SQLOperator::GE = 6;
 const int uSQL::SQLOperator::NOTEQ = 7;
 const int uSQL::SQLOperator::AND = 8;
@@ -34,41 +34,46 @@ std::string &uSQL::SQLOperator::toString(std::string &buf)
 	std::string exprBuf;
             
     if (exprLeft)
-    	oss << exprLeft->toString(exprBuf);
+    	oss << exprLeft->toString(exprBuf) << " ";
         
+	std::string operStr;
+    
     switch (getValue()) {
   	case SEQ:
-    	oss << "=";
+    	operStr = "=";
     	break;
   	case DEQ:
-    	oss << "==";
+    	operStr = "==";
     	break;
   	case NOTEQ:
-    	oss << "!=";
+    	operStr = "!=";
     	break;
   	case LT:
-    	oss << "<";
+    	operStr = "<";
     	break;
   	case LE:
-    	oss << "<=";
+    	operStr = "<=";
     	break;
   	case GT:
-    	oss << ">";
+    	operStr = ">";
     	break;
   	case GE:
-    	oss << ">=";
+    	operStr = ">=";
     	break;
   	case AND:
-    	oss << "&";
+    	operStr = "AND";
     	break;
   	case OR:
-    	oss << "|";
+    	operStr = "OR";
     	break;
     default:
-    	oss << "?";
+    	operStr = "?";
     	break;
 	}
     
+    if (0 < operStr.length())
+    	oss << operStr << " ";
+        
     if (exprRight)
     	oss << exprRight->toString(exprBuf);
         

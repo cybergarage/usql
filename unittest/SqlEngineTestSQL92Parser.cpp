@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE(SQLParser92Test)
 	vector<string> sqlStrings;
 
     sqlStrings.push_back("SELECT * FROM SAMPLE1");
-    sqlStrings.push_back("SELECT * FROM SAMPLE2 WHERE A=B");
+    sqlStrings.push_back("SELECT * FROM SAMPLE2 WHERE A = B");
     sqlStrings.push_back("SELECT * FROM SAMPLE3 LIMIT 10");
 
 	SQL92Parser sqlParser;

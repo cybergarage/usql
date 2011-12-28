@@ -38,3 +38,13 @@ void uSQL::SQLExpression::setLiteralType(int type)
         break;
 	}
 }
+
+uSQL::SQLExpression *uSQL::SQLExpression::getExpression(int n) 
+{
+    uSQL::SQLNodeList *expressions = getExpressions();
+    int expressionCnt = (int)expressions->size();
+    if ((expressionCnt - 1) < n)
+        return NULL;
+    return (uSQL::SQLExpression *)expressions->at(n);
+}
+

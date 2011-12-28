@@ -87,12 +87,7 @@ public:
         return getChildNodes();
     }
     
-    SQLExpression *getExpression(int n) {
-        SQLNodeList *expressions = getExpressions();
-    	if ((expressions->size() - 1) < n)
-        	return NULL;
-        return (SQLExpression *)expressions->at(n);
-    }
+    SQLExpression *getExpression(int n);
     
     bool hasExpressions() {
         SQLNodeList *expressions = getExpressions();

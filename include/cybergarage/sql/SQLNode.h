@@ -36,6 +36,8 @@ public:
     SQLNode *getNode(int index) {
     	return at(index);
     }
+    
+    void sort();
 };
 
 class SQLNode {

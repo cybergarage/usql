@@ -50,28 +50,28 @@ BOOST_AUTO_TEST_CASE(SQLParserUnQLTest)
     unqlStrings.push_back("SELECT MAX(a) FROM abc");
     unqlStrings.push_back("SELECT {x:abc.type,y:abc.content.x,z:abc.content.x} FROM abc");
     //unqlStrings.push_back("SELECT { x:abc.type,y:abc.content.x,z:abc.content.x+50 } FROM abc");
-    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\"");
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type == \"message\"");
     
-    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" GROUP BY abc.name");
-    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" GROUP BY abc.name,abc.date");
-    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" GROUP BY abc.name,abc.date HAVING abc.type");
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type == \"message\" GROUP BY abc.name");
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type == \"message\" GROUP BY abc.name,abc.date");
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type == \"message\" GROUP BY abc.name,abc.date HAVING abc.type");
     
     
-    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" ORDER BY abc.name ASC");
-    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" ORDER BY abc.name DESC");
-    //unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" ORDER BY abc.name ASC, abc.type ASC");
-    //unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" ORDER BY abc.name DESC, abc.type ASC");
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type == \"message\" ORDER BY abc.name ASC");
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type == \"message\" ORDER BY abc.name DESC");
+    //unqlStrings.push_back("SELECT FROM abc WHERE abc.type == \"message\" ORDER BY abc.name ASC, abc.type ASC");
+    //unqlStrings.push_back("SELECT FROM abc WHERE abc.type == \"message\" ORDER BY abc.name DESC, abc.type ASC");
 
-    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" LIMIT 10");
-    unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" LIMIT 0,10");
-    //unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" OFFSET 10");
-    //unqlStrings.push_back("SELECT FROM abc WHERE abc.type==\"message\" LIMIT 0,10 OFFSET 10");
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type == \"message\" LIMIT 10");
+    unqlStrings.push_back("SELECT FROM abc WHERE abc.type == \"message\" LIMIT 0,10");
+    //unqlStrings.push_back("SELECT FROM abc WHERE abc.type == \"message\" OFFSET 10");
+    //unqlStrings.push_back("SELECT FROM abc WHERE abc.type == \"message\" LIMIT 0,10 OFFSET 10");
 
-    unqlStrings.push_back("UPDATE abc SET abc.type=\"message\"");
-    //unqlStrings.push_back("UPDATE abc SET abc.id=\"0123456789\",abc.type=\"message\"");
+    unqlStrings.push_back("UPDATE abc SET abc.type = \"message\"");
+    //unqlStrings.push_back("UPDATE abc SET abc.id = \"0123456789\",abc.type=\"message\"");
     
     unqlStrings.push_back("DELETE FROM abc");
-    unqlStrings.push_back("DELETE FROM abc WHERE abc==1234");
+    unqlStrings.push_back("DELETE FROM abc WHERE abc == 1234");
     
     UnQLParser unqlParser;
     SqlEngineTestCase sqlTestCase(&unqlParser);

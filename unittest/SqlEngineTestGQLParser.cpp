@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(GQLReferenceExamplesTest)
 	vector<string> gqlStrings;
 
     /* GQL Reference Examples http://code.google.com/appengine/docs/python/datastore/gqlreference.html#Examples */
-    gqlStrings.push_back("SELECT * FROM Person WHERE age >= 18 AND age <= 35");
+    //gqlStrings.push_back("SELECT * FROM Person WHERE age >= 18 AND age <= 35");
     /*
     gqlStrings.push_back("SELECT * FROM Person ORDER BY age DESC LIMIT 3");
     gqlStrings.push_back("SELECT * FROM Person WHERE name IN ('Betty', 'Charlie')");

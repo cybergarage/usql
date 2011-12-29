@@ -27,14 +27,13 @@ const int uSQL::SQLOperator::OR = 9;
 
 std::string &uSQL::SQLOperator::toString(std::string &buf) 
 {
-	uSQL::SQLExpression *exprLeft = getLeftExpression();
-	uSQL::SQLExpression *exprRight = getRightExpression();
+	uSQL::SQLExpression *firstExpr = getLeftExpression();
 
 	std::ostringstream oss;
 	std::string exprBuf;
             
-    if (exprLeft)
-    	oss << exprLeft->toString(exprBuf) << " ";
+    if (firstExpr)
+    	oss << firstExpr->toString(exprBuf) << " ";
         
 	std::string operStr;
     
@@ -71,12 +70,13 @@ std::string &uSQL::SQLOperator::toString(std::string &buf)
     	break;
 	}
     
-    if (0 < operStr.length())
-    	oss << operStr << " ";
-        
-    if (exprRight)
-    	oss << exprRight->toString(exprBuf);
-        
+    uSQL::SQLNodeList *expressions = getExpressions();
+    std::size_t expressionCnt = expressions->size();
+	for (std::size_t n=1; n <expressionCnt; n++) {
+    	uSQL::SQLNode *exprNode = expressions->at(n);
+    	oss << operStr << " " << exprNode->toString(exprBuf);
+    }
+    
     buf = oss.str();
     
     return buf;

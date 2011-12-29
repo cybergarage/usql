@@ -14,6 +14,7 @@
 
 #include <cybergarage/sql/SQLNode.h>
 #include <cybergarage/sql/node/SQLExpression.h>
+#include <cybergarage/sql/node/SQLOperator.h>
 
 const int uSQL::SQLNode::COMMAND = 1;
 const int uSQL::SQLNode::FROM = 2;
@@ -54,6 +55,11 @@ uSQL::SQLNode::~SQLNode()
 bool uSQL::SQLNode::isSQLExpressionNode() 
 {
 	return (dynamic_cast<uSQL::SQLExpression *>(this)) ? true : false;
+}
+
+bool uSQL::SQLNode::isOperatorNode() 
+{
+	return (dynamic_cast<uSQL::SQLOperator *>(this)) ? true : false;
 }
 
 static std::string CgSQLNode2String(uSQL::SQLNode *sqlNode, std::string &buf)

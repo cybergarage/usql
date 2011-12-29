@@ -47,6 +47,42 @@ public:
 	int getValue() {
     	return this->value;
     }
+
+    bool isSEQ() {
+    	return (this->value == SEQ) ? true : false;
+    }
+    
+    bool isDEQ() {
+    	return (this->value == DEQ) ? true : false;
+    }
+    
+    bool isLT() {
+    	return (this->value == LT) ? true : false;
+    }
+
+    bool isLE() {
+    	return (this->value == LE) ? true : false;
+    }
+    
+    bool isGT() {
+    	return (this->value == GT) ? true : false;
+    }
+
+    bool isGE() {
+    	return (this->value == GE) ? true : false;
+    }
+    
+    bool isNotEQ() {
+    	return (this->value == NOTEQ) ? true : false;
+    }
+    
+    bool isAnd() {
+    	return (this->value == AND) ? true : false;
+    }
+    
+    bool isOr() {
+    	return (this->value == OR) ? true : false;
+    }
     
     SQLExpression *getLeftExpression() {
     	return getExpression(0);

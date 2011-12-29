@@ -94,6 +94,7 @@ public:
     }
     
     bool isSQLExpressionNode();
+    bool isOperatorNode();
     
 	void setValue(const std::string &value) {
     	this->value = value;

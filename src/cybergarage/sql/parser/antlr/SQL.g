@@ -430,28 +430,14 @@ expression [uSQL::SQLNode *parentNode]
 	;
 
 expression_list [uSQL::SQLNodeList &sqlNodeList]
-	@init {
-		logicOper = NULL;
-		rightBinOper = NULL;
-	}
-	@after {
-		sqlNodeList.sort();
-	}
  	: sqlExpr=expression_literal {
 		sqlNodeList.push_back(sqlExpr);
 	  }
 	| sqlFunc=expression_function {
 		sqlNodeList.push_back(sqlFunc);
 	  }
-	| leftBinOper=expression_operator (logicOper=logical_operator rightBinOper=expression_operator)* {
-		if (leftBinOper) {
-			sqlNodeList.push_back(leftBinOper);
-			leftBinOper = NULL;
-		}
-		if (logicOper && rightBinOper) {
-			sqlNodeList.push_back(logicOper);
-			sqlNodeList.push_back(rightBinOper);
-		}
+	| expression_binary_operator[sqlNodeList] (expression_logic_operator[sqlNodeList] expression_binary_operator[sqlNodeList])* {
+		sqlNodeList.sort();
 	  }
 	| '{' (expression_dictionary[sqlNodeList]) (COMMA expression_dictionary[sqlNodeList])* '}'
 	| '[' expression_array[sqlNodeList] (COMMA expression_array[sqlNodeList] )* ']'
@@ -528,6 +514,19 @@ array_literal [uSQL::SQLExpression *parentSqlExpr]
 		parentSqlExpr->addExpression(sqlExpr);
 	  }
 	;
+
+expression_logic_operator[uSQL::SQLNodeList &sqlNodeList]
+	: logicOper=logical_operator {
+		sqlNodeList.push_back(logicOper);
+	  }
+	;
+
+expression_binary_operator [uSQL::SQLNodeList &sqlNodeList]
+	: binOper=expression_operator {
+		sqlNodeList.push_back(binOper);
+	  }
+	;
+
 
 expression_function returns [uSQL::SQLFunction *sqlFunc]
 	@init {

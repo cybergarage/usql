@@ -64,7 +64,7 @@ void uSQL::SQLNodeList::sort()
     if (l <= 1)
     	return;
     for (uSQL::SQLNodeList::iterator node = begin(); node != end(); node++) {
-    	std::cout << "SORT[" << (++n) << "] : " << (*node)->toString(buf) << std::endl;
+    	//std::cout << "SORT[" << (++n) << "] : " << (*node)->toString(buf) << std::endl;
     }
     
 	int logicalOperIndex = SQLNodeListGetIncompleteLogicalOperatorIndex(this);

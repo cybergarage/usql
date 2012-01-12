@@ -41,6 +41,12 @@ BOOST_AUTO_TEST_CASE(SQLExpressionTest)
     testStmts.addStatement("SELECT * FROM Person WHERE age >= 18 OR age <= 35");
     
     testStmts.addStatement("SELECT * FROM Person WHERE age >= 18 AND age <= 35 AND age <= 10");
+    testStmts.addStatement("SELECT * FROM Person WHERE age >= 18 OR age <= 35 OR age <= 10");
+    testStmts.addStatement("SELECT * FROM Person WHERE age >= 18 AND age <= 35 OR age <= 10");
+    testStmts.addStatement("SELECT * FROM Person WHERE age >= 18 OR age <= 35 AND age <= 10");
+    
+    testStmts.addStatement("SELECT * FROM Person WHERE age >= 18 AND age <= 35 AND age <= 10 AND age >= 5");
+    testStmts.addStatement("SELECT * FROM Person WHERE age >= 18 OR age <= 35 OR age <= 10 OR age >= 5");
     
 	SqlEngineTestParser testParser;
     SqlEngineTestCase sqlTestCase(&testParser);

@@ -1,0 +1,275 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		21A1FB6C14C1538900674BA6 /* sqlproxy.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21A1FB6B14C1538900674BA6 /* sqlproxy.1 */; };
+		21E7FE4D14C15496000DF04E /* sqlproxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E7FE4C14C15496000DF04E /* sqlproxy.cpp */; };
+		21E7FE5514C15525000DF04E /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E7FE4B14C15473000DF04E /* SqlEngineLib.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		21E7FE4A14C15473000DF04E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21E7FE4314C15472000DF04E /* SqlEngineLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 212FB5DA14681D420067F07B;
+			remoteInfo = SqlEngineLib;
+		};
+		21E7FE5614C1552F000DF04E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21E7FE4314C15472000DF04E /* SqlEngineLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 212FB5D914681D420067F07B;
+			remoteInfo = SqlEngineLib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		21A1FB6314C1538900674BA6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				21A1FB6C14C1538900674BA6 /* sqlproxy.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		21A1FB6514C1538900674BA6 /* sqlproxy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sqlproxy; sourceTree = BUILT_PRODUCTS_DIR; };
+		21A1FB6B14C1538900674BA6 /* sqlproxy.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = sqlproxy.1; sourceTree = "<group>"; };
+		21E7FE4314C15472000DF04E /* SqlEngineLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SqlEngineLib.xcodeproj; path = ../../../../lib/macosx/xcode/SqlEngineLib.xcodeproj; sourceTree = "<group>"; };
+		21E7FE4C14C15496000DF04E /* sqlproxy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sqlproxy.cpp; path = ../../../sqlproxy.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		21A1FB6214C1538900674BA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21E7FE5514C15525000DF04E /* SqlEngineLib.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21A1FB5A14C1538900674BA6 = {
+			isa = PBXGroup;
+			children = (
+				21A1FB6814C1538900674BA6 /* sqlproxy */,
+				21E7FE4214C15442000DF04E /* Frameworks */,
+				21A1FB6614C1538900674BA6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		21A1FB6614C1538900674BA6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21A1FB6514C1538900674BA6 /* sqlproxy */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21A1FB6814C1538900674BA6 /* sqlproxy */ = {
+			isa = PBXGroup;
+			children = (
+				21E7FE4C14C15496000DF04E /* sqlproxy.cpp */,
+				21A1FB6B14C1538900674BA6 /* sqlproxy.1 */,
+			);
+			path = sqlproxy;
+			sourceTree = "<group>";
+		};
+		21E7FE4214C15442000DF04E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21E7FE4314C15472000DF04E /* SqlEngineLib.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		21E7FE4414C15472000DF04E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21E7FE4B14C15473000DF04E /* SqlEngineLib.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		21A1FB6414C1538900674BA6 /* sqlproxy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21A1FB6F14C1538900674BA6 /* Build configuration list for PBXNativeTarget "sqlproxy" */;
+			buildPhases = (
+				21A1FB6114C1538900674BA6 /* Sources */,
+				21A1FB6214C1538900674BA6 /* Frameworks */,
+				21A1FB6314C1538900674BA6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21E7FE5714C1552F000DF04E /* PBXTargetDependency */,
+			);
+			name = sqlproxy;
+			productName = sqlproxy;
+			productReference = 21A1FB6514C1538900674BA6 /* sqlproxy */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21A1FB5C14C1538900674BA6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 21A1FB5F14C1538900674BA6 /* Build configuration list for PBXProject "sqlproxy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 21A1FB5A14C1538900674BA6;
+			productRefGroup = 21A1FB6614C1538900674BA6 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 21E7FE4414C15472000DF04E /* Products */;
+					ProjectRef = 21E7FE4314C15472000DF04E /* SqlEngineLib.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				21A1FB6414C1538900674BA6 /* sqlproxy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		21E7FE4B14C15473000DF04E /* SqlEngineLib.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = SqlEngineLib.dylib;
+			remoteRef = 21E7FE4A14C15473000DF04E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21A1FB6114C1538900674BA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21E7FE4D14C15496000DF04E /* sqlproxy.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		21E7FE5714C1552F000DF04E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SqlEngineLib;
+			targetProxy = 21E7FE5614C1552F000DF04E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		21A1FB6D14C1538900674BA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../../include;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ledit";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		21A1FB6E14C1538900674BA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../../include;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_LDFLAGS = "-ledit";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		21A1FB7014C1538900674BA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		21A1FB7114C1538900674BA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21A1FB5F14C1538900674BA6 /* Build configuration list for PBXProject "sqlproxy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21A1FB6D14C1538900674BA6 /* Debug */,
+				21A1FB6E14C1538900674BA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21A1FB6F14C1538900674BA6 /* Build configuration list for PBXNativeTarget "sqlproxy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21A1FB7014C1538900674BA6 /* Debug */,
+				21A1FB7114C1538900674BA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 21A1FB5C14C1538900674BA6 /* Project object */;
+}

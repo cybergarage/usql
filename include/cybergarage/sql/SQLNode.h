@@ -93,6 +93,10 @@ public:
         return this->type;
     }
     
+    bool isType(int type) {
+        return (this->type == type) ? true : false;
+    }
+    
     bool isSQLExpressionNode();
     bool isOperatorNode();
     
@@ -131,6 +135,8 @@ public:
     {
     	return &children;
     }
+    
+    SQLNode *getChildNodeByType(int type);
     
     virtual std::string &toString(std::string &buf);
     

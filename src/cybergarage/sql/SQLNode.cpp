@@ -62,6 +62,15 @@ bool uSQL::SQLNode::isOperatorNode()
 	return (dynamic_cast<uSQL::SQLOperator *>(this)) ? true : false;
 }
 
+uSQL::SQLNode *uSQL::SQLNode::getChildNodeByType(int type)
+{
+    for (SQLNodeList::iterator node = children.begin(); node != children.end(); node++) {
+        if ((*node)->isType(type))
+            return (*node);
+    }
+    return NULL;
+}
+
 static std::string CgSQLNode2String(uSQL::SQLNode *sqlNode, std::string &buf)
 {
     std::ostringstream oss;

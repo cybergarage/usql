@@ -19,6 +19,8 @@ using namespace uSQL;
 const char * prompt(EditLine *e);
 void testfunction();
 void usage();
+void ExecSQLStatement(SQLStatement *stmt);
+void OutputSQLError(const char *errMsg);
 
 const char * prompt(EditLine *e) 
 {
@@ -41,8 +43,24 @@ void usage()
     cout << "-h\tproduce this help message:" << endl;
 }
 
-int main(int argc, char *argv[]) {
+void OutputSQLError(const char *errMsg) 
+{
+    cout << "SQL Error : "<< errMsg << endl;
+}
 
+void ExecSQLStatement(SQLStatement *stmt) 
+{
+    SQLCommand *sqlCmd = stmt->getCommandNode();
+    if (!sqlCmd) {
+        OutputSQLError("No Command");
+        return;
+    }
+}
+
+int main(int argc, char *argv[]) 
+{
+    string dbFilename;
+    
     int ch;
     while ((ch = getopt(argc, argv, "hf:")) != -1) {
         switch (ch) {
@@ -53,13 +71,9 @@ int main(int argc, char *argv[]) {
             }
             break;
         case 'f':
-            /*
-            if ((fd = open(optarg, O_RDONLY, 0)) < 0) {
-                (void)fprintf(stderr,
-                                 "myname: %s: %s\n", optarg, strerror(errno));
-                             exit(1);
-                     }
-            */
+            {
+                dbFilename = optarg;
+            }
             break;
         case '?':
         default:
@@ -69,19 +83,22 @@ int main(int argc, char *argv[]) {
             }
         }
      }
-    argc -= optind;
-    argv += optind;
+     
+    //argc -= optind;
+    //argv += optind;
     
     if (argc <= 0) {
-        cout << "bison: missing operand after `bison'" << endl;
-        cout << "Try `bison --help' for more information." << endl;
-        exit(EXIT_FAILURE);
+        cout << "leveldb: missing operand after `leveldb'" << endl;
+        cout << "Try `leveldb --help' for more information." << endl;
+        //exit(EXIT_FAILURE);
     }
+    
+    dbFilename = "/tmp/testdb";
     
     leveldb::DB* db;
     leveldb::Options options;
     options.create_if_missing = true;
-    leveldb::Status status = leveldb::DB::Open(options, "/tmp/testdb", &db);    
+    leveldb::Status status = leveldb::DB::Open(options, dbFilename, &db);    
     status.ok();
     
     UnQLParser unqlParser;
@@ -129,11 +146,19 @@ int main(int argc, char *argv[]) {
             continue;
             
         history(myhistory, &ev, H_ENTER, line);
-        printf("You typed \"%s\"\n", line);
 
         UnQLParser unqlParser;
         if (unqlParser.parse(line) == false) {
+            printf("Parser Error :  %s\n", line);
+            continue;
         }
+        
+        SQLStatementList *stmtList = unqlParser.getStatements();
+        for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
+            ExecSQLStatement(*stmt);
+        }
+        
+        
 	}
 
 	/* Clean up our memory */

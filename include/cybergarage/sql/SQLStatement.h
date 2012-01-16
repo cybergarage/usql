@@ -14,14 +14,38 @@
 #define CG_USQL_SQLSTATEMENT_H
 
 #include <cybergarage/sql/SQLNode.h>
+#include <cybergarage/sql/SQLNodes.h>
 
 namespace uSQL {
+
+class SQLStatement;
+
+class SQLStatementList : public std::vector<SQLStatement *> {
+
+public:
+
+	SQLStatementList()
+    {
+    }
+
+    void addStatement(SQLStatement *stmt) {
+    	push_back(stmt);
+    }
+
+    SQLStatement *getStatement(int index) {
+    	return at(index);
+    }
+};
 
 class SQLStatement : public SQLNode {
 
 public:
 	
     SQLStatement();
+
+    SQLCommand *getCommandNode() {
+        return (SQLCommand *)getChildNodeByType(SQLNode::COMMAND);
+    }
     
     std::string &toString(std::string &buf);
 

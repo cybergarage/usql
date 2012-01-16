@@ -27,7 +27,7 @@ class SQLParser {
 
 private:
 
-    std::vector<SQLStatement *> statements;
+    SQLStatementList statements;
     
 public:
 
@@ -49,6 +49,11 @@ public:
         return statements.at(0);
     }
 
+    SQLStatementList *getStatements()
+    {
+        return &statements;
+    }
+    
 private:
 
     void clear();

@@ -45,16 +45,23 @@ void usage()
 
 void OutputSQLError(const char *errMsg) 
 {
-    cout << "SQL Error : "<< errMsg << endl;
+    cout << "SQL Error : "<< errMsg << " !!" << endl;
 }
 
 void ExecSQLStatement(SQLStatement *stmt) 
 {
     SQLCommand *sqlCmd = stmt->getCommandNode();
     if (!sqlCmd) {
-        OutputSQLError("No Command");
+        OutputSQLError("Command not found");
         return;
     }
+    
+    if (!sqlCmd->isSelect() && !sqlCmd->isInsert() && !sqlCmd->isUpdate() && !sqlCmd->isDelete()) {
+        OutputSQLError("Invalid command");
+        return;
+    }
+
+    cout << "Done." << endl;
 }
 
 int main(int argc, char *argv[]) 
@@ -157,8 +164,6 @@ int main(int argc, char *argv[])
         for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
             ExecSQLStatement(*stmt);
         }
-        
-        
 	}
 
 	/* Clean up our memory */

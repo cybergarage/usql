@@ -49,6 +49,10 @@ public:
         return this->commandType;
     }
 
+    bool isCommandType(int type) {
+        return (this->commandType == type) ? true : false;
+    }
+    
     void setAsyncEnabled(bool asyncFlag) {
         this->asyncFlag = asyncFlag;
     }
@@ -59,6 +63,38 @@ public:
 
     bool isSync() {
         return !this->asyncFlag;
+    }
+    
+    bool isSelect() {
+        return isCommandType(SELECT);
+    }
+
+    bool isUpdate() {
+        return isCommandType(UPDATE);
+    }
+
+    bool isInsert() {
+        return isCommandType(INSERT);
+    }
+
+    bool isDelete() {
+        return isCommandType(DELETE);
+    }
+    
+    bool isCreate() {
+        return isCommandType(CREATE);
+    }
+
+    bool isDrop() {
+        return isCommandType(DROP);
+    }
+    
+    bool isCreateIndex() {
+        return isCommandType(CREATE_INDEX);
+    }
+    
+    bool isDropIndex() {
+        return isCommandType(DROP_INDEX);
     }
 };
 

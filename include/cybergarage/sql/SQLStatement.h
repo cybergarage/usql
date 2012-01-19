@@ -46,6 +46,26 @@ public:
     SQLCommand *getCommandNode() {
         return (SQLCommand *)getChildNodeByType(SQLNode::COMMAND);
     }
+
+    SQLColumn *getColumnNode() {
+        return (SQLColumn *)getChildNodeByType(SQLNode::COLUMN);
+    }
+
+    SQLFrom *getFromNode() {
+        return (SQLFrom *)getChildNodeByType(SQLNode::FROM);
+    }
+
+    SQLWhere *getWhereNode() {
+        return (SQLWhere *)getChildNodeByType(SQLNode::WHERE);
+    }
+
+    SQLGroupBy *getGroupNode() {
+        return (SQLGroupBy *)getChildNodeByType(SQLNode::GROUPBY);
+    }
+
+    SQLHaving *getHavingeNode() {
+        return (SQLHaving *)getChildNodeByType(SQLNode::HAVING);
+    }
     
     std::string &toString(std::string &buf);
 

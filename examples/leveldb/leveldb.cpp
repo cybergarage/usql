@@ -52,7 +52,7 @@ void ExecSQLStatement(SQLStatement *stmt)
 {
     SQLCommand *sqlCmd = stmt->getCommandNode();
     if (!sqlCmd) {
-        OutputSQLError("Command not found");
+        OutputSQLError("COMMAND section was not found");
         return;
     }
     
@@ -61,6 +61,27 @@ void ExecSQLStatement(SQLStatement *stmt)
         return;
     }
 
+    SQLFrom *sqlFrom = stmt->getFromNode();
+    if (!sqlFrom) {
+        OutputSQLError("FROM section was not found");
+        return;
+    }
+    
+    SQLNodeList *sqlDataSources = sqlFrom->getChildNodes();
+    if (sqlDataSources->size() < 1) {
+        OutputSQLError("Data souce was not found");
+        return;
+    }
+    
+    SQLNode *dataSource = sqlDataSources->at(0);
+    string tablenName = dataSource->getValue();
+    
+    SQLWhere *sqlWhere = stmt->getWhereNode();
+    if (!sqlWhere) {
+        OutputSQLError("WHERE section was not found");
+        return;
+    }
+    
     cout << "Done." << endl;
 }
 

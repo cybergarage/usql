@@ -4,7 +4,7 @@
 *
 * SQL92Parser.cpp
 *
-* Copyright (C) Satoshi Konno 2011
+* Copyright (C) Satoshi Konno 2012
 *
 * This is licensed under BSD-style license, see file COPYING.
 *

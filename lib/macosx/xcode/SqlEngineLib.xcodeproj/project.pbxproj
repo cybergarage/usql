@@ -451,9 +451,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
 					../../../include,
 					../../../src,
 				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_LDFLAGS = "-lantlr3c";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -463,9 +465,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
 					../../../include,
 					../../../src,
 				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_LDFLAGS = "-lantlr3c";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

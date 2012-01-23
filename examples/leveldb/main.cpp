@@ -1,10 +1,12 @@
-//
-//  main.cpp
-//  leveldb
-//
-//  Created by  on 11/10/13.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
+/******************************************************************
+ *
+ * uSQL for C++
+ *
+ * Copyright (C) Satoshi Konno 2012
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -12,6 +14,7 @@
 #include <leveldb/db.h>
 
 #include <cybergarage/sql/UnQLParser.h>
+#include "LevelDB.h"
 
 using namespace std;
 using namespace uSQL;
@@ -20,20 +23,12 @@ const char * prompt(EditLine *e);
 void testfunction();
 void usage();
 void ExecSQLStatement(SQLStatement *stmt);
+const char *GetLevelDbKey(SQLNode *dataSource, SQLWhere *sqlWhere, std::string &key);
 void OutputSQLError(const char *errMsg);
 
 const char * prompt(EditLine *e) 
 {
 	return "leveldb> ";
-}
-
-void testfunction()
-{
-  leveldb::DB* db;
-  leveldb::Options options;
-  options.create_if_missing = true;
-  leveldb::Status status = leveldb::DB::Open(options, "/tmp/testdb", &db);
-//  assert(status.ok());
 }
 
 void usage()
@@ -46,43 +41,6 @@ void usage()
 void OutputSQLError(const char *errMsg) 
 {
     cout << "SQL Error : "<< errMsg << " !!" << endl;
-}
-
-void ExecSQLStatement(SQLStatement *stmt) 
-{
-    SQLCommand *sqlCmd = stmt->getCommandNode();
-    if (!sqlCmd) {
-        OutputSQLError("COMMAND section was not found");
-        return;
-    }
-    
-    if (!sqlCmd->isSelect() && !sqlCmd->isInsert() && !sqlCmd->isUpdate() && !sqlCmd->isDelete()) {
-        OutputSQLError("Invalid command");
-        return;
-    }
-
-    SQLFrom *sqlFrom = stmt->getFromNode();
-    if (!sqlFrom) {
-        OutputSQLError("FROM section was not found");
-        return;
-    }
-    
-    SQLNodeList *sqlDataSources = sqlFrom->getChildNodes();
-    if (sqlDataSources->size() < 1) {
-        OutputSQLError("Data souce was not found");
-        return;
-    }
-    
-    SQLNode *dataSource = sqlDataSources->at(0);
-    string tablenName = dataSource->getValue();
-    
-    SQLWhere *sqlWhere = stmt->getWhereNode();
-    if (!sqlWhere) {
-        OutputSQLError("WHERE section was not found");
-        return;
-    }
-    
-    cout << "Done." << endl;
 }
 
 int main(int argc, char *argv[]) 
@@ -122,12 +80,12 @@ int main(int argc, char *argv[])
     }
     
     dbFilename = "/tmp/testdb";
-    
-    leveldb::DB* db;
-    leveldb::Options options;
-    options.create_if_missing = true;
-    leveldb::Status status = leveldb::DB::Open(options, dbFilename, &db);    
-    status.ok();
+
+    LevelDB levelDb;
+    if (levelDb.open(dbFilename) == false) {
+        cout << "Could not open " << dbFilename << endl;
+        exit(EXIT_FAILURE);
+    }
     
     UnQLParser unqlParser;
 
@@ -183,7 +141,10 @@ int main(int argc, char *argv[])
         
         SQLStatementList *stmtList = unqlParser.getStatements();
         for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
-            ExecSQLStatement(*stmt);
+            if (levelDb.execSQLStatement(*stmt) == false) {
+                OutputSQLError(levelDb.getErrorMessage());
+                continue;
+            }
         }
 	}
 

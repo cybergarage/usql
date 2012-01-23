@@ -4,7 +4,7 @@
 *
 * SQLParser.cpp
 *
-* Copyright (C) Satoshi Konno 2011
+* Copyright (C) Satoshi Konno 2012
 *
 * This is licensed under BSD-style license, see file COPYING.
 *
@@ -35,8 +35,9 @@ bool uSQL::SQLParser::parse(const std::string &queryString)
 {
 	clear();
     
-    pANTLR3_INPUT_STREAM input  = antlr3NewAsciiStringCopyStream(
+    pANTLR3_INPUT_STREAM input  = antlr3StringStreamNew(
     			(pANTLR3_UINT8)queryString.c_str(), 
+                ANTLR3_ENC_UTF8,
                 (ANTLR3_UINT32)queryString.length(),
                 (pANTLR3_UINT8)"");
     

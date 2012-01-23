@@ -43,6 +43,8 @@ bool uSQL::LevelDB::open(const std::string &filename)
 
 bool uSQL::LevelDB::put(SQLStatement *stmt) 
 {
+    errorString = "List of values less than number of Columns";
+    
     return true;
 }
 

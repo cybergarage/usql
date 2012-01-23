@@ -27,6 +27,7 @@ private:
 private:
     
     const char *getKey(SQLNode *dataSource, SQLWhere *sqlWhere, std::string &key);
+    
     bool put(SQLStatement *stmt);
     bool gut(SQLStatement *stmt);
 

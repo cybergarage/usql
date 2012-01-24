@@ -31,6 +31,9 @@ BOOST_AUTO_TEST_CASE(SQLParser92Test)
     sqlStrings.push_back("SELECT * FROM SAMPLE2 WHERE A = B");
     sqlStrings.push_back("SELECT * FROM SAMPLE3 LIMIT 10");
 
+    sqlStrings.push_back("INSERT INTO abc VALUE 1234");
+    sqlStrings.push_back("INSERT INTO abc ( value ) VALUE 1234");
+    
 	SQL92Parser sqlParser;
     SqlEngineTestCase sqlTestCase(&sqlParser);
     sqlTestCase.parse(sqlStrings);

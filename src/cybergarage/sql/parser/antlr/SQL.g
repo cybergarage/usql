@@ -320,7 +320,7 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 		isAsync = false;
 		columnNode = NULL;
 	}
-	: (isAsync=sync_operator)? INSERT INTO collectionNode=collection_section (columnNode = insert_column_section)? VALUE expression[sqlValue]
+	: (isAsync=sync_operator)? INSERT INTO collectionNode=collection_section (columnNode=insert_column_section)? VALUE expression[sqlValue]
 	{
 		// INSERT
 		uSQL::SQLInsert *sqlCmd = new uSQL::SQLInsert();

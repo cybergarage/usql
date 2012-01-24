@@ -99,19 +99,19 @@ select_core [uSQL::SQLStatement *sqlStmt]
 		havingSection = NULL;
 	}
 	: SELECT (DISTINCT | ALL)?
-	  (columnSection = result_column_section)
+	  (columnSection = result_column_section)?
 	  (fromSection = from_section)? 
 	  (whereSection = where_section)?
 	  (groupSection = grouping_section)? 
 	  (havingSection = having_section)? 
 	  {
 	  
-		// COLUMN 
-		if (columnSection->hasExpressions())
-			sqlStmt->addChildNode(columnSection);
-		else 
-			delete columnSection;
-			
+		if (columnSection) {
+			if (columnSection->hasExpressions())
+				sqlStmt->addChildNode(columnSection);
+			else 
+				delete columnSection;
+		}
 		// FROM
 		if (fromSection)		
 			sqlStmt->addChildNode(fromSection);
@@ -138,7 +138,7 @@ result_column_section returns [uSQL::SQLColumn *sqlColumn]
 		uSQL::SQLAsterisk *sqlAsterisk = new uSQL::SQLAsterisk();
 		sqlColumn->addExpression(sqlAsterisk);
 	  }
-	| column_name[sqlColumn] (',' column_name[sqlColumn])* {
+	| column_section[sqlColumn] (',' column_section[sqlColumn])* {
 	  }
 	;
 
@@ -343,7 +343,7 @@ insert_column_section returns [uSQL::SQLColumn *sqlColumn]
 	@init {
 		sqlColumn = new uSQL::SQLColumn();
 	}
-	: '(' column_name[sqlColumn] (',' column_name[sqlColumn])* ')' {
+	: '(' column_section[sqlColumn] (',' column_section[sqlColumn])* ')' {
 	  }
 	;
 
@@ -701,11 +701,11 @@ collection_name
 	| string_literal
 	;
 
-column_name [uSQL::SQLColumn *sqlColumn]
+column_section [uSQL::SQLColumn *sqlColumn]
 	: ((expression[sqlColumn]) (AS name)?) {
 	  }
 	;
-	
+
 index_section returns [uSQL::SQLIndex *sqlIndex]
 	@init {
 		sqlIndex = new uSQL::SQLIndex();

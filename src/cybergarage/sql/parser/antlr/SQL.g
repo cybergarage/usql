@@ -138,7 +138,7 @@ result_column_section returns [uSQL::SQLColumn *sqlColumn]
 		uSQL::SQLAsterisk *sqlAsterisk = new uSQL::SQLAsterisk();
 		sqlColumn->addExpression(sqlAsterisk);
 	  }
-	| (expression[sqlColumn])? (AS name)? {
+	| column_name[sqlColumn] (',' column_name[sqlColumn])* {
 	  }
 	;
 
@@ -318,8 +318,9 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {
 		uSQL::SQLValue *sqlValue = new uSQL::SQLValue();
 		isAsync = false;
+		columnNode = NULL;
 	}
-	: (isAsync=sync_operator)? INSERT INTO collectionNode=collection_section VALUE expression[sqlValue]
+	: (isAsync=sync_operator)? INSERT INTO collectionNode=collection_section (columnNode = insert_column_section)? VALUE expression[sqlValue]
 	{
 		// INSERT
 		uSQL::SQLInsert *sqlCmd = new uSQL::SQLInsert();
@@ -329,9 +330,21 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 		// Collection
 		sqlCmd->addChildNode(collectionNode);
 		
+		// Column
+		if (columnNode)
+			sqlCmd->addChildNode(columnNode);
+		
 		// Value
 		sqlCmd->addChildNode(sqlValue);
 	}
+	;
+
+insert_column_section returns [uSQL::SQLColumn *sqlColumn]
+	@init {
+		sqlColumn = new uSQL::SQLColumn();
+	}
+	: '(' column_name[sqlColumn] (',' column_name[sqlColumn])* ')' {
+	  }
 	;
 
 /******************************************************************
@@ -686,6 +699,11 @@ collection_section returns [uSQL::SQLCollection *sqlCollection]
 collection_name
 	: ID
 	| string_literal
+	;
+
+column_name [uSQL::SQLColumn *sqlColumn]
+	: ((expression[sqlColumn]) (AS name)?) {
+	  }
 	;
 	
 index_section returns [uSQL::SQLIndex *sqlIndex]

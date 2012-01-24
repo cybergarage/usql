@@ -47,6 +47,10 @@ public:
         return (SQLCommand *)getChildNodeByType(SQLNode::COMMAND);
     }
 
+    SQLCollection *getCollectionNode() {
+        return (SQLCollection *)getChildNodeByType(SQLNode::COLLECTION);
+    }
+    
     SQLColumn *getColumnNode() {
         return (SQLColumn *)getChildNodeByType(SQLNode::COLUMN);
     }

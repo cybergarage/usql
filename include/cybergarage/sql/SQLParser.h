@@ -37,6 +37,8 @@ public:
 
 	virtual bool parse(const std::string &queryString);
     
+    void setStatementType(int type);
+    
     void addStatement(SQLStatement *stmt)
     {
         statements.push_back(stmt);
@@ -53,6 +55,7 @@ public:
     {
         return &statements;
     }
+
     
 private:
 

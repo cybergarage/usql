@@ -13,8 +13,15 @@
 #include <sstream>
 #include <cybergarage/sql/SQLStatement.h>
 
+const int uSQL::SQLStatement::UNKNOWN = -1;
+const int uSQL::SQLStatement::SQL92 = 1;
+const int uSQL::SQLStatement::GQL = 2;
+const int uSQL::SQLStatement::UNQL = 2;
+
 uSQL::SQLStatement::SQLStatement()
 {
+    setType(STATEMENT);
+    setStatementType(UNKNOWN);
 }
 
 std::string &uSQL::SQLStatement::toString(std::string &buf)

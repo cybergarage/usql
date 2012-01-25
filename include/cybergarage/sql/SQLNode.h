@@ -20,7 +20,8 @@
 namespace uSQL {
 
 class SQLNode;
-
+class SQLStatement;
+    
 class SQLNodeList : public std::vector<SQLNode *> {
 
 public:
@@ -65,6 +66,7 @@ public:
     static const int ORDER;
     static const int ORDERBY;
     static const int SET;
+    static const int STATEMENT;
     static const int TRANSACTION;
     static const int WHERE;
     static const int VALUE;
@@ -97,9 +99,6 @@ public:
         return (this->type == type) ? true : false;
     }
     
-    bool isSQLExpressionNode();
-    bool isOperatorNode();
-    
 	void setValue(const std::string &value) {
     	this->value = value;
     }
@@ -116,6 +115,13 @@ public:
         return this->parent;
     }
 
+    SQLNode *getRootNode() {
+        SQLNode *rootNode = getParentNode();
+        while (rootNode && rootNode->getParentNode())
+            rootNode = rootNode->getParentNode();
+        return rootNode;
+    }
+    
     void addChildNode(SQLNode *node) {
         node->setParentNode(this);
     	children.addNode(node);
@@ -137,6 +143,10 @@ public:
     }
     
     SQLNode *getChildNodeByType(int type);
+    
+    bool isSQLExpressionNode();
+    bool isOperatorNode();
+    bool isStatementNode();
     
     virtual std::string &toString(std::string &buf);
     

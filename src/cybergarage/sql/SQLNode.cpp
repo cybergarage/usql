@@ -13,6 +13,7 @@
 #include<sstream>
 
 #include <cybergarage/sql/SQLNode.h>
+#include <cybergarage/sql/SQLStatement.h>
 #include <cybergarage/sql/node/SQLExpression.h>
 #include <cybergarage/sql/node/SQLOperator.h>
 
@@ -40,6 +41,7 @@ const int uSQL::SQLNode::INDEX = 21;
 const int uSQL::SQLNode::TRANSACTION = 22;
 const int uSQL::SQLNode::DATACOLUMN = 24;
 const int uSQL::SQLNode::SET = 25;
+const int uSQL::SQLNode::STATEMENT = 26;
 
 uSQL::SQLNode::SQLNode()
 {
@@ -60,6 +62,11 @@ bool uSQL::SQLNode::isSQLExpressionNode()
 bool uSQL::SQLNode::isOperatorNode() 
 {
 	return (dynamic_cast<uSQL::SQLOperator *>(this)) ? true : false;
+}
+
+bool uSQL::SQLNode::isStatementNode() 
+{
+	return (dynamic_cast<uSQL::SQLStatement *>(this)) ? true : false;
 }
 
 uSQL::SQLNode *uSQL::SQLNode::getChildNodeByType(int type)

@@ -24,6 +24,12 @@ uSQL::SQLParser::~SQLParser()
     clear();
 }
 
+void uSQL::SQLParser::setStatementType(int type)
+{
+    for (std::vector<SQLStatement *>::iterator stmt = statements.begin(); stmt != statements.end(); stmt++)
+        (*stmt)->setStatementType(type);
+}
+
 void uSQL::SQLParser::clear()
 {
     for (std::vector<SQLStatement *>::iterator stmt = statements.begin(); stmt != statements.end(); stmt++)

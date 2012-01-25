@@ -316,11 +316,10 @@ drop_index_stmt [uSQL::SQLStatement *sqlStmt]
 
 insert_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {
-		uSQL::SQLValue *sqlValue = new uSQL::SQLValue();
 		isAsync = false;
 		columnNode = NULL;
 	}
-	: (isAsync=sync_operator)? INSERT INTO collectionNode=collection_section (columnNode=insert_column_section)? VALUE expression[sqlValue]
+	: (isAsync=sync_operator)? INSERT INTO collectionNode=collection_section (columnNode=insert_column_section)? sqlValue=insert_value_section expression[sqlValue]
 	{
 		// INSERT
 		uSQL::SQLInsert *sqlCmd = new uSQL::SQLInsert();
@@ -344,6 +343,16 @@ insert_column_section returns [uSQL::SQLColumn *sqlColumn]
 		sqlColumn = new uSQL::SQLColumn();
 	}
 	: '(' column_section[sqlColumn] (',' column_section[sqlColumn])* ')' {
+	  }
+	;
+
+insert_value_section returns [uSQL::SQLValue *sqlValue]
+	@init {
+		sqlValue = new uSQL::SQLValue();
+	}
+	: VALUE {
+	  }
+	| VALUES {
 	  }
 	;
 
@@ -1066,6 +1075,10 @@ WHERE
 
 VALUE
 	: V A L U E
+	;
+
+VALUES
+	: V A L U E S
 	;
 
 /******************************************************************

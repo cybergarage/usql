@@ -19,5 +19,7 @@ uSQL::GQLParser::GQLParser()
 
 bool uSQL::GQLParser::parse(const std::string &queryString)
 {
-	return SQLParser::parse(queryString);
+	bool parseResult = SQLParser::parse(queryString);
+    setStatementType(uSQL::SQLStatement::GQL);
+    return parseResult;
 }

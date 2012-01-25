@@ -10,11 +10,22 @@
 *
 ******************************************************************/
 
+#include <cybergarage/sql/SQLStatement.h>
 #include <cybergarage/sql/node/SQLValue.h>
 
 std::string &uSQL::SQLColumn::toString(std::string &buf) 
 {
     std::ostringstream oss;
+    
+    uSQL::SQLStatement *stmtNode = NULL;
+    if ((getRootNode()->isStatementNode()))
+        stmtNode = (uSQL::SQLStatement *)getRootNode();
+    
+    bool isSQL92InsertInto = false;
+    if (stmtNode) {
+        if (stmtNode->getCommandNode()->isInsert() &&  isType(uSQL::SQLNode::COLUMN))
+            isSQL92InsertInto = true;
+    }
     
     uSQL::SQLNodeList *expressions = getChildNodes();
 	std::size_t expressionsCount = expressions->size();
@@ -31,23 +42,32 @@ std::string &uSQL::SQLColumn::toString(std::string &buf)
         }
     }
     
-    if (1 < expressionsCount)
-    	oss << (hasDictionaryValues ? "{" : "[");
-	else {
-    	if (hasDictionaryValues == true)
-    		oss << "{";
+    if (isSQL92InsertInto) {
+        oss << "(";
+    } else {
+        if (1 < expressionsCount)
+            oss << (hasDictionaryValues ? "{" : "[");
+        else {
+            if (hasDictionaryValues == true)
+                oss << "{";
+        }
     }
         
     std::string childNodeStr;
     oss << childNodesToString(childNodeStr, ",");
     
-    if (1 < expressionsCount)
-        oss << (hasDictionaryValues ? "}" : "]");
-	else {
-    	if (hasDictionaryValues == true)
-			oss << "}";
+    
+    if (isSQL92InsertInto) {
+        oss << ")";
+    } else {
+        if (1 < expressionsCount)
+            oss << (hasDictionaryValues ? "}" : "]");
+        else {
+            if (hasDictionaryValues == true)
+                oss << "}";
+        }
     }
-        
+    
     buf = oss.str();
     
 	return buf;

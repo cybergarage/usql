@@ -25,13 +25,7 @@ public:
     	setType(VALUE);
     }
     
-    std::string &toString(std::string &buf) {
-	    std::string columnString;
-	    std::ostringstream oss;
-	    oss << "VALUE " << SQLColumn::toString(columnString);
-	    buf = oss.str();
-		return buf;
-    }
+    std::string &toString(std::string &buf);
 };
 
 }

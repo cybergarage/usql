@@ -19,5 +19,7 @@ uSQL::SQL92Parser::SQL92Parser()
 
 bool uSQL::SQL92Parser::parse(const std::string &queryString)
 {
-	return SQLParser::parse(queryString);
+	bool parseResult = SQLParser::parse(queryString);
+    setStatementType(uSQL::SQLStatement::SQL92);
+    return parseResult;
 }

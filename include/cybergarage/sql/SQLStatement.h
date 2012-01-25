@@ -40,9 +40,44 @@ public:
 class SQLStatement : public SQLNode {
 
 public:
+    
+    static const int UNKNOWN;
+    static const int SQL92;
+    static const int GQL;
+    static const int UNQL;
+    
+private:
+    
+    int statementType;
+
+public:
 	
     SQLStatement();
 
+    void setStatementType(int type) {
+        statementType = type;
+    }
+    
+    int getStatementType(int type) {
+        return this->statementType;
+    }
+    
+    bool isStatementType(int type) {
+        return (this->statementType == type);
+    }
+    
+    bool isSQL92() {
+        return isStatementType(SQL92);
+    }
+    
+    bool isGQL() {
+        return isStatementType(GQL);
+    }
+    
+    bool isUnQL() {
+        return isStatementType(UNQL);
+    }
+    
     SQLCommand *getCommandNode() {
         return (SQLCommand *)getChildNodeByType(SQLNode::COMMAND);
     }

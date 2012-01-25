@@ -319,7 +319,7 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 		isAsync = false;
 		columnNode = NULL;
 	}
-	: (isAsync=sync_operator)? INSERT INTO collectionNode=collection_section (columnNode=insert_column_section)? sqlValue=insert_value_section expression[sqlValue]
+	: (isAsync=sync_operator)? INSERT INTO collectionNode=collection_section (columnNode=insert_column_section)? sqlValue=insert_value_section
 	{
 		// INSERT
 		uSQL::SQLInsert *sqlCmd = new uSQL::SQLInsert();
@@ -350,9 +350,9 @@ insert_value_section returns [uSQL::SQLValue *sqlValue]
 	@init {
 		sqlValue = new uSQL::SQLValue();
 	}
-	: VALUE {
+	: VALUE expression[sqlValue] {
 	  }
-	| VALUES {
+	| VALUES expression[sqlValue] {
 	  }
 	;
 
@@ -461,6 +461,7 @@ expression_list [uSQL::SQLNodeList &sqlNodeList]
 	| expression_binary_operator[sqlNodeList] (expression_logic_operator[sqlNodeList] expression_binary_operator[sqlNodeList])* {
 		sqlNodeList.sort();
 	  }
+	| '(' expression_array[sqlNodeList] (COMMA expression_array[sqlNodeList] )* ')'
 	| '{' (expression_dictionary[sqlNodeList]) (COMMA expression_dictionary[sqlNodeList])* '}'
 	| '[' expression_array[sqlNodeList] (COMMA expression_array[sqlNodeList] )* ']'
 	;

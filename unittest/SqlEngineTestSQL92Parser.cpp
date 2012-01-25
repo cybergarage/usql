@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(SQLParser92Test)
 
     sqlStrings.push_back("INSERT INTO abc VALUES 1234");
     sqlStrings.push_back("INSERT INTO abc (age) VALUES 34");
-    sqlStrings.push_back("INSERT INTO abc (name,age) VALUES skonno,34");
+    sqlStrings.push_back("INSERT INTO abc (name,age) VALUES (skonno,34)");
     
 	SQL92Parser sqlParser;
     SqlEngineTestCase sqlTestCase(&sqlParser);

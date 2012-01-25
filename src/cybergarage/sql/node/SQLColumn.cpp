@@ -17,14 +17,10 @@ std::string &uSQL::SQLColumn::toString(std::string &buf)
 {
     std::ostringstream oss;
     
-    uSQL::SQLStatement *stmtNode = NULL;
-    if ((getRootNode()->isStatementNode()))
-        stmtNode = (uSQL::SQLStatement *)getRootNode();
-    
-    bool isSQL92InsertInto = false;
-    if (stmtNode) {
-        if (stmtNode->getCommandNode()->isInsert() &&  isType(uSQL::SQLNode::COLUMN))
-            isSQL92InsertInto = true;
+    bool isUnQL = false;
+    if ((getRootNode()->isStatementNode())) {
+        uSQL::SQLStatement * stmtNode = (uSQL::SQLStatement *)getRootNode();
+        isUnQL = stmtNode->isUnQL();
     }
     
     uSQL::SQLNodeList *expressions = getChildNodes();
@@ -42,30 +38,30 @@ std::string &uSQL::SQLColumn::toString(std::string &buf)
         }
     }
     
-    if (isSQL92InsertInto) {
-        oss << "(";
-    } else {
+    if (isUnQL) {
         if (1 < expressionsCount)
             oss << (hasDictionaryValues ? "{" : "[");
         else {
             if (hasDictionaryValues == true)
                 oss << "{";
         }
+    } else {
+        oss << "(";
     }
         
     std::string childNodeStr;
     oss << childNodesToString(childNodeStr, ",");
     
     
-    if (isSQL92InsertInto) {
-        oss << ")";
-    } else {
+    if (isUnQL) {
         if (1 < expressionsCount)
             oss << (hasDictionaryValues ? "}" : "]");
         else {
             if (hasDictionaryValues == true)
                 oss << "}";
         }
+    } else {
+        oss << ")";
     }
     
     buf = oss.str();

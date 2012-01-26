@@ -54,6 +54,22 @@ uSQL::SQLNode::~SQLNode()
         delete *node;
 }
 
+
+bool uSQL::SQLNode::isStatementType(int type)
+{
+    if ((getRootNode()->isStatementNode())) {
+        uSQL::SQLStatement * stmtNode = (uSQL::SQLStatement *)getRootNode();
+        return stmtNode->isStatementType(type);
+    }
+
+    return uSQL::SQLStatement::UNKNOWN;
+}
+
+bool uSQL::SQLNode::isUnQLNode()
+{
+    return isStatementType(uSQL::SQLStatement::UNQL);
+}
+
 bool uSQL::SQLNode::isSQLExpressionNode() 
 {
 	return (dynamic_cast<uSQL::SQLExpression *>(this)) ? true : false;

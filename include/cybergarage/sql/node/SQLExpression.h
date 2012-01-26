@@ -83,7 +83,7 @@ public:
     	return isLiteralType(OPERATOR);
     }
     
-    bool isSQLAsterisk()
+    bool isAsterisk()
     {
     	return isLiteralType(ASTERISK);
     }

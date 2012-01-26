@@ -17,11 +17,7 @@ std::string &uSQL::SQLColumn::toString(std::string &buf)
 {
     std::ostringstream oss;
     
-    bool isUnQL = false;
-    if ((getRootNode()->isStatementNode())) {
-        uSQL::SQLStatement * stmtNode = (uSQL::SQLStatement *)getRootNode();
-        isUnQL = stmtNode->isUnQL();
-    }
+    bool isUnQL = isUnQLNode();
     
     uSQL::SQLNodeList *expressions = getChildNodes();
 	std::size_t expressionsCount = expressions->size();
@@ -38,15 +34,27 @@ std::string &uSQL::SQLColumn::toString(std::string &buf)
         }
     }
     
+    bool isAsterisk = false;
+    if (1 == expressionsCount) {
+        SQLNode *sqlNode = expressions->getNode(0);
+	    if (sqlNode->isSQLExpressionNode() == true) {
+            uSQL::SQLExpression *exprNode = (uSQL::SQLExpression *)sqlNode;
+            isAsterisk = exprNode->isAsterisk();
+        }
+    }
+    
     if (isUnQL) {
-        if (1 < expressionsCount)
-            oss << (hasDictionaryValues ? "{" : "[");
+        if (1 < expressionsCount) {
+            if (isAsterisk == false)
+                oss << (hasDictionaryValues ? "{" : "[");
+        }
         else {
             if (hasDictionaryValues == true)
                 oss << "{";
         }
     } else {
-        oss << "(";
+        if (isAsterisk == false)
+            oss << "(";
     }
         
     std::string childNodeStr;
@@ -54,14 +62,17 @@ std::string &uSQL::SQLColumn::toString(std::string &buf)
     
     
     if (isUnQL) {
-        if (1 < expressionsCount)
-            oss << (hasDictionaryValues ? "}" : "]");
+        if (1 < expressionsCount) {
+            if (isAsterisk == false)
+                oss << (hasDictionaryValues ? "}" : "]");
+        }
         else {
             if (hasDictionaryValues == true)
                 oss << "}";
         }
     } else {
-        oss << ")";
+        if (isAsterisk == false)
+            oss << ")";
     }
     
     buf = oss.str();

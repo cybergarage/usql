@@ -81,6 +81,10 @@ private:
 
 	std::string value;
 
+private:
+
+    bool isStatementType(int type);
+    
 public:
 
 	SQLNode();
@@ -152,6 +156,8 @@ public:
     bool isOperatorNode();
     bool isStatementNode();
     
+    bool isUnQLNode();
+
     virtual std::string &toString(std::string &buf);
     
 protected:

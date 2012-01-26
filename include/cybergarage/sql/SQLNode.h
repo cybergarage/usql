@@ -107,6 +107,10 @@ public:
     	return this->value;
     }
 
+    bool equals(const std::string &value) {
+        return (this->value.compare(value) == 0) ? true : false;
+    }
+    
    	void setParentNode(SQLNode *node) {
         this->parent = node;
     }

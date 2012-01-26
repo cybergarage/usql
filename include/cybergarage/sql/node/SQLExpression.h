@@ -56,6 +56,10 @@ public:
         return this->literalType;
     }
     
+    bool isLiteralType(int type) {
+        return (this->literalType == type) ? true : false;
+    }
+    
 	void setName(const std::string &value) {
     	this->name = value;
     }
@@ -71,12 +75,17 @@ public:
    
     bool isFunction()
     {
-    	return (getType() == FUNCTION) ? true : false;
+    	return isLiteralType(FUNCTION);
     }
 
     bool isOperator()
     {
-    	return (getType() == OPERATOR) ? true : false;
+    	return isLiteralType(OPERATOR);
+    }
+    
+    bool isSQLAsterisk()
+    {
+    	return isLiteralType(ASTERISK);
     }
     
     void addExpression(SQLExpression *expr) {
@@ -93,6 +102,7 @@ public:
         SQLNodeList *expressions = getExpressions();
         return (0 < expressions->size()) ? true : false;
     }
+    
 };
 
 class SQLAsterisk : public SQLExpression {

@@ -2,8 +2,6 @@
 *
 * uSQL for C++
 *
-* SQLSet.h
-*
 * Copyright (C) Satoshi Konno 2012
 *
 * This is licensed under BSD-style license, see file COPYING.

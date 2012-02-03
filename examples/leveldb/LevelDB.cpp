@@ -9,6 +9,8 @@
  ******************************************************************/
 
 #include "LevelDB.h"
+#include "MD5.h"
+#include "Dictionary.h"
 
 using namespace std;
 using namespace uSQL;
@@ -21,16 +23,17 @@ uSQL::LevelDB::~LevelDB()
 {
 }
 
-const char *uSQL::LevelDB::getKey(SQLNode *dataSource, SQLWhere *sqlWhere, std::string &key) 
+std::string &uSQL::LevelDB::getKey(SQLNode *dataSource, SQLWhere *sqlWhere, std::string &key) 
 {
     string tableName = dataSource->getValue();
     string whereString;
     sqlWhere->toString(whereString);
     
-    key = tableName;
-    key.append(whereString);
+    string keyString;
+    keyString = tableName;
+    keyString.append(whereString);
     
-    return key.c_str();
+    return MD5::hash(keyString, key);
 }
 
 bool uSQL::LevelDB::open(const std::string &filename)
@@ -41,42 +44,41 @@ bool uSQL::LevelDB::open(const std::string &filename)
     return status.ok();
 }
 
-bool uSQL::LevelDB::put(SQLStatement *stmt) 
+bool uSQL::LevelDB::put(SQLStatement *stmt, SQLError &error) 
 {
-    errorString = "List of values less than number of Columns";
+    error.setMessage("List of values less than number of Columns");
     
     return true;
 }
 
-bool uSQL::LevelDB::gut(SQLStatement *stmt)
+bool uSQL::LevelDB::gut(SQLStatement *stmt, SQLError &error)
 {
     return true;
 }
 
-bool uSQL::LevelDB::execSQLStatement(SQLStatement *stmt) 
+bool uSQL::LevelDB::execSQLStatement(SQLStatement *stmt, SQLError &error) 
 {
-    errorString = "";
-    
     SQLCommand *sqlCmd = stmt->getCommandNode();
+    
     if (!sqlCmd) {
-        errorString = "COMMAND section was not found";
+        error.setMessage("COMMAND section was not found");
         return false;
     }
     
     if (!sqlCmd->isSelect() && !sqlCmd->isInsert() && !sqlCmd->isUpdate() && !sqlCmd->isDelete()) {
-        errorString = "Invalid command";
+        error.setMessage("Invalid command");
         return false;
     }
     
     SQLFrom *sqlFrom = stmt->getFromNode();
     if (!sqlFrom) {
-        errorString = "FROM section was not found";
+        error.setMessage("FROM section was not found");
         return false;
     }
     
     SQLNodeList *sqlDataSources = sqlFrom->getChildNodes();
     if (sqlDataSources->size() < 1) {
-        errorString = "Data souce was not found";
+        error.setMessage("Data souce was not found");
         return false;
     }
     
@@ -85,12 +87,12 @@ bool uSQL::LevelDB::execSQLStatement(SQLStatement *stmt)
     
     SQLWhere *sqlWhere = stmt->getWhereNode();
     if (!sqlWhere) {
-        errorString = "WHERE section was not found";
+        error.setMessage("WHERE section was not found");
         return false;
     }
     
-    string levelDbKey;
-    getKey(dataSource, sqlWhere, levelDbKey);
+    string hashKey;
+    getKey(dataSource, sqlWhere, hashKey);
     
     cout << "Done." << endl;
     

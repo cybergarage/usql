@@ -8,20 +8,20 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLCOLLECTION_H
-#define CG_USQL_SQLCOLLECTION_H
+#ifndef CG_USQL_MD5_H
+#define CG_USQL_MD5_H
 
-#include <cybergarage/sql/SQLNode.h>
+#include <map>
+#include <string>
 
 namespace uSQL {
 
-class SQLCollection : public SQLNode {
-
+class MD5 {
+    
 public:
 
-	SQLCollection() {
-    	setType(COLLECTION);
-    }
+    static std::string &hash(std::string &string, std::string &buf);
+    
 };
 
 }

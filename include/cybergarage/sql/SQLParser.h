@@ -2,8 +2,6 @@
 *
 * uSQL for C++
 *
-* SQLParser.h
-*
 * Copyright (C) Satoshi Konno 2012
 *
 * This is licensed under BSD-style license, see file COPYING.
@@ -17,6 +15,7 @@
 #include <vector>
 #include <stack>
 
+#include <cybergarage/sql/SQLError.h>
 #include <cybergarage/sql/SQLStatement.h>
 #include <cybergarage/sql/SQLNode.h>
 #include <cybergarage/sql/SQLNodes.h>

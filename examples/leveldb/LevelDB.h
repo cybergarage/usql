@@ -26,10 +26,10 @@ private:
     
 private:
     
-    const char *getKey(SQLNode *dataSource, SQLWhere *sqlWhere, std::string &key);
+    std::string &getKey(SQLNode *dataSource, SQLWhere *sqlWhere, std::string &key);
     
-    bool put(SQLStatement *stmt);
-    bool gut(SQLStatement *stmt);
+    bool put(SQLStatement *stmt, SQLError &error);
+    bool gut(SQLStatement *stmt, SQLError &error);
 
 public:
 
@@ -37,7 +37,7 @@ public:
     virtual ~LevelDB();
 
 	bool open(const std::string &filename);
-    bool execSQLStatement(SQLStatement *stmt);
+    bool execSQLStatement(SQLStatement *stmt, SQLError &error);
     
     const char *getErrorMessage() {
         return errorString.c_str();

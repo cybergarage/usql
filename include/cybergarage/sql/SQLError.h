@@ -8,23 +8,32 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLCOLUMN_H
-#define CG_USQL_SQLCOLUMN_H
+#ifndef CG_USQL_SQLERROR_H
+#define CG_USQL_SQLERROR_H
 
 #include <string>
-#include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
 
-class SQLColumn : public SQLExpression {
+class SQLError {
+
+private:
+    
+    std::string    message;
 
 public:
+	
+    SQLError();
+    ~SQLError();
 
-	SQLColumn() {
-    	setType(COLUMN);
+    void setMessage(const std::string &message) {
+        this->message = message;
+    }
+    
+    std::string &getMessage() {
+        return this->message;
     }
 
-    std::string &toString(std::string &buf);
 };
 
 }

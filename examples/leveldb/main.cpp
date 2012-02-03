@@ -141,7 +141,8 @@ int main(int argc, char *argv[])
         
         SQLStatementList *stmtList = unqlParser.getStatements();
         for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
-            if (levelDb.execSQLStatement(*stmt) == false) {
+            SQLError error;
+            if (levelDb.execSQLStatement(*stmt, error) == false) {
                 OutputSQLError(levelDb.getErrorMessage());
                 continue;
             }

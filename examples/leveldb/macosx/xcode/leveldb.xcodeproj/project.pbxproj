@@ -10,7 +10,8 @@
 		212ADBCB14682496004E5FBF /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 212ADBC81468246C004E5FBF /* SqlEngineLib.dylib */; };
 		212D74891446C232003632AD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212D74881446C232003632AD /* main.cpp */; };
 		2140983014CD162300FE79B9 /* LevelDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2140982E14CD162300FE79B9 /* LevelDB.cpp */; };
-		2166183714CDAEFE00497CC7 /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2166183514CDAEFE00497CC7 /* Dictionary.cpp */; };
+		2198DC7714DA5F51000BC543 /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7314DA5F51000BC543 /* Dictionary.cpp */; };
+		2198DC7814DA5F51000BC543 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7514DA5F51000BC543 /* MD5.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +48,10 @@
 		212D74881446C232003632AD /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../main.cpp; sourceTree = SOURCE_ROOT; };
 		2140982E14CD162300FE79B9 /* LevelDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelDB.cpp; path = ../../LevelDB.cpp; sourceTree = "<group>"; };
 		2140982F14CD162300FE79B9 /* LevelDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelDB.h; path = ../../LevelDB.h; sourceTree = "<group>"; };
-		2166183514CDAEFE00497CC7 /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = ../../Dictionary.cpp; sourceTree = "<group>"; };
-		2166183614CDAEFE00497CC7 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = ../../Dictionary.h; sourceTree = "<group>"; };
+		2198DC7314DA5F51000BC543 /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = ../../../common/Dictionary.cpp; sourceTree = "<group>"; };
+		2198DC7414DA5F51000BC543 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = ../../../common/Dictionary.h; sourceTree = "<group>"; };
+		2198DC7514DA5F51000BC543 /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MD5.cpp; path = ../../../common/MD5.cpp; sourceTree = "<group>"; };
+		2198DC7614DA5F51000BC543 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MD5.h; path = ../../../common/MD5.h; sourceTree = "<group>"; };
 		21CBB66F1446C13900EC94F5 /* leveldb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = leveldb; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -75,8 +78,10 @@
 		212D74871446C219003632AD /* Src */ = {
 			isa = PBXGroup;
 			children = (
-				2166183514CDAEFE00497CC7 /* Dictionary.cpp */,
-				2166183614CDAEFE00497CC7 /* Dictionary.h */,
+				2198DC7314DA5F51000BC543 /* Dictionary.cpp */,
+				2198DC7414DA5F51000BC543 /* Dictionary.h */,
+				2198DC7514DA5F51000BC543 /* MD5.cpp */,
+				2198DC7614DA5F51000BC543 /* MD5.h */,
 				2140982E14CD162300FE79B9 /* LevelDB.cpp */,
 				2140982F14CD162300FE79B9 /* LevelDB.h */,
 				212D74881446C232003632AD /* main.cpp */,
@@ -178,7 +183,8 @@
 			files = (
 				212D74891446C232003632AD /* main.cpp in Sources */,
 				2140983014CD162300FE79B9 /* LevelDB.cpp in Sources */,
-				2166183714CDAEFE00497CC7 /* Dictionary.cpp in Sources */,
+				2198DC7714DA5F51000BC543 /* Dictionary.cpp in Sources */,
+				2198DC7814DA5F51000BC543 /* MD5.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +223,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
+					"-lcrypto",
 					"-ledit",
 					"-lleveldb",
 				);
@@ -241,6 +248,7 @@
 				HEADER_SEARCH_PATHS = ../../../../include;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = (
+					"-lcrypto",
 					"-ledit",
 					"-lleveldb",
 				);

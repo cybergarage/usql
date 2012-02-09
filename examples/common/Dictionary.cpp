@@ -41,9 +41,23 @@ bool uSQL::Dictionary::parse(const std::string &aString)
         if (map == maps.end())
             continue;
         string keyValue = *map;
-        insert(pair<string, string>(keyName, keyValue));
+        set(keyName, keyValue);
     }
     return true;
+}
+
+void uSQL::Dictionary::set(const std::string &keyName, const std::string &keyValue) 
+{
+    insert(std::pair<std::string, std::string>(keyName, keyValue));
+}
+    
+const std::string &uSQL::Dictionary::get(std::string &keyName) 
+{
+    static std::string nullValue;
+    Dictionary::iterator dict = find(keyName);
+    if (dict != end())
+        return nullValue;
+    return (*dict).second;
 }
     
 std::string &uSQL::Dictionary::toString(std::string &buf)
@@ -58,3 +72,4 @@ std::string &uSQL::Dictionary::toString(std::string &buf)
     
     return buf;
 }
+

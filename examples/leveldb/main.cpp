@@ -24,7 +24,7 @@ void testfunction();
 void usage();
 void ExecSQLStatement(SQLStatement *stmt);
 const char *GetLevelDbKey(SQLNode *dataSource, SQLWhere *sqlWhere, std::string &key);
-void OutputSQLError(const char *errMsg);
+void OutputSQLError(const std::string &errMsg);
 
 const char * prompt(EditLine *e) 
 {
@@ -38,7 +38,7 @@ void usage()
     cout << "-h\tproduce this help message:" << endl;
 }
 
-void OutputSQLError(const char *errMsg) 
+void OutputSQLError(const std::string &errMsg) 
 {
     cout << "SQL Error : "<< errMsg << " !!" << endl;
 }
@@ -141,9 +141,14 @@ int main(int argc, char *argv[])
         
         SQLStatementList *stmtList = unqlParser.getStatements();
         for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
-            SQLError error;
-            if (levelDb.execSQLStatement(*stmt, error) == false) {
-                OutputSQLError(levelDb.getErrorMessage());
+            SQLResult sqlResult;
+            if (levelDb.execSQLStatement(*stmt, sqlResult) == true) {
+                if (sqlResult.hasMessage())
+                    cout << sqlResult.getExecMessage() << endl;
+                cout << "Done." << endl;
+            }
+            else {
+                OutputSQLError(sqlResult.getErrorMessage());
                 continue;
             }
         }

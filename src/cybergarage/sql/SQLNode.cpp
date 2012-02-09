@@ -83,7 +83,16 @@ bool uSQL::SQLNode::isStatementNode()
 	return (dynamic_cast<uSQL::SQLStatement *>(this)) ? true : false;
 }
 
-uSQL::SQLNode *uSQL::SQLNode::getChildNodeByType(int type)
+uSQL::SQLNode *uSQL::SQLNode::getChildNode(int index) 
+{
+    uSQL::SQLNodeList *childNodes = getChildNodes();
+    int childNodeCount = getChildCount();
+    if ((index < 0) || ((childNodeCount - 1) < index))
+        return NULL;
+    return childNodes->at(index);
+}
+
+uSQL::SQLNode *uSQL::SQLNode::findChildNodeByType(int type)
 {
     for (SQLNodeList::iterator node = children.begin(); node != children.end(); node++) {
         if ((*node)->isType(type))

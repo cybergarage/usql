@@ -32,7 +32,7 @@ public:
     	push_back(node);
     }
 
-    SQLNode *getNode(int index) {
+    SQLNode *getNode(std::size_t index) {
     	return at(index);
     }
     
@@ -48,9 +48,9 @@ public:
     static const int COLUMN;
     static const int COLUMNS;
     static const int COMMAND;
+    static const int DICTIONARY;
     static const int DATACOLUMN;
     static const int DATASOURCE;
-    static const int DICTIONARY;
     static const int EXPRESSION;
     static const int FROM;
     static const int FUNCTION;
@@ -78,6 +78,8 @@ private:
 	SQLNodeList children;
 
 	std::string value;
+    
+    std::string nodeString;
 
 private:
 
@@ -143,12 +145,17 @@ public:
     	return (0 < children.size()) ? true : false;
     }
     
+    int getChildCount() {
+        return (int)children.size();
+    }
+    
     SQLNodeList *getChildNodes()
     {
     	return &children;
     }
-    
-    SQLNode *getChildNodeByType(int type);
+
+    SQLNode *getChildNode(int index);    
+    SQLNode *findChildNodeByType(int type);
     
     bool isSQLExpressionNode();
     bool isOperatorNode();
@@ -157,6 +164,10 @@ public:
     bool isUnQLNode();
 
     virtual std::string &toString(std::string &buf);
+    
+    const std::string &toString() {
+        return toString(this->nodeString);
+    }
     
 protected:
 

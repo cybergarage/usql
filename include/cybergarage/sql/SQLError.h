@@ -19,6 +19,7 @@ class SQLError {
 
 private:
     
+    int            code;
     std::string    message;
 
 public:
@@ -26,11 +27,19 @@ public:
     SQLError();
     ~SQLError();
 
+    void setCode(int code) {
+        this->code = code;
+    }
+    
+    int getCode() {
+        return this->code;
+    }
+    
     void setMessage(const std::string &message) {
         this->message = message;
     }
     
-    std::string &getMessage() {
+    const std::string &getMessage() {
         return this->message;
     }
 

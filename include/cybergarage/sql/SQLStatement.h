@@ -77,31 +77,39 @@ public:
     }
     
     SQLCommand *getCommandNode() {
-        return (SQLCommand *)getChildNodeByType(SQLNode::COMMAND);
+        return (SQLCommand *)findChildNodeByType(SQLNode::COMMAND);
     }
 
     SQLCollection *getCollectionNode() {
-        return (SQLCollection *)getChildNodeByType(SQLNode::COLLECTION);
+        return (SQLCollection *)findChildNodeByType(SQLNode::COLLECTION);
+    }
+    
+    SQLSet *getSetNode() {
+        return (SQLSet *)findChildNodeByType(SQLNode::SET);
     }
     
     SQLColumn *getColumnNode() {
-        return (SQLColumn *)getChildNodeByType(SQLNode::COLUMN);
+        return (SQLColumn *)findChildNodeByType(SQLNode::COLUMN);
     }
 
+    SQLValue *getValueNode() {
+        return (SQLValue *)findChildNodeByType(SQLNode::VALUE);
+    }
+    
     SQLFrom *getFromNode() {
-        return (SQLFrom *)getChildNodeByType(SQLNode::FROM);
+        return (SQLFrom *)findChildNodeByType(SQLNode::FROM);
     }
 
     SQLWhere *getWhereNode() {
-        return (SQLWhere *)getChildNodeByType(SQLNode::WHERE);
+        return (SQLWhere *)findChildNodeByType(SQLNode::WHERE);
     }
 
     SQLGroupBy *getGroupNode() {
-        return (SQLGroupBy *)getChildNodeByType(SQLNode::GROUPBY);
+        return (SQLGroupBy *)findChildNodeByType(SQLNode::GROUPBY);
     }
 
     SQLHaving *getHavingeNode() {
-        return (SQLHaving *)getChildNodeByType(SQLNode::HAVING);
+        return (SQLHaving *)findChildNodeByType(SQLNode::HAVING);
     }
     
     std::string &toString(std::string &buf);

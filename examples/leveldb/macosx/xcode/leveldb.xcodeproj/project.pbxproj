@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		212ADBCB14682496004E5FBF /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 212ADBC81468246C004E5FBF /* SqlEngineLib.dylib */; };
 		212D74891446C232003632AD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212D74881446C232003632AD /* main.cpp */; };
+		2130E6E114E39EB200939743 /* SQLProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6DF14E39EB200939743 /* SQLProxy.cpp */; };
+		2130E6E514E3B5A600939743 /* SQLResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6E314E3B5A600939743 /* SQLResult.cpp */; };
 		2140983014CD162300FE79B9 /* LevelDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2140982E14CD162300FE79B9 /* LevelDB.cpp */; };
 		2198DC7714DA5F51000BC543 /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7314DA5F51000BC543 /* Dictionary.cpp */; };
 		2198DC7814DA5F51000BC543 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7514DA5F51000BC543 /* MD5.cpp */; };
@@ -46,6 +48,10 @@
 /* Begin PBXFileReference section */
 		212ADBC31468246A004E5FBF /* SqlEngineLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SqlEngineLib.xcodeproj; path = ../../../../lib/macosx/xcode/SqlEngineLib.xcodeproj; sourceTree = "<group>"; };
 		212D74881446C232003632AD /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../main.cpp; sourceTree = SOURCE_ROOT; };
+		2130E6DF14E39EB200939743 /* SQLProxy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLProxy.cpp; path = ../../../common/SQLProxy.cpp; sourceTree = "<group>"; };
+		2130E6E014E39EB200939743 /* SQLProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLProxy.h; path = ../../../common/SQLProxy.h; sourceTree = "<group>"; };
+		2130E6E314E3B5A600939743 /* SQLResult.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLResult.cpp; path = ../../../common/SQLResult.cpp; sourceTree = "<group>"; };
+		2130E6E414E3B5A600939743 /* SQLResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLResult.h; path = ../../../common/SQLResult.h; sourceTree = "<group>"; };
 		2140982E14CD162300FE79B9 /* LevelDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelDB.cpp; path = ../../LevelDB.cpp; sourceTree = "<group>"; };
 		2140982F14CD162300FE79B9 /* LevelDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelDB.h; path = ../../LevelDB.h; sourceTree = "<group>"; };
 		2198DC7314DA5F51000BC543 /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = ../../../common/Dictionary.cpp; sourceTree = "<group>"; };
@@ -78,6 +84,10 @@
 		212D74871446C219003632AD /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				2130E6E314E3B5A600939743 /* SQLResult.cpp */,
+				2130E6E414E3B5A600939743 /* SQLResult.h */,
+				2130E6DF14E39EB200939743 /* SQLProxy.cpp */,
+				2130E6E014E39EB200939743 /* SQLProxy.h */,
 				2198DC7314DA5F51000BC543 /* Dictionary.cpp */,
 				2198DC7414DA5F51000BC543 /* Dictionary.h */,
 				2198DC7514DA5F51000BC543 /* MD5.cpp */,
@@ -185,6 +195,8 @@
 				2140983014CD162300FE79B9 /* LevelDB.cpp in Sources */,
 				2198DC7714DA5F51000BC543 /* Dictionary.cpp in Sources */,
 				2198DC7814DA5F51000BC543 /* MD5.cpp in Sources */,
+				2130E6E114E39EB200939743 /* SQLProxy.cpp in Sources */,
+				2130E6E514E3B5A600939743 /* SQLResult.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

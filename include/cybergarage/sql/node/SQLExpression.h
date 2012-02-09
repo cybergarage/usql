@@ -90,11 +90,17 @@ public:
         addChildNode(expr);
     }
     
+    int getExpressionCount() {
+        return getChildCount();
+    }
+    
     SQLNodeList *getExpressions() {
         return getChildNodes();
     }
     
-    SQLExpression *getExpression(int n);
+    SQLExpression *getExpression(int index) {
+        return (SQLExpression *)getChildNode(index);
+    }
     
     bool hasExpressions() {
         SQLNodeList *expressions = getExpressions();

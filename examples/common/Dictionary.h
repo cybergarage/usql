@@ -17,6 +17,10 @@
 namespace uSQL {
 
 class Dictionary : public std::map<std::string, std::string> {
+
+private:
+
+    std::string dictionaryString;
     
 public:
 
@@ -25,8 +29,14 @@ public:
 
 	bool parse(const std::string &aString);
     
+    void set(const std::string &keyName, const std::string &keyValue);
+    const std::string &get(std::string &keyName);
+    
     std::string &toString(std::string &buf);
     
+    const std::string &toString() {
+        return toString(this->dictionaryString);
+    }
 };
 
 }

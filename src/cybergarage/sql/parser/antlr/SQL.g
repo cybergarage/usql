@@ -395,16 +395,10 @@ property_section [uSQL::SQLSet *sqlSet]
 	: property SINGLE_EQ exprRight=expression_literal
 
 	{
-		uSQL::SQLOperator *sqlOper = new uSQL::SQLOperator();
-		sqlOper->setLiteralType(uSQL::SQLExpression::OPERATOR);
-		sqlOper->setValue(1/*uSQL::SQLOperator::SEQ*/);
-		sqlSet->addChildNode(sqlOper);
-		
-		uSQL::SQLExpression *exprLeft = new uSQL::SQLExpression();
-		exprLeft->setValue(CG_ANTLR3_STRING_2_UTF8($property.text));
-		sqlOper->addExpression(exprLeft);
-		
-		sqlOper->addExpression(exprRight);
+		uSQL::SQLDictionary *sqlDict = new uSQL::SQLDictionary();
+		sqlDict->setName(CG_ANTLR3_STRING_2_UTF8($property.text));
+		sqlDict->setValue(exprRight);
+		sqlSet->addChildNode(sqlDict);
 	}
 	;
 

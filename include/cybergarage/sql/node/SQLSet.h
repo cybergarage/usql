@@ -11,11 +11,12 @@
 #ifndef CG_USQL_SQLSET_H
 #define CG_USQL_SQLSET_H
 
-#include <cybergarage/sql/node/SQLColumn.h>
+#include <cybergarage/sql/SQLNode.h>
+#include <cybergarage/sql/node/SQLDictionary.h>
 
 namespace uSQL {
 
-class SQLSet : public SQLColumn {
+class SQLSet : public SQLNode {
 
 public:
 
@@ -23,13 +24,19 @@ public:
     	setType(SET);
     }
     
-    std::string &toString(std::string &buf) {
-	    std::string columnString;
-	    std::ostringstream oss;
-	    oss << "SET " << SQLColumn::toString(columnString);
-	    buf = oss.str();
-		return buf;
+    int getDictionaryCount() {
+        return getChildCount();
     }
+    
+    SQLNodeList *getDictionaries() {
+        return getChildNodes();
+    }
+    
+    SQLDictionary *getDictionary(int index) {
+        return (SQLDictionary *)getChildNode(index);
+    }
+    
+    std::string &toString(std::string &buf);
 };
 
 }

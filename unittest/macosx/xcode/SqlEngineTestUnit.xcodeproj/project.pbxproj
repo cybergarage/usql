@@ -13,7 +13,6 @@
 		217B30A9148F376B00194C2F /* SqlEngineTestCase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217B30A7148F376B00194C2F /* SqlEngineTestCase.cpp */; };
 		217B30AB148F3AD000194C2F /* SqlEngineTestSQL92Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217B30AA148F3AD000194C2F /* SqlEngineTestSQL92Parser.cpp */; };
 		218662A31468213F006B1883 /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 218662A214682110006B1883 /* SqlEngineLib.dylib */; };
-		21C746E81471FAED00A3F635 /* SqlEngineTestLeveldbParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C746E71471FAED00A3F635 /* SqlEngineTestLeveldbParser.cpp */; };
 		21E7FE62143CD0FF00CB6A56 /* SqlEngineTestBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E7FE61143CD0FF00CB6A56 /* SqlEngineTestBase.cpp */; };
 		21EE498A143AB61B0010A7D1 /* SqlEngineTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EE4989143AB61B0010A7D1 /* SqlEngineTestMain.cpp */; };
 		21FFD86C145D543400589229 /* SqlEngineTestCaseReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FFD86A145D543400589229 /* SqlEngineTestCaseReader.cpp */; };
@@ -58,7 +57,6 @@
 		217B30A8148F376B00194C2F /* SqlEngineTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SqlEngineTestCase.h; path = ../../SqlEngineTestCase.h; sourceTree = "<group>"; };
 		217B30AA148F3AD000194C2F /* SqlEngineTestSQL92Parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestSQL92Parser.cpp; path = ../../SqlEngineTestSQL92Parser.cpp; sourceTree = "<group>"; };
 		2186629A1468210F006B1883 /* SqlEngineLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SqlEngineLib.xcodeproj; path = ../../../lib/macosx/xcode/SqlEngineLib.xcodeproj; sourceTree = "<group>"; };
-		21C746E71471FAED00A3F635 /* SqlEngineTestLeveldbParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestLeveldbParser.cpp; path = ../../SqlEngineTestLeveldbParser.cpp; sourceTree = "<group>"; };
 		21E7FE61143CD0FF00CB6A56 /* SqlEngineTestBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestBase.cpp; path = ../../SqlEngineTestBase.cpp; sourceTree = "<group>"; };
 		21EE4989143AB61B0010A7D1 /* SqlEngineTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestMain.cpp; path = ../../SqlEngineTestMain.cpp; sourceTree = "<group>"; };
 		21F69A5A13BAE289004D23C9 /* SqlEngineTestUnit */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SqlEngineTestUnit; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,7 +91,6 @@
 				217B30AA148F3AD000194C2F /* SqlEngineTestSQL92Parser.cpp */,
 				2153464A14342C5C00C748CC /* SqlEngineTestGQLParser.cpp */,
 				21529E6E144C0FE600F05CDD /* SqlEngineTestUnQLParser.cpp */,
-				21C746E71471FAED00A3F635 /* SqlEngineTestLeveldbParser.cpp */,
 			);
 			name = UnitTest;
 			sourceTree = "<group>";
@@ -220,7 +217,6 @@
 				21E7FE62143CD0FF00CB6A56 /* SqlEngineTestBase.cpp in Sources */,
 				21529E6F144C0FE600F05CDD /* SqlEngineTestUnQLParser.cpp in Sources */,
 				21FFD86C145D543400589229 /* SqlEngineTestCaseReader.cpp in Sources */,
-				21C746E81471FAED00A3F635 /* SqlEngineTestLeveldbParser.cpp in Sources */,
 				217B30A9148F376B00194C2F /* SqlEngineTestCase.cpp in Sources */,
 				217B30AB148F3AD000194C2F /* SqlEngineTestSQL92Parser.cpp in Sources */,
 				213073DA14A95F8400C98535 /* SqlEngineTestExpression.cpp in Sources */,

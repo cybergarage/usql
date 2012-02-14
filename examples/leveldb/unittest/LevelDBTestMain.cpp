@@ -2,8 +2,6 @@
 *
 * uSQL for C++
 *
-* SqlEngineTestMain.cpp
-*
 * Copyright (C) Satoshi Konno 2011
 *
 * This is licensed under BSD-style license, see file COPYING.

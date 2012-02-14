@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2121E63714EA3F7D00EADC06 /* LevelDBTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2121E63614EA3F7D00EADC06 /* LevelDBTestMain.cpp */; };
+		2121E64414EA40B500EADC06 /* LevelDBTestSQL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2121E64314EA40B500EADC06 /* LevelDBTestSQL.cpp */; };
+		2121E64F14EA437300EADC06 /* SQLResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6E314E3B5A600939743 /* SQLResult.cpp */; };
+		2121E65014EA437300EADC06 /* SQLResult.h in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6E414E3B5A600939743 /* SQLResult.h */; };
+		2121E65114EA437300EADC06 /* SQLProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6DF14E39EB200939743 /* SQLProxy.cpp */; };
+		2121E65214EA437300EADC06 /* SQLProxy.h in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6E014E39EB200939743 /* SQLProxy.h */; };
+		2121E65314EA437300EADC06 /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7314DA5F51000BC543 /* Dictionary.cpp */; };
+		2121E65414EA437300EADC06 /* Dictionary.h in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7414DA5F51000BC543 /* Dictionary.h */; };
+		2121E65514EA437300EADC06 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7514DA5F51000BC543 /* MD5.cpp */; };
+		2121E65614EA437300EADC06 /* MD5.h in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7614DA5F51000BC543 /* MD5.h */; };
+		2121E65714EA437300EADC06 /* LevelDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2140982E14CD162300FE79B9 /* LevelDB.cpp */; };
+		2121E65814EA437300EADC06 /* LevelDB.h in Sources */ = {isa = PBXBuildFile; fileRef = 2140982F14CD162300FE79B9 /* LevelDB.h */; };
+		2121E65914EA438200EADC06 /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 212ADBC81468246C004E5FBF /* SqlEngineLib.dylib */; };
 		212ADBCB14682496004E5FBF /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 212ADBC81468246C004E5FBF /* SqlEngineLib.dylib */; };
 		212D74891446C232003632AD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212D74881446C232003632AD /* main.cpp */; };
 		2130E6E114E39EB200939743 /* SQLProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6DF14E39EB200939743 /* SQLProxy.cpp */; };
@@ -55,6 +68,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2121E63614EA3F7D00EADC06 /* LevelDBTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelDBTestMain.cpp; path = ../../unittest/LevelDBTestMain.cpp; sourceTree = "<group>"; };
+		2121E64314EA40B500EADC06 /* LevelDBTestSQL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelDBTestSQL.cpp; path = ../../unittest/LevelDBTestSQL.cpp; sourceTree = "<group>"; };
 		212ADBC31468246A004E5FBF /* SqlEngineLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SqlEngineLib.xcodeproj; path = ../../../../lib/macosx/xcode/SqlEngineLib.xcodeproj; sourceTree = "<group>"; };
 		212D74881446C232003632AD /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../main.cpp; sourceTree = SOURCE_ROOT; };
 		2130E6DF14E39EB200939743 /* SQLProxy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLProxy.cpp; path = ../../../common/SQLProxy.cpp; sourceTree = "<group>"; };
@@ -76,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2121E65914EA438200EADC06 /* SqlEngineLib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2121E63814EA3F8200EADC06 /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				2121E63614EA3F7D00EADC06 /* LevelDBTestMain.cpp */,
+				2121E64314EA40B500EADC06 /* LevelDBTestSQL.cpp */,
+			);
+			name = UnitTest;
+			sourceTree = "<group>";
+		};
 		212ADBC41468246A004E5FBF /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,19 +149,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		21753DA614EA3A51002B5B58 /* UnitTest */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = UnitTest;
-			path = unittest;
-			sourceTree = "<group>";
-		};
 		21CBB6641446C13900EC94F5 = {
 			isa = PBXGroup;
 			children = (
 				212D74871446C219003632AD /* Src */,
-				21753DA614EA3A51002B5B58 /* UnitTest */,
+				2121E63814EA3F8200EADC06 /* UnitTest */,
 				213FE63E146821F4000F36F2 /* Frameworks */,
 				21CBB6701446C13900EC94F5 /* Products */,
 			);
@@ -236,6 +253,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2121E64F14EA437300EADC06 /* SQLResult.cpp in Sources */,
+				2121E65014EA437300EADC06 /* SQLResult.h in Sources */,
+				2121E65114EA437300EADC06 /* SQLProxy.cpp in Sources */,
+				2121E65214EA437300EADC06 /* SQLProxy.h in Sources */,
+				2121E65314EA437300EADC06 /* Dictionary.cpp in Sources */,
+				2121E65414EA437300EADC06 /* Dictionary.h in Sources */,
+				2121E65514EA437300EADC06 /* MD5.cpp in Sources */,
+				2121E65614EA437300EADC06 /* MD5.h in Sources */,
+				2121E65714EA437300EADC06 /* LevelDB.cpp in Sources */,
+				2121E65814EA437300EADC06 /* LevelDB.h in Sources */,
+				2121E63714EA3F7D00EADC06 /* LevelDBTestMain.cpp in Sources */,
+				2121E64414EA40B500EADC06 /* LevelDBTestSQL.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +295,15 @@
 		219DB42D14EA3E76006BF347 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				OTHER_LDFLAGS = (
+					"-lboost_unit_test_framework",
+					"-lboost_system",
+					"-lboost_filesystem",
+					"-lcrypto",
+					"-ledit",
+					"-lleveldb",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -273,6 +311,15 @@
 		219DB42E14EA3E76006BF347 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				OTHER_LDFLAGS = (
+					"-lboost_unit_test_framework",
+					"-lboost_system",
+					"-lboost_filesystem",
+					"-lcrypto",
+					"-ledit",
+					"-lleveldb",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -347,6 +394,7 @@
 					/opt/local/include,
 					../../../../include,
 				);
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -358,6 +406,7 @@
 					/opt/local/include,
 					../../../../include,
 				);
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -372,6 +421,7 @@
 				219DB42E14EA3E76006BF347 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		21CBB6691446C13900EC94F5 /* Build configuration list for PBXProject "leveldb" */ = {
 			isa = XCConfigurationList;

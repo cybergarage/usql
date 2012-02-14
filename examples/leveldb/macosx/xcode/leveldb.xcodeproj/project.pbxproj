@@ -12,8 +12,16 @@
 		2130E6E114E39EB200939743 /* SQLProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6DF14E39EB200939743 /* SQLProxy.cpp */; };
 		2130E6E514E3B5A600939743 /* SQLResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6E314E3B5A600939743 /* SQLResult.cpp */; };
 		2140983014CD162300FE79B9 /* LevelDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2140982E14CD162300FE79B9 /* LevelDB.cpp */; };
-		21753DA814EA3A51002B5B58 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21753DA714EA3A51002B5B58 /* main.cpp */; };
-		21753DAA14EA3A51002B5B58 /* unittest.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 21753DA914EA3A51002B5B58 /* unittest.1 */; };
+		21753DC514EA3C9C002B5B58 /* SQLResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6E314E3B5A600939743 /* SQLResult.cpp */; };
+		21753DC614EA3C9C002B5B58 /* SQLResult.h in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6E414E3B5A600939743 /* SQLResult.h */; };
+		21753DC714EA3C9C002B5B58 /* SQLProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6DF14E39EB200939743 /* SQLProxy.cpp */; };
+		21753DC814EA3C9C002B5B58 /* SQLProxy.h in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6E014E39EB200939743 /* SQLProxy.h */; };
+		21753DC914EA3C9C002B5B58 /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7314DA5F51000BC543 /* Dictionary.cpp */; };
+		21753DCA14EA3C9C002B5B58 /* Dictionary.h in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7414DA5F51000BC543 /* Dictionary.h */; };
+		21753DCB14EA3C9C002B5B58 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7514DA5F51000BC543 /* MD5.cpp */; };
+		21753DCC14EA3C9C002B5B58 /* MD5.h in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7614DA5F51000BC543 /* MD5.h */; };
+		21753DCD14EA3C9C002B5B58 /* LevelDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2140982E14CD162300FE79B9 /* LevelDB.cpp */; };
+		21753DCE14EA3C9C002B5B58 /* LevelDB.h in Sources */ = {isa = PBXBuildFile; fileRef = 2140982F14CD162300FE79B9 /* LevelDB.h */; };
 		2198DC7714DA5F51000BC543 /* Dictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7314DA5F51000BC543 /* Dictionary.cpp */; };
 		2198DC7814DA5F51000BC543 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7514DA5F51000BC543 /* MD5.cpp */; };
 /* End PBXBuildFile section */
@@ -42,7 +50,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				21753DAA14EA3A51002B5B58 /* unittest.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -67,8 +74,6 @@
 		2140982E14CD162300FE79B9 /* LevelDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelDB.cpp; path = ../../LevelDB.cpp; sourceTree = "<group>"; };
 		2140982F14CD162300FE79B9 /* LevelDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelDB.h; path = ../../LevelDB.h; sourceTree = "<group>"; };
 		21753DA414EA3A51002B5B58 /* unittest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = unittest; sourceTree = BUILT_PRODUCTS_DIR; };
-		21753DA714EA3A51002B5B58 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		21753DA914EA3A51002B5B58 /* unittest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = unittest.1; sourceTree = "<group>"; };
 		2198DC7314DA5F51000BC543 /* Dictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dictionary.cpp; path = ../../../common/Dictionary.cpp; sourceTree = "<group>"; };
 		2198DC7414DA5F51000BC543 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = ../../../common/Dictionary.h; sourceTree = "<group>"; };
 		2198DC7514DA5F51000BC543 /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MD5.cpp; path = ../../../common/MD5.cpp; sourceTree = "<group>"; };
@@ -129,12 +134,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		21753DA614EA3A51002B5B58 /* unittest */ = {
+		21753DA614EA3A51002B5B58 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
-				21753DA714EA3A51002B5B58 /* main.cpp */,
-				21753DA914EA3A51002B5B58 /* unittest.1 */,
 			);
+			name = UnitTest;
 			path = unittest;
 			sourceTree = "<group>";
 		};
@@ -142,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				212D74871446C219003632AD /* Src */,
-				21753DA614EA3A51002B5B58 /* unittest */,
+				21753DA614EA3A51002B5B58 /* UnitTest */,
 				213FE63E146821F4000F36F2 /* Frameworks */,
 				21CBB6701446C13900EC94F5 /* Products */,
 			);
@@ -242,7 +246,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21753DA814EA3A51002B5B58 /* main.cpp in Sources */,
+				21753DC514EA3C9C002B5B58 /* SQLResult.cpp in Sources */,
+				21753DC614EA3C9C002B5B58 /* SQLResult.h in Sources */,
+				21753DC714EA3C9C002B5B58 /* SQLProxy.cpp in Sources */,
+				21753DC814EA3C9C002B5B58 /* SQLProxy.h in Sources */,
+				21753DC914EA3C9C002B5B58 /* Dictionary.cpp in Sources */,
+				21753DCA14EA3C9C002B5B58 /* Dictionary.h in Sources */,
+				21753DCB14EA3C9C002B5B58 /* MD5.cpp in Sources */,
+				21753DCC14EA3C9C002B5B58 /* MD5.h in Sources */,
+				21753DCD14EA3C9C002B5B58 /* LevelDB.cpp in Sources */,
+				21753DCE14EA3C9C002B5B58 /* LevelDB.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +392,7 @@
 				21753DAD14EA3A51002B5B58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		21CBB6691446C13900EC94F5 /* Build configuration list for PBXProject "leveldb" */ = {
 			isa = XCConfigurationList;

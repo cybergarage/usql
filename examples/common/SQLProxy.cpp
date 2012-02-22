@@ -25,6 +25,12 @@ uSQL::SQLProxy::~SQLProxy()
 
 bool uSQL::SQLProxy::getKey(SQLStatement *stmt, std::string &key, SQLError &error) 
 {
+    SQLCommand *sqlCmd = stmt->getCommandNode();
+    if (!sqlCmd) {
+        error.setMessage("COMMAND section was not found");
+        return false;
+    }
+    
     SQLFrom *sqlFrom = stmt->getFromNode();
     if (!sqlFrom) {
         error.setMessage("FROM section was not found");

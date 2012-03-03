@@ -17,7 +17,6 @@
 
 const int uSQL::SQLNode::COMMAND = 1;
 const int uSQL::SQLNode::FROM = 2;
-const int uSQL::SQLNode::DATASOURCE = 3;
 const int uSQL::SQLNode::COLUMN = 4;
 const int uSQL::SQLNode::FUNCTION = 5;
 const int uSQL::SQLNode::CONDITION = 6;
@@ -37,7 +36,6 @@ const int uSQL::SQLNode::GROUPBY = 19;
 const int uSQL::SQLNode::HAVING = 20;
 const int uSQL::SQLNode::INDEX = 21;
 const int uSQL::SQLNode::TRANSACTION = 22;
-const int uSQL::SQLNode::DATACOLUMN = 24;
 const int uSQL::SQLNode::SET = 25;
 const int uSQL::SQLNode::STATEMENT = 26;
 

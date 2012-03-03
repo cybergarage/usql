@@ -15,6 +15,8 @@
 
 namespace uSQL {
 
+class SQLCollection;
+
 class SQLFrom : public SQLNode {
 
 public:
@@ -23,6 +25,10 @@ public:
     	setType(FROM);
 	}
 
+    SQLCollection *getCollectionNode(int index) {
+        return (SQLCollection *)getChildNode(index);
+    }
+    
     std::string &toString(std::string &buf) {
 	    std::ostringstream oss;
 	    std::string childNodeStr;

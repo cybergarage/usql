@@ -25,7 +25,6 @@
 		2171171F14681E7D00088931 /* SQLLimit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170A14681E7D00088931 /* SQLLimit.h */; };
 		2171172014681E7D00088931 /* SQLOffset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170B14681E7D00088931 /* SQLOffset.h */; };
 		2171172114681E7D00088931 /* SQLOrder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170C14681E7D00088931 /* SQLOrder.h */; };
-		2171172314681E7D00088931 /* SQLDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170E14681E7D00088931 /* SQLDataSource.h */; };
 		2171172414681E7D00088931 /* SQLValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171170F14681E7D00088931 /* SQLValue.h */; };
 		2171172514681E7D00088931 /* SQLWhere.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171171014681E7D00088931 /* SQLWhere.h */; };
 		2171172614681E7D00088931 /* SQL92Parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171171114681E7D00088931 /* SQL92Parser.h */; };
@@ -81,7 +80,6 @@
 		2171170A14681E7D00088931 /* SQLLimit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLLimit.h; sourceTree = "<group>"; };
 		2171170B14681E7D00088931 /* SQLOffset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOffset.h; sourceTree = "<group>"; };
 		2171170C14681E7D00088931 /* SQLOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOrder.h; sourceTree = "<group>"; };
-		2171170E14681E7D00088931 /* SQLDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = SQLDataSource.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2171170F14681E7D00088931 /* SQLValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLValue.h; sourceTree = "<group>"; };
 		2171171014681E7D00088931 /* SQLWhere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLWhere.h; sourceTree = "<group>"; };
 		2171171114681E7D00088931 /* SQL92Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQL92Parser.h; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 				2171170A14681E7D00088931 /* SQLLimit.h */,
 				2171170B14681E7D00088931 /* SQLOffset.h */,
 				2171170C14681E7D00088931 /* SQLOrder.h */,
-				2171170E14681E7D00088931 /* SQLDataSource.h */,
 				2171170F14681E7D00088931 /* SQLValue.h */,
 				2171171014681E7D00088931 /* SQLWhere.h */,
 			);
@@ -306,7 +303,6 @@
 				2171171F14681E7D00088931 /* SQLLimit.h in Headers */,
 				2171172014681E7D00088931 /* SQLOffset.h in Headers */,
 				2171172114681E7D00088931 /* SQLOrder.h in Headers */,
-				2171172314681E7D00088931 /* SQLDataSource.h in Headers */,
 				2171172414681E7D00088931 /* SQLValue.h in Headers */,
 				2171172514681E7D00088931 /* SQLWhere.h in Headers */,
 				2171172614681E7D00088931 /* SQL92Parser.h in Headers */,

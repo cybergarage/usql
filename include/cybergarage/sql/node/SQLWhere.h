@@ -23,6 +23,10 @@ public:
     	setType(WHERE);
     }
     
+    SQLExpression *getExpressionNode(int index) {
+        return (SQLExpression *)getChildNode(index);
+    }
+    
     std::string &toString(std::string &buf) {
     	std::string exprString;
 		std::ostringstream oss;

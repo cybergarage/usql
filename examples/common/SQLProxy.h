@@ -22,6 +22,12 @@ class SQLProxy {
 private:
     
     std::string errorString;
+
+private:
+
+    bool getKey(SQLCollection *collectionNode, SQLExpression *exprNode, std::string &key);
+    bool getInsertStatementKey(SQLStatement *stmt, std::string &key, SQLError &error);
+    bool getStatementKey(SQLStatement *stmt, std::string &key, SQLError &error);
     
 public:
 

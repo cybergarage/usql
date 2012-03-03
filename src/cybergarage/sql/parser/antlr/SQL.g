@@ -155,9 +155,9 @@ table_name [uSQL::SQLFrom *sqlFrom]
 	  }
 	;
 
-data_source returns [uSQL::SQLDataSource *sqlDataSource]
+data_source returns [uSQL::SQLCollection *sqlDataSource]
 	@init {
-		sqlDataSource = new uSQL::SQLDataSource();
+		sqlDataSource = new uSQL::SQLCollection();
 	}
 	: collection_name {
 		// Collection

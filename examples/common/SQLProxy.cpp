@@ -23,7 +23,36 @@ uSQL::SQLProxy::~SQLProxy()
 {
 }
 
-bool uSQL::SQLProxy::getKey(SQLStatement *stmt, std::string &key, SQLError &error) 
+bool uSQL::SQLProxy::getKey(SQLCollection *collectionNode, SQLExpression *exprNode, std::string &key) 
+{
+    string keyString;
+    
+    string tableName = collectionNode->getValue();
+    keyString = tableName;
+
+    string exprString;
+    exprNode->toString(exprString);
+    keyString.append(exprString);
+    
+    MD5::hash(keyString, key);
+
+    return true;
+}
+
+bool uSQL::SQLProxy::getInsertStatementKey(SQLStatement *stmt, std::string &key, SQLError &error) 
+{
+    SQLCollection *collectionNode = stmt->getCollectionNode();
+    if (!collectionNode) {
+        error.setMessage("Collection was not found");
+        return false;
+    }
+
+    SQLExpression exprNode;
+    
+    return getKey(collectionNode, &exprNode, key);
+}
+
+bool uSQL::SQLProxy::getStatementKey(SQLStatement *stmt, std::string &key, SQLError &error) 
 {
     SQLCommand *sqlCmd = stmt->getCommandNode();
     if (!sqlCmd) {
@@ -37,18 +66,16 @@ bool uSQL::SQLProxy::getKey(SQLStatement *stmt, std::string &key, SQLError &erro
         return false;
     }
     
-    SQLNodeList *sqlDataSources = sqlFrom->getChildNodes();
-    if (sqlDataSources->size() < 1) {
+    if (sqlFrom->getChildCount() < 1) {
         error.setMessage("Data source was not found");
         return false;
     }
-    if (1 < sqlDataSources->size()) {
+    if (1 < sqlFrom->getChildCount()) {
         error.setMessage("Data source is more than one");
         return false;
     }
     
-    SQLNode *dataSource = sqlDataSources->at(0);
-    string tablenName = dataSource->getValue();
+    SQLCollection *dataSource = sqlFrom->getCollectionNode(0);
     
     SQLWhere *sqlWhere = stmt->getWhereNode();
     if (!sqlWhere) {
@@ -56,19 +83,21 @@ bool uSQL::SQLProxy::getKey(SQLStatement *stmt, std::string &key, SQLError &erro
         return false;
     }
     
-    string keyString;
+    if (sqlWhere->getChildCount() < 1) {
+        error.setMessage("Expression was not found");
+        return false;
+    }
     
-    string tableName = dataSource->getValue();
-    keyString = tableName;
+    SQLExpression *exprNode = sqlWhere->getExpressionNode(0);
 
-    string whereString;
-    sqlWhere->toString(whereString);
-    keyString.append(whereString);
-    
-    MD5::hash(keyString, key);
-
-    return true;
+    return getKey(dataSource, exprNode, key);
 }
+
+bool uSQL::SQLProxy::getKey(SQLStatement *stmt, std::string &key, SQLError &error) 
+{
+    return getStatementKey(stmt, key, error);
+}
+
 
 bool uSQL::SQLProxy::getInsertDictionary(SQLStatement *stmt, Dictionary &dictionary, SQLError &error)
 {

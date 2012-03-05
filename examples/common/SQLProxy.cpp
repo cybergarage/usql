@@ -95,6 +95,15 @@ bool uSQL::SQLProxy::getStatementKey(SQLStatement *stmt, std::string &key, SQLEr
 
 bool uSQL::SQLProxy::getKey(SQLStatement *stmt, std::string &key, SQLError &error) 
 {
+    SQLCommand *sqlCmd = stmt->getCommandNode();
+    if (!sqlCmd) {
+        error.setMessage("COMMAND section was not found");
+        return false;
+    }
+    
+    if (sqlCmd->isSelect()) 
+        return getInsertStatementKey(stmt, key, error);
+
     return getStatementKey(stmt, key, error);
 }
 

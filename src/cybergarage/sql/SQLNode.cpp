@@ -46,10 +46,7 @@ uSQL::SQLNode::SQLNode()
 
 uSQL::SQLNode::~SQLNode()
 {
-    for (SQLNodeList::iterator node = children.begin(); node != children.end(); node++)
-        delete *node;
 }
-
 
 bool uSQL::SQLNode::isStatementType(int type)
 {

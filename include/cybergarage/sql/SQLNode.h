@@ -24,10 +24,9 @@ class SQLNodeList : public std::vector<SQLNode *> {
 
 public:
 
-	SQLNodeList()
-    {
-    }
-
+	SQLNodeList();
+	~SQLNodeList();
+    
     void addNode(SQLNode *node) {
     	push_back(node);
     }
@@ -37,6 +36,8 @@ public:
     }
     
     void sort();
+    
+    void clear();
 };
 
 class SQLNode {
@@ -154,6 +155,11 @@ public:
 
     SQLNode *getChildNode(int index);    
     SQLNode *findChildNodeByType(int type);
+
+    void clearChildNodes()
+    {
+        children.clear();
+    }
     
     bool isSQLExpressionNode();
     bool isOperatorNode();

@@ -47,7 +47,37 @@ bool uSQL::SQLProxy::getInsertStatementKey(SQLStatement *stmt, std::string &key,
         return false;
     }
 
+    SQLColumn *sqlColumns = stmt->getColumnNode();
+    if (!sqlColumns) {
+        error.setMessage("COLUMN section was not found");
+        return false;
+    }
+    SQLNode *sqlColumn = sqlColumns->getChildNode(0);
+    if (!sqlColumn) {
+        error.setMessage("Key column was not found");
+        return false;
+    }
+    
+    SQLValue *sqlValues = stmt->getValueNode();
+    if (!sqlValues) {
+        error.setMessage("VALUE section was not found");
+        return false;
+    }
+    SQLNode *sqlValue = sqlValues->getChildNode(0);
+    if (!sqlValue) {
+        error.setMessage("Key value was not found");
+        return false;
+    }
+
     SQLExpression exprNode;
+    SQLOperatorSEQ *eqNode = new SQLOperatorSEQ();
+    SQLExpression *leftExprNode = new SQLExpression();
+    leftExprNode->setValue(sqlColumn->getValue());
+    eqNode->addExpression(leftExprNode);
+    SQLExpression *rightExprNode = new SQLExpression();
+    rightExprNode->setValue(sqlValue->getValue());
+    eqNode->addExpression(rightExprNode);
+    exprNode.addExpression(eqNode);
     
     return getKey(collectionNode, &exprNode, key);
 }
@@ -95,7 +125,7 @@ bool uSQL::SQLProxy::getKey(SQLStatement *stmt, std::string &key, SQLError &erro
         return false;
     }
     
-    if (sqlCmd->isSelect()) 
+    if (sqlCmd->isInsert()) 
         return getInsertStatementKey(stmt, key, error);
 
     return getStatementKey(stmt, key, error);

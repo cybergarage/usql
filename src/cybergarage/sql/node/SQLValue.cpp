@@ -21,7 +21,7 @@ std::string &uSQL::SQLValue::toString(std::string &buf)
     
     std::string columnString;
     std::ostringstream oss;
-    oss << (isUnQL ? "VALUE" : "VALUES") << " " << SQLColumn::toString(columnString);
+    oss << (isUnQL ? "VALUE" : "VALUES") << " " << toExpressionString(columnString);
     buf = oss.str();
     return buf;
 }

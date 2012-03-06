@@ -12,15 +12,19 @@
 
 uSQL::SQLDictionary::~SQLDictionary()
 {
-    if (this->value)
-        delete this->value;
 }
 
 std::string &uSQL::SQLDictionary::toString(std::string &buf) 
 {
-    std::string valueString;
     std::ostringstream oss;
-    oss << name << " = " << value->toString(valueString);
+    
+    oss << name << " = ";
+    
+    SQLExpression *valueExpr = getValue();
+    std::string valueString;
+    if (valueExpr)
+        oss << valueExpr->toString(valueString);
+        
     buf = oss.str();
     return buf;
 }

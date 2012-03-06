@@ -16,12 +16,11 @@
 
 namespace uSQL {
 
-class SQLDictionary : public SQLNode {
+class SQLDictionary : public SQLExpression {
 
 private:
     
     std::string name;
-    SQLExpression *value;
     
 public:
 
@@ -40,11 +39,12 @@ public:
     }
 
 	void setValue(SQLExpression *value) {
-    	this->value = value;
+        clearExpressions();
+        addExpression(value);
     }
     
     SQLExpression *getValue() {
-    	return this->value;
+        return getExpression(0);
     }
     
     std::string &toString(std::string &buf);

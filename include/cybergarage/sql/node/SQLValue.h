@@ -11,11 +11,11 @@
 #ifndef CG_USQL_SQLVALUE_H
 #define CG_USQL_SQLVALUE_H
 
-#include <cybergarage/sql/node/SQLColumn.h>
+#include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
 
-class SQLValue : public SQLColumn {
+class SQLValue : public SQLExpression {
 
 public:
 

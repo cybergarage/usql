@@ -17,6 +17,8 @@ namespace uSQL {
 
 class SQLOperator : public SQLExpression {
 
+public:
+
     static const int UNKNOWN;
     static const int SEQ;
     static const int DEQ;
@@ -28,7 +30,7 @@ class SQLOperator : public SQLExpression {
     static const int AND;
     static const int OR;
 
-public:
+private:
 	
     int value;
 
@@ -91,6 +93,96 @@ public:
     }
 
     std::string &toString(std::string &buf);
+};
+
+class SQLOperatorSEQ : public SQLOperator {
+
+public:
+
+	SQLOperatorSEQ() {
+    	setValue(SEQ);
+    }
+
+};
+
+class SQLOperatorDEQ : public SQLOperator {
+
+public:
+
+	SQLOperatorDEQ() {
+    	setValue(DEQ);
+    }
+
+};
+
+class SQLOperatorLT : public SQLOperator {
+
+public:
+
+	SQLOperatorLT() {
+    	setValue(LT);
+    }
+
+};
+
+class SQLOperatorLE : public SQLOperator {
+
+public:
+
+	SQLOperatorLE() {
+    	setValue(LE);
+    }
+
+};
+
+class SQLOperatorGT : public SQLOperator {
+
+public:
+
+	SQLOperatorGT() {
+    	setValue(GT);
+    }
+
+};
+
+class SQLOperatorGE : public SQLOperator {
+
+public:
+
+	SQLOperatorGE() {
+    	setValue(GE);
+    }
+
+};
+
+class SQLOperatorNotEQ : public SQLOperator {
+
+public:
+
+	SQLOperatorNotEQ() {
+    	setValue(NOTEQ);
+    }
+
+};
+
+class SQLOperatorAnd : public SQLOperator {
+
+public:
+
+	SQLOperatorAnd() {
+    	setValue(AND);
+    }
+
+};
+
+class SQLOperatorOr : public SQLOperator {
+
+public:
+
+	SQLOperatorOr() {
+    	setValue(OR);
+    }
+
 };
 
 }

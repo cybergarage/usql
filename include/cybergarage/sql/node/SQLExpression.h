@@ -38,6 +38,10 @@ public:
     static const int CURRENT_TIMESTAMP;
     static const int ASTERISK;
     
+protected:
+
+    std::string &toExpressionString(std::string &buf);
+
 public:
 
 	SQLExpression() {
@@ -105,6 +109,10 @@ public:
     bool hasExpressions() {
         SQLNodeList *expressions = getExpressions();
         return (0 < expressions->size()) ? true : false;
+    }
+    
+    void clearExpressions() {
+        clearChildNodes();
     }
     
 };

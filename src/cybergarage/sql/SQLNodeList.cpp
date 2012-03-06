@@ -54,10 +54,18 @@ static bool SQLNodeListAddAsChildNode(uSQL::SQLNodeList *nodeList, uSQL::SQLNode
     return true;
 }
 
+uSQL::SQLNodeList::SQLNodeList()
+{
+}
+
+uSQL::SQLNodeList::~SQLNodeList()
+{
+    clear();
+}
+
 void uSQL::SQLNodeList::sort()
 {
 	std::string buf; 
-    int n=0;
     std::size_t l = size();
     if (l <= 1)
     	return;
@@ -72,4 +80,16 @@ void uSQL::SQLNodeList::sort()
         SQLNodeListAddAsChildNode(this, logicalOperNode, (logicalOperIndex));
 		logicalOperIndex = SQLNodeListGetIncompleteLogicalOperatorIndex(this);
     }
+}
+
+void uSQL::SQLNodeList::clear()
+{
+    /* FIXME
+    uSQL::SQLNodeList::iterator node = begin();
+    while (node != end()) {
+        node = erase(node);
+        delete (*node);
+    }
+    */
+    std::vector<SQLNode *>::clear();
 }

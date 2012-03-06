@@ -104,7 +104,7 @@ public:
         return (SQLWhere *)findChildNodeByType(SQLNode::WHERE);
     }
 
-    SQLGroupBy *getGroupNode() {
+    SQLGroupBy *getGroupByNode() {
         return (SQLGroupBy *)findChildNodeByType(SQLNode::GROUPBY);
     }
 

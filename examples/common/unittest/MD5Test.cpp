@@ -20,8 +20,6 @@ using namespace uSQL;
 BOOST_AUTO_TEST_CASE(MD5Test)
 {
     string digest;
-    
     MD5::hash("http://www.cybergarage.org", digest);
-    
-    BOOST_CHECK_MESSAGE((digest.length() == (MD5_DIGEST_LENGTH * 2)), digest << " (" << digest.length() << ") != " << MD5_DIGEST_LENGTH);
+    BOOST_CHECK_MESSAGE((digest.length() == (MD5_DIGEST_LENGTH * 2)), digest << " (" << digest.length() << ") != " << (MD5_DIGEST_LENGTH*2));
 }

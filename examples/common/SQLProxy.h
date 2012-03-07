@@ -12,7 +12,7 @@
 #define CG_USQL_SQLDB_H
 
 #include <string>
-#include <cybergarage/sql/UnQLParser.h>
+#include <cybergarage/sql/SQL92Parser.h>
 #include "Dictionary.h"
 
 namespace uSQL {

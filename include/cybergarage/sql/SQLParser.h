@@ -43,11 +43,20 @@ public:
         statements.push_back(stmt);
     }
 
+    int getStatementCount() {
+        return (int)statements.size();
+    }
+    
+    SQLStatement *getStatement(int n)
+    {
+        if ((n < 0) || ((statements.size()-1) < n))
+            return NULL;
+        return statements.at(n);
+    }
+    
     SQLStatement *getStatement()
     {
-        if (statements.size() == 0)
-            return NULL;
-        return statements.at(0);
+        return getStatement(0);
     }
 
     SQLStatementList *getStatements()

@@ -327,14 +327,14 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 		sqlStmt->addChildNode(sqlCmd);
 
 		// Collection
-		sqlCmd->addChildNode(collectionNode);
+		sqlStmt->addChildNode(collectionNode);
 		
 		// Column
 		if (columnNode)
-			sqlCmd->addChildNode(columnNode);
+			sqlStmt->addChildNode(columnNode);
 		
 		// Value
-		sqlCmd->addChildNode(sqlValue);
+		sqlStmt->addChildNode(sqlValue);
 	}
 	;
 

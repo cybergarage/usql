@@ -13,7 +13,7 @@
 #include <histedit.h>
 #include <leveldb/db.h>
 
-#include <cybergarage/sql/UnQLParser.h>
+#include <cybergarage/sql/sqlParser.h>
 #include "LevelDB.h"
 
 using namespace std;
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
     
-    UnQLParser unqlParser;
+    sqlParser sqlParser;
 
 	/* This holds all the state for our line editor */
 	EditLine *el;
@@ -133,13 +133,13 @@ int main(int argc, char *argv[])
             
         history(myhistory, &ev, H_ENTER, line);
 
-        UnQLParser unqlParser;
-        if (unqlParser.parse(line) == false) {
+        SQL92Parser sqlParser;
+        if (sqlParser.parse(line) == false) {
             printf("Parser Error :  %s\n", line);
             continue;
         }
         
-        SQLStatementList *stmtList = unqlParser.getStatements();
+        SQLStatementList *stmtList = sqlParser.getStatements();
         for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
             SQLResult sqlResult;
             if (levelDb.execSQLStatement(*stmt, sqlResult) == true) {

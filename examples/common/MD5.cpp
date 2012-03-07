@@ -15,7 +15,7 @@
 
 using namespace std;
 
-std::string &uSQL::MD5::hash(std::string &string, std::string &buf)
+std::string &uSQL::MD5::hash(const std::string &string, std::string &buf)
 {
     unsigned char md5Digest[MD5_DIGEST_LENGTH];
     

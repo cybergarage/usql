@@ -45,13 +45,3 @@ BOOST_AUTO_TEST_CASE(SQLProxyKeyTest)
         BOOST_CHECK_MESSAGE((0 < stmtKey.length()), stmtKey);
     }
 }
-
-BOOST_AUTO_TEST_CASE(LevelDbTest)
-{
-    const char *dbFilename = "/tmp/testdb";
-
-    remove(dbFilename);
-    
-    LevelDB levelDb;
-    BOOST_CHECK(levelDb.open(dbFilename));
-}

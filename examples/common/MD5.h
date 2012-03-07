@@ -20,7 +20,7 @@ class MD5 {
     
 public:
 
-    static std::string &hash(std::string &string, std::string &buf);
+    static std::string &hash(const std::string &string, std::string &buf);
     
 };
 

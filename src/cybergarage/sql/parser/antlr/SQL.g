@@ -142,16 +142,16 @@ result_column_section returns [uSQL::SQLColumn *sqlColumn]
 	  }
 	;
 
-from_section returns [uSQL::SQLFrom *sqlFrom]
+from_section returns [uSQL::SQLFrom *sqlCollections]
 	@init {
-		sqlFrom = new uSQL::SQLFrom();
+		sqlCollections = new uSQL::SQLFrom();
 	}
-	: (FROM table_name[sqlFrom]) (COMMA table_name[sqlFrom])*
+	: (FROM table_name[sqlCollections]) (COMMA table_name[sqlCollections])*
 	;
 
-table_name [uSQL::SQLFrom *sqlFrom]
+table_name [uSQL::SQLCollections *SQLCollections]
 	: dataSource = data_source {
-		sqlFrom->addChildNode(dataSource);
+		SQLCollections->addChildNode(dataSource);
 	  }
 	;
 
@@ -422,7 +422,9 @@ delete_stmt [uSQL::SQLStatement *sqlStmt]
 		sqlStmt->addChildNode(sqlCmd);
 
 		// Collection
-		sqlCmd->addChildNode(collectionNode);
+		uSQL::SQLCollections *SQLCollections = new uSQL::SQLCollections();
+		sqlStmt->addChildNode(SQLCollections);
+		SQLCollections->addChildNode(collectionNode);
 		
 		// WHERE
 		if (whereSection)		

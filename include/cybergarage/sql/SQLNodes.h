@@ -12,10 +12,11 @@
 #define CG_USQL_SQLNODES_H
 
 #include <cybergarage/sql/node/SQLCollection.h>
+#include <cybergarage/sql/node/SQLCollections.h>
 #include <cybergarage/sql/node/SQLCommand.h>
 #include <cybergarage/sql/node/SQLDictionary.h>
 #include <cybergarage/sql/node/SQLExpression.h>
-#include <cybergarage/sql/node/SQLFrom.h>
+#include <cybergarage/sql/node/SQLCollections.h>
 #include <cybergarage/sql/node/SQLGroupBy.h>
 #include <cybergarage/sql/node/SQLLimit.h>
 #include <cybergarage/sql/node/SQLHaving.h>

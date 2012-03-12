@@ -32,6 +32,8 @@ public:
     }
 
     SQLNode *getNode(std::size_t index) {
+        if ((size()-1) < index)
+            return NULL;
     	return at(index);
     }
     
@@ -45,13 +47,13 @@ class SQLNode {
 public:
 
     static const int COLLECTION;
+    static const int COLLECTIONS;
     static const int CONDITION;
     static const int COLUMN;
     static const int COLUMNS;
     static const int COMMAND;
     static const int DICTIONARY;
     static const int EXPRESSION;
-    static const int FROM;
     static const int FUNCTION;
     static const int GROUPBY;
     static const int HAVING;

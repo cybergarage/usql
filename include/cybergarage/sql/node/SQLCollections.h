@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLFROM_H
-#define CG_USQL_SQLFROM_H
+#ifndef CG_USQL_SQLCOLLECTIONS_H
+#define CG_USQL_SQLCOLLECTIONS_H
 
 #include <cybergarage/sql/SQLNode.h>
 
@@ -17,12 +17,12 @@ namespace uSQL {
 
 class SQLCollection;
 
-class SQLFrom : public SQLNode {
+class SQLCollections : public SQLNode {
 
 public:
 
-	SQLFrom() {
-    	setType(FROM);
+	SQLCollections() {
+    	setType(COLLECTIONS);
 	}
 
     SQLCollection *getCollectionNode(int index) {
@@ -32,11 +32,28 @@ public:
     std::string &toString(std::string &buf) {
 	    std::ostringstream oss;
 	    std::string childNodeStr;
-	    oss << "FROM " << childNodesToString(childNodeStr, ",");
+	    oss << childNodesToString(childNodeStr, ",");
     	buf = oss.str();
 		return buf;
 	}
     
+};
+
+class SQLFrom : public SQLCollections {
+
+public:
+
+	SQLFrom() {
+	}
+
+    std::string &toString(std::string &buf) {
+	    std::ostringstream oss;
+	    std::string childNodeStr;
+	    oss << "FROM " << SQLCollections::toString(childNodeStr);
+    	buf = oss.str();
+		return buf;
+	}
+
 };
 
 }

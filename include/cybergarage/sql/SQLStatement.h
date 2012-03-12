@@ -80,6 +80,10 @@ public:
         return (SQLCommand *)findChildNodeByType(SQLNode::COMMAND);
     }
 
+    SQLCollections *getCollectionsNode() {
+        return (SQLCollections *)findChildNodeByType(SQLNode::COLLECTIONS);
+    }
+    
     SQLCollection *getCollectionNode() {
         return (SQLCollection *)findChildNodeByType(SQLNode::COLLECTION);
     }
@@ -96,10 +100,6 @@ public:
         return (SQLValue *)findChildNodeByType(SQLNode::VALUE);
     }
     
-    SQLFrom *getFromNode() {
-        return (SQLFrom *)findChildNodeByType(SQLNode::FROM);
-    }
-
     SQLWhere *getWhereNode() {
         return (SQLWhere *)findChildNodeByType(SQLNode::WHERE);
     }

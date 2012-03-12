@@ -84,7 +84,7 @@ bool uSQL::SQLProxy::getInsertStatementKey(SQLStatement *stmt, std::string &key,
 
 bool uSQL::SQLProxy::getStatementKey(SQLStatement *stmt, std::string &key, SQLError &error) 
 {
-    SQLFrom *sqlFrom = stmt->getFromNode();
+    SQLCollections *sqlFrom = stmt->getCollectionsNode();
     if (!sqlFrom) {
         error.setMessage("FROM section was not found");
         return false;

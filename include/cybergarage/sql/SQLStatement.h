@@ -85,7 +85,10 @@ public:
     }
     
     SQLCollection *getCollectionNode() {
-        return (SQLCollection *)findChildNodeByType(SQLNode::COLLECTION);
+        SQLCollections *collectionsNode = getCollectionsNode();
+        if (!collectionsNode)
+            return NULL;
+        return (SQLCollection *)collectionsNode->getCollectionNode(0);
     }
     
     SQLSet *getSetNode() {

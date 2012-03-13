@@ -19,7 +19,6 @@
 #include <cybergarage/sql/node/SQLCollections.h>
 #include <cybergarage/sql/node/SQLGroupBy.h>
 #include <cybergarage/sql/node/SQLLimit.h>
-#include <cybergarage/sql/node/SQLHaving.h>
 #include <cybergarage/sql/node/SQLIndex.h>
 #include <cybergarage/sql/node/SQLOffset.h>
 #include <cybergarage/sql/node/SQLOperator.h>
@@ -31,6 +30,6 @@
 #include <cybergarage/sql/node/SQLColumn.h>
 #include <cybergarage/sql/node/SQLFunction.h>
 #include <cybergarage/sql/node/SQLValue.h>
-#include <cybergarage/sql/node/SQLWhere.h>
+#include <cybergarage/sql/node/SQLCondition.h>
 
 #endif

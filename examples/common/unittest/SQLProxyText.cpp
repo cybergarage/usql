@@ -33,6 +33,10 @@ static const char *SQLPROXYTEST_KEY_DELETE[] = {
 "DELETE FROM TESTDB WHERE ID = 1"
 };
 
+static const char *SQLPROXYTEST_KEY_UPDATE[] = {
+"UPDATE TESTDB SET TEST = \"TEST\" WHERE ID = 1"
+};
+
 BOOST_AUTO_TEST_CASE(SQLProxyKeyTest)
 {
     for (int i=0; i<SQLPROXYTEST_KEY_COUNT; i++) {
@@ -43,6 +47,7 @@ BOOST_AUTO_TEST_CASE(SQLProxyKeyTest)
         sqlStrings.push_back(SQLPROXYTEST_KEY_INSERT[i]);
         sqlStrings.push_back(SQLPROXYTEST_KEY_SELECT[i]);
         sqlStrings.push_back(SQLPROXYTEST_KEY_DELETE[i]);
+        sqlStrings.push_back(SQLPROXYTEST_KEY_UPDATE[i]);
 
         for (int j=0; j<sqlStrings.size(); j++) {
             string sqlString = sqlStrings.at(j);

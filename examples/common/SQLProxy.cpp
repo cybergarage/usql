@@ -112,7 +112,7 @@ bool uSQL::SQLProxy::getStatementKey(SQLStatement *stmt, std::string &key, SQLEr
         return false;
     }
     
-    SQLExpression *exprNode = sqlWhere->getExpressionNode(0);
+    SQLExpression *exprNode = sqlWhere->getExpression(0);
 
     return getKey(dataSource, exprNode, key);
 }

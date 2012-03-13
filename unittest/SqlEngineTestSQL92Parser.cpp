@@ -35,6 +35,12 @@ BOOST_AUTO_TEST_CASE(SQLParser92Test)
     sqlStrings.push_back("INSERT INTO abc (age) VALUES (34)");
     sqlStrings.push_back("INSERT INTO abc (name,age) VALUES (skonno,34)");
     
+    sqlStrings.push_back("DELETE FROM abc");
+    sqlStrings.push_back("DELETE FROM abc WHERE A = B");
+    
+    sqlStrings.push_back("UPDATE abc SET age = 34");
+    sqlStrings.push_back("UPDATE abc SET age = 34 WHERE name = skonno");
+    
 	SQL92Parser sqlParser;
     SqlEngineTestCase sqlTestCase(&sqlParser);
     sqlTestCase.parse(sqlStrings);

@@ -327,7 +327,9 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 		sqlStmt->addChildNode(sqlCmd);
 
 		// Collection
-		sqlStmt->addChildNode(collectionNode);
+		uSQL::SQLCollections *sqlCollections = new uSQL::SQLCollections();
+		sqlStmt->addChildNode(sqlCollections);
+		sqlCollections->addChildNode(collectionNode);
 		
 		// Column
 		if (columnNode)
@@ -377,10 +379,12 @@ update_stmt [uSQL::SQLStatement *sqlStmt]
 		sqlStmt->addChildNode(sqlCmd);
 
 		// Collection
-		sqlCmd->addChildNode(collectionNode);
+		uSQL::SQLCollections *sqlCollections = new uSQL::SQLCollections();
+		sqlStmt->addChildNode(sqlCollections);
+		sqlCollections->addChildNode(collectionNode);
 		
 		// Set
-		sqlCmd->addChildNode(sqlSet);
+		sqlStmt->addChildNode(sqlSet);
 
 		// WHERE
 		if (whereSection)		
@@ -422,9 +426,9 @@ delete_stmt [uSQL::SQLStatement *sqlStmt]
 		sqlStmt->addChildNode(sqlCmd);
 
 		// Collection
-		uSQL::SQLCollections *SQLCollections = new uSQL::SQLCollections();
-		sqlStmt->addChildNode(SQLCollections);
-		SQLCollections->addChildNode(collectionNode);
+		uSQL::SQLCollections *sqlCollections = new uSQL::SQLCollections();
+		sqlStmt->addChildNode(sqlCollections);
+		sqlCollections->addChildNode(collectionNode);
 		
 		// WHERE
 		if (whereSection)		

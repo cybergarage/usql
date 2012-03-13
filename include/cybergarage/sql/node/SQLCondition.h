@@ -8,12 +8,40 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLHAVING_H
-#define CG_USQL_SQLHAVING_H
+#ifndef CG_USQL_SQLCONDITION_H
+#define CG_USQL_SQLCONDITION_H
 
 #include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
+
+class SQLCondition : public SQLExpression {
+
+public:
+
+	SQLCondition() {
+    	setType(CONDITION);
+    }
+    
+    virtual std::string &toString(std::string &buf) = 0;
+ };
+
+class SQLWhere : public SQLCondition {
+
+public:
+
+	SQLWhere() {
+    	setType(WHERE);
+    }
+    
+    std::string &toString(std::string &buf) {
+    	std::string exprString;
+		std::ostringstream oss;
+        oss << "WHERE " << SQLExpression::toString(exprString) ;
+		buf = oss.str();
+        return buf;
+    }
+};
 
 class SQLHaving : public SQLExpression {
 

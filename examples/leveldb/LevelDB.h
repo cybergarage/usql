@@ -14,7 +14,7 @@
 #include <string>
 #include <leveldb/db.h>
 #include "SQLProxy.h"
-#include "SQLResult.h"
+#include "SQLProxyResult.h"
 
 namespace uSQL {
 
@@ -26,7 +26,7 @@ private:
     
 private:
     
-    bool select(SQLStatement *stmt, Dictionary &values, SQLResult &result);
+    bool select(SQLStatement *stmt, SQLProxyDataSet &values, SQLProxyResult &result);
     bool insert(SQLStatement *stmt, SQLError &error);
     bool update(SQLStatement *stmt, SQLError &error);
     bool remove(SQLStatement *stmt, SQLError &error);
@@ -37,7 +37,7 @@ public:
     virtual ~LevelDB();
 
 	bool open(const std::string &filename);
-    bool execSQLStatement(SQLStatement *stmt, SQLResult &result);
+    bool execSQLStatement(SQLStatement *stmt, SQLProxyResult &result);
 };
 
 }

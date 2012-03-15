@@ -8,15 +8,15 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_DICTIONARY_H
-#define CG_USQL_DICTIONARY_H
+#ifndef CG_USQL_PROXYDATASET_H
+#define CG_USQL_PROXYDATASET_H
 
 #include <map>
 #include <string>
 
 namespace uSQL {
 
-class Dictionary : public std::map<std::string, std::string> {
+class SQLProxyDataSet : public std::map<std::string, std::string> {
 
 private:
 
@@ -24,8 +24,8 @@ private:
     
 public:
 
-	Dictionary();
-    virtual ~Dictionary();
+	SQLProxyDataSet();
+    virtual ~SQLProxyDataSet();
 
 	bool parse(const std::string &aString);
     

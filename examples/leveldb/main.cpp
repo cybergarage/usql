@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
     
-    sqlParser sqlParser;
+    SQL92Parser sqlParser;
 
 	/* This holds all the state for our line editor */
 	EditLine *el;
@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
         
         SQLStatementList *stmtList = sqlParser.getStatements();
         for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
-            SQLResult sqlResult;
+            SQLProxyResult sqlResult;
             if (levelDb.execSQLStatement(*stmt, sqlResult) == true) {
                 if (sqlResult.hasMessage())
                     cout << sqlResult.getExecMessage() << endl;

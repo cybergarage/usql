@@ -10,7 +10,7 @@
 
 #include "SQLProxy.h"
 #include "MD5.h"
-#include "Dictionary.h"
+#include "SQLProxyDataSet.h"
 
 using namespace std;
 using namespace uSQL;
@@ -132,7 +132,7 @@ bool uSQL::SQLProxy::getKey(SQLStatement *stmt, std::string &key, SQLError &erro
 }
 
 
-bool uSQL::SQLProxy::getInsertDictionary(SQLStatement *stmt, Dictionary &dictionary, SQLError &error)
+bool uSQL::SQLProxy::getInsertDictionary(SQLStatement *stmt, SQLProxyDataSet &dictionary, SQLError &error)
 {
     SQLColumn *sqlColumn = stmt->getColumnNode();
     if (!sqlColumn) {
@@ -164,7 +164,7 @@ bool uSQL::SQLProxy::getInsertDictionary(SQLStatement *stmt, Dictionary &diction
     return true;
 }
 
-bool uSQL::SQLProxy::getUpdateDictionary(SQLStatement *stmt, Dictionary &dictionary, SQLError &error)
+bool uSQL::SQLProxy::getUpdateDictionary(SQLStatement *stmt, SQLProxyDataSet &dictionary, SQLError &error)
 {
     SQLSet *sqlSet = stmt->getSetNode();
     if (!sqlSet) {

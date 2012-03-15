@@ -8,16 +8,15 @@
  *
  ******************************************************************/
 
-#include "SQLResult.h"
+#include "SQLProxyResult.h"
 
 using namespace std;
 using namespace uSQL;
 
-uSQL::SQLResult::SQLResult()
+uSQL::SQLProxyResult::SQLProxyResult()
 {
 }
 
-uSQL::SQLResult::~SQLResult()
+uSQL::SQLProxyResult::~SQLProxyResult()
 {
 }
-

@@ -15,7 +15,7 @@
 
 namespace uSQL {
 
-class SQLResult : public SQLError {
+class SQLProxyResult : public SQLError {
     
 private:
     
@@ -23,8 +23,8 @@ private:
     
 public:
 
-	SQLResult();
-    virtual ~SQLResult();
+	SQLProxyResult();
+    virtual ~SQLProxyResult();
 
     void setExecMessage(const std::string &message) {
         this->execMessage = message;

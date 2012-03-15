@@ -13,7 +13,7 @@
 
 #include <string>
 #include <cybergarage/sql/SQL92Parser.h>
-#include "Dictionary.h"
+#include "SQLProxyDataSet.h"
 
 namespace uSQL {
 
@@ -35,8 +35,8 @@ public:
     virtual ~SQLProxy();
 
     bool getKey(SQLStatement *stmt, std::string &key, SQLError &error);
-    bool getInsertDictionary(SQLStatement *stmt, Dictionary &dictionary, SQLError &error);
-    bool getUpdateDictionary(SQLStatement *stmt, Dictionary &dictionary, SQLError &error);
+    bool getInsertDictionary(SQLStatement *stmt, SQLProxyDataSet &dictionary, SQLError &error);
+    bool getUpdateDictionary(SQLStatement *stmt, SQLProxyDataSet &dictionary, SQLError &error);
     
     const char *getErrorMessage() {
         return errorString.c_str();

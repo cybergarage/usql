@@ -10,7 +10,7 @@
 
 #include "LevelDB.h"
 #include "MD5.h"
-#include "Dictionary.h"
+#include "SQLProxyDataSet.h"
 
 using namespace std;
 using namespace uSQL;
@@ -32,7 +32,7 @@ bool uSQL::LevelDB::open(const std::string &filename)
     return status.ok();
 }
 
-bool uSQL::LevelDB::select(SQLStatement *stmt, Dictionary &values, SQLResult &result) 
+bool uSQL::LevelDB::select(SQLStatement *stmt, SQLProxyDataSet &values, SQLProxyResult &result) 
 {
     string hashKey;
     if (getKey(stmt, hashKey, result) == false)
@@ -59,7 +59,7 @@ bool uSQL::LevelDB::insert(SQLStatement *stmt, SQLError &error)
     if (getKey(stmt, hashKey, error) == false)
         return false;
         
-    Dictionary valuesDict;
+    SQLProxyDataSet valuesDict;
     if (getInsertDictionary(stmt, valuesDict, error) == false)
         return false;
 
@@ -87,7 +87,7 @@ bool uSQL::LevelDB::update(SQLStatement *stmt, SQLError &error)
         return false;
     }
     
-    Dictionary valuesDict;
+    SQLProxyDataSet valuesDict;
     if (valuesDict.parse(valuesString) == false) {
         error.setMessage("Stored data was corrupted");
         return false;
@@ -121,7 +121,7 @@ bool uSQL::LevelDB::remove(SQLStatement *stmt, SQLError &error)
     return true;
 }
 
-bool uSQL::LevelDB::execSQLStatement(SQLStatement *stmt, SQLResult &result) 
+bool uSQL::LevelDB::execSQLStatement(SQLStatement *stmt, SQLProxyResult &result) 
 {
     SQLCommand *sqlCmd = stmt->getCommandNode();
     

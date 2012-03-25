@@ -27,4 +27,9 @@ BOOST_AUTO_TEST_CASE(LevelDbTest)
     
     LevelDB levelDb;
     BOOST_CHECK(levelDb.open(dbFilename));
+
+//    bool execSQLStatement(SQLStatement *stmt, SQLProxyResult &result);
+ //   "INSERT INTO TESTDB (ID) VALUES (1)"
+
+    
 }

@@ -29,6 +29,7 @@
 		21A079F5150780BD00AA4F3E /* SQLProxyText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A079F4150780BD00AA4F3E /* SQLProxyText.cpp */; };
 		21A079F7150780FB00AA4F3E /* MD5Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A079F6150780FB00AA4F3E /* MD5Test.cpp */; };
 		21A079F91507816A00AA4F3E /* LevelDBSQLTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A079F81507816A00AA4F3E /* LevelDBSQLTest.cpp */; };
+		21B455F0151DD4FB00C0FE9D /* LevelDBTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B455EF151DD4FB00C0FE9D /* LevelDBTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,8 @@
 		21A079F4150780BD00AA4F3E /* SQLProxyText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLProxyText.cpp; path = ../../../common/unittest/SQLProxyText.cpp; sourceTree = "<group>"; };
 		21A079F6150780FB00AA4F3E /* MD5Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MD5Test.cpp; path = ../../../common/unittest/MD5Test.cpp; sourceTree = "<group>"; };
 		21A079F81507816A00AA4F3E /* LevelDBSQLTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelDBSQLTest.cpp; path = ../../unittest/LevelDBSQLTest.cpp; sourceTree = "<group>"; };
+		21B455EE151DD33000C0FE9D /* LevelDBTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelDBTest.h; path = ../../unittest/LevelDBTest.h; sourceTree = "<group>"; };
+		21B455EF151DD4FB00C0FE9D /* LevelDBTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelDBTest.cpp; path = ../../unittest/LevelDBTest.cpp; sourceTree = "<group>"; };
 		21CBB66F1446C13900EC94F5 /* leveldb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = leveldb; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -115,6 +118,8 @@
 			children = (
 				21A079F6150780FB00AA4F3E /* MD5Test.cpp */,
 				21A079F4150780BD00AA4F3E /* SQLProxyText.cpp */,
+				21B455EE151DD33000C0FE9D /* LevelDBTest.h */,
+				21B455EF151DD4FB00C0FE9D /* LevelDBTest.cpp */,
 				2121E63614EA3F7D00EADC06 /* LevelDBTestMain.cpp */,
 				21A079F81507816A00AA4F3E /* LevelDBSQLTest.cpp */,
 			);
@@ -286,6 +291,7 @@
 				2198DC7814DA5F51000BC543 /* MD5.cpp in Sources */,
 				2130E6E114E39EB200939743 /* SQLProxy.cpp in Sources */,
 				2130E6E514E3B5A600939743 /* SQLProxyResult.cpp in Sources */,
+				21B455F0151DD4FB00C0FE9D /* LevelDBTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

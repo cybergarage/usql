@@ -30,6 +30,7 @@ private:
     bool insert(SQLStatement *stmt, SQLError &error);
     bool update(SQLStatement *stmt, SQLError &error);
     bool remove(SQLStatement *stmt, SQLError &error);
+    bool execSQLStatement(SQLStatement *stmt, SQLProxyResult &result);
 
 public:
 
@@ -37,7 +38,7 @@ public:
     virtual ~LevelDB();
 
 	bool open(const std::string &filename);
-    bool execSQLStatement(SQLStatement *stmt, SQLProxyResult &result);
+	bool execSQLStatement(const std::string &sqlString, SQLProxyResult &result);
 };
 
 }

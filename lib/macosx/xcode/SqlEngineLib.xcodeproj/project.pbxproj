@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21092B6E1529C8FA0045E9CD /* SQLStatementList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21092B6D1529C8F90045E9CD /* SQLStatementList.cpp */; };
 		2113D290147A0DB600159DE8 /* SQLOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 2113D28F147A0DB600159DE8 /* SQLOption.h */; };
 		211879CE14E3CEB3004BEAA2 /* SQLDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 211879CD14E3CEB3004BEAA2 /* SQLDictionary.h */; };
 		211879D114E3CED0004BEAA2 /* SQLDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211879D014E3CED0004BEAA2 /* SQLDictionary.cpp */; };
@@ -57,6 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21092B6D1529C8F90045E9CD /* SQLStatementList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLStatementList.cpp; sourceTree = "<group>"; };
 		2113D28F147A0DB600159DE8 /* SQLOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOption.h; sourceTree = "<group>"; };
 		211879CD14E3CEB3004BEAA2 /* SQLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLDictionary.h; sourceTree = "<group>"; };
 		211879D014E3CED0004BEAA2 /* SQLDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLDictionary.cpp; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				213073DD14A9696400C98535 /* SQLNodeList.cpp */,
 				2171175014681E9A00088931 /* SQLParser.cpp */,
 				2171175114681E9A00088931 /* SQLStatement.cpp */,
+				21092B6D1529C8F90045E9CD /* SQLStatementList.cpp */,
 				2171175214681E9A00088931 /* UnQLParser.cpp */,
 				2171172E14681E9900088931 /* GQLParser.cpp */,
 				2198DC7C14DA6502000BC543 /* SQLError.cpp */,
@@ -408,6 +411,7 @@
 				2198DC7D14DA6502000BC543 /* SQLError.cpp in Sources */,
 				211879D114E3CED0004BEAA2 /* SQLDictionary.cpp in Sources */,
 				211879DC14E3D2E8004BEAA2 /* SQLSet.cpp in Sources */,
+				21092B6E1529C8FA0045E9CD /* SQLStatementList.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

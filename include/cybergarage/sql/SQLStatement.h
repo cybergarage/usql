@@ -22,9 +22,8 @@ class SQLStatementList : public std::vector<SQLStatement *> {
 
 public:
 
-	SQLStatementList()
-    {
-    }
+	SQLStatementList();
+    ~SQLStatementList();
 
     void addStatement(SQLStatement *stmt) {
     	push_back(stmt);
@@ -33,6 +32,8 @@ public:
     SQLStatement *getStatement(int index) {
     	return at(index);
     }
+
+    void clear();
 };
 
 class SQLStatement : public SQLNode {

@@ -156,7 +156,7 @@
 		21F69A5113BAE289004D23C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = 21F69A5413BAE289004D23C9 /* Build configuration list for PBXProject "SqlEngineTestUnit" */;
 			compatibilityVersion = "Xcode 3.2";

@@ -29,17 +29,10 @@ bool uSQL::LevelDBTest::execSQLStatement(const std::string &sqlString, SQLProxyR
         return false;
         
     SQLStatementList *stmtList = sqlParser.getStatements();
-    SQLStatement *stmt = sqlParser.getStatement(0);
     for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
         SQLProxyResult sqlResult;
-        if (levelDb.execSQLStatement(*stmt, sqlResult) == true) {
-            if (sqlResult.hasMessage())
-                cout << sqlResult.getExecMessage() << endl;
-            cout << "Done." << endl;
-        }
-        else {
-            OutputSQLError(sqlResult.getErrorMessage());
-        }
+        if (LevelDB::execSQLStatement((*stmt), sqlResult) == false)
+            return false;
     }
     
     return true;

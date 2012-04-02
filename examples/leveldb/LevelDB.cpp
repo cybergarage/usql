@@ -22,6 +22,7 @@ uSQL::LevelDB::LevelDB()
 
 uSQL::LevelDB::~LevelDB()
 {
+    close();
 }
 
 bool uSQL::LevelDB::open(const std::string &filename)
@@ -30,6 +31,13 @@ bool uSQL::LevelDB::open(const std::string &filename)
     options.create_if_missing = true;
     leveldb::Status status = leveldb::DB::Open(options, filename, &this->db);    
     return status.ok();
+}
+
+bool uSQL::LevelDB::close()
+{
+    if (this->db)
+        delete this->db;
+    return true;
 }
 
 bool uSQL::LevelDB::select(SQLStatement *stmt, SQLProxyDataSet &values, SQLProxyResult &result) 

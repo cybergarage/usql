@@ -50,6 +50,18 @@ void uSQL::SQLProxyDataSet::set(const std::string &keyName, const std::string &k
 {
     insert(std::pair<std::string, std::string>(keyName, keyValue));
 }
+
+std::vector<std::string> &uSQL::SQLProxyDataSet::getAllKeys() 
+{
+    allKeys.clear();
+    
+    for (map<string, string>::iterator set = begin(); set != end(); set++) {
+        std::string key = set->first;
+        allKeys.push_back(key);
+    }
+    
+    return this->allKeys;
+}
     
 const std::string &uSQL::SQLProxyDataSet::get(std::string &keyName) 
 {

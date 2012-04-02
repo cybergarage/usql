@@ -138,6 +138,12 @@ int main(int argc, char *argv[])
             if (levelDb.execSQLStatement(*stmt, sqlResult) == true) {
                 if (sqlResult.hasMessage())
                     cout << sqlResult.getExecMessage() << endl;
+                SQLProxyDataSet resultSet = sqlResult.getResultSet();
+                for (map<string, string>::iterator data = resultSet.begin(); data != resultSet.end(); data++) {
+                    string key = data->first;
+                    string value = data->second;
+                    cout << key << " = " << value << endl;
+                }
                 cout << "Done." << endl;
             }
             else {

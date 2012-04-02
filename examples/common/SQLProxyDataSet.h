@@ -13,6 +13,7 @@
 
 #include <map>
 #include <string>
+#include <vector>
 
 namespace uSQL {
 
@@ -21,6 +22,7 @@ class SQLProxyDataSet : public std::map<std::string, std::string> {
 private:
 
     std::string dictionaryString;
+    std::vector<std::string> allKeys;
     
 public:
 
@@ -30,6 +32,8 @@ public:
 	bool parse(const std::string &aString);
     
     void set(const std::string &keyName, const std::string &keyValue);
+    
+    std::vector<std::string> &getAllKeys();
     const std::string &get(std::string &keyName);
     
     std::string &toString(std::string &buf);

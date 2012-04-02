@@ -14,7 +14,7 @@
 #include <string>
 #include <vector>
 
-#include "LevelDB.h"
+#include "LevelDBTest.h"
 
 using namespace std;
 using namespace uSQL;
@@ -22,14 +22,12 @@ using namespace uSQL;
 BOOST_AUTO_TEST_CASE(LevelDbTest)
 {
     const char *dbFilename = "/tmp/testdb";
-
+    SQLProxyResult sqlResult;
+    
     remove(dbFilename);
     
-    LevelDB levelDb;
+    LevelDBTest levelDb;
     BOOST_CHECK(levelDb.open(dbFilename));
 
-//    bool execSQLStatement(SQLStatement *stmt, SQLProxyResult &result);
- //   "INSERT INTO TESTDB (ID) VALUES (1)"
-
-    
+    BOOST_CHECK(levelDb.execSQLStatement("INSERT INTO TESTDB (ID) VALUES (1)", sqlResult));
 }

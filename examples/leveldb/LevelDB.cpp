@@ -140,10 +140,17 @@ bool uSQL::LevelDB::execSQLStatement(SQLStatement *stmt, SQLProxyResult &result)
 
     bool execResult = false;
     
-    if (sqlCmd->isSelect()) {
+    if (sqlCmd->isInsert()) {
+        execResult = insert(stmt, result);
+    }
+    else if (sqlCmd->isSelect()) {
+        execResult = select(stmt, result.getResultSet(), result);
     }
     else if (sqlCmd->isDelete()) {
         execResult = remove(stmt, result);
+    }
+    else if (sqlCmd->isUpdate()) {
+        execResult = update(stmt, result);
     }
     else {
         result.setErrorMessage("Invalid command");

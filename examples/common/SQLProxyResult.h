@@ -12,6 +12,7 @@
 #define CG_USQL_SQLDB_H
 
 #include <cybergarage/sql/SQLError.h>
+#include "SQLProxyDataSet.h"
 
 namespace uSQL {
 
@@ -19,6 +20,7 @@ class SQLProxyResult : public SQLError {
     
 private:
     
+    SQLProxyDataSet resultSet;
     std::string execMessage;
     
 public:
@@ -34,6 +36,10 @@ public:
         return execMessage;
     }
 
+    SQLProxyDataSet &getResultSet() {
+        return resultSet;
+    }
+    
     bool hasMessage() {
         return (0 < execMessage.length());
     }

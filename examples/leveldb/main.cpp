@@ -50,18 +50,13 @@ int main(int argc, char *argv[])
     int ch;
     while ((ch = getopt(argc, argv, "hf:")) != -1) {
         switch (ch) {
-        case 'h':
-            {
-                usage();
-                exit(EXIT_SUCCESS);
-            }
-            break;
         case 'f':
             {
                 dbFilename = optarg;
             }
             break;
         case '?':
+        case 'h':
         default:
             {
                 usage();
@@ -87,8 +82,6 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
     
-    SQL92Parser sqlParser;
-
 	/* This holds all the state for our line editor */
 	EditLine *el;
 	
@@ -157,7 +150,6 @@ int main(int argc, char *argv[])
 	/* Clean up our memory */
 	history_end(myhistory);
 	el_end(el);
-	
-	
+		
 	return EXIT_SUCCESS;
 }

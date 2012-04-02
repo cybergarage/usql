@@ -30,6 +30,8 @@
 		21A079F7150780FB00AA4F3E /* MD5Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A079F6150780FB00AA4F3E /* MD5Test.cpp */; };
 		21A079F91507816A00AA4F3E /* LevelDBSQLTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A079F81507816A00AA4F3E /* LevelDBSQLTest.cpp */; };
 		21B455F0151DD4FB00C0FE9D /* LevelDBTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B455EF151DD4FB00C0FE9D /* LevelDBTest.cpp */; };
+		21C41FC31529D1F30088BCF2 /* LevelDBTest.h in Sources */ = {isa = PBXBuildFile; fileRef = 21B455EE151DD33000C0FE9D /* LevelDBTest.h */; };
+		21C41FC41529D1F30088BCF2 /* LevelDBTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B455EF151DD4FB00C0FE9D /* LevelDBTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,6 +266,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21C41FC31529D1F30088BCF2 /* LevelDBTest.h in Sources */,
+				21C41FC41529D1F30088BCF2 /* LevelDBTest.cpp in Sources */,
 				2121E64F14EA437300EADC06 /* SQLProxyResult.cpp in Sources */,
 				2121E65014EA437300EADC06 /* SQLProxyResult.h in Sources */,
 				2121E65114EA437300EADC06 /* SQLProxy.cpp in Sources */,

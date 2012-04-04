@@ -12,8 +12,17 @@
 
 uSQL::SQLError::SQLError()
 {
+    clear();
 }
 
 uSQL::SQLError::~SQLError()
 {
+}
+
+void uSQL::SQLError::clear()
+{
+    setCode(-1);
+    setLine(-1);
+    setOffset(-1);
+    setMessage("");
 }

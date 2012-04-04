@@ -31,10 +31,13 @@ public:
 
 	bool parse(const std::string &aString);
     
+    bool hasData();
+    
     void set(const std::string &keyName, const std::string &keyValue);
     
     std::vector<std::string> &getAllKeys();
-    const std::string &get(std::string &keyName);
+    const std::string &getValue(const std::string &keyName);
+    bool isValue(const std::string &keyName, const std::string &value);
     
     std::string &toString(std::string &buf);
     

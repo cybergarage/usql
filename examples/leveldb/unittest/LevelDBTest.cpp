@@ -30,10 +30,9 @@ bool uSQL::LevelDBTest::execSQLStatement(const std::string &sqlString, SQLProxyR
         
     SQLStatementList *stmtList = sqlParser.getStatements();
     for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
-        SQLProxyResult sqlResult;
-        if (LevelDB::execSQLStatement((*stmt), sqlResult) == false)
+        if (LevelDB::execSQLStatement((*stmt), result) == false)
             return false;
     }
-    
+
     return true;
 }

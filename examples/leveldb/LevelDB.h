@@ -26,7 +26,7 @@ private:
     
 private:
     
-    bool select(SQLStatement *stmt, SQLProxyDataSet &values, SQLProxyResult &result);
+    bool select(SQLStatement *stmt, SQLProxyResult &result);
     bool insert(SQLStatement *stmt, SQLError &error);
     bool update(SQLStatement *stmt, SQLError &error);
     bool remove(SQLStatement *stmt, SQLError &error);

@@ -40,7 +40,7 @@ bool uSQL::LevelDB::close()
     return true;
 }
 
-bool uSQL::LevelDB::select(SQLStatement *stmt, SQLProxyDataSet &values, SQLProxyResult &result) 
+bool uSQL::LevelDB::select(SQLStatement *stmt, SQLProxyResult &result) 
 {
     string hashKey;
     if (getKey(stmt, hashKey, result) == false)
@@ -50,10 +50,11 @@ bool uSQL::LevelDB::select(SQLStatement *stmt, SQLProxyDataSet &values, SQLProxy
     Status status = this->db->Get(leveldb::ReadOptions(), hashKey, &valuesString);
     if(!status.ok()) {
         result.setErrorMessage(status.ToString());
-        return false;
+        return true;
     }
     
-    if (values.parse(valuesString) == false) {
+    SQLProxyDataSet *values = result.getResultSet();
+    if (values->parse(valuesString) == false) {
         result.setErrorMessage("Stored data was corrupted");
         return false;
     }
@@ -131,6 +132,8 @@ bool uSQL::LevelDB::remove(SQLStatement *stmt, SQLError &error)
 
 bool uSQL::LevelDB::execSQLStatement(SQLStatement *stmt, SQLProxyResult &result) 
 {
+    result.clear();
+    
     SQLCommand *sqlCmd = stmt->getCommandNode();
     
     if (!sqlCmd) {
@@ -144,7 +147,7 @@ bool uSQL::LevelDB::execSQLStatement(SQLStatement *stmt, SQLProxyResult &result)
         execResult = insert(stmt, result);
     }
     else if (sqlCmd->isSelect()) {
-        execResult = select(stmt, result.getResultSet(), result);
+        execResult = select(stmt, result);
     }
     else if (sqlCmd->isDelete()) {
         execResult = remove(stmt, result);

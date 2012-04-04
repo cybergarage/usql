@@ -20,3 +20,9 @@ uSQL::SQLProxyResult::SQLProxyResult()
 uSQL::SQLProxyResult::~SQLProxyResult()
 {
 }
+
+void uSQL::SQLProxyResult::clear()
+{
+    resultSet.clear();
+    execMessage = "";
+}

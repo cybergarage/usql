@@ -41,6 +41,8 @@ public:
     const char *getErrorMessage() {
         return errorString.c_str();
     }
+    
+    void trimSQLString(std::string &value);
 };
 
 }

@@ -46,6 +46,11 @@ bool uSQL::SQLProxyDataSet::parse(const std::string &aString)
     return true;
 }
 
+bool uSQL::SQLProxyDataSet::hasData()
+{
+    return (0 < size());
+}
+
 void uSQL::SQLProxyDataSet::set(const std::string &keyName, const std::string &keyValue) 
 {
     insert(std::pair<std::string, std::string>(keyName, keyValue));
@@ -56,20 +61,28 @@ std::vector<std::string> &uSQL::SQLProxyDataSet::getAllKeys()
     allKeys.clear();
     
     for (map<string, string>::iterator set = begin(); set != end(); set++) {
-        std::string key = set->first;
-        allKeys.push_back(key);
+        std::string keyName = set->first;
+        allKeys.push_back(keyName);
     }
     
     return this->allKeys;
 }
     
-const std::string &uSQL::SQLProxyDataSet::get(std::string &keyName) 
+const std::string &uSQL::SQLProxyDataSet::getValue(const std::string &keyName) 
 {
     static std::string nullValue;
-    SQLProxyDataSet::iterator dict = find(keyName);
-    if (dict != end())
-        return nullValue;
-    return (*dict).second;
+    for (SQLProxyDataSet::iterator dict = begin(); dict != end(); dict++) {
+        std::string key = (*dict).first;
+        if (key.compare(keyName) == 0)
+            return (*dict).second;
+    }
+    return nullValue;
+}
+
+bool uSQL::SQLProxyDataSet::isValue(const std::string &keyName, const std::string &value)
+{
+    std::string keyValue = getValue(keyName);
+    return (keyValue.compare(value) == 0);
 }
     
 std::string &uSQL::SQLProxyDataSet::toString(std::string &buf)

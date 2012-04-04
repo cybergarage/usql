@@ -27,7 +27,12 @@ class SQLParser {
 private:
 
     SQLStatementList statements;
+    SQLError error;
     
+private:
+
+    void clear();
+
 public:
 
 	SQLParser();
@@ -64,11 +69,10 @@ public:
         return &statements;
     }
 
-    
-private:
-
-    void clear();
-
+    SQLError *getError()
+    {
+        return &error;
+    }
 };
 
 }

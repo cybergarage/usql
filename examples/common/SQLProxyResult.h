@@ -36,8 +36,8 @@ public:
         return execMessage;
     }
 
-    SQLProxyDataSet &getResultSet() {
-        return resultSet;
+    SQLProxyDataSet *getResultSet() {
+        return &resultSet;
     }
     
     bool hasMessage() {
@@ -51,7 +51,8 @@ public:
     const std::string &getErrorMessage() {
         return getMessage();
     }
-
+    
+    void clear();
 };
 
 }

@@ -24,15 +24,27 @@ options
 @parser::includes
 {
 	#include <cybergarage/sql/SQLParser.h>
-    
 	#define CG_ANTLR3_STRING_2_UTF8(str) ((const char *)str->chars)
 	#define CG_ANTLR3_STRING_2_INT(str) (str->chars ? atoi((const char *)str->chars) : 0)
 	inline void CG_ANTLR3_SQLNODE_ADDNODES(uSQL::SQLNode *parentNode, uSQL::SQLNodeList *sqlNodes) {
 		for (uSQL::SQLNodeList::iterator node = sqlNodes->begin(); node != sqlNodes->end(); node++)
 			parentNode->addChildNode(*node);
 	}
+	
+	void uSQLDisplayRecognitionError (pANTLR3_BASE_RECOGNIZER rec, pANTLR3_UINT8 * tokenNames);
 }
-  
+
+@parser::context
+{
+	void *uSqlParser;
+}
+
+@parser::apifuncs
+ {
+ 	RECOGNIZER->displayRecognitionError = uSQLDisplayRecognitionError;
+ 	PARSER->super = (void *)ctx;
+ }
+ 
 /*------------------------------------------------------------------
  *
  * PARSER RULES

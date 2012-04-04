@@ -8,6 +8,8 @@
  *
  ******************************************************************/
 
+#include <boost/algorithm/string.hpp> 
+
 #include "SQLProxy.h"
 #include "MD5.h"
 #include "SQLProxyDataSet.h"
@@ -156,9 +158,10 @@ bool uSQL::SQLProxy::getInsertDictionary(SQLStatement *stmt, SQLProxyDataSet &di
     
     size_t columsCount = sqlColums->size();
     for (size_t n=0; n<columsCount; n++) {
-        SQLNode *colum = sqlColums->getNode(n); 
-        SQLNode *value = sqlValues->getNode(n);
-        dictionary.set(colum->toString(), value->toString());
+        std::string colum = sqlColums->getNode(n)->toString(); 
+        std::string value = sqlValues->getNode(n)->toString();
+        trimSQLString(value);
+        dictionary.set(colum, value);
     }
     
     return true;
@@ -178,8 +181,14 @@ bool uSQL::SQLProxy::getUpdateDictionary(SQLStatement *stmt, SQLProxyDataSet &di
         string keyName = dict->getName();
         string keyValue;
         dict->getValue()->toString(keyValue);
+        trimSQLString(keyValue);
         dictionary.set(keyName, keyValue);
     }
     
     return true;
+}
+
+void uSQL::SQLProxy::trimSQLString(std::string &value)
+{
+    boost::trim_if(value, std::bind2nd(std::equal_to<char>(), '\"'));
 }

@@ -13,7 +13,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 
-#include <cybergarage/sql/SQLParser.h>
+#include <usql/SQLParser.h>
 
 #include "SqlEngineTestCase.h"
 

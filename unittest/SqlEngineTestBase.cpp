@@ -15,7 +15,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <cybergarage/sql/SQLParser.h>
+#include <usql/SQLParser.h>
 
 using namespace std;
 using namespace uSQL;

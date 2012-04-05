@@ -16,7 +16,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 
-#include <cybergarage/sql/SQL92Parser.h>
+#include <usql/SQL92Parser.h>
 
 #include "SqlEngineTestCase.h"
 

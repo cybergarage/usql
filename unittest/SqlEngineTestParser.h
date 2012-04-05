@@ -13,7 +13,7 @@
 #ifndef CG_USQL_TESTCASEPARSER_H
 #define CG_USQL_TESTCASEPARSER_H
 
-#include <cybergarage/sql/SQLParser.h>
+#include <usql/SQLParser.h>
 
 class SqlEngineTestParser  : public uSQL::SQLParser {
 

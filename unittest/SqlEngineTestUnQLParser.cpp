@@ -16,7 +16,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 
-#include <cybergarage/sql/UnQLParser.h>
+#include <usql/UnQLParser.h>
 
 #include "SqlEngineTestCase.h"
 

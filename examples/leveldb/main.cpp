@@ -13,7 +13,7 @@
 #include <histedit.h>
 #include <leveldb/db.h>
 
-#include <cybergarage/sql/sqlParser.h>
+#include <usql/sqlParser.h>
 #include "LevelDB.h"
 
 using namespace std;

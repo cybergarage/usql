@@ -16,7 +16,7 @@
 #include <string>
 #include <vector>
 
-#include <cybergarage/sql/SQLParser.h>
+#include <usql/SQLParser.h>
 
 class SqlEngineTestCase {
 

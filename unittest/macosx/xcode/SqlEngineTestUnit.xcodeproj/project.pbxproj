@@ -203,7 +203,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd $SRCROOT/../../../src/cybergarage/sql/parser/antlr/\nmake";
+			shellScript = "cd $SRCROOT/../../../src/usql/parser/antlr/\nmake";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -11,7 +11,7 @@
 #ifndef CG_USQL_SQLRESULT_H
 #define CG_USQL_SQLDB_H
 
-#include <cybergarage/sql/SQLError.h>
+#include <usql/SQLError.h>
 #include "SQLProxyDataSet.h"
 
 namespace uSQL {

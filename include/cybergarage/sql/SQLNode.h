@@ -161,9 +161,13 @@ public:
         children.clear();
     }
     
-    bool isSQLExpressionNode();
+    bool isExpressionNode();
     bool isOperatorNode();
     bool isStatementNode();
+    bool isDictionaryNode();
+    bool isColumnsNode();
+    bool isCollectionsNode();
+    bool isValuesNode();
     
     bool isUnQLNode();
 

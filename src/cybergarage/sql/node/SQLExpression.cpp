@@ -37,6 +37,12 @@ void uSQL::SQLExpression::setLiteralType(int type)
 	}
 }
 
+void uSQL::SQLExpression::set(uSQL::SQLExpression *exprNode)
+{
+    std::string nodeValue = exprNode->getValue();
+    setValue(nodeValue);
+}
+
 std::string &uSQL::SQLExpression::toExpressionString(std::string &buf) 
 {
     std::ostringstream oss;
@@ -49,10 +55,10 @@ std::string &uSQL::SQLExpression::toExpressionString(std::string &buf)
 	bool hasDictionaryValues = false;
     for (int n=0; n<expressionsCount; n++) {
         SQLNode *sqlNode = expressions->getNode(n);
-	    if (sqlNode->isSQLExpressionNode() == false)
+	    if (sqlNode->isExpressionNode() == false)
         	continue;
         uSQL::SQLExpression *exprNode = (uSQL::SQLExpression *)sqlNode;
-    	if (exprNode->isDictionary() == true) {
+    	if (exprNode->isDictionaryNode() == true) {
         	hasDictionaryValues = true;
             break;
         }
@@ -61,7 +67,7 @@ std::string &uSQL::SQLExpression::toExpressionString(std::string &buf)
     bool isAsterisk = false;
     if (1 == expressionsCount) {
         SQLNode *sqlNode = expressions->getNode(0);
-	    if (sqlNode->isSQLExpressionNode() == true) {
+	    if (sqlNode->isExpressionNode() == true) {
             uSQL::SQLExpression *exprNode = (uSQL::SQLExpression *)sqlNode;
             isAsterisk = exprNode->isAsterisk();
         }

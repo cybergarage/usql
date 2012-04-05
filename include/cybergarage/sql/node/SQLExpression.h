@@ -17,7 +17,7 @@ namespace uSQL {
 
 class SQLExpression : public SQLNode {
 
-	std::string name;    
+	//std::string name;    
 	int literalType;
     
 public:
@@ -62,6 +62,7 @@ public:
         return (this->literalType == type) ? true : false;
     }
     
+    /*
 	void setName(const std::string &value) {
     	this->name = value;
     }
@@ -74,7 +75,10 @@ public:
     {
     	return (this->name.length()) ? true : false;
     }
+    */
    
+	void set(SQLExpression *exprNode);
+    
     bool isFunction()
     {
     	return isLiteralType(FUNCTION);

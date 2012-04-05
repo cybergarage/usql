@@ -11,7 +11,6 @@
 #ifndef CG_USQL_SQLDICTIONARY_H
 #define CG_USQL_SQLDICTIONARY_H
 
-#include <cybergarage/sql/SQLNode.h>
 #include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
@@ -32,6 +31,10 @@ public:
         
 	void setName(const std::string &name) {
     	this->name = name;
+    }
+    
+	bool hasName() {
+        return (0 < this->name.length());
     }
     
     const std::string &getName() {

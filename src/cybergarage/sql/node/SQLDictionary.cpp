@@ -18,13 +18,15 @@ std::string &uSQL::SQLDictionary::toString(std::string &buf)
 {
     std::ostringstream oss;
     
-    oss << name << " = ";
-    
-    SQLExpression *valueExpr = getValue();
+    oss << name;
+
+    SQLNode *parentNode = getParentNode();
+    oss << ((isUnQLNode() && (parentNode->isColumnsNode() || parentNode->isValuesNode())) ? ":" : " = ");
+
     std::string valueString;
-    if (valueExpr)
-        oss << valueExpr->toString(valueString);
-        
+    oss << SQLExpression::toString(valueString);
+    
     buf = oss.str();
+    
     return buf;
 }

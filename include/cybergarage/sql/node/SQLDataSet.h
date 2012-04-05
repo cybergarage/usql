@@ -8,23 +8,23 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLCOLUMNS_H
-#define CG_USQL_SQLCOLUMNS_H
+#ifndef CG_USQL_SQLDATASET_H
+#define CG_USQL_SQLDATASET_H
 
-#include <string>
-#include <cybergarage/sql/node/SQLDataSet.h>
+#include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
 
-class SQLColumns : public SQLDataSet {
+class SQLDataSet : public SQLExpression {
 
 public:
 
-	SQLColumns() {
-    	setType(COLUMNS);
+	SQLDataSet() {
     }
 
-    std::string &toString(std::string &buf);
+    virtual ~SQLDataSet() {
+    }
+
 };
 
 }

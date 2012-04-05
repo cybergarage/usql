@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		21092B6E1529C8FA0045E9CD /* SQLStatementList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21092B6D1529C8F90045E9CD /* SQLStatementList.cpp */; };
+		210DC581152D946800BCA623 /* SQLDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 210DC580152D946800BCA623 /* SQLDataSet.h */; };
 		2113D290147A0DB600159DE8 /* SQLOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 2113D28F147A0DB600159DE8 /* SQLOption.h */; };
 		211879CE14E3CEB3004BEAA2 /* SQLDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 211879CD14E3CEB3004BEAA2 /* SQLDictionary.h */; };
 		211879D114E3CED0004BEAA2 /* SQLDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211879D014E3CED0004BEAA2 /* SQLDictionary.cpp */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		21092B6D1529C8F90045E9CD /* SQLStatementList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLStatementList.cpp; sourceTree = "<group>"; };
+		210DC580152D946800BCA623 /* SQLDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLDataSet.h; sourceTree = "<group>"; };
 		2113D28F147A0DB600159DE8 /* SQLOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOption.h; sourceTree = "<group>"; };
 		211879CD14E3CEB3004BEAA2 /* SQLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLDictionary.h; sourceTree = "<group>"; };
 		211879D014E3CED0004BEAA2 /* SQLDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLDictionary.cpp; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 		2171170214681E7D00088931 /* node */ = {
 			isa = PBXGroup;
 			children = (
+				210DC580152D946800BCA623 /* SQLDataSet.h */,
 				211879CD14E3CEB3004BEAA2 /* SQLDictionary.h */,
 				217DF79D1496F18200F348CE /* SQLSet.h */,
 				21D9EBDC1488D2EA008D60E9 /* SQLTransaction.h */,
@@ -323,6 +326,7 @@
 				217DF79E1496F18200F348CE /* SQLSet.h in Headers */,
 				2198DC7A14DA6416000BC543 /* SQLError.h in Headers */,
 				211879CE14E3CEB3004BEAA2 /* SQLDictionary.h in Headers */,
+				210DC581152D946800BCA623 /* SQLDataSet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -526,15 +526,21 @@ expression_literal_value [uSQL::SQLExpression *sqlExpr]
 
 expression_dictionary [uSQL::SQLNodeList &sqlNodeList]
 	: name ':' sqlExpr=expression_literal {
-		sqlExpr->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
-		sqlNodeList.push_back(sqlExpr);
+		uSQL::SQLDictionary *dictNode = new uSQL::SQLDictionary();
+		dictNode->set(sqlExpr);
+		dictNode->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
+		sqlNodeList.push_back(dictNode);
+		delete sqlExpr;
 	  }
 	;
 
 dictionary_literal [uSQL::SQLExpression *parentSqlExpr]
 	: name ':' sqlExpr=expression_literal {
-		sqlExpr->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
-		parentSqlExpr->addExpression(sqlExpr);
+		uSQL::SQLDictionary *dictNode = new uSQL::SQLDictionary();
+		dictNode->set(sqlExpr);
+		dictNode->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
+		parentSqlExpr->addExpression(dictNode);
+		delete sqlExpr;
 	  }
 	;
 

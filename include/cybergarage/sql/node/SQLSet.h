@@ -11,12 +11,12 @@
 #ifndef CG_USQL_SQLSET_H
 #define CG_USQL_SQLSET_H
 
-#include <cybergarage/sql/SQLNode.h>
+#include <cybergarage/sql/node/SQLDataSet.h>
 #include <cybergarage/sql/node/SQLDictionary.h>
 
 namespace uSQL {
 
-class SQLSet : public SQLNode {
+class SQLSet : public SQLDataSet {
 
 public:
 

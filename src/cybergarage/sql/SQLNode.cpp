@@ -62,7 +62,7 @@ bool uSQL::SQLNode::isUnQLNode()
     return isStatementType(uSQL::SQLStatement::UNQL);
 }
 
-bool uSQL::SQLNode::isSQLExpressionNode() 
+bool uSQL::SQLNode::isExpressionNode() 
 {
 	return (dynamic_cast<uSQL::SQLExpression *>(this)) ? true : false;
 }
@@ -75,6 +75,26 @@ bool uSQL::SQLNode::isOperatorNode()
 bool uSQL::SQLNode::isStatementNode() 
 {
 	return (dynamic_cast<uSQL::SQLStatement *>(this)) ? true : false;
+}
+
+bool uSQL::SQLNode::isDictionaryNode() 
+{
+	return (dynamic_cast<uSQL::SQLDictionary *>(this)) ? true : false;
+}
+
+bool uSQL::SQLNode::isColumnsNode() 
+{
+	return (dynamic_cast<uSQL::SQLColumns *>(this)) ? true : false;
+}
+
+bool uSQL::SQLNode::isCollectionsNode() 
+{
+	return (dynamic_cast<uSQL::SQLCollections *>(this)) ? true : false;
+}
+
+bool uSQL::SQLNode::isValuesNode() 
+{
+	return (dynamic_cast<uSQL::SQLValues *>(this)) ? true : false;
 }
 
 uSQL::SQLNode *uSQL::SQLNode::getChildNode(int index) 
@@ -98,15 +118,6 @@ uSQL::SQLNode *uSQL::SQLNode::findChildNodeByType(int type)
 static std::string CgSQLNode2String(uSQL::SQLNode *sqlNode, std::string &buf)
 {
     std::ostringstream oss;
-    
-    if (sqlNode->isSQLExpressionNode()) {
-    	uSQL::SQLExpression *exprNode = (uSQL::SQLExpression *)sqlNode;
-		const std::string name = exprNode->getName();
-		if (0 < name.length()) {
-		    oss << name;
-		    oss << ":";
-	    }
-    }
     
 	const std::string value = sqlNode->getValue();
 	if (0 < value.length()) {

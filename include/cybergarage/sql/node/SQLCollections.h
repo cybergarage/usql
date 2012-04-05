@@ -11,13 +11,13 @@
 #ifndef CG_USQL_SQLCOLLECTIONS_H
 #define CG_USQL_SQLCOLLECTIONS_H
 
-#include <cybergarage/sql/SQLNode.h>
+#include <cybergarage/sql/node/SQLDataSet.h>
 
 namespace uSQL {
 
 class SQLCollection;
 
-class SQLCollections : public SQLNode {
+class SQLCollections : public SQLDataSet {
 
 public:
 

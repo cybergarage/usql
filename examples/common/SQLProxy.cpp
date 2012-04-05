@@ -169,18 +169,18 @@ bool uSQL::SQLProxy::getInsertDictionary(SQLStatement *stmt, SQLProxyDataSet &di
 
 bool uSQL::SQLProxy::getUpdateDictionary(SQLStatement *stmt, SQLProxyDataSet &dictionary, SQLError &error)
 {
-    SQLSet *sqlSet = stmt->getSetNode();
+    SQLSets *sqlSet = stmt->getSetsNode();
     if (!sqlSet) {
         error.setMessage("Set section was not found");
         return false;
     }
 
-    int dictCount = sqlSet->getDictionaryCount();
+    int dictCount = sqlSet->getSetCount();
     for (int n=0; n<dictCount; n++) {
-        SQLDictionary *dict = sqlSet->getDictionary(n);
-        string keyName = dict->getName();
+        SQLSet *setNode = sqlSet->getSet(n);
+        string keyName = setNode->getName();
         string keyValue;
-        dict->getValue()->toString(keyValue);
+        setNode->getValue()->toString(keyValue);
         trimSQLString(keyValue);
         dictionary.set(keyName, keyValue);
     }

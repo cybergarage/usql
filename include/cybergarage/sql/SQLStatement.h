@@ -92,8 +92,8 @@ public:
         return (SQLCollection *)collectionsNode->getCollectionNode(0);
     }
     
-    SQLSet *getSetNode() {
-        return (SQLSet *)findChildNodeByType(SQLNode::SET);
+    SQLSets *getSetsNode() {
+        return (SQLSets *)findChildNodeByType(SQLNode::SETS);
     }
     
     SQLColumns *getColumnsNode() {

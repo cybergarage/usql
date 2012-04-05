@@ -8,13 +8,13 @@
 *
 ******************************************************************/
 
-#include <cybergarage/sql/node/SQLDictionary.h>
+#include <cybergarage/sql/node/SQLSet.h>
 
-uSQL::SQLDictionary::~SQLDictionary()
+uSQL::SQLSet::~SQLSet()
 {
 }
 
-std::string &uSQL::SQLDictionary::toString(std::string &buf) 
+std::string &uSQL::SQLSet::toString(std::string &buf) 
 {
     std::ostringstream oss;
     

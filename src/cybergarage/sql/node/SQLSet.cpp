@@ -8,9 +8,9 @@
 *
 ******************************************************************/
 
-#include <cybergarage/sql/node/SQLSet.h>
+#include <cybergarage/sql/node/SQLSets.h>
 
-std::string &uSQL::SQLSet::toString(std::string &buf) 
+std::string &uSQL::SQLSets::toString(std::string &buf) 
 {
     std::ostringstream oss;
     std::string childNodeStr;

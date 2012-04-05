@@ -51,7 +51,6 @@ public:
     static const int CONDITION;
     static const int COLUMNS;
     static const int COMMAND;
-    static const int DICTIONARY;
     static const int EXPRESSION;
     static const int FUNCTION;
     static const int GROUPBY;
@@ -64,6 +63,7 @@ public:
     static const int ORDER;
     static const int ORDERBY;
     static const int SET;
+    static const int SETS;
     static const int STATEMENT;
     static const int TRANSACTION;
     static const int WHERE;

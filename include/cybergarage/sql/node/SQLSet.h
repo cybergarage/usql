@@ -11,29 +11,43 @@
 #ifndef CG_USQL_SQLSET_H
 #define CG_USQL_SQLSET_H
 
-#include <cybergarage/sql/node/SQLDataSet.h>
-#include <cybergarage/sql/node/SQLDictionary.h>
+#include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
 
-class SQLSet : public SQLDataSet {
+class SQLSet : public SQLExpression {
 
+private:
+    
+    std::string name;
+    
 public:
 
 	SQLSet() {
     	setType(SET);
     }
-    
-    int getDictionaryCount() {
-        return getChildCount();
+
+	~SQLSet();
+        
+	void setName(const std::string &name) {
+    	this->name = name;
     }
     
-    SQLNodeList *getDictionaries() {
-        return getChildNodes();
+	bool hasName() {
+        return (0 < this->name.length());
     }
     
-    SQLDictionary *getDictionary(int index) {
-        return (SQLDictionary *)getChildNode(index);
+    const std::string &getName() {
+    	return this->name;
+    }
+
+	void setValue(SQLExpression *value) {
+        clearExpressions();
+        addExpression(value);
+    }
+    
+    SQLExpression *getValue() {
+        return getExpression(0);
     }
     
     std::string &toString(std::string &buf);

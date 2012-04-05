@@ -378,7 +378,7 @@ insert_values_section returns [uSQL::SQLValues *sqlValues]
 
 update_stmt [uSQL::SQLStatement *sqlStmt]
 	@init {
-		uSQL::SQLSet *sqlSet = new uSQL::SQLSet();
+		uSQL::SQLSets *sqlSet = new uSQL::SQLSets();
 		isAsync = false;
 		whereSection = NULL;
 	}
@@ -404,14 +404,14 @@ update_stmt [uSQL::SQLStatement *sqlStmt]
 	}
 	;
 
-property_section [uSQL::SQLSet *sqlSet]
+property_section [uSQL::SQLSets *sqlSet]
 	@init {
 		
 	}
 	: property SINGLE_EQ exprRight=expression_literal
 
 	{
-		uSQL::SQLDictionary *sqlDict = new uSQL::SQLDictionary();
+		uSQL::SQLSet *sqlDict = new uSQL::SQLSet();
 		sqlDict->setName(CG_ANTLR3_STRING_2_UTF8($property.text));
 		sqlDict->setValue(exprRight);
 		sqlSet->addChildNode(sqlDict);
@@ -526,7 +526,7 @@ expression_literal_value [uSQL::SQLExpression *sqlExpr]
 
 expression_dictionary [uSQL::SQLNodeList &sqlNodeList]
 	: name ':' sqlExpr=expression_literal {
-		uSQL::SQLDictionary *dictNode = new uSQL::SQLDictionary();
+		uSQL::SQLSet *dictNode = new uSQL::SQLSet();
 		dictNode->set(sqlExpr);
 		dictNode->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
 		sqlNodeList.push_back(dictNode);
@@ -536,7 +536,7 @@ expression_dictionary [uSQL::SQLNodeList &sqlNodeList]
 
 dictionary_literal [uSQL::SQLExpression *parentSqlExpr]
 	: name ':' sqlExpr=expression_literal {
-		uSQL::SQLDictionary *dictNode = new uSQL::SQLDictionary();
+		uSQL::SQLSet *dictNode = new uSQL::SQLSet();
 		dictNode->set(sqlExpr);
 		dictNode->setName(CG_ANTLR3_STRING_2_UTF8($name.text));
 		parentSqlExpr->addExpression(dictNode);

@@ -14,7 +14,7 @@
 #include <cybergarage/sql/node/SQLCollection.h>
 #include <cybergarage/sql/node/SQLCollections.h>
 #include <cybergarage/sql/node/SQLCommand.h>
-#include <cybergarage/sql/node/SQLDictionary.h>
+#include <cybergarage/sql/node/SQLSet.h>
 #include <cybergarage/sql/node/SQLExpression.h>
 #include <cybergarage/sql/node/SQLCollections.h>
 #include <cybergarage/sql/node/SQLGroupBy.h>
@@ -26,6 +26,7 @@
 #include <cybergarage/sql/node/SQLOrder.h>
 #include <cybergarage/sql/node/SQLOrderBy.h>
 #include <cybergarage/sql/node/SQLSet.h>
+#include <cybergarage/sql/node/SQLSets.h>
 #include <cybergarage/sql/node/SQLTransaction.h>
 #include <cybergarage/sql/node/SQLColumns.h>
 #include <cybergarage/sql/node/SQLFunction.h>

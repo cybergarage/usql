@@ -27,7 +27,6 @@ const int uSQL::SQLNode::OFFSET = 11;
 const int uSQL::SQLNode::COLLECTION = 12;
 const int uSQL::SQLNode::EXPRESSION = 13;
 const int uSQL::SQLNode::VALUES = 15;
-const int uSQL::SQLNode::DICTIONARY = 16;
 const int uSQL::SQLNode::OPTION = 17;
 const int uSQL::SQLNode::OPERATOR = 18;
 const int uSQL::SQLNode::GROUPBY = 19;
@@ -37,6 +36,7 @@ const int uSQL::SQLNode::TRANSACTION = 22;
 const int uSQL::SQLNode::SET = 25;
 const int uSQL::SQLNode::STATEMENT = 26;
 const int uSQL::SQLNode::COLLECTIONS = 27;
+const int uSQL::SQLNode::SETS = 28;
 
 uSQL::SQLNode::SQLNode()
 {
@@ -79,7 +79,7 @@ bool uSQL::SQLNode::isStatementNode()
 
 bool uSQL::SQLNode::isDictionaryNode() 
 {
-	return (dynamic_cast<uSQL::SQLDictionary *>(this)) ? true : false;
+	return (dynamic_cast<uSQL::SQLSet *>(this)) ? true : false;
 }
 
 bool uSQL::SQLNode::isColumnsNode() 

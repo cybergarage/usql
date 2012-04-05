@@ -16,7 +16,7 @@
 #include <cybergarage/sql/node/SQLOperator.h>
 
 const int uSQL::SQLNode::COMMAND = 1;
-const int uSQL::SQLNode::COLUMN = 4;
+const int uSQL::SQLNode::COLUMNS = 4;
 const int uSQL::SQLNode::FUNCTION = 5;
 const int uSQL::SQLNode::CONDITION = 6;
 const int uSQL::SQLNode::WHERE = 7;
@@ -26,7 +26,6 @@ const int uSQL::SQLNode::LIMIT = 10;
 const int uSQL::SQLNode::OFFSET = 11;
 const int uSQL::SQLNode::COLLECTION = 12;
 const int uSQL::SQLNode::EXPRESSION = 13;
-const int uSQL::SQLNode::VALUE = 14;
 const int uSQL::SQLNode::VALUES = 15;
 const int uSQL::SQLNode::DICTIONARY = 16;
 const int uSQL::SQLNode::OPTION = 17;

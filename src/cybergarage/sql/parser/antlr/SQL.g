@@ -142,15 +142,15 @@ select_core [uSQL::SQLStatement *sqlStmt]
 	  }
 	;
 
-result_column_section returns [uSQL::SQLColumn *sqlColumn]
+result_column_section returns [uSQL::SQLColumns *sqlColumns]
 	@init {
-		sqlColumn = new uSQL::SQLColumn();
+		sqlColumns = new uSQL::SQLColumns();
 	}
 	: ASTERISK {
 		uSQL::SQLAsterisk *sqlAsterisk = new uSQL::SQLAsterisk();
-		sqlColumn->addExpression(sqlAsterisk);
+		sqlColumns->addExpression(sqlAsterisk);
 	  }
-	| column_section[sqlColumn] (',' column_section[sqlColumn])* {
+	| column_section[sqlColumns] (',' column_section[sqlColumns])* {
 	  }
 	;
 
@@ -331,7 +331,7 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 		isAsync = false;
 		columnNode = NULL;
 	}
-	: (isAsync=sync_operator)? INSERT INTO collectionNode=collection_section (columnNode=insert_column_section)? sqlValue=insert_value_section
+	: (isAsync=sync_operator)? INSERT INTO collectionNode=collection_section (columnNode=insert_columns_section)? sqlValue=insert_values_section
 	{
 		// INSERT
 		uSQL::SQLInsert *sqlCmd = new uSQL::SQLInsert();
@@ -352,21 +352,21 @@ insert_stmt [uSQL::SQLStatement *sqlStmt]
 	}
 	;
 
-insert_column_section returns [uSQL::SQLColumn *sqlColumn]
+insert_columns_section returns [uSQL::SQLColumns *sqlColumns]
 	@init {
-		sqlColumn = new uSQL::SQLColumn();
+		sqlColumns = new uSQL::SQLColumns();
 	}
-	: '(' column_section[sqlColumn] (',' column_section[sqlColumn])* ')' {
+	: '(' column_section[sqlColumns] (',' column_section[sqlColumns])* ')' {
 	  }
 	;
 
-insert_value_section returns [uSQL::SQLValue *sqlValue]
+insert_values_section returns [uSQL::SQLValues *sqlValues]
 	@init {
-		sqlValue = new uSQL::SQLValue();
+		sqlValues = new uSQL::SQLValues();
 	}
-	: VALUE expression[sqlValue] {
+	: VALUE expression[sqlValues] {
 	  }
-	| VALUES expression[sqlValue] {
+	| VALUES expression[sqlValues] {
 	  }
 	;
 
@@ -723,8 +723,8 @@ collection_name
 	| string_literal
 	;
 
-column_section [uSQL::SQLColumn *sqlColumn]
-	: ((expression[sqlColumn]) (AS name)?) {
+column_section [uSQL::SQLColumns *sqlColumns]
+	: ((expression[sqlColumns]) (AS name)?) {
 	  }
 	;
 

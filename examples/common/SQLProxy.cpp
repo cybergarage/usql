@@ -49,7 +49,7 @@ bool uSQL::SQLProxy::getInsertStatementKey(SQLStatement *stmt, std::string &key,
         return false;
     }
 
-    SQLColumn *sqlColumns = stmt->getColumnNode();
+    SQLColumns *sqlColumns = stmt->getColumnsNode();
     if (!sqlColumns) {
         error.setMessage("COLUMN section was not found");
         return false;
@@ -60,7 +60,7 @@ bool uSQL::SQLProxy::getInsertStatementKey(SQLStatement *stmt, std::string &key,
         return false;
     }
     
-    SQLValue *sqlValues = stmt->getValueNode();
+    SQLValues *sqlValues = stmt->getValuesNode();
     if (!sqlValues) {
         error.setMessage("VALUE section was not found");
         return false;
@@ -136,13 +136,13 @@ bool uSQL::SQLProxy::getKey(SQLStatement *stmt, std::string &key, SQLError &erro
 
 bool uSQL::SQLProxy::getInsertDictionary(SQLStatement *stmt, SQLProxyDataSet &dictionary, SQLError &error)
 {
-    SQLColumn *sqlColumn = stmt->getColumnNode();
+    SQLColumns *sqlColumn = stmt->getColumnsNode();
     if (!sqlColumn) {
         error.setMessage("Column section was not found");
         return false;
     }
 
-    SQLValue *sqlValue = stmt->getValueNode();
+    SQLValues *sqlValue = stmt->getValuesNode();
     if (!sqlValue) {
         error.setMessage("VALUES section was not found");
         return false;

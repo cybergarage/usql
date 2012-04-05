@@ -8,20 +8,20 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLCOLUMN_H
-#define CG_USQL_SQLCOLUMN_H
+#ifndef CG_USQL_SQLCOLUMNS_H
+#define CG_USQL_SQLCOLUMNS_H
 
 #include <string>
 #include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
 
-class SQLColumn : public SQLExpression {
+class SQLColumns : public SQLExpression {
 
 public:
 
-	SQLColumn() {
-    	setType(COLUMN);
+	SQLColumns() {
+    	setType(COLUMNS);
     }
 
     std::string &toString(std::string &buf);

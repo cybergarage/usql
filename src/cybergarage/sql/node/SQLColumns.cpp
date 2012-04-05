@@ -9,9 +9,9 @@
 ******************************************************************/
 
 #include <cybergarage/sql/SQLStatement.h>
-#include <cybergarage/sql/node/SQLValue.h>
+#include <cybergarage/sql/node/SQLColumns.h>
 
-std::string &uSQL::SQLColumn::toString(std::string &buf) 
+std::string &uSQL::SQLColumns::toString(std::string &buf) 
 {
     return toExpressionString(buf);
 }

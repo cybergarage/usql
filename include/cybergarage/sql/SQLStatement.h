@@ -96,12 +96,12 @@ public:
         return (SQLSet *)findChildNodeByType(SQLNode::SET);
     }
     
-    SQLColumn *getColumnNode() {
-        return (SQLColumn *)findChildNodeByType(SQLNode::COLUMN);
+    SQLColumns *getColumnsNode() {
+        return (SQLColumns *)findChildNodeByType(SQLNode::COLUMNS);
     }
 
-    SQLValue *getValueNode() {
-        return (SQLValue *)findChildNodeByType(SQLNode::VALUE);
+    SQLValues *getValuesNode() {
+        return (SQLValues *)findChildNodeByType(SQLNode::VALUES);
     }
     
     SQLWhere *getWhereNode() {

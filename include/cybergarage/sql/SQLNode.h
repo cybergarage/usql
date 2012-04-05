@@ -49,7 +49,6 @@ public:
     static const int COLLECTION;
     static const int COLLECTIONS;
     static const int CONDITION;
-    static const int COLUMN;
     static const int COLUMNS;
     static const int COMMAND;
     static const int DICTIONARY;
@@ -68,7 +67,6 @@ public:
     static const int STATEMENT;
     static const int TRANSACTION;
     static const int WHERE;
-    static const int VALUE;
     static const int VALUES;
     
 private:

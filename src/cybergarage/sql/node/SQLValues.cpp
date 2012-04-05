@@ -9,9 +9,9 @@
 ******************************************************************/
 
 #include <cybergarage/sql/SQLStatement.h>
-#include <cybergarage/sql/node/SQLValue.h>
+#include <cybergarage/sql/node/SQLValues.h>
 
-std::string &uSQL::SQLValue::toString(std::string &buf) 
+std::string &uSQL::SQLValues::toString(std::string &buf) 
 {
     bool isUnQL = false;
     if ((getRootNode()->isStatementNode())) {

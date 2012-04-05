@@ -8,19 +8,19 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLVALUE_H
-#define CG_USQL_SQLVALUE_H
+#ifndef CG_USQL_SQLVALUES_H
+#define CG_USQL_SQLVALUES_H
 
 #include <cybergarage/sql/node/SQLExpression.h>
 
 namespace uSQL {
 
-class SQLValue : public SQLExpression {
+class SQLValues : public SQLExpression {
 
 public:
 
-	SQLValue() {
-    	setType(VALUE);
+	SQLValues() {
+    	setType(VALUES);
     }
     
     std::string &toString(std::string &buf);

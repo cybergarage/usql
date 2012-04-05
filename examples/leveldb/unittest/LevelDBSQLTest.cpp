@@ -112,5 +112,17 @@ BOOST_AUTO_TEST_CASE(LevelDbTest)
 
     BOOST_CHECK(levelDb.execSQLStatement("SELECT * FROM TESTDB WHERE ID = 1", sqlResult));
     BOOST_CHECK(!sqlResultSet->hasData());    
+
+    // 1
+    
+    BOOST_CHECK(levelDb.execSQLStatement("INSERT INTO TESTDB (ID, NAME, ADDR) VALUES (1, \"TARO\", \"TOKYO\")", sqlResult));
+    BOOST_CHECK(!sqlResultSet->hasData());
+
+    BOOST_CHECK(levelDb.execSQLStatement("SELECT * FROM TESTDB WHERE ID = 1", sqlResult));
+    BOOST_CHECK(sqlResultSet->hasData());
+    BOOST_CHECK(sqlResultSet->size() == 3);
+    BOOST_CHECK(sqlResultSet->isValue("ID", "1"));
+    BOOST_CHECK(sqlResultSet->isValue("NAME", "TARO"));
+    BOOST_CHECK(sqlResultSet->isValue("ADDR", "TOKYO"));
     
 }

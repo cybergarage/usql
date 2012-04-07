@@ -5,4 +5,4 @@ INCLUDES = -I$(top_srcdir)/include -I../
 sqlparse_SOURCES = \
 	../sqlparse.cpp
 
-sqlparse_LDADD = ../../lib/unix/libusql++.a -lantlr3c -ledit
+sqlparse_LDADD = ../../../lib/unix/libusql++.a -lantlr3c -ledit

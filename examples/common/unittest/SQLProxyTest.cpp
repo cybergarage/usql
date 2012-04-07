@@ -14,7 +14,8 @@
 #include <string>
 #include <vector>
 
-#include "LevelDB.h"
+#include <usql/SQL92Parser.h>
+#include "SQLProxy.h"
 
 using namespace std;
 using namespace uSQL;

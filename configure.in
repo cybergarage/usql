@@ -7,7 +7,7 @@
 AC_INIT(include/usql/SQLParser.h)
 AC_CONFIG_AUX_DIR(config)
 
-AM_INIT_AUTOMAKE(usql++, 0.8)
+AM_INIT_AUTOMAKE(usqlcc, 0.8)
 AM_CONFIG_HEADER(config.h)
 
 ##############################
@@ -72,6 +72,7 @@ lib/Makefile
 lib/unix/Makefile
 unittest/Makefile
 unittest/unix/Makefile
+examples/Makefile
 examples/leveldb/Makefile
 examples/leveldb/unix/Makefile
 examples/sqlparse/Makefile

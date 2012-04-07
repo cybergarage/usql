@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2128AB211530A21300F0CC59 /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2106CEAD15309F4A002246F7 /* SqlEngineLib.dylib */; };
-		21E7FE4D14C15496000DF04E /* sqlproxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E7FE4C14C15496000DF04E /* sqlproxy.cpp */; };
+		218172901530AAA6000EBDE2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2181728F1530AAA6000EBDE2 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +42,8 @@
 
 /* Begin PBXFileReference section */
 		2106CEA815309F49002246F7 /* SqlEngineLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SqlEngineLib.xcodeproj; path = ../../../../lib/macosx/xcode/SqlEngineLib.xcodeproj; sourceTree = "<group>"; };
+		2181728F1530AAA6000EBDE2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../../main.cpp; sourceTree = "<group>"; };
 		21A1FB6514C1538900674BA6 /* sqlproxy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sqlproxy; sourceTree = BUILT_PRODUCTS_DIR; };
-		21E7FE4C14C15496000DF04E /* sqlproxy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sqlproxy.cpp; path = ../../../sqlproxy.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 		21A1FB6814C1538900674BA6 /* sqlproxy */ = {
 			isa = PBXGroup;
 			children = (
-				21E7FE4C14C15496000DF04E /* sqlproxy.cpp */,
+				2181728F1530AAA6000EBDE2 /* main.cpp */,
 			);
 			path = sqlproxy;
 			sourceTree = "<group>";
@@ -166,7 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21E7FE4D14C15496000DF04E /* sqlproxy.cpp in Sources */,
+				218172901530AAA6000EBDE2 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

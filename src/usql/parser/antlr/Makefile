@@ -1,9 +1,9 @@
-all: SQLParser.cpp
+all: SQLParserFunc.cpp
 
-SQLParser.cpp : SQL.g
+SQLParserFunc.cpp : SQL.g
 	java -classpath ./lib/antlr-3.4-complete.jar org.antlr.Tool $<
-	mv SQLLexer.c SQLLexer.cpp
-	mv SQLParser.c SQLParser.cpp
+	mv SQLLexer.c SQLLexerFunc.cpp
+	mv SQLParser.c SQLParserFunc.cpp
 	rm -rf output
 	rm SQL.tokens
 

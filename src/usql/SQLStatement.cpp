@@ -27,8 +27,6 @@ std::string &uSQL::SQLStatement::toString(std::string &buf)
 	return SQLNode::toString(buf);
 }
 
-#if defined(DEBUG)
-
 static void CgSQLStatementPrintTree(std::ostringstream &oss, uSQL::SQLNode *node, int indent)
 {
     for (int n=0; n<indent; n++)
@@ -55,5 +53,3 @@ std::string &uSQL::SQLStatement::toTreeString(std::string &buf)
     
     return buf;
 }
-
-#endif

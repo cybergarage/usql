@@ -23,7 +23,7 @@ options
 
 @parser::includes
 {
-	#include <cybergarage/sql/SQLParser.h>
+	#include <usql/SQLParser.h>
 	#define CG_ANTLR3_STRING_2_UTF8(str) ((const char *)str->chars)
 	#define CG_ANTLR3_STRING_2_INT(str) (str->chars ? atoi((const char *)str->chars) : 0)
 	inline void CG_ANTLR3_SQLNODE_ADDNODES(uSQL::SQLNode *parentNode, uSQL::SQLNodeList *sqlNodes) {

@@ -1,0 +1,29 @@
+noinst_PROGRAMS = leveldb leveldbunittest
+
+INCLUDES = -I$(top_srcdir)/include -I../ -I../../common
+
+leveldb_core_sources =
+	../../common/MD5.cpp \
+	../../common/SQLProxy.cpp \
+	../../common/SQLProxyDataSet.cpp \
+	../../common/SQLProxyResult.cpp \
+	../LevelDB.cpp
+
+leveldb_SOURCES = \
+	$(leveldb_core_sources)
+	../main.cpp
+
+leveldb_LDADD = ../../../lib/unix/libusql++.a -lantlr3c -lcrypto -ledit -lleveldb
+
+leveldbunittest_SOURCES = \
+	$(leveldb_core_sources) \
+	../../common/unittest/MD5Test.cpp \
+	../../common/unittest/SQLProxyTest.cpp \
+	../unittest/LevelDBTest.cpp \
+	../unittest/LevelDBTestMain.cpp \
+	../unittest/LevelDBSQLTestMain.cpp
+
+leveldbunittest_LDADD = $(leveldb_LDADD) -lboost_unit_test_framework
+
+
+

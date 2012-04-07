@@ -72,4 +72,10 @@ lib/Makefile
 lib/unix/Makefile
 unittest/Makefile
 unittest/unix/Makefile
+examples/leveldb/Makefile
+examples/leveldb/unix/Makefile
+examples/sqlparse/Makefile
+examples/sqlparse/unix/Makefile
+examples/sqlproxy/Makefile
+examples/sqlproxy/unix/Makefile
 ])

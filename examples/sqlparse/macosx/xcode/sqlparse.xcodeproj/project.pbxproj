@@ -7,8 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2128AB121530A00E00F0CC59 /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2106CEA715309F12002246F7 /* SqlEngineLib.dylib */; };
 		212FC49813A082A200855DE6 /* sqlparse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212FC49713A082A200855DE6 /* sqlparse.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2106CEA615309F12002246F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2106CEA215309F12002246F7 /* SqlEngineLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 212FB5DA14681D420067F07B;
+			remoteInfo = SqlEngineLib;
+		};
+		2128AB131530A05100F0CC59 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2106CEA215309F12002246F7 /* SqlEngineLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 212FB5D914681D420067F07B;
+			remoteInfo = SqlEngineLib;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		212FC48013A0815600855DE6 /* CopyFiles */ = {
@@ -23,6 +41,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2106CEA215309F12002246F7 /* SqlEngineLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SqlEngineLib.xcodeproj; path = ../../../../lib/macosx/xcode/SqlEngineLib.xcodeproj; sourceTree = "<group>"; };
 		212FC48213A0815600855DE6 /* sqlparse */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sqlparse; sourceTree = BUILT_PRODUCTS_DIR; };
 		212FC49713A082A200855DE6 /* sqlparse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; name = sqlparse.cpp; path = ../../../sqlparse.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 /* End PBXFileReference section */
@@ -32,16 +51,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2128AB121530A00E00F0CC59 /* SqlEngineLib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2106CEA115309EB7002246F7 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				2106CEA215309F12002246F7 /* SqlEngineLib.xcodeproj */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		2106CEA315309F12002246F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2106CEA715309F12002246F7 /* SqlEngineLib.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		212FC47713A0815500855DE6 = {
 			isa = PBXGroup;
 			children = (
 				212FC48513A0815600855DE6 /* sqlparse */,
+				2106CEA115309EB7002246F7 /* Framework */,
 				212FC48313A0815600855DE6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,6 +113,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2128AB141530A05100F0CC59 /* PBXTargetDependency */,
 			);
 			name = sqlparse;
 			productName = sqlparse;
@@ -87,6 +125,9 @@
 /* Begin PBXProject section */
 		212FC47913A0815500855DE6 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
 			buildConfigurationList = 212FC47C13A0815500855DE6 /* Build configuration list for PBXProject "sqlparse" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -97,12 +138,28 @@
 			mainGroup = 212FC47713A0815500855DE6;
 			productRefGroup = 212FC48313A0815600855DE6 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2106CEA315309F12002246F7 /* Products */;
+					ProjectRef = 2106CEA215309F12002246F7 /* SqlEngineLib.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				212FC48113A0815600855DE6 /* sqlparse */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2106CEA715309F12002246F7 /* SqlEngineLib.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = SqlEngineLib.dylib;
+			remoteRef = 2106CEA615309F12002246F7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		212FC47E13A0815600855DE6 /* Sources */ = {
@@ -114,6 +171,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2128AB141530A05100F0CC59 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SqlEngineLib;
+			targetProxy = 2128AB131530A05100F0CC59 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		212FC48913A0815600855DE6 /* Debug */ = {
@@ -161,6 +226,11 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					../../../../include,
+				);
+				OTHER_LDFLAGS = "-ledit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -172,6 +242,11 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					../../../../include,
+				);
+				OTHER_LDFLAGS = "-ledit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

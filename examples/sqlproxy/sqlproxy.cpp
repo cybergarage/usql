@@ -1,16 +1,18 @@
-//
-//  main.cpp
-//  leveldb
-//
-//  Created by  on 11/10/13.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
+/******************************************************************
+ *
+ * uSQL for C++
+ *
+ * Copyright (C) Satoshi Konno 2012
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #include <stdlib.h>
 #include <unistd.h>
 #include <histedit.h>
 
-#include <cybergarage/sql/UnQLParser.h>
+#include <usql/SQL92Parser.h>
 
 using namespace std;
 using namespace uSQL;
@@ -18,6 +20,9 @@ using namespace uSQL;
 const char * prompt(EditLine *e);
 void testfunction();
 void usage();
+void ExecSQLStatement(SQLStatement *stmt);
+const char *GetLevelDbKey(SQLNode *dataSource, SQLWhere *sqlWhere, std::string &key);
+void OutputSQLError(const std::string &errMsg);
 
 const char * prompt(EditLine *e) 
 {
@@ -31,27 +36,25 @@ void usage()
     cout << "-h\tproduce this help message:" << endl;
 }
 
-int main(int argc, char *argv[]) {
+void OutputSQLError(const std::string &errMsg) 
+{
+    cout << "SQL Error : "<< errMsg << " !!" << endl;
+}
 
+int main(int argc, char *argv[]) 
+{
+    string dbFilename;
+    
     int ch;
     while ((ch = getopt(argc, argv, "hf:")) != -1) {
         switch (ch) {
-        case 'h':
+        case 'f':
             {
-                usage();
-                exit(EXIT_SUCCESS);
+                dbFilename = optarg;
             }
             break;
-        case 'f':
-            /*
-            if ((fd = open(optarg, O_RDONLY, 0)) < 0) {
-                (void)fprintf(stderr,
-                                 "myname: %s: %s\n", optarg, strerror(errno));
-                             exit(1);
-                     }
-            */
-            break;
         case '?':
+        case 'h':
         default:
             {
                 usage();
@@ -59,16 +62,17 @@ int main(int argc, char *argv[]) {
             }
         }
      }
-    argc -= optind;
-    argv += optind;
+     
+    //argc -= optind;
+    //argv += optind;
     
     if (argc <= 0) {
-        cout << "bison: missing operand after `bison'" << endl;
-        cout << "Try `bison --help' for more information." << endl;
-        exit(EXIT_FAILURE);
+        cout << "leveldb: missing operand after `leveldb'" << endl;
+        cout << "Try `leveldb --help' for more information." << endl;
+        //exit(EXIT_FAILURE);
     }
     
-    UnQLParser unqlParser;
+    dbFilename = "/tmp/testdb";
 
 	/* This holds all the state for our line editor */
 	EditLine *el;
@@ -113,17 +117,21 @@ int main(int argc, char *argv[]) {
             continue;
             
         history(myhistory, &ev, H_ENTER, line);
-        printf("You typed \"%s\"\n", line);
 
-        UnQLParser unqlParser;
-        if (unqlParser.parse(line) == false) {
+        SQL92Parser sqlParser;
+        if (sqlParser.parse(line) == false) {
+            printf("Parser Error :  %s\n", line);
+            continue;
+        }
+        
+        SQLStatementList *stmtList = sqlParser.getStatements();
+        for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
         }
 	}
 
 	/* Clean up our memory */
 	history_end(myhistory);
 	el_end(el);
-	
-	
+		
 	return EXIT_SUCCESS;
 }

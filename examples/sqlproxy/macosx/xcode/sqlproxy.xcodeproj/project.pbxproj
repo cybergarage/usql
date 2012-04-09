@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21194CAD1530AC9C008C0C5A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21194CAC1530AC9C008C0C5A /* main.cpp */; };
 		2128AB211530A21300F0CC59 /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2106CEAD15309F4A002246F7 /* SqlEngineLib.dylib */; };
-		218172901530AAA6000EBDE2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2181728F1530AAA6000EBDE2 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,7 @@
 
 /* Begin PBXFileReference section */
 		2106CEA815309F49002246F7 /* SqlEngineLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SqlEngineLib.xcodeproj; path = ../../../../lib/macosx/xcode/SqlEngineLib.xcodeproj; sourceTree = "<group>"; };
-		2181728F1530AAA6000EBDE2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../../main.cpp; sourceTree = "<group>"; };
+		21194CAC1530AC9C008C0C5A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../main.cpp; sourceTree = "<group>"; };
 		21A1FB6514C1538900674BA6 /* sqlproxy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sqlproxy; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -66,10 +66,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		21194CAB1530AC8B008C0C5A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				21194CAC1530AC9C008C0C5A /* main.cpp */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
 		21A1FB5A14C1538900674BA6 = {
 			isa = PBXGroup;
 			children = (
-				21A1FB6814C1538900674BA6 /* sqlproxy */,
+				21194CAB1530AC8B008C0C5A /* Sources */,
 				21E7FE4214C15442000DF04E /* Frameworks */,
 				21A1FB6614C1538900674BA6 /* Products */,
 			);
@@ -81,14 +89,6 @@
 				21A1FB6514C1538900674BA6 /* sqlproxy */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		21A1FB6814C1538900674BA6 /* sqlproxy */ = {
-			isa = PBXGroup;
-			children = (
-				2181728F1530AAA6000EBDE2 /* main.cpp */,
-			);
-			path = sqlproxy;
 			sourceTree = "<group>";
 		};
 		21E7FE4214C15442000DF04E /* Frameworks */ = {
@@ -166,7 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				218172901530AAA6000EBDE2 /* main.cpp in Sources */,
+				21194CAD1530AC9C008C0C5A /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

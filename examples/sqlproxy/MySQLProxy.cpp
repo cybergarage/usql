@@ -42,6 +42,11 @@ bool uSQL::MySQLProxy::execCommand(SQLStatement *stmt, SQLProxyResult &result)
         MemcachedProxy::remove(stmt, result);
     }
     
+    string stmtString;
+    stmt->toString(stmtString);
+    if (mysql_query(this->mySQL, stmtString.c_str()) != 0)
+        return false;
+        
     return true;
 }
 

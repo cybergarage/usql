@@ -23,7 +23,7 @@ uSQL::MemcachedProxy::~MemcachedProxy()
     close();
 }
 
-bool uSQL::MemcachedProxy::connect(std::string &host)
+bool uSQL::MemcachedProxy::connect(const std::string &host)
 {
     string config;
     
@@ -84,10 +84,10 @@ bool uSQL::MemcachedProxy::get(SQLStatement *stmt, SQLProxyResult &result)
     return true;
 }
 
-bool uSQL::MemcachedProxy::remove(SQLStatement *stmt, SQLError &error) 
+bool uSQL::MemcachedProxy::remove(SQLStatement *stmt, SQLProxyResult &result) 
 {
     string hashKey;
-    if (getKey(stmt, hashKey, error) == false)
+    if (getKey(stmt, hashKey, result) == false)
         return false;
 
     memcached_return memcdRet = memcached_delete(this->memcd, hashKey.c_str(), hashKey.length(), getExpiration());        

@@ -46,7 +46,7 @@ public:
     
 public:
 
-    bool connect(std::string &host, std::string &user, std::string &passwd, std::string &db) {
+    bool connect(const std::string &host, const std::string &user, const std::string &passwd, const std::string &db) {
         return  true;
     }
     

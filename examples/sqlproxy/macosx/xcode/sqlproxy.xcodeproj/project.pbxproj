@@ -88,10 +88,10 @@
 			isa = PBXGroup;
 			children = (
 				217F6D8E1532C34800F8437A /* common */,
-				217F6DA01532C36300F8437A /* MySQLProxy.cpp */,
 				217F6DA11532C36300F8437A /* MySQLProxy.h */,
-				21C2631A1532D076004AD24A /* MemcachedProxy.cpp */,
+				217F6DA01532C36300F8437A /* MySQLProxy.cpp */,
 				21C2631B1532D076004AD24A /* MemcachedProxy.h */,
+				21C2631A1532D076004AD24A /* MemcachedProxy.cpp */,
 				21194CAC1530AC9C008C0C5A /* main.cpp */,
 			);
 			name = Sources;

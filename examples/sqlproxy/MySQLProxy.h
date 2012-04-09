@@ -24,17 +24,15 @@ class MySQLProxy : public MemcachedProxy {
 
 private:
 
+    bool execCommand(SQLStatement *stmt, SQLProxyResult &result);
     bool select(SQLStatement *stmt, SQLProxyResult &result);
-    bool insert(SQLStatement *stmt, SQLError &error);
-    bool update(SQLStatement *stmt, SQLError &error);
-    bool remove(SQLStatement *stmt, SQLError &error);
 
 public:
 
 	MySQLProxy();
     virtual ~MySQLProxy();
     
-    bool connect(std::string &host, std::string &user, std::string &passwd, std::string &db);
+    bool connect(const std::string &host, const std::string &user, const std::string &passwd, const std::string &db);
     bool close();
     
     bool query(SQLStatement *stmt, SQLProxyResult &result);

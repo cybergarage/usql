@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     string password;
     
     int ch;
-    while ((ch = getopt(argc, argv, "dsup:")) != -1) {
+    while ((ch = getopt(argc, argv, "d:s:u:p:")) != -1) {
         switch (ch) {
         case 'd':
             {
@@ -128,9 +128,8 @@ int main(int argc, char *argv[])
         
         SQLStatementList *stmtList = sqlParser.getStatements();
         for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
-        /*
             SQLProxyResult sqlResult;
-            if (levelDb.execSQLStatement(*stmt, sqlResult) == true) {
+            if (sqlProxy->query(*stmt, sqlResult) == true) {
                 if (sqlResult.hasMessage())
                     cout << sqlResult.getExecMessage() << endl;
                 SQLProxyDataSet *resultSet = sqlResult.getResultSet();
@@ -146,7 +145,6 @@ int main(int argc, char *argv[])
                 OutputSQLError(sqlResult.getErrorMessage());
                 continue;
             }
-        */
         }
 	}
     

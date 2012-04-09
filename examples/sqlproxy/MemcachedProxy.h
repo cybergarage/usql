@@ -36,14 +36,14 @@ public:
         return this->mmcdExpiration;
     }
     
-    bool connect(std::string &host);
+    bool connect(const std::string &host);
     bool close();
     
 public:
 
     bool set(SQLStatement *stmt, SQLProxyDataSet *valuesDict, SQLError &error);
     bool get(SQLStatement *stmt, SQLProxyResult &result);
-    bool remove(SQLStatement *stmt, SQLError &error);
+    bool remove(SQLStatement *stmt, SQLProxyResult &result);
 };
 
 }

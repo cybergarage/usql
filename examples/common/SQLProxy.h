@@ -48,7 +48,7 @@ public:
     
 public: 
 
-    virtual bool connect(std::string &host, std::string &user, std::string &passwd, std::string &db) = 0;
+    virtual bool connect(const std::string &host, const std::string &user, const std::string &passwd, const std::string &db) = 0;
     virtual bool query(SQLStatement *stmt, SQLProxyResult &result) = 0;
 };
 

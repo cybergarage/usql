@@ -341,7 +341,7 @@
 		212FB5D114681D420067F07B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = 212FB5D414681D420067F07B /* Build configuration list for PBXProject "SqlEngineLib" */;
 			compatibilityVersion = "Xcode 3.2";

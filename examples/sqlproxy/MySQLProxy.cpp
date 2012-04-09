@@ -13,6 +13,8 @@
 using namespace std;
 using namespace uSQL;
 
+static const char *USQL_MYSQL_PROXY_MEMCACHED_HOST = "192.168.100.111";
+
 uSQL::MySQLProxy::MySQLProxy()
 {
     this->mySQL = mysql_init(NULL);
@@ -23,10 +25,23 @@ uSQL::MySQLProxy::~MySQLProxy()
     mysql_close(this->mySQL);
 }
 
-bool uSQL::MySQLProxy::connect(std::string &host, std::string &user, std::string &passwd, std::string &database)
+bool uSQL::MySQLProxy::connect(const std::string &host, const std::string &user, const std::string &passwd, const std::string &database)
 {
+    if (!MemcachedProxy::connect(USQL_MYSQL_PROXY_MEMCACHED_HOST))
+        return false;
     if (!mysql_real_connect(this->mySQL, host.c_str(), user.c_str(), passwd.c_str(), database.c_str(), 0, NULL, 0))
         return false;
+    return true;
+}
+
+bool uSQL::MySQLProxy::execCommand(SQLStatement *stmt, SQLProxyResult &result) 
+{
+    string hashKey;
+    if (getKey(stmt, hashKey, result)) {
+        SQLError sqlError;
+        MemcachedProxy::remove(stmt, result);
+    }
+    
     return true;
 }
 
@@ -35,99 +50,40 @@ bool uSQL::MySQLProxy::select(SQLStatement *stmt, SQLProxyResult &result)
     string hashKey;
     if (getKey(stmt, hashKey, result) == false)
         return false;
-/*
-    std::string valuesString;
-    Status status = this->db->Get(leveldb::ReadOptions(), hashKey, &valuesString);
-    if(!status.ok()) {
-        result.setErrorMessage(status.ToString());
+
+    if (MemcachedProxy::get(stmt, result))
         return true;
+    
+    string stmtString;
+    stmt->toString(stmtString);
+    if (mysql_query(this->mySQL, stmtString.c_str()) != 0)
+        return false;
+
+    bool selectlResult = false;
+
+    MYSQL_RES *mySQLRes;
+    if ((mySQLRes = mysql_store_result(this->mySQL))) {
+        int numRows = mysql_num_rows(mySQLRes);
+        if (0 < numRows) {
+            MYSQL_FIELD *mySQLField;
+            std::vector<std::string> keys;
+            while ((mySQLField = mysql_fetch_field(mySQLRes)))
+                keys.push_back(mySQLField->name);
+            MYSQL_ROW mySQLRow = mysql_fetch_row(mySQLRes);
+            if (mySQLRow) {
+                SQLProxyDataSet *resultSet = result.getResultSet();
+                int numFields = mysql_num_fields(mySQLRes);
+                for (int n=0 ; n<numFields; n++) {
+                    string key = keys.at(n);
+                    resultSet->set(key, mySQLRow[n] ? mySQLRow[n] : "");
+                }
+                selectlResult = set(stmt, resultSet, result);
+            }
+        }
+        mysql_free_result(mySQLRes) ;
     }
     
-    SQLProxyDataSet *values = result.getResultSet();
-    if (values->parse(valuesString) == false) {
-        result.setErrorMessage("Stored data was corrupted");
-        return false;
-    }
-*/
-    
-    return true;
-}
-
-bool uSQL::MySQLProxy::insert(SQLStatement *stmt, SQLError &error) 
-{
-    string hashKey;
-    if (getKey(stmt, hashKey, error) == false)
-        return false;
-        
-    SQLProxyDataSet valuesDict;
-    if (getInsertDictionary(stmt, valuesDict, error) == false)
-        return false;
-
-/*
-    Status status = this->db->Put(leveldb::WriteOptions(), hashKey, valuesDict.toString());
-    if(!status.ok()) {
-        error.setMessage(status.ToString());
-        return false;
-    }
-*/
-    
-    return true;
-}
-
-bool uSQL::MySQLProxy::update(SQLStatement *stmt, SQLError &error) 
-{
-    //Status status;
-    
-    string hashKey;
-    if (getKey(stmt, hashKey, error) == false)
-        return false;
-
-/*
-    std::string valuesString;
-    status = this->db->Get(leveldb::ReadOptions(), hashKey, &valuesString);
-    if(!status.ok()) {
-        error.setMessage(status.ToString());
-        return false;
-    }
-*/
-
-/*    
-    SQLProxyDataSet valuesDict;
-    if (valuesDict.parse(valuesString) == false) {
-        error.setMessage("Stored data was corrupted");
-        return false;
-    }
-    if (getUpdateDictionary(stmt, valuesDict, error) == false)
-        return false;
-*/    
-
-/*
-    status = this->db->Put(leveldb::WriteOptions(), hashKey, valuesDict.toString());
-    if(!status.ok()) {
-        error.setMessage(status.ToString());
-        return false;
-    }
-*/
-    
-    return true;
-}
-
-
-bool uSQL::MySQLProxy::remove(SQLStatement *stmt, SQLError &error)
-{
-    string hashKey;
-    if (getKey(stmt, hashKey, error) == false)
-        return false;
-
-/*
-    Status status = this->db->Delete(leveldb::WriteOptions(), hashKey);
-    if(!status.ok()) {
-        error.setMessage(status.ToString());
-        return false;
-    }
-*/
-    
-    return true;
+    return selectlResult;
 }
 
 bool uSQL::MySQLProxy::query(SQLStatement *stmt, SQLProxyResult &result) 
@@ -143,20 +99,11 @@ bool uSQL::MySQLProxy::query(SQLStatement *stmt, SQLProxyResult &result)
 
     bool execResult = false;
     
-    if (sqlCmd->isInsert()) {
-        execResult = insert(stmt, result);
-    }
-    else if (sqlCmd->isSelect()) {
+    if (sqlCmd->isSelect()) {
         execResult = select(stmt, result);
     }
-    else if (sqlCmd->isDelete()) {
-        execResult = remove(stmt, result);
-    }
-    else if (sqlCmd->isUpdate()) {
-        execResult = update(stmt, result);
-    }
     else {
-        result.setErrorMessage("Invalid command");
+        execResult = execCommand(stmt, result);
     }
     
     return execResult;

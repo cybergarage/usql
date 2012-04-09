@@ -50,6 +50,12 @@ AM_CONDITIONAL(HAVE_LIBTOOL, test $with_libtool = yes)
 AC_CHECK_LIB([antlr3c],[antlr3StringStreamNew],,[AC_MSG_ERROR(uSQL for C++ needs ANTLR3C >= $LIBANTLR3C)])
 
 ##############################
+# Checks for pthread
+##############################
+
+AC_CHECK_LIB([pthread],[main],,[AC_MSG_ERROR(uSQL for C++  needs POSIX thread library)]) 
+
+##############################
 # Checks for other headers.
 ##############################
 
@@ -59,7 +65,7 @@ AC_CHECK_HEADERS([stdint.h])
 # Checks for other functions.
 ##############################
 
-# AC_CHECK_FUNCS([fopen])
+AC_CHECK_FUNCS([fopen])
 
 ##############################
 # Makefiles

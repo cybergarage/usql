@@ -12,6 +12,9 @@
 #include <iostream>
 #include <strstream>
 
+#include <stdio.h>
+#include <string.h>
+
 #include <openssl/md5.h>
 
 #include "MD5.h"

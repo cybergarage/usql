@@ -8,6 +8,9 @@
  *
  ******************************************************************/
 
+#include <string.h>
+#include <libmemcached/memcached.h>
+
 #include "MemcachedProxy.h"
 
 using namespace std;

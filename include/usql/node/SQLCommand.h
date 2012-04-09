@@ -23,7 +23,7 @@ public:
     static const int SELECT;
     static const int UPDATE;
     static const int INSERT;
-    static const int DELETE;
+    static const int DEL;
     static const int CREATE;
     static const int DROP;
     static const int CREATE_INDEX;
@@ -80,7 +80,7 @@ public:
     }
 
     bool isDelete() {
-        return isCommandType(DELETE);
+        return isCommandType(DEL);
     }
     
     bool isCreate() {
@@ -133,7 +133,7 @@ class SQLDelete : public SQLCommand {
 public:
 
 	SQLDelete() {
-    	setCommandType(DELETE);
+    	setCommandType(DEL);
     }
 };
 

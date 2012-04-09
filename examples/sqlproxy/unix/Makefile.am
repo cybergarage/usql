@@ -14,7 +14,7 @@ sqlproxy_SOURCES = \
 	$(sqlproxy_core_sources) \
 	../main.cpp
 
-sqlproxy_LDADD = ../../../lib/unix/libusql++.a -lantlr3c -lcrypto -ledit -lmysqlclient -lmemcached
+sqlproxy_LDADD = ../../../lib/unix/libusql++.a -lcrypto -ledit -lmysqlclient -lmemcached
 
 sqlproxyunittest_SOURCES = \
 	$(sqlproxy_core_sources) \

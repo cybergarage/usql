@@ -13,7 +13,7 @@ leveldb_SOURCES = \
 	$(leveldb_core_sources) \
 	../main.cpp
 
-leveldb_LDADD = ../../../lib/unix/libusql++.a -lantlr3c -lcrypto -ledit -lleveldb
+leveldb_LDADD = ../../../lib/unix/libusql++.a -lcrypto -ledit -lleveldb
 
 leveldbunittest_SOURCES = \
 	$(leveldb_core_sources) \

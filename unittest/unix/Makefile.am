@@ -12,4 +12,4 @@ usqlcctestunit_SOURCES = \
 	../SqlEngineTestSQL92Parser.cpp \
 	../SqlEngineTestUnQLParser.cpp
 
-usqlcctestunit_LDADD = ../../lib/unix/libusql++.a -lantlr3c -lboost_unit_test_framework
+usqlcctestunit_LDADD = ../../lib/unix/libusql++.a -lboost_unit_test_framework

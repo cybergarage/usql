@@ -133,12 +133,14 @@ int main(int argc, char *argv[])
                 if (sqlResult.hasMessage())
                     cout << sqlResult.getExecMessage() << endl;
                 SQLProxyDataSet *resultSet = sqlResult.getResultSet();
-                for (map<string, string>::iterator data = resultSet->begin(); data != resultSet->end(); data++) {
-                    string key = data->first;
-                    string value = data->second;
-                    cout << "[" << key << "]" << " = " << value << endl;
+                if (0 < resultSet->size()) {
+                    for (map<string, string>::iterator data = resultSet->begin(); data != resultSet->end(); data++) {
+                        string key = data->first;
+                        string value = data->second;
+                        cout << "[" << key << "]" << " = " << value << endl;
+                    }
                 }
-                cout << "Done." << endl;
+                cout << "Done" << (sqlResult.isCashed() ? "(Cashed)" : "") << "." << endl;
                 cout << endl;
             }
             else {

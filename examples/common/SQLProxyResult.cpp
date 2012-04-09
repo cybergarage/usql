@@ -15,6 +15,7 @@ using namespace uSQL;
 
 uSQL::SQLProxyResult::SQLProxyResult()
 {
+    clear();
 }
 
 uSQL::SQLProxyResult::~SQLProxyResult()
@@ -25,4 +26,5 @@ void uSQL::SQLProxyResult::clear()
 {
     resultSet.clear();
     execMessage = "";
+    setCashed(false);
 }

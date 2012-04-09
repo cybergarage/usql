@@ -51,8 +51,10 @@ bool uSQL::MySQLProxy::select(SQLStatement *stmt, SQLProxyResult &result)
     if (getKey(stmt, hashKey, result) == false)
         return false;
 
-    if (MemcachedProxy::get(stmt, result))
+    if (MemcachedProxy::get(stmt, result)) {
+        result.setCashed(true);
         return true;
+    }
     
     string stmtString;
     stmt->toString(stmtString);

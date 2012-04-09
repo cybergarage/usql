@@ -22,6 +22,7 @@ private:
     
     SQLProxyDataSet resultSet;
     std::string execMessage;
+    bool cached;
     
 public:
 
@@ -36,6 +37,14 @@ public:
         return execMessage;
     }
 
+    void setCashed(bool flag) {
+        this->cached = flag;
+    }
+    
+    bool isCashed() {
+        return this->cached;
+    }
+    
     SQLProxyDataSet *getResultSet() {
         return &resultSet;
     }

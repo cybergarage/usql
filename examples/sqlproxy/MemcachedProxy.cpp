@@ -15,35 +15,20 @@ using namespace uSQL;
 
 uSQL::MemcachedProxy::MemcachedProxy()
 {
+    this->memcd = memcached_create(NULL);
     setExpiration(0);
 }
 
 uSQL::MemcachedProxy::~MemcachedProxy()
 {
-    close();
+    memcached_free(this->memcd);
 }
 
 bool uSQL::MemcachedProxy::connect(const std::string &host)
 {
-    string config;
-    
-    config.append("--SERVER=");
-    config.append(host);
-    
-    this->memcd = memcached(config.c_str(), strlen(config.c_str()));
-    if (!this->memcd)
+    memcached_server_st *memcdServer = memcached_servers_parse(host.c_str());
+    if (memcached_server_push(this->memcd, memcdServer) != MEMCACHED_SUCCESS)
         return false;
-        
-    return true;
-}
-
-bool uSQL::MemcachedProxy::close()
-{
-    if (this->memcd) {
-        memcached_free(this->memcd);
-        this->memcd = NULL;
-    }
-    
     return true;
 }
 
@@ -57,7 +42,7 @@ bool uSQL::MemcachedProxy::set(SQLStatement *stmt, SQLProxyDataSet *valuesDict, 
     uint32_t memcdFlags= 0;
     memcached_return memcdRet = memcached_set(this->memcd, hashKey.c_str(), hashKey.length(), valueDictString.c_str(), valueDictString.length(), getExpiration(), memcdFlags);        
     
-    return memcached_success(memcdRet);
+    return (memcdRet == MEMCACHED_SUCCESS) ? true : false;
 }
 
 bool uSQL::MemcachedProxy::get(SQLStatement *stmt, SQLProxyResult &result) 
@@ -92,5 +77,5 @@ bool uSQL::MemcachedProxy::remove(SQLStatement *stmt, SQLProxyResult &result)
 
     memcached_return memcdRet = memcached_delete(this->memcd, hashKey.c_str(), hashKey.length(), getExpiration());        
     
-    return memcached_success(memcdRet);
+    return (memcdRet == MEMCACHED_SUCCESS) ? true : false;
 }

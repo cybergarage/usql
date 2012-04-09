@@ -37,7 +37,6 @@ public:
     }
     
     bool connect(const std::string &host);
-    bool close();
     
 public:
 

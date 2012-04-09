@@ -22,6 +22,10 @@ public:
 	SQLCollection() {
     	setType(COLLECTION);
     }
+
+    const char *getTypeName() {
+        return "SQLCollection";
+    }
 };
 
 }

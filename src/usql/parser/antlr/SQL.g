@@ -112,7 +112,7 @@ select_core [uSQL::SQLStatement *sqlStmt]
 	}
 	: SELECT (DISTINCT | ALL)?
 	  (columnSection = result_column_section)?
-	  (fromSection = from_section)? 
+	  (fromSection = from_section)//? 
 	  (whereSection = where_section)?
 	  (groupSection = grouping_section)? 
 	  (havingSection = having_section)? 

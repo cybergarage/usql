@@ -34,6 +34,10 @@ public:
     	setType(ORDER);
     }
 
+    const char *getTypeName() {
+        return "SQLOrder";
+    }
+    
 	void setOrder(int type);    
 	void setOrder(const std::string &order);
     

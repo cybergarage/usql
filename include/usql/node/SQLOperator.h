@@ -40,6 +40,10 @@ public:
     	setType(OPERATOR);
     }
     
+    const char *getTypeName() {
+        return "SQLOperator";
+    }
+    
     void setValue(int value) {
     	this->value = value;
     }

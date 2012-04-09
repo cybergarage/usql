@@ -53,6 +53,10 @@ public:
 	
     SQLStatement();
 
+    const char *getTypeName() {
+        return "SQLStatement";
+    }
+    
     void setStatementType(int type) {
         statementType = type;
     }

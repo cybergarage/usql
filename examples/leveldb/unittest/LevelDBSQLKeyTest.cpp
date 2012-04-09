@@ -14,31 +14,18 @@
 #include <string>
 #include <vector>
 
-#include <usql/SQL92Parser.h>
-#include "SQLProxy.h"
+#include "LevelDBProxy.h"
 
 using namespace std;
 using namespace uSQL;
 
-namespace uSQL {
+#define SQLPROXYTEST_KEY_COUNT (sizeof(SQLPROXYTEST_KEY_INSERT)/sizeof(const char *))
 
-class SQLProxyTest : public SQLProxy {
-
-public:
-
-    bool connect(std::string &host, std::string &user, std::string &passwd, std::string &db) {
-        return  true;
-    }
-    
-    bool query(SQLStatement *stmt, SQLProxyResult &result) {
-        return true;
-    }
-
+static const char *SQLPROXYTEST_KEY_INSERT[] = {
+"INSERT INTO TESTDB (ID) VALUES (1)",
+"INSERT INTO TESTDB (ID, NAME) VALUES (1, \"TEST\")",
+"INSERT INTO TESTDB (ID, NAME, ADDR) VALUES (1, \"TEST\", \"TOKYO\")"
 };
-
-}
-
-#define SQLPROXYTEST_KEY_COUNT (sizeof(SQLPROXYTEST_KEY_SELECT)/sizeof(const char *))
 
 static const char *SQLPROXYTEST_KEY_SELECT[] = {
 "SELECT * FROM TESTDB WHERE ID = 1",
@@ -58,13 +45,14 @@ static const char *SQLPROXYTEST_KEY_UPDATE[] = {
 "UPDATE TESTDB SET NAME = \"TEST\", ADDR = \"TOKYO\" WHERE ID = 1"
 };
 
-BOOST_AUTO_TEST_CASE(SQLProxyKeyTest)
+BOOST_AUTO_TEST_CASE(LevelDBSQLKeyTest)
 {
     for (int i=0; i<SQLPROXYTEST_KEY_COUNT; i++) {
     
         vector<string> sqlStrings;
         vector<string> stmtKeys;
         
+        sqlStrings.push_back(SQLPROXYTEST_KEY_INSERT[i]);
         sqlStrings.push_back(SQLPROXYTEST_KEY_SELECT[i]);
         sqlStrings.push_back(SQLPROXYTEST_KEY_DELETE[i]);
         sqlStrings.push_back(SQLPROXYTEST_KEY_UPDATE[i]);
@@ -77,7 +65,7 @@ BOOST_AUTO_TEST_CASE(SQLProxyKeyTest)
             BOOST_CHECK_EQUAL(sqlParser.getStatementCount(), 1);
             SQLStatement *stmt = sqlParser.getStatement(0);
             
-            SQLProxyTest sqlProxy;
+            LevelDBProxy sqlProxy;
             SQLError sqlError;
             string stmtKey;
             string stmtBuf;

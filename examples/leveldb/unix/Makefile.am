@@ -7,7 +7,7 @@ leveldb_core_sources = \
 	../../common/SQLProxy.cpp \
 	../../common/SQLProxyDataSet.cpp \
 	../../common/SQLProxyResult.cpp \
-	../LevelDB.cpp
+	../LevelDBProxy.cpp
 
 leveldb_SOURCES = \
 	$(leveldb_core_sources) \
@@ -21,7 +21,8 @@ leveldbunittest_SOURCES = \
 	../../common/unittest/SQLProxyTest.cpp \
 	../unittest/LevelDBTestMain.cpp \
 	../unittest/LevelDBTest.cpp \
-	../unittest/LevelDBSQLTest.cpp
+	../unittest/LevelDBSQLTest.cpp \
+	../unittest/LevelDBSQLKeyTest.cpp
 
 leveldbunittest_LDADD = $(leveldb_LDADD) -lboost_unit_test_framework -lboost_system -lboost_filesystem
 

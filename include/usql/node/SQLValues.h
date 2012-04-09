@@ -23,6 +23,10 @@ public:
     	setType(VALUES);
     }
     
+    const char *getTypeName() {
+        return "SQLValues";
+    }
+    
     std::string &toString(std::string &buf);
 };
 

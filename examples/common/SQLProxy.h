@@ -8,12 +8,13 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLDB_H
-#define CG_USQL_SQLDB_H
+#ifndef CG_USQL_SQLPROXY_H
+#define CG_USQL_SQLPROXY_H
 
 #include <string>
 #include <usql/SQL92Parser.h>
 #include "SQLProxyDataSet.h"
+#include "SQLProxyResult.h"
 
 namespace uSQL {
 
@@ -25,8 +26,6 @@ private:
 
 private:
 
-    bool getKey(SQLCollection *collectionNode, SQLExpression *exprNode, std::string &key);
-    bool getInsertStatementKey(SQLStatement *stmt, std::string &key, SQLError &error);
     bool getStatementKey(SQLStatement *stmt, std::string &key, SQLError &error);
     
 public:
@@ -34,15 +33,23 @@ public:
 	SQLProxy();
     virtual ~SQLProxy();
 
+    bool getKey(SQLCollection *collectionNode, SQLExpression *exprNode, std::string &key);
     bool getKey(SQLStatement *stmt, std::string &key, SQLError &error);
+    
     bool getInsertDictionary(SQLStatement *stmt, SQLProxyDataSet &dictionary, SQLError &error);
     bool getUpdateDictionary(SQLStatement *stmt, SQLProxyDataSet &dictionary, SQLError &error);
+    
     
     const char *getErrorMessage() {
         return errorString.c_str();
     }
     
     void trimSQLString(std::string &value);
+    
+public: 
+
+    virtual bool connect(std::string &host, std::string &user, std::string &passwd, std::string &db) = 0;
+    virtual bool query(SQLStatement *stmt, SQLProxyResult &result) = 0;
 };
 
 }

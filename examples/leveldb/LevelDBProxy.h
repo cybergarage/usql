@@ -18,13 +18,16 @@
 
 namespace uSQL {
 
-class LevelDB : public SQLProxy {
+class LevelDBProxy : public SQLProxy {
     
 private:
     
     leveldb::DB* db;
     
 private:
+    
+    bool getInsertStatementKey(SQLStatement *stmt, std::string &key, SQLError &error);
+    bool getStatementKey(SQLStatement *stmt, std::string &key, SQLError &error);
     
     bool select(SQLStatement *stmt, SQLProxyResult &result);
     bool insert(SQLStatement *stmt, SQLError &error);
@@ -33,13 +36,22 @@ private:
 
 public:
 
-	LevelDB();
-    virtual ~LevelDB();
+	LevelDBProxy();
+    virtual ~LevelDBProxy();
 
 	bool open(const std::string &filename);
     bool close();
     
-    bool execSQLStatement(SQLStatement *stmt, SQLProxyResult &result);
+    bool getKey(SQLStatement *stmt, std::string &key, SQLError &error);
+    
+public:
+
+    bool connect(std::string &host, std::string &user, std::string &passwd, std::string &db) {
+        return  true;
+    }
+    
+    bool query(SQLStatement *stmt, SQLProxyResult &result);
+
 };
 
 }

@@ -24,6 +24,10 @@ public:
     	setType(COLUMNS);
     }
 
+    const char *getTypeName() {
+        return "SQLColumns";
+    }
+    
     std::string &toString(std::string &buf);
 };
 

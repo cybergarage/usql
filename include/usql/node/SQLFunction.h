@@ -23,6 +23,10 @@ public:
     	setType(FUNCTION);
     }
     
+    const char *getTypeName() {
+        return "SQLFunction";
+    }
+    
     std::string &toString(std::string &buf) {
 	    std::ostringstream oss;
     	std::string childNodeStr;

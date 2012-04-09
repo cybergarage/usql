@@ -29,6 +29,10 @@ public:
 
 	~SQLSet();
         
+    const char *getTypeName() {
+        return "SQLSet";
+    }
+    
 	void setName(const std::string &name) {
     	this->name = name;
     }

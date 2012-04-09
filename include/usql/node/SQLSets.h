@@ -24,6 +24,11 @@ public:
     	setType(SETS);
     }
     
+    const char *getTypeName() {
+        return "SQLSets";
+    }
+    
+    
     int getSetCount() {
         return getChildCount();
     }

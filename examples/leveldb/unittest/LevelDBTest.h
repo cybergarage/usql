@@ -11,11 +11,11 @@
 #ifndef CG_USQL_LEVELDBTEST_H
 #define CG_USQL_LEVELDBTEST_H
 
-#include "LevelDB.h"
+#include "LevelDBProxy.h"
         
 namespace uSQL {
 
-class LevelDBTest : public LevelDB {
+class LevelDBTest : public LevelDBProxy {
     
 private:
     

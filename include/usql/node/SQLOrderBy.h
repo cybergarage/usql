@@ -23,6 +23,11 @@ public:
     	setType(ORDERBY);
 	}
 
+    const char *getTypeName() {
+        return "SQLOrderBy";
+    }
+    
+    
     std::string &toString(std::string &buf) {
 	    std::ostringstream oss;
 	    std::string childNodeStr;

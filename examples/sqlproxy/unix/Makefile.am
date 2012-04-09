@@ -6,13 +6,15 @@ sqlproxy_core_sources = \
 	../../common/MD5.cpp \
 	../../common/SQLProxy.cpp \
 	../../common/SQLProxyDataSet.cpp \
-	../../common/SQLProxyResult.cpp
+	../../common/SQLProxyResult.cpp \
+	../MySQLProxy.cpp \
+	../MemcachedProxy.cpp
 
 sqlproxy_SOURCES = \
 	$(sqlproxy_core_sources) \
 	../main.cpp
 
-sqlproxy_LDADD = ../../../lib/unix/libusql++.a -lantlr3c -lcrypto -ledit
+sqlproxy_LDADD = ../../../lib/unix/libusql++.a -lantlr3c -lcrypto -ledit -lmysqlclient -lmemcached
 
 sqlproxyunittest_SOURCES = \
 	$(sqlproxy_core_sources) \
@@ -20,7 +22,7 @@ sqlproxyunittest_SOURCES = \
 	../../common/unittest/SQLProxyTest.cpp \
 	../unittest/SQLProxyTestMain.cpp
 
-sqlproxyunittest_LDADD = $(sqlproxy_LDADD) -lboost_unit_test_framework -lboost_system
+sqlproxyunittest_LDADD = $(sqlproxy_LDADD) -lboost_unit_test_framework -lboost_system -lmysqlclient -lmemcached
 
 
 

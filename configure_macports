@@ -1,0 +1,5 @@
+#!/bin/bash
+sudo port install boost
+sudo port install mysql5
+sudo port install libmemcached
+./configure CPPFLAGS="-I/opt/local/include/ -I/opt/local/include/mysql5" LDFLAGS="-L/opt/local/lib -L/opt/local/lib/mysql5/mysql"

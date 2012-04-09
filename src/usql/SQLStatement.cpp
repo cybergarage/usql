@@ -32,7 +32,7 @@ static void CgSQLStatementPrintTree(std::ostringstream &oss, uSQL::SQLNode *node
     for (int n=0; n<indent; n++)
         oss << "| ";
     std::string buf;
-    oss << "|-- " << node->toString(buf) << " ("<< node->getType() << ")" << std::endl;
+    oss << "|-- " << node->toString(buf) << " ("<< node->getTypeName() << ")" << std::endl;
     
     uSQL::SQLNodeList *childNodes = node->getChildNodes();
     std::size_t numChildren = childNodes->size();

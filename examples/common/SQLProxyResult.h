@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLRESULT_H
-#define CG_USQL_SQLDB_H
+#ifndef CG_USQL_SQLPROXYRESULT_H
+#define CG_USQL_SQLPROXYRESULT_H
 
 #include <usql/SQLError.h>
 #include "SQLProxyDataSet.h"

@@ -22,6 +22,10 @@ public:
 	SQLIndex() {
     	setType(INDEX);
     }
+
+    const char *getTypeName() {
+        return "SQLIndex";
+    }
 };
 
 }

@@ -13,25 +13,23 @@
 #include <histedit.h>
 
 #include <usql/SQL92Parser.h>
+#include "MySQLProxy.h"
 
 using namespace std;
 using namespace uSQL;
 
 const char * prompt(EditLine *e);
-void testfunction();
 void usage();
-void ExecSQLStatement(SQLStatement *stmt);
-const char *GetLevelDbKey(SQLNode *dataSource, SQLWhere *sqlWhere, std::string &key);
 void OutputSQLError(const std::string &errMsg);
 
 const char * prompt(EditLine *e) 
 {
-	return "leveldb> ";
+	return "sqlproxy> ";
 }
 
 void usage()
 {
-    cout << "Usage: leveldb [OPTIONS] FILE" << endl;
+    cout << "Usage: sqlproxy [OPTIONS] FILE" << endl;
     cout << "Miscellaneous:" << endl;
     cout << "-h\tproduce this help message:" << endl;
 }
@@ -43,14 +41,33 @@ void OutputSQLError(const std::string &errMsg)
 
 int main(int argc, char *argv[]) 
 {
-    string dbFilename;
+    string pgName;
+    string serverName;
+    string dbName;
+    string userName;
+    string password;
     
     int ch;
-    while ((ch = getopt(argc, argv, "hf:")) != -1) {
+    while ((ch = getopt(argc, argv, "dsup:")) != -1) {
         switch (ch) {
-        case 'f':
+        case 'd':
             {
-                dbFilename = optarg;
+                dbName = optarg;
+            }
+            break;
+        case 's':
+            {
+                serverName = optarg;
+            }
+            break;
+        case 'u':
+            {
+                userName = optarg;
+            }
+            break;
+        case 'p':
+            {
+                password = optarg;
             }
             break;
         case '?':
@@ -62,76 +79,81 @@ int main(int argc, char *argv[])
             }
         }
      }
-     
-    //argc -= optind;
-    //argv += optind;
     
-    if (argc <= 0) {
-        cout << "leveldb: missing operand after `leveldb'" << endl;
-        cout << "Try `leveldb --help' for more information." << endl;
-        //exit(EXIT_FAILURE);
+    pgName = argv[0];
+    argc -= optind;
+    argv += optind;
+
+    if (serverName.length() <= 0)
+        serverName = "localhost";
+
+    cout << "Server   : " << serverName << endl;
+    cout << "User     : " << userName << endl;
+    cout << "Database : " << dbName << endl;
+
+    MySQLProxy *sqlProxy = new MySQLProxy();
+    if (sqlProxy->connect(serverName, userName, password, dbName) == false) {
+        cout << "Could not open " << serverName << ":" << dbName << endl;
+        exit(EXIT_FAILURE);
     }
     
-    dbFilename = "/tmp/testdb";
-
-	/* This holds all the state for our line editor */
-	EditLine *el;
-	
-	/* This holds the info for our history */
-	History *myhistory;
-	
-	/* Temp variables */
-	int count;
-	const char *line;
-	int keepreading = 1;
-	HistEvent ev;
-	
-	/* Initialize the EditLine state to use our prompt function and
-	 emacs style editing. */
-    
-	el = el_init(argv[0], stdin, stdout, stderr);
+                    
+	/* Initialize the EditLine */
+	EditLine *el = el_init(pgName.c_str(), stdin, stdout, stderr);
 	el_set(el, EL_PROMPT, &prompt);
-	el_set(el, EL_EDITOR, "emacs");
+	el_set(el, EL_EDITOR, "vi");
 	
 	/* Initialize the history */
-	myhistory = history_init();
-	if (myhistory == 0) {
-		fprintf(stderr, "history could not be initialized\n");
-		return 1;
-	}
+	HistEvent ev;
+	History *inputHistory = history_init();
+	history(inputHistory, &ev, H_SETSIZE, 1024);
+	el_set(el, EL_HIST, history, inputHistory);
 	
-	/* Set the size of the history */
-	history(myhistory, &ev, H_SETSIZE, 800);
-	
-	/* This sets up the call back functions for history functionality */
-	el_set(el, EL_HIST, history, myhistory);
-	
+	int keepreading = 1;
 	while (keepreading) {
-		/* count is the number of characters read.
-		 line is a const char* of our command line with the tailing \n */
-		line = el_gets(el, &count);
-		
-		/* In order to use our history we have to explicitly add commands
-		 to the history */
-		if (count <= 0)
+        int readCount = 0;
+		const char *inputLine = el_gets(el, &readCount);
+		if (readCount <= 0)
             continue;
             
-        history(myhistory, &ev, H_ENTER, line);
+        history(inputHistory, &ev, H_ENTER, inputLine);
 
         SQL92Parser sqlParser;
-        if (sqlParser.parse(line) == false) {
-            printf("Parser Error :  %s\n", line);
+        if (sqlParser.parse(inputLine) == false) {
+            SQLError *sqlError = sqlParser.getError();
+            cout << "Parser Error :  " << inputLine;
+            cout << "  Line = " << sqlError->getLine() << ", Offset = " << sqlError->getOffset() << endl;
             continue;
         }
         
         SQLStatementList *stmtList = sqlParser.getStatements();
         for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
+        /*
+            SQLProxyResult sqlResult;
+            if (levelDb.execSQLStatement(*stmt, sqlResult) == true) {
+                if (sqlResult.hasMessage())
+                    cout << sqlResult.getExecMessage() << endl;
+                SQLProxyDataSet *resultSet = sqlResult.getResultSet();
+                for (map<string, string>::iterator data = resultSet->begin(); data != resultSet->end(); data++) {
+                    string key = data->first;
+                    string value = data->second;
+                    cout << "[" << key << "]" << " = " << value << endl;
+                }
+                cout << "Done." << endl;
+                cout << endl;
+            }
+            else {
+                OutputSQLError(sqlResult.getErrorMessage());
+                continue;
+            }
+        */
         }
 	}
-
-	/* Clean up our memory */
-	history_end(myhistory);
+    
+	history_end(inputHistory);
 	el_end(el);
-		
+    
+    delete sqlProxy;
+    
 	return EXIT_SUCCESS;
 }

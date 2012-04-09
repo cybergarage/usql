@@ -22,6 +22,11 @@ public:
 	SQLTransaction() {
     	setType(TRANSACTION);
     }
+
+    const char *getTypeName() {
+        return "SQLTransaction";
+    }
+    
 };
 
 }

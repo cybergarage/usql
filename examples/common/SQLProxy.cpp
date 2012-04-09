@@ -41,49 +41,6 @@ bool uSQL::SQLProxy::getKey(SQLCollection *collectionNode, SQLExpression *exprNo
     return true;
 }
 
-bool uSQL::SQLProxy::getInsertStatementKey(SQLStatement *stmt, std::string &key, SQLError &error) 
-{
-    SQLCollection *collectionNode = stmt->getCollectionNode();
-    if (!collectionNode) {
-        error.setMessage("Collection was not found");
-        return false;
-    }
-
-    SQLColumns *sqlColumns = stmt->getColumnsNode();
-    if (!sqlColumns) {
-        error.setMessage("COLUMN section was not found");
-        return false;
-    }
-    SQLNode *sqlColumn = sqlColumns->getChildNode(0);
-    if (!sqlColumn) {
-        error.setMessage("Key column was not found");
-        return false;
-    }
-    
-    SQLValues *sqlValues = stmt->getValuesNode();
-    if (!sqlValues) {
-        error.setMessage("VALUE section was not found");
-        return false;
-    }
-    SQLNode *sqlValue = sqlValues->getChildNode(0);
-    if (!sqlValue) {
-        error.setMessage("Key value was not found");
-        return false;
-    }
-
-    SQLExpression exprNode;
-    SQLOperatorSEQ *eqNode = new SQLOperatorSEQ();
-    SQLExpression *leftExprNode = new SQLExpression();
-    leftExprNode->setValue(sqlColumn->getValue());
-    eqNode->addExpression(leftExprNode);
-    SQLExpression *rightExprNode = new SQLExpression();
-    rightExprNode->setValue(sqlValue->getValue());
-    eqNode->addExpression(rightExprNode);
-    exprNode.addExpression(eqNode);
-    
-    return getKey(collectionNode, &exprNode, key);
-}
-
 bool uSQL::SQLProxy::getStatementKey(SQLStatement *stmt, std::string &key, SQLError &error) 
 {
     SQLCollections *sqlFrom = stmt->getCollectionsNode();
@@ -109,14 +66,7 @@ bool uSQL::SQLProxy::getStatementKey(SQLStatement *stmt, std::string &key, SQLEr
         return false;
     }
     
-    if (sqlWhere->getChildCount() < 1) {
-        error.setMessage("Expression was not found");
-        return false;
-    }
-    
-    SQLExpression *exprNode = sqlWhere->getExpression(0);
-
-    return getKey(dataSource, exprNode, key);
+    return getKey(dataSource, sqlWhere, key);
 }
 
 bool uSQL::SQLProxy::getKey(SQLStatement *stmt, std::string &key, SQLError &error) 
@@ -127,12 +77,8 @@ bool uSQL::SQLProxy::getKey(SQLStatement *stmt, std::string &key, SQLError &erro
         return false;
     }
     
-    if (sqlCmd->isInsert()) 
-        return getInsertStatementKey(stmt, key, error);
-
     return getStatementKey(stmt, key, error);
 }
-
 
 bool uSQL::SQLProxy::getInsertDictionary(SQLStatement *stmt, SQLProxyDataSet &dictionary, SQLError &error)
 {

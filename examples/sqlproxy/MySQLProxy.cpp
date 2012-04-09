@@ -8,44 +8,34 @@
  *
  ******************************************************************/
 
-#include "LevelDB.h"
-#include "MD5.h"
-#include "SQLProxyDataSet.h"
+#include "MySQLProxy.h"
 
 using namespace std;
 using namespace uSQL;
-using namespace leveldb;
 
-uSQL::LevelDB::LevelDB()
+uSQL::MySQLProxy::MySQLProxy()
 {
+    this->mySQL = mysql_init(NULL);
 }
 
-uSQL::LevelDB::~LevelDB()
+uSQL::MySQLProxy::~MySQLProxy()
 {
-    close();
+    mysql_close(this->mySQL);
 }
 
-bool uSQL::LevelDB::open(const std::string &filename)
+bool uSQL::MySQLProxy::connect(std::string &host, std::string &user, std::string &passwd, std::string &database)
 {
-    leveldb::Options options;
-    options.create_if_missing = true;
-    leveldb::Status status = leveldb::DB::Open(options, filename, &this->db);    
-    return status.ok();
-}
-
-bool uSQL::LevelDB::close()
-{
-    if (this->db)
-        delete this->db;
+    if (!mysql_real_connect(this->mySQL, host.c_str(), user.c_str(), passwd.c_str(), database.c_str(), 0, NULL, 0))
+        return false;
     return true;
 }
 
-bool uSQL::LevelDB::select(SQLStatement *stmt, SQLProxyResult &result) 
+bool uSQL::MySQLProxy::select(SQLStatement *stmt, SQLProxyResult &result) 
 {
     string hashKey;
     if (getKey(stmt, hashKey, result) == false)
         return false;
-
+/*
     std::string valuesString;
     Status status = this->db->Get(leveldb::ReadOptions(), hashKey, &valuesString);
     if(!status.ok()) {
@@ -58,11 +48,12 @@ bool uSQL::LevelDB::select(SQLStatement *stmt, SQLProxyResult &result)
         result.setErrorMessage("Stored data was corrupted");
         return false;
     }
+*/
     
     return true;
 }
 
-bool uSQL::LevelDB::insert(SQLStatement *stmt, SQLError &error) 
+bool uSQL::MySQLProxy::insert(SQLStatement *stmt, SQLError &error) 
 {
     string hashKey;
     if (getKey(stmt, hashKey, error) == false)
@@ -72,65 +63,74 @@ bool uSQL::LevelDB::insert(SQLStatement *stmt, SQLError &error)
     if (getInsertDictionary(stmt, valuesDict, error) == false)
         return false;
 
+/*
     Status status = this->db->Put(leveldb::WriteOptions(), hashKey, valuesDict.toString());
     if(!status.ok()) {
         error.setMessage(status.ToString());
         return false;
     }
+*/
     
     return true;
 }
 
-bool uSQL::LevelDB::update(SQLStatement *stmt, SQLError &error) 
+bool uSQL::MySQLProxy::update(SQLStatement *stmt, SQLError &error) 
 {
-    Status status;
+    //Status status;
     
     string hashKey;
     if (getKey(stmt, hashKey, error) == false)
         return false;
 
+/*
     std::string valuesString;
     status = this->db->Get(leveldb::ReadOptions(), hashKey, &valuesString);
     if(!status.ok()) {
         error.setMessage(status.ToString());
         return false;
     }
-    
+*/
+
+/*    
     SQLProxyDataSet valuesDict;
     if (valuesDict.parse(valuesString) == false) {
         error.setMessage("Stored data was corrupted");
         return false;
     }
-    
     if (getUpdateDictionary(stmt, valuesDict, error) == false)
         return false;
+*/    
 
+/*
     status = this->db->Put(leveldb::WriteOptions(), hashKey, valuesDict.toString());
     if(!status.ok()) {
         error.setMessage(status.ToString());
         return false;
     }
+*/
     
     return true;
 }
 
 
-bool uSQL::LevelDB::remove(SQLStatement *stmt, SQLError &error)
+bool uSQL::MySQLProxy::remove(SQLStatement *stmt, SQLError &error)
 {
     string hashKey;
     if (getKey(stmt, hashKey, error) == false)
         return false;
 
+/*
     Status status = this->db->Delete(leveldb::WriteOptions(), hashKey);
     if(!status.ok()) {
         error.setMessage(status.ToString());
         return false;
     }
+*/
     
     return true;
 }
 
-bool uSQL::LevelDB::execSQLStatement(SQLStatement *stmt, SQLProxyResult &result) 
+bool uSQL::MySQLProxy::query(SQLStatement *stmt, SQLProxyResult &result) 
 {
     result.clear();
     

@@ -102,6 +102,8 @@ public:
         return (this->type == type) ? true : false;
     }
     
+    virtual const char *getTypeName() = 0;
+    
 	void setValue(const std::string &value) {
     	this->value = value;
     }

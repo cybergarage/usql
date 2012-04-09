@@ -23,6 +23,10 @@ public:
     	setType(OFFSET);
     }
     
+    const char *getTypeName() {
+        return "SQLOffset";
+    }
+    
     std::string &toString(std::string &buf) {
 	    std::ostringstream oss;
 	    std::string childNodeStr;

@@ -23,6 +23,10 @@ public:
     	setType(CONDITION);
     }
     
+    const char *getTypeName() {
+        return "SQLCondition";
+    }
+    
     virtual std::string &toString(std::string &buf) = 0;
  };
 
@@ -32,6 +36,10 @@ public:
 
 	SQLWhere() {
     	setType(WHERE);
+    }
+    
+    const char *getTypeName() {
+        return "SQLWhere";
     }
     
     std::string &toString(std::string &buf) {
@@ -51,6 +59,10 @@ public:
     	setType(HAVING);
 	}
 
+    const char *getTypeName() {
+        return "SQLHaving";
+    }
+    
     std::string &toString(std::string &buf) {
 	    std::ostringstream oss;
 	    std::string childNodeStr;

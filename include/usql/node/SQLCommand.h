@@ -41,6 +41,10 @@ public:
         setAsyncEnabled(false);
     }
 
+    const char *getTypeName() {
+        return "SQLCommand";
+    }
+    
     void setCommandType(int commandType);
 
     int getCommandType() {

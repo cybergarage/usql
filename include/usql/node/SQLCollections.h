@@ -25,6 +25,10 @@ public:
     	setType(COLLECTIONS);
 	}
 
+    const char *getTypeName() {
+        return "SQLCollections";
+    }
+    
     SQLCollection *getCollectionNode(int index) {
         return (SQLCollection *)getChildNode(index);
     }

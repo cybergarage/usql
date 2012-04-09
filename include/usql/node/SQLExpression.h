@@ -52,6 +52,10 @@ public:
 	~SQLExpression() {
     }
         
+    const char *getTypeName() {
+        return "SQLExpression";
+    }
+    
     void setLiteralType(int type);
     
     int getLiteralType() {

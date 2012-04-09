@@ -23,6 +23,10 @@ public:
     	setType(OPTION);
     }
     
+    const char *getTypeName() {
+        return "SQLOption";
+    }
+    
     std::string &toString(std::string &buf) {
     	std::string exprString;
 		std::ostringstream oss;

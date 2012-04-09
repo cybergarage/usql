@@ -13,7 +13,7 @@
 using namespace std;
 using namespace uSQL;
 
-static const char *USQL_MYSQL_PROXY_MEMCACHED_HOST = "192.168.100.111";
+static const char *USQL_MYSQL_PROXY_MEMCACHED_HOST = "localhost";
 
 uSQL::MySQLProxy::MySQLProxy()
 {

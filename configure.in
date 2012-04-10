@@ -68,6 +68,29 @@ AC_CHECK_HEADERS([stdint.h])
 AC_CHECK_FUNCS([fopen])
 
 ##############################
+# Checks for enable options.
+##############################
+
+AC_ARG_ENABLE([examples], AC_HELP_STRING([--enable-examples], [ builds examples (default = no) ]), [build_examples="yes"], [])
+AM_CONDITIONAL(EXAMPLES,test "$build_examples" = yes)
+if [ test "$build_examples" = yes ]; then
+	AC_CHECK_LIB([crypto],[main],,[AC_MSG_ERROR(uSQL examples need OpenSSL)])
+	AC_CHECK_LIB([edit],[main],,[AC_MSG_ERROR(uSQL examples need libedit)])
+	AC_CHECK_LIB([mysqlclient],[main],,[AC_MSG_ERROR(uSQL examples need libmysqlclient)])
+	AC_CHECK_LIB([memcached],[main],,[AC_MSG_ERROR(uSQL examples need libmemcached)])
+	AC_CHECK_LIB([leveldb],[main],,[AC_MSG_ERROR(uSQL examples need leveldb)])
+	AC_CHECK_LIB([boost_filesystem],[main],,[AC_MSG_ERROR(uSQL unittests need boost::filesystem)])
+fi
+
+AC_ARG_ENABLE([unittests], AC_HELP_STRING([--enable-unittests], [ builds unittests (default = no) ]), [build_unittests="yes"], [])
+AM_CONDITIONAL(UNITTESTS,test "$build_unittests" = yes)
+if [ test "$build_unittests" = yes ]; then
+	AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(uSQL unittests need boost::unit_test_framework)])
+	AC_CHECK_LIB([boost_system],[main],,[AC_MSG_ERROR(uSQL unittests need boost::system)])
+	AC_CHECK_LIB([boost_filesystem],[main],,[AC_MSG_ERROR(uSQL unittests need boost::filesystem)])
+fi
+
+##############################
 # Makefiles
 ##############################
 

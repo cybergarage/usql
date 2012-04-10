@@ -1,4 +1,8 @@
+if UNITTESTS
 noinst_PROGRAMS = leveldb leveldbunittest
+else
+noinst_PROGRAMS = leveldb
+endif
 
 INCLUDES = -I$(top_srcdir)/include -I../ -I../../common
 
@@ -13,8 +17,9 @@ leveldb_SOURCES = \
 	$(leveldb_core_sources) \
 	../main.cpp
 
-leveldb_LDADD = ../../../lib/unix/libusql++.a -lcrypto -ledit -lleveldb
+leveldb_LDADD = ../../../lib/unix/libusql++.a
 
+if UNITTESTS
 leveldbunittest_SOURCES = \
 	$(leveldb_core_sources) \
 	../../common/unittest/MD5Test.cpp \
@@ -24,7 +29,6 @@ leveldbunittest_SOURCES = \
 	../unittest/LevelDBSQLTest.cpp \
 	../unittest/LevelDBSQLKeyTest.cpp
 
-leveldbunittest_LDADD = $(leveldb_LDADD) -lboost_unit_test_framework -lboost_system -lboost_filesystem
-
-
+leveldbunittest_LDADD = $(leveldb_LDADD)
+endif
 

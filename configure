@@ -603,6 +603,10 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
+UNITTESTS_FALSE
+UNITTESTS_TRUE
+EXAMPLES_FALSE
+EXAMPLES_TRUE
 HAVE_LIBTOOL_FALSE
 HAVE_LIBTOOL_TRUE
 EGREP
@@ -698,6 +702,8 @@ ac_user_opts='
 enable_option_checking
 enable_dependency_tracking
 with_libtool
+enable_examples
+enable_unittests
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1327,6 +1333,8 @@ Optional Features:
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
+  --enable-examples       builds examples (default = no)
+  --enable-unittests      builds unittests (default = no)
 
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
@@ -1743,6 +1751,73 @@ $as_echo "$ac_res" >&6; }
   eval $as_lineno_stack; ${as_lineno_stack:+:} unset as_lineno
 
 } # ac_fn_cxx_check_header_compile
+
+# ac_fn_cxx_check_func LINENO FUNC VAR
+# ------------------------------------
+# Tests whether FUNC exists, setting the cache variable VAR accordingly
+ac_fn_cxx_check_func ()
+{
+  as_lineno=${as_lineno-"$1"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $2" >&5
+$as_echo_n "checking for $2... " >&6; }
+if eval \${$3+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+/* Define $2 to an innocuous variant, in case <limits.h> declares $2.
+   For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+#define $2 innocuous_$2
+
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char $2 (); below.
+    Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+    <limits.h> exists even on freestanding compilers.  */
+
+#ifdef __STDC__
+# include <limits.h>
+#else
+# include <assert.h>
+#endif
+
+#undef $2
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char $2 ();
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined __stub_$2 || defined __stub___$2
+choke me
+#endif
+
+int
+main ()
+{
+return $2 ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  eval "$3=yes"
+else
+  eval "$3=no"
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+fi
+eval ac_res=\$$3
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+  eval $as_lineno_stack; ${as_lineno_stack:+:} unset as_lineno
+
+} # ac_fn_cxx_check_func
 cat >config.log <<_ACEOF
 This file contains any messages produced by compilers while
 running configure, to aid debugging if configure makes a mistake.
@@ -4539,6 +4614,52 @@ fi
 
 
 ##############################
+# Checks for pthread
+##############################
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lpthread" >&5
+$as_echo_n "checking for main in -lpthread... " >&6; }
+if ${ac_cv_lib_pthread_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lpthread  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_pthread_main=yes
+else
+  ac_cv_lib_pthread_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_pthread_main" >&5
+$as_echo "$ac_cv_lib_pthread_main" >&6; }
+if test "x$ac_cv_lib_pthread_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBPTHREAD 1
+_ACEOF
+
+  LIBS="-lpthread $LIBS"
+
+else
+  as_fn_error $? "uSQL for C++  needs POSIX thread library" "$LINENO" 5
+fi
+
+
+##############################
 # Checks for other headers.
 ##############################
 
@@ -4576,7 +4697,422 @@ done
 # Checks for other functions.
 ##############################
 
-# AC_CHECK_FUNCS([fopen])
+for ac_func in fopen
+do :
+  ac_fn_cxx_check_func "$LINENO" "fopen" "ac_cv_func_fopen"
+if test "x$ac_cv_func_fopen" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_FOPEN 1
+_ACEOF
+
+fi
+done
+
+
+##############################
+# Checks for enable options.
+##############################
+
+# Check whether --enable-examples was given.
+if test "${enable_examples+set}" = set; then :
+  enableval=$enable_examples; build_examples="yes"
+fi
+
+ if test "$build_examples" = yes; then
+  EXAMPLES_TRUE=
+  EXAMPLES_FALSE='#'
+else
+  EXAMPLES_TRUE='#'
+  EXAMPLES_FALSE=
+fi
+
+if  test "$build_examples" = yes ; then
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lcrypto" >&5
+$as_echo_n "checking for main in -lcrypto... " >&6; }
+if ${ac_cv_lib_crypto_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lcrypto  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_crypto_main=yes
+else
+  ac_cv_lib_crypto_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_crypto_main" >&5
+$as_echo "$ac_cv_lib_crypto_main" >&6; }
+if test "x$ac_cv_lib_crypto_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBCRYPTO 1
+_ACEOF
+
+  LIBS="-lcrypto $LIBS"
+
+else
+  as_fn_error $? "uSQL examples need OpenSSL" "$LINENO" 5
+fi
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -ledit" >&5
+$as_echo_n "checking for main in -ledit... " >&6; }
+if ${ac_cv_lib_edit_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-ledit  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_edit_main=yes
+else
+  ac_cv_lib_edit_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_edit_main" >&5
+$as_echo "$ac_cv_lib_edit_main" >&6; }
+if test "x$ac_cv_lib_edit_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBEDIT 1
+_ACEOF
+
+  LIBS="-ledit $LIBS"
+
+else
+  as_fn_error $? "uSQL examples need libedit" "$LINENO" 5
+fi
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lmysqlclient" >&5
+$as_echo_n "checking for main in -lmysqlclient... " >&6; }
+if ${ac_cv_lib_mysqlclient_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lmysqlclient  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_mysqlclient_main=yes
+else
+  ac_cv_lib_mysqlclient_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_mysqlclient_main" >&5
+$as_echo "$ac_cv_lib_mysqlclient_main" >&6; }
+if test "x$ac_cv_lib_mysqlclient_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBMYSQLCLIENT 1
+_ACEOF
+
+  LIBS="-lmysqlclient $LIBS"
+
+else
+  as_fn_error $? "uSQL examples need libmysqlclient" "$LINENO" 5
+fi
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lmemcached" >&5
+$as_echo_n "checking for main in -lmemcached... " >&6; }
+if ${ac_cv_lib_memcached_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lmemcached  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_memcached_main=yes
+else
+  ac_cv_lib_memcached_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_memcached_main" >&5
+$as_echo "$ac_cv_lib_memcached_main" >&6; }
+if test "x$ac_cv_lib_memcached_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBMEMCACHED 1
+_ACEOF
+
+  LIBS="-lmemcached $LIBS"
+
+else
+  as_fn_error $? "uSQL examples need libmemcached" "$LINENO" 5
+fi
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lleveldb" >&5
+$as_echo_n "checking for main in -lleveldb... " >&6; }
+if ${ac_cv_lib_leveldb_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lleveldb  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_leveldb_main=yes
+else
+  ac_cv_lib_leveldb_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_leveldb_main" >&5
+$as_echo "$ac_cv_lib_leveldb_main" >&6; }
+if test "x$ac_cv_lib_leveldb_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBLEVELDB 1
+_ACEOF
+
+  LIBS="-lleveldb $LIBS"
+
+else
+  as_fn_error $? "uSQL examples need leveldb" "$LINENO" 5
+fi
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_filesystem" >&5
+$as_echo_n "checking for main in -lboost_filesystem... " >&6; }
+if ${ac_cv_lib_boost_filesystem_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lboost_filesystem  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_boost_filesystem_main=yes
+else
+  ac_cv_lib_boost_filesystem_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_boost_filesystem_main" >&5
+$as_echo "$ac_cv_lib_boost_filesystem_main" >&6; }
+if test "x$ac_cv_lib_boost_filesystem_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBBOOST_FILESYSTEM 1
+_ACEOF
+
+  LIBS="-lboost_filesystem $LIBS"
+
+else
+  as_fn_error $? "uSQL unittests need boost::filesystem" "$LINENO" 5
+fi
+
+fi
+
+# Check whether --enable-unittests was given.
+if test "${enable_unittests+set}" = set; then :
+  enableval=$enable_unittests; build_unittests="yes"
+fi
+
+ if test "$build_unittests" = yes; then
+  UNITTESTS_TRUE=
+  UNITTESTS_FALSE='#'
+else
+  UNITTESTS_TRUE='#'
+  UNITTESTS_FALSE=
+fi
+
+if  test "$build_unittests" = yes ; then
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_unit_test_framework" >&5
+$as_echo_n "checking for main in -lboost_unit_test_framework... " >&6; }
+if ${ac_cv_lib_boost_unit_test_framework_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lboost_unit_test_framework  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_boost_unit_test_framework_main=yes
+else
+  ac_cv_lib_boost_unit_test_framework_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_boost_unit_test_framework_main" >&5
+$as_echo "$ac_cv_lib_boost_unit_test_framework_main" >&6; }
+if test "x$ac_cv_lib_boost_unit_test_framework_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBBOOST_UNIT_TEST_FRAMEWORK 1
+_ACEOF
+
+  LIBS="-lboost_unit_test_framework $LIBS"
+
+else
+  as_fn_error $? "uSQL unittests need boost::unit_test_framework" "$LINENO" 5
+fi
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_system" >&5
+$as_echo_n "checking for main in -lboost_system... " >&6; }
+if ${ac_cv_lib_boost_system_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lboost_system  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_boost_system_main=yes
+else
+  ac_cv_lib_boost_system_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_boost_system_main" >&5
+$as_echo "$ac_cv_lib_boost_system_main" >&6; }
+if test "x$ac_cv_lib_boost_system_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBBOOST_SYSTEM 1
+_ACEOF
+
+  LIBS="-lboost_system $LIBS"
+
+else
+  as_fn_error $? "uSQL unittests need boost::system" "$LINENO" 5
+fi
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_filesystem" >&5
+$as_echo_n "checking for main in -lboost_filesystem... " >&6; }
+if ${ac_cv_lib_boost_filesystem_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lboost_filesystem  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_boost_filesystem_main=yes
+else
+  ac_cv_lib_boost_filesystem_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_boost_filesystem_main" >&5
+$as_echo "$ac_cv_lib_boost_filesystem_main" >&6; }
+if test "x$ac_cv_lib_boost_filesystem_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBBOOST_FILESYSTEM 1
+_ACEOF
+
+  LIBS="-lboost_filesystem $LIBS"
+
+else
+  as_fn_error $? "uSQL unittests need boost::filesystem" "$LINENO" 5
+fi
+
+fi
 
 ##############################
 # Makefiles
@@ -4715,6 +5251,14 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_LIBTOOL_TRUE}" && test -z "${HAVE_LIBTOOL_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_LIBTOOL\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${EXAMPLES_TRUE}" && test -z "${EXAMPLES_FALSE}"; then
+  as_fn_error $? "conditional \"EXAMPLES\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${UNITTESTS_TRUE}" && test -z "${UNITTESTS_FALSE}"; then
+  as_fn_error $? "conditional \"UNITTESTS\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 

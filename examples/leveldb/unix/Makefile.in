@@ -32,7 +32,9 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-noinst_PROGRAMS = leveldb$(EXEEXT) leveldbunittest$(EXEEXT)
+@UNITTESTS_FALSE@noinst_PROGRAMS = leveldb$(EXEEXT)
+@UNITTESTS_TRUE@noinst_PROGRAMS = leveldb$(EXEEXT) \
+@UNITTESTS_TRUE@	leveldbunittest$(EXEEXT)
 subdir = examples/leveldb/unix
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -46,16 +48,25 @@ CONFIG_CLEAN_VPATH_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
 am__objects_1 = MD5.$(OBJEXT) SQLProxy.$(OBJEXT) \
 	SQLProxyDataSet.$(OBJEXT) SQLProxyResult.$(OBJEXT) \
-	LevelDB.$(OBJEXT)
+	LevelDBProxy.$(OBJEXT)
 am_leveldb_OBJECTS = $(am__objects_1) main.$(OBJEXT)
 leveldb_OBJECTS = $(am_leveldb_OBJECTS)
 leveldb_DEPENDENCIES = ../../../lib/unix/libusql++.a
-am_leveldbunittest_OBJECTS = $(am__objects_1) MD5Test.$(OBJEXT) \
-	SQLProxyTest.$(OBJEXT) LevelDBTestMain.$(OBJEXT) \
-	LevelDBTest.$(OBJEXT) LevelDBSQLTest.$(OBJEXT)
+am__leveldbunittest_SOURCES_DIST = ../../common/MD5.cpp \
+	../../common/SQLProxy.cpp ../../common/SQLProxyDataSet.cpp \
+	../../common/SQLProxyResult.cpp ../LevelDBProxy.cpp \
+	../../common/unittest/MD5Test.cpp \
+	../../common/unittest/SQLProxyTest.cpp \
+	../unittest/LevelDBTestMain.cpp ../unittest/LevelDBTest.cpp \
+	../unittest/LevelDBSQLTest.cpp \
+	../unittest/LevelDBSQLKeyTest.cpp
+@UNITTESTS_TRUE@am_leveldbunittest_OBJECTS = $(am__objects_1) \
+@UNITTESTS_TRUE@	MD5Test.$(OBJEXT) SQLProxyTest.$(OBJEXT) \
+@UNITTESTS_TRUE@	LevelDBTestMain.$(OBJEXT) \
+@UNITTESTS_TRUE@	LevelDBTest.$(OBJEXT) LevelDBSQLTest.$(OBJEXT) \
+@UNITTESTS_TRUE@	LevelDBSQLKeyTest.$(OBJEXT)
 leveldbunittest_OBJECTS = $(am_leveldbunittest_OBJECTS)
-am__DEPENDENCIES_1 = ../../../lib/unix/libusql++.a
-leveldbunittest_DEPENDENCIES = $(am__DEPENDENCIES_1)
+@UNITTESTS_TRUE@leveldbunittest_DEPENDENCIES = $(leveldb_LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -66,7 +77,7 @@ CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
 SOURCES = $(leveldb_SOURCES) $(leveldbunittest_SOURCES)
-DIST_SOURCES = $(leveldb_SOURCES) $(leveldbunittest_SOURCES)
+DIST_SOURCES = $(leveldb_SOURCES) $(am__leveldbunittest_SOURCES_DIST)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -167,22 +178,23 @@ leveldb_core_sources = \
 	../../common/SQLProxy.cpp \
 	../../common/SQLProxyDataSet.cpp \
 	../../common/SQLProxyResult.cpp \
-	../LevelDB.cpp
+	../LevelDBProxy.cpp
 
 leveldb_SOURCES = \
 	$(leveldb_core_sources) \
 	../main.cpp
 
-leveldb_LDADD = ../../../lib/unix/libusql++.a -lantlr3c -lcrypto -ledit -lleveldb
-leveldbunittest_SOURCES = \
-	$(leveldb_core_sources) \
-	../../common/unittest/MD5Test.cpp \
-	../../common/unittest/SQLProxyTest.cpp \
-	../unittest/LevelDBTestMain.cpp \
-	../unittest/LevelDBTest.cpp \
-	../unittest/LevelDBSQLTest.cpp
+leveldb_LDADD = ../../../lib/unix/libusql++.a
+@UNITTESTS_TRUE@leveldbunittest_SOURCES = \
+@UNITTESTS_TRUE@	$(leveldb_core_sources) \
+@UNITTESTS_TRUE@	../../common/unittest/MD5Test.cpp \
+@UNITTESTS_TRUE@	../../common/unittest/SQLProxyTest.cpp \
+@UNITTESTS_TRUE@	../unittest/LevelDBTestMain.cpp \
+@UNITTESTS_TRUE@	../unittest/LevelDBTest.cpp \
+@UNITTESTS_TRUE@	../unittest/LevelDBSQLTest.cpp \
+@UNITTESTS_TRUE@	../unittest/LevelDBSQLKeyTest.cpp
 
-leveldbunittest_LDADD = $(leveldb_LDADD) -lboost_unit_test_framework -lboost_system -lboost_filesystem
+@UNITTESTS_TRUE@leveldbunittest_LDADD = $(leveldb_LDADD)
 all: all-am
 
 .SUFFIXES:
@@ -233,7 +245,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LevelDB.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LevelDBProxy.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LevelDBSQLKeyTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LevelDBSQLTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LevelDBTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LevelDBTestMain.Po@am__quote@
@@ -315,19 +328,19 @@ SQLProxyResult.obj: ../../common/SQLProxyResult.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SQLProxyResult.obj `if test -f '../../common/SQLProxyResult.cpp'; then $(CYGPATH_W) '../../common/SQLProxyResult.cpp'; else $(CYGPATH_W) '$(srcdir)/../../common/SQLProxyResult.cpp'; fi`
 
-LevelDB.o: ../LevelDB.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT LevelDB.o -MD -MP -MF $(DEPDIR)/LevelDB.Tpo -c -o LevelDB.o `test -f '../LevelDB.cpp' || echo '$(srcdir)/'`../LevelDB.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/LevelDB.Tpo $(DEPDIR)/LevelDB.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../LevelDB.cpp' object='LevelDB.o' libtool=no @AMDEPBACKSLASH@
+LevelDBProxy.o: ../LevelDBProxy.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT LevelDBProxy.o -MD -MP -MF $(DEPDIR)/LevelDBProxy.Tpo -c -o LevelDBProxy.o `test -f '../LevelDBProxy.cpp' || echo '$(srcdir)/'`../LevelDBProxy.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/LevelDBProxy.Tpo $(DEPDIR)/LevelDBProxy.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../LevelDBProxy.cpp' object='LevelDBProxy.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LevelDB.o `test -f '../LevelDB.cpp' || echo '$(srcdir)/'`../LevelDB.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LevelDBProxy.o `test -f '../LevelDBProxy.cpp' || echo '$(srcdir)/'`../LevelDBProxy.cpp
 
-LevelDB.obj: ../LevelDB.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT LevelDB.obj -MD -MP -MF $(DEPDIR)/LevelDB.Tpo -c -o LevelDB.obj `if test -f '../LevelDB.cpp'; then $(CYGPATH_W) '../LevelDB.cpp'; else $(CYGPATH_W) '$(srcdir)/../LevelDB.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/LevelDB.Tpo $(DEPDIR)/LevelDB.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../LevelDB.cpp' object='LevelDB.obj' libtool=no @AMDEPBACKSLASH@
+LevelDBProxy.obj: ../LevelDBProxy.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT LevelDBProxy.obj -MD -MP -MF $(DEPDIR)/LevelDBProxy.Tpo -c -o LevelDBProxy.obj `if test -f '../LevelDBProxy.cpp'; then $(CYGPATH_W) '../LevelDBProxy.cpp'; else $(CYGPATH_W) '$(srcdir)/../LevelDBProxy.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/LevelDBProxy.Tpo $(DEPDIR)/LevelDBProxy.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../LevelDBProxy.cpp' object='LevelDBProxy.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LevelDB.obj `if test -f '../LevelDB.cpp'; then $(CYGPATH_W) '../LevelDB.cpp'; else $(CYGPATH_W) '$(srcdir)/../LevelDB.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LevelDBProxy.obj `if test -f '../LevelDBProxy.cpp'; then $(CYGPATH_W) '../LevelDBProxy.cpp'; else $(CYGPATH_W) '$(srcdir)/../LevelDBProxy.cpp'; fi`
 
 main.o: ../main.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT main.o -MD -MP -MF $(DEPDIR)/main.Tpo -c -o main.o `test -f '../main.cpp' || echo '$(srcdir)/'`../main.cpp
@@ -412,6 +425,20 @@ LevelDBSQLTest.obj: ../unittest/LevelDBSQLTest.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../unittest/LevelDBSQLTest.cpp' object='LevelDBSQLTest.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LevelDBSQLTest.obj `if test -f '../unittest/LevelDBSQLTest.cpp'; then $(CYGPATH_W) '../unittest/LevelDBSQLTest.cpp'; else $(CYGPATH_W) '$(srcdir)/../unittest/LevelDBSQLTest.cpp'; fi`
+
+LevelDBSQLKeyTest.o: ../unittest/LevelDBSQLKeyTest.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT LevelDBSQLKeyTest.o -MD -MP -MF $(DEPDIR)/LevelDBSQLKeyTest.Tpo -c -o LevelDBSQLKeyTest.o `test -f '../unittest/LevelDBSQLKeyTest.cpp' || echo '$(srcdir)/'`../unittest/LevelDBSQLKeyTest.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/LevelDBSQLKeyTest.Tpo $(DEPDIR)/LevelDBSQLKeyTest.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../unittest/LevelDBSQLKeyTest.cpp' object='LevelDBSQLKeyTest.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LevelDBSQLKeyTest.o `test -f '../unittest/LevelDBSQLKeyTest.cpp' || echo '$(srcdir)/'`../unittest/LevelDBSQLKeyTest.cpp
+
+LevelDBSQLKeyTest.obj: ../unittest/LevelDBSQLKeyTest.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT LevelDBSQLKeyTest.obj -MD -MP -MF $(DEPDIR)/LevelDBSQLKeyTest.Tpo -c -o LevelDBSQLKeyTest.obj `if test -f '../unittest/LevelDBSQLKeyTest.cpp'; then $(CYGPATH_W) '../unittest/LevelDBSQLKeyTest.cpp'; else $(CYGPATH_W) '$(srcdir)/../unittest/LevelDBSQLKeyTest.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/LevelDBSQLKeyTest.Tpo $(DEPDIR)/LevelDBSQLKeyTest.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../unittest/LevelDBSQLKeyTest.cpp' object='LevelDBSQLKeyTest.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LevelDBSQLKeyTest.obj `if test -f '../unittest/LevelDBSQLKeyTest.cpp'; then $(CYGPATH_W) '../unittest/LevelDBSQLKeyTest.cpp'; else $(CYGPATH_W) '$(srcdir)/../unittest/LevelDBSQLKeyTest.cpp'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

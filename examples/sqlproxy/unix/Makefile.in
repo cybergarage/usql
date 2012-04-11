@@ -32,7 +32,9 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-noinst_PROGRAMS = sqlproxy$(EXEEXT) sqlproxyunittest$(EXEEXT)
+@UNITTESTS_FALSE@noinst_PROGRAMS = sqlproxy$(EXEEXT)
+@UNITTESTS_TRUE@noinst_PROGRAMS = sqlproxy$(EXEEXT) \
+@UNITTESTS_TRUE@	sqlproxyunittest$(EXEEXT)
 subdir = examples/sqlproxy/unix
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -45,15 +47,22 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
 am__objects_1 = MD5.$(OBJEXT) SQLProxy.$(OBJEXT) \
-	SQLProxyDataSet.$(OBJEXT) SQLProxyResult.$(OBJEXT)
+	SQLProxyDataSet.$(OBJEXT) SQLProxyResult.$(OBJEXT) \
+	MySQLProxy.$(OBJEXT) MemcachedProxy.$(OBJEXT)
 am_sqlproxy_OBJECTS = $(am__objects_1) main.$(OBJEXT)
 sqlproxy_OBJECTS = $(am_sqlproxy_OBJECTS)
 sqlproxy_DEPENDENCIES = ../../../lib/unix/libusql++.a
-am_sqlproxyunittest_OBJECTS = $(am__objects_1) MD5Test.$(OBJEXT) \
-	SQLProxyTest.$(OBJEXT) SQLProxyTestMain.$(OBJEXT)
+am__sqlproxyunittest_SOURCES_DIST = ../../common/MD5.cpp \
+	../../common/SQLProxy.cpp ../../common/SQLProxyDataSet.cpp \
+	../../common/SQLProxyResult.cpp ../MySQLProxy.cpp \
+	../MemcachedProxy.cpp ../../common/unittest/MD5Test.cpp \
+	../../common/unittest/SQLProxyTest.cpp \
+	../unittest/SQLProxyTestMain.cpp
+@UNITTESTS_TRUE@am_sqlproxyunittest_OBJECTS = $(am__objects_1) \
+@UNITTESTS_TRUE@	MD5Test.$(OBJEXT) SQLProxyTest.$(OBJEXT) \
+@UNITTESTS_TRUE@	SQLProxyTestMain.$(OBJEXT)
 sqlproxyunittest_OBJECTS = $(am_sqlproxyunittest_OBJECTS)
-am__DEPENDENCIES_1 = ../../../lib/unix/libusql++.a
-sqlproxyunittest_DEPENDENCIES = $(am__DEPENDENCIES_1)
+@UNITTESTS_TRUE@sqlproxyunittest_DEPENDENCIES = $(sqlproxy_LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -64,7 +73,8 @@ CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
 SOURCES = $(sqlproxy_SOURCES) $(sqlproxyunittest_SOURCES)
-DIST_SOURCES = $(sqlproxy_SOURCES) $(sqlproxyunittest_SOURCES)
+DIST_SOURCES = $(sqlproxy_SOURCES) \
+	$(am__sqlproxyunittest_SOURCES_DIST)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -164,20 +174,22 @@ sqlproxy_core_sources = \
 	../../common/MD5.cpp \
 	../../common/SQLProxy.cpp \
 	../../common/SQLProxyDataSet.cpp \
-	../../common/SQLProxyResult.cpp
+	../../common/SQLProxyResult.cpp \
+	../MySQLProxy.cpp \
+	../MemcachedProxy.cpp
 
 sqlproxy_SOURCES = \
 	$(sqlproxy_core_sources) \
 	../main.cpp
 
-sqlproxy_LDADD = ../../../lib/unix/libusql++.a -lantlr3c -lcrypto -ledit
-sqlproxyunittest_SOURCES = \
-	$(sqlproxy_core_sources) \
-	../../common/unittest/MD5Test.cpp \
-	../../common/unittest/SQLProxyTest.cpp \
-	../unittest/SQLProxyTestMain.cpp
+sqlproxy_LDADD = ../../../lib/unix/libusql++.a
+@UNITTESTS_TRUE@sqlproxyunittest_SOURCES = \
+@UNITTESTS_TRUE@	$(sqlproxy_core_sources) \
+@UNITTESTS_TRUE@	../../common/unittest/MD5Test.cpp \
+@UNITTESTS_TRUE@	../../common/unittest/SQLProxyTest.cpp \
+@UNITTESTS_TRUE@	../unittest/SQLProxyTestMain.cpp
 
-sqlproxyunittest_LDADD = $(sqlproxy_LDADD) -lboost_unit_test_framework -lboost_system
+@UNITTESTS_TRUE@sqlproxyunittest_LDADD = $(sqlproxy_LDADD)
 all: all-am
 
 .SUFFIXES:
@@ -230,6 +242,8 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MD5.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MD5Test.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MemcachedProxy.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MySQLProxy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SQLProxy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SQLProxyDataSet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SQLProxyResult.Po@am__quote@
@@ -306,6 +320,34 @@ SQLProxyResult.obj: ../../common/SQLProxyResult.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../../common/SQLProxyResult.cpp' object='SQLProxyResult.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SQLProxyResult.obj `if test -f '../../common/SQLProxyResult.cpp'; then $(CYGPATH_W) '../../common/SQLProxyResult.cpp'; else $(CYGPATH_W) '$(srcdir)/../../common/SQLProxyResult.cpp'; fi`
+
+MySQLProxy.o: ../MySQLProxy.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT MySQLProxy.o -MD -MP -MF $(DEPDIR)/MySQLProxy.Tpo -c -o MySQLProxy.o `test -f '../MySQLProxy.cpp' || echo '$(srcdir)/'`../MySQLProxy.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/MySQLProxy.Tpo $(DEPDIR)/MySQLProxy.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../MySQLProxy.cpp' object='MySQLProxy.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o MySQLProxy.o `test -f '../MySQLProxy.cpp' || echo '$(srcdir)/'`../MySQLProxy.cpp
+
+MySQLProxy.obj: ../MySQLProxy.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT MySQLProxy.obj -MD -MP -MF $(DEPDIR)/MySQLProxy.Tpo -c -o MySQLProxy.obj `if test -f '../MySQLProxy.cpp'; then $(CYGPATH_W) '../MySQLProxy.cpp'; else $(CYGPATH_W) '$(srcdir)/../MySQLProxy.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/MySQLProxy.Tpo $(DEPDIR)/MySQLProxy.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../MySQLProxy.cpp' object='MySQLProxy.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o MySQLProxy.obj `if test -f '../MySQLProxy.cpp'; then $(CYGPATH_W) '../MySQLProxy.cpp'; else $(CYGPATH_W) '$(srcdir)/../MySQLProxy.cpp'; fi`
+
+MemcachedProxy.o: ../MemcachedProxy.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT MemcachedProxy.o -MD -MP -MF $(DEPDIR)/MemcachedProxy.Tpo -c -o MemcachedProxy.o `test -f '../MemcachedProxy.cpp' || echo '$(srcdir)/'`../MemcachedProxy.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/MemcachedProxy.Tpo $(DEPDIR)/MemcachedProxy.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../MemcachedProxy.cpp' object='MemcachedProxy.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o MemcachedProxy.o `test -f '../MemcachedProxy.cpp' || echo '$(srcdir)/'`../MemcachedProxy.cpp
+
+MemcachedProxy.obj: ../MemcachedProxy.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT MemcachedProxy.obj -MD -MP -MF $(DEPDIR)/MemcachedProxy.Tpo -c -o MemcachedProxy.obj `if test -f '../MemcachedProxy.cpp'; then $(CYGPATH_W) '../MemcachedProxy.cpp'; else $(CYGPATH_W) '$(srcdir)/../MemcachedProxy.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/MemcachedProxy.Tpo $(DEPDIR)/MemcachedProxy.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../MemcachedProxy.cpp' object='MemcachedProxy.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o MemcachedProxy.obj `if test -f '../MemcachedProxy.cpp'; then $(CYGPATH_W) '../MemcachedProxy.cpp'; else $(CYGPATH_W) '$(srcdir)/../MemcachedProxy.cpp'; fi`
 
 main.o: ../main.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT main.o -MD -MP -MF $(DEPDIR)/main.Tpo -c -o main.o `test -f '../main.cpp' || echo '$(srcdir)/'`../main.cpp

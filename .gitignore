@@ -1,0 +1,8 @@
+Makefile
+config
+config.*
+*.o
+*.a
+*.po
+.DS_Store
+*xcuserdata*

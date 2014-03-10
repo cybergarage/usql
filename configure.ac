@@ -4,11 +4,11 @@
 #
 ############################################################################
 
-AC_INIT(include/usql/SQLParser.h)
-AC_CONFIG_AUX_DIR(config)
-
-AM_INIT_AUTOMAKE(usqlcc, 0.8)
+AC_INIT([usqlcc], [0.8])
 AM_CONFIG_HEADER(config.h)
+AC_CONFIG_AUX_DIR(config)
+AC_CONFIG_SRCDIR(include/usql/SQLParser.h)
+AM_INIT_AUTOMAKE
 
 ##############################
 # Constants

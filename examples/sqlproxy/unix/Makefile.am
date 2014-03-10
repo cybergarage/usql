@@ -4,7 +4,7 @@ else
 noinst_PROGRAMS = sqlproxy
 endif
 
-INCLUDES = -I$(top_srcdir)/include -I../ -I../../common
+AM_CPPFLAGS = -I$(top_srcdir)/include -I../ -I../../common
 
 sqlproxy_core_sources = \
 	../../common/MD5.cpp \

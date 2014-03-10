@@ -1,6 +1,6 @@
 lib_LIBRARIES = libusql++.a
 
-INCLUDES = -I$(top_builddir)/include -I$(top_builddir)/src/
+AM_CPPFLAGS = -I$(top_builddir)/include -I$(top_builddir)/src/
 
 ########################################
 # uSQL for C++

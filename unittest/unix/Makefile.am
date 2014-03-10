@@ -1,6 +1,6 @@
 noinst_PROGRAMS = usqlcctestunit
 
-INCLUDES = -I$(top_srcdir)/include -I../
+AM_CPPFLAGS = -I$(top_srcdir)/include -I../
 
 usqlcctestunit_SOURCES = \
 	../SqlEngineTestBase.cpp \

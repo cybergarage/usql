@@ -1,6 +1,6 @@
 noinst_PROGRAMS = sqlparse
 
-INCLUDES = -I$(top_srcdir)/include -I../
+AM_CPPFLAGS = -I$(top_srcdir)/include -I../
 
 sqlparse_SOURCES = \
 	../sqlparse.cpp

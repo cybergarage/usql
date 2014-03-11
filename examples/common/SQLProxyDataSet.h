@@ -21,29 +21,29 @@ class SQLProxyDataSet : public std::map<std::string, std::string> {
 
 private:
 
-    std::string dictionaryString;
-    std::vector<std::string> allKeys;
-    
+  std::string dictionaryString;
+  std::vector<std::string> allKeys;
+  
 public:
 
-	SQLProxyDataSet();
-    virtual ~SQLProxyDataSet();
+  SQLProxyDataSet();
+  virtual ~SQLProxyDataSet();
 
-	bool parse(const std::string &aString);
-    
-    bool hasData();
-    
-    void set(const std::string &keyName, const std::string &keyValue);
-    
-    std::vector<std::string> &getAllKeys();
-    const std::string &getValue(const std::string &keyName);
-    bool isValue(const std::string &keyName, const std::string &value);
-    
-    std::string &toString(std::string &buf);
-    
-    const std::string &toString() {
-        return toString(this->dictionaryString);
-    }
+  bool parse(const std::string &aString);
+  
+  bool hasData();
+  
+  void set(const std::string &keyName, const std::string &keyValue);
+  
+  std::vector<std::string> &getAllKeys();
+  const std::string &getValue(const std::string &keyName);
+  bool isValue(const std::string &keyName, const std::string &value);
+  
+  std::string &toString(std::string &buf);
+  
+  const std::string &toString() {
+    return toString(this->dictionaryString);
+  }
 };
 
 }

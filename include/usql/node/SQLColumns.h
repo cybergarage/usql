@@ -20,15 +20,15 @@ class SQLColumns : public SQLDataSet {
 
 public:
 
-	SQLColumns() {
-    	setType(COLUMNS);
-    }
+  SQLColumns() {
+    setType(COLUMNS);
+  }
 
-    const char *getTypeName() {
-        return "SQLColumns";
-    }
-    
-    std::string &toString(std::string &buf);
+  const char *getTypeName() {
+    return "SQLColumns";
+  }
+  
+  std::string &toString(std::string &buf);
 };
 
 }

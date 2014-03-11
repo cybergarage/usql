@@ -19,11 +19,11 @@ class SqlEngineTestCaseReader {
 
 public:
 
-	SqlEngineTestCaseReader();
-    
-    bool parseFile(const char *filename);
-    
-    const char *nextCase();
+  SqlEngineTestCaseReader();
+  
+  bool parseFile(const char *filename);
+  
+  const char *nextCase();
 };
 
 #endif

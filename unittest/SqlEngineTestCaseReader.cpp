@@ -18,10 +18,10 @@ SqlEngineTestCaseReader::SqlEngineTestCaseReader()
 
 bool SqlEngineTestCaseReader::parseFile(const char *filename)
 {
-    return false;
+  return false;
 }
 
 const char *SqlEngineTestCaseReader::nextCase()
 {
-    return NULL;
+  return NULL;
 }

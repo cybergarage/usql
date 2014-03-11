@@ -20,12 +20,12 @@ class SqlEngineTestStatements : public std::vector<std::string> {
 
 public:
 
-    SqlEngineTestStatements() {
-    }
-    
-    void addStatement(const char *stmt) {
-    	push_back(stmt);
-    }
+  SqlEngineTestStatements() {
+  }
+  
+  void addStatement(const char *stmt) {
+    push_back(stmt);
+  }
 };
 
 #endif

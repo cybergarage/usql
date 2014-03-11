@@ -19,14 +19,14 @@ class SQLTransaction : public SQLNode {
 
 public:
 
-	SQLTransaction() {
-    	setType(TRANSACTION);
-    }
+  SQLTransaction() {
+    setType(TRANSACTION);
+  }
 
-    const char *getTypeName() {
-        return "SQLTransaction";
-    }
-    
+  const char *getTypeName() {
+    return "SQLTransaction";
+  }
+  
 };
 
 }

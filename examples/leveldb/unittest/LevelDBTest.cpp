@@ -24,15 +24,15 @@ uSQL::LevelDBTest::~LevelDBTest()
 
 bool uSQL::LevelDBTest::execSQLStatement(const std::string &sqlString, SQLProxyResult &result)
 {
-    SQL92Parser sqlParser;
-    if (sqlParser.parse(sqlString) == false)
-        return false;
-        
-    SQLStatementList *stmtList = sqlParser.getStatements();
-    for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
-        if (LevelDBProxy::query((*stmt), result) == false)
-            return false;
-    }
+  SQL92Parser sqlParser;
+  if (sqlParser.parse(sqlString) == false)
+    return false;
+    
+  SQLStatementList *stmtList = sqlParser.getStatements();
+  for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
+    if (LevelDBProxy::query((*stmt), result) == false)
+      return false;
+  }
 
-    return true;
+  return true;
 }

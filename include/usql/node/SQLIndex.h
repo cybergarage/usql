@@ -19,13 +19,13 @@ class SQLIndex : public SQLNode {
 
 public:
 
-	SQLIndex() {
-    	setType(INDEX);
-    }
+  SQLIndex() {
+    setType(INDEX);
+  }
 
-    const char *getTypeName() {
-        return "SQLIndex";
-    }
+  const char *getTypeName() {
+    return "SQLIndex";
+  }
 };
 
 }

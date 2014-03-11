@@ -20,22 +20,22 @@ namespace uSQL {
 
 class MySQLProxy : public MemcachedProxy {
 
-    MYSQL *mySQL;
+  MYSQL *mySQL;
 
 private:
 
-    bool execCommand(SQLStatement *stmt, SQLProxyResult &result);
-    bool select(SQLStatement *stmt, SQLProxyResult &result);
+  bool execCommand(SQLStatement *stmt, SQLProxyResult &result);
+  bool select(SQLStatement *stmt, SQLProxyResult &result);
 
 public:
 
-	MySQLProxy();
-    virtual ~MySQLProxy();
-    
-    bool connect(const std::string &host, const std::string &user, const std::string &passwd, const std::string &db);
-    bool close();
-    
-    bool query(SQLStatement *stmt, SQLProxyResult &result);
+  MySQLProxy();
+  virtual ~MySQLProxy();
+  
+  bool connect(const std::string &host, const std::string &user, const std::string &passwd, const std::string &db);
+  bool close();
+  
+  bool query(SQLStatement *stmt, SQLProxyResult &result);
 };
 
 }

@@ -19,21 +19,21 @@ class SQLLimit : public SQLNode {
 
 public:
 
-	SQLLimit() {
-    	setType(LIMIT);
-    }
-    
-    const char *getTypeName() {
-        return "SQLLimit";
-    }
-    
-    std::string &toString(std::string &buf) {
-	    std::ostringstream oss;
-	    std::string childNodeStr;
-	    oss << "LIMIT " << childNodesToString(childNodeStr, ",");
-    	buf = oss.str();
-		return buf;
-    }
+  SQLLimit() {
+    setType(LIMIT);
+  }
+  
+  const char *getTypeName() {
+    return "SQLLimit";
+  }
+  
+  std::string &toString(std::string &buf) {
+    std::ostringstream oss;
+    std::string childNodeStr;
+    oss << "LIMIT " << childNodesToString(childNodeStr, ",");
+    buf = oss.str();
+    return buf;
+  }
 };
 
 }

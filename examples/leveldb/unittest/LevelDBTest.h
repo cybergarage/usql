@@ -12,19 +12,19 @@
 #define CG_USQL_LEVELDBTEST_H
 
 #include "LevelDBProxy.h"
-        
+    
 namespace uSQL {
 
 class LevelDBTest : public LevelDBProxy {
-    
+  
 private:
-    
+  
 public:
 
-	LevelDBTest();
-    ~LevelDBTest();
+  LevelDBTest();
+  ~LevelDBTest();
 
-	bool execSQLStatement(const std::string &sqlString, SQLProxyResult &result);
+  bool execSQLStatement(const std::string &sqlString, SQLProxyResult &result);
 };
 
 }

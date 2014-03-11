@@ -13,15 +13,15 @@
 
 std::string &uSQL::SQLValues::toString(std::string &buf) 
 {
-    bool isUnQL = false;
-    if ((getRootNode()->isStatementNode())) {
-        uSQL::SQLStatement *stmtNode = (uSQL::SQLStatement *)getRootNode();
-        isUnQL = stmtNode->isUnQL();
-    }
-    
-    std::string columnString;
-    std::ostringstream oss;
-    oss << (isUnQL ? "VALUE" : "VALUES") << " " << toExpressionString(columnString);
-    buf = oss.str();
-    return buf;
+  bool isUnQL = false;
+  if ((getRootNode()->isStatementNode())) {
+    uSQL::SQLStatement *stmtNode = (uSQL::SQLStatement *)getRootNode();
+    isUnQL = stmtNode->isUnQL();
+  }
+  
+  std::string columnString;
+  std::ostringstream oss;
+  oss << (isUnQL ? "VALUE" : "VALUES") << " " << toExpressionString(columnString);
+  buf = oss.str();
+  return buf;
 }

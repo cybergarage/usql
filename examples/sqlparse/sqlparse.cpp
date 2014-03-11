@@ -19,56 +19,56 @@ using namespace uSQL;
 
 const char * prompt(EditLine *e) 
 {
-	return "usql> ";
+  return "usql> ";
 }
 
 int main(int argc, char *argv[]) 
 {
-    string pgName;
-    string dbFilename;
-    
-    pgName =argv[0];
-    
-	/* Initialize the EditLine */
-	EditLine *el = el_init(pgName.c_str(), stdin, stdout, stderr);
-	el_set(el, EL_PROMPT, &prompt);
-	el_set(el, EL_EDITOR, "vi");
-	
-	/* Initialize the history */
-	HistEvent ev;
-	History *inputHistory = history_init();
-	history(inputHistory, &ev, H_SETSIZE, 1024);
-	el_set(el, EL_HIST, history, inputHistory);
-	
-	while (true) {
-        int readCount = 0;
-		const char *inputLine = el_gets(el, &readCount);
-		if (readCount <= 0)
-            continue;
-            
-        history(inputHistory, &ev, H_ENTER, inputLine);
+  string pgName;
+  string dbFilename;
+  
+  pgName =argv[0];
+  
+  /* Initialize the EditLine */
+  EditLine *el = el_init(pgName.c_str(), stdin, stdout, stderr);
+  el_set(el, EL_PROMPT, &prompt);
+  el_set(el, EL_EDITOR, "vi");
+  
+  /* Initialize the history */
+  HistEvent ev;
+  History *inputHistory = history_init();
+  history(inputHistory, &ev, H_SETSIZE, 1024);
+  el_set(el, EL_HIST, history, inputHistory);
+  
+  while (true) {
+    int readCount = 0;
+    const char *inputLine = el_gets(el, &readCount);
+    if (readCount <= 0)
+      continue;
+      
+    history(inputHistory, &ev, H_ENTER, inputLine);
 
-        SQL92Parser sqlParser;
-        if (sqlParser.parse(inputLine) == false) {
-            SQLError *sqlError = sqlParser.getError();
-            cout << "Parser Error :  " << inputLine;
-            cout << "  Line = " << sqlError->getLine() << ", Offset = " << sqlError->getOffset() << endl;
-            continue;
-        }
-        
-        SQLStatementList *stmtList = sqlParser.getStatements();
-        for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
-            string stmtString;
-            string stmtTreeString;
-            (*stmt)->toString(stmtString);
-            (*stmt)->toTreeString(stmtTreeString);
-            cout << stmtString << endl;
-            cout << stmtTreeString << endl;;
-        }
-	}
+    SQL92Parser sqlParser;
+    if (sqlParser.parse(inputLine) == false) {
+      SQLError *sqlError = sqlParser.getError();
+      cout << "Parser Error :  " << inputLine;
+      cout << "  Line = " << sqlError->getLine() << ", Offset = " << sqlError->getOffset() << endl;
+      continue;
+    }
     
-	history_end(inputHistory);
-	el_end(el);
-		
-	return EXIT_SUCCESS;
+    SQLStatementList *stmtList = sqlParser.getStatements();
+    for (SQLStatementList::iterator stmt = stmtList->begin(); stmt != stmtList->end(); stmt++) {
+      string stmtString;
+      string stmtTreeString;
+      (*stmt)->toString(stmtString);
+      (*stmt)->toTreeString(stmtTreeString);
+      cout << stmtString << endl;
+      cout << stmtTreeString << endl;;
+    }
+  }
+  
+  history_end(inputHistory);
+  el_end(el);
+    
+  return EXIT_SUCCESS;
 }

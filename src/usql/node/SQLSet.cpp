@@ -12,9 +12,9 @@
 
 std::string &uSQL::SQLSets::toString(std::string &buf) 
 {
-    std::ostringstream oss;
-    std::string childNodeStr;
-    oss << "SET " << childNodesToString(childNodeStr, ",");
-    buf = oss.str();
-    return buf;
+  std::ostringstream oss;
+  std::string childNodeStr;
+  oss << "SET " << childNodesToString(childNodeStr, ",");
+  buf = oss.str();
+  return buf;
 }

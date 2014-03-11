@@ -13,5 +13,5 @@
 
 std::string &uSQL::SQLColumns::toString(std::string &buf) 
 {
-    return toExpressionString(buf);
+  return toExpressionString(buf);
 }

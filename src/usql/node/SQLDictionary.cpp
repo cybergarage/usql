@@ -16,17 +16,17 @@ uSQL::SQLSet::~SQLSet()
 
 std::string &uSQL::SQLSet::toString(std::string &buf) 
 {
-    std::ostringstream oss;
-    
-    oss << name;
+  std::ostringstream oss;
+  
+  oss << name;
 
-    SQLNode *parentNode = getParentNode();
-    oss << ((isUnQLNode() && (parentNode->isColumnsNode() || parentNode->isValuesNode())) ? ":" : " = ");
+  SQLNode *parentNode = getParentNode();
+  oss << ((isUnQLNode() && (parentNode->isColumnsNode() || parentNode->isValuesNode())) ? ":" : " = ");
 
-    std::string valueString;
-    oss << SQLExpression::toString(valueString);
-    
-    buf = oss.str();
-    
-    return buf;
+  std::string valueString;
+  oss << SQLExpression::toString(valueString);
+  
+  buf = oss.str();
+  
+  return buf;
 }

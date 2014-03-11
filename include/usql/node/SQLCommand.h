@@ -19,103 +19,103 @@ class SQLCommand : public SQLNode {
 
 public:
 
-    static const int UNKOWN;
-    static const int SELECT;
-    static const int UPDATE;
-    static const int INSERT;
-    static const int DEL;
-    static const int CREATE;
-    static const int DROP;
-    static const int CREATE_INDEX;
-    static const int DROP_INDEX;
+  static const int UNKOWN;
+  static const int SELECT;
+  static const int UPDATE;
+  static const int INSERT;
+  static const int DEL;
+  static const int CREATE;
+  static const int DROP;
+  static const int CREATE_INDEX;
+  static const int DROP_INDEX;
 
 private:
 
-    int commandType;
-	bool asyncFlag;
-        
+  int commandType;
+  bool asyncFlag;
+    
 public:
 
-	SQLCommand() {
-    	setType(COMMAND);
-        setAsyncEnabled(false);
-    }
+  SQLCommand() {
+    setType(COMMAND);
+    setAsyncEnabled(false);
+  }
 
-    const char *getTypeName() {
-        return "SQLCommand";
-    }
-    
-    void setCommandType(int commandType);
+  const char *getTypeName() {
+    return "SQLCommand";
+  }
+  
+  void setCommandType(int commandType);
 
-    int getCommandType() {
-        return this->commandType;
-    }
+  int getCommandType() {
+    return this->commandType;
+  }
 
-    bool isCommandType(int type) {
-        return (this->commandType == type) ? true : false;
-    }
-    
-    void setAsyncEnabled(bool asyncFlag) {
-        this->asyncFlag = asyncFlag;
-    }
+  bool isCommandType(int type) {
+    return (this->commandType == type) ? true : false;
+  }
+  
+  void setAsyncEnabled(bool asyncFlag) {
+    this->asyncFlag = asyncFlag;
+  }
 
-    bool isAsync() {
-        return this->asyncFlag;
-    }
+  bool isAsync() {
+    return this->asyncFlag;
+  }
 
-    bool isSync() {
-        return !this->asyncFlag;
-    }
-    
-    bool isSelect() {
-        return isCommandType(SELECT);
-    }
+  bool isSync() {
+    return !this->asyncFlag;
+  }
+  
+  bool isSelect() {
+    return isCommandType(SELECT);
+  }
 
-    bool isUpdate() {
-        return isCommandType(UPDATE);
-    }
+  bool isUpdate() {
+    return isCommandType(UPDATE);
+  }
 
-    bool isInsert() {
-        return isCommandType(INSERT);
-    }
+  bool isInsert() {
+    return isCommandType(INSERT);
+  }
 
-    bool isDelete() {
-        return isCommandType(DEL);
-    }
-    
-    bool isCreate() {
-        return isCommandType(CREATE);
-    }
+  bool isDelete() {
+    return isCommandType(DEL);
+  }
+  
+  bool isCreate() {
+    return isCommandType(CREATE);
+  }
 
-    bool isDrop() {
-        return isCommandType(DROP);
-    }
-    
-    bool isCreateIndex() {
-        return isCommandType(CREATE_INDEX);
-    }
-    
-    bool isDropIndex() {
-        return isCommandType(DROP_INDEX);
-    }
+  bool isDrop() {
+    return isCommandType(DROP);
+  }
+  
+  bool isCreateIndex() {
+    return isCommandType(CREATE_INDEX);
+  }
+  
+  bool isDropIndex() {
+    return isCommandType(DROP_INDEX);
+  }
 };
 
 class SQLSelect : public SQLCommand {
 
 public:
 
-	SQLSelect() {
-    	setCommandType(SELECT);
-    }
+  SQLSelect() {
+    setCommandType(SELECT);
+  }
 };
 
 class SQLUpdate : public SQLCommand {
 
 public:
 
-	SQLUpdate() {
-    	setCommandType(UPDATE);
-    }
+  SQLUpdate() {
+    setCommandType(UPDATE);
+  }
 
 };
 
@@ -123,54 +123,54 @@ class SQLInsert : public SQLCommand {
 
 public:
 
-	SQLInsert() {
-    	setCommandType(INSERT);
-    }
+  SQLInsert() {
+    setCommandType(INSERT);
+  }
 };
 
 class SQLDelete : public SQLCommand {
 
 public:
 
-	SQLDelete() {
-    	setCommandType(DEL);
-    }
+  SQLDelete() {
+    setCommandType(DEL);
+  }
 };
 
 class SQLCreate : public SQLCommand {
 
 public:
 
-	SQLCreate() {
-    	setCommandType(CREATE);
-    }
+  SQLCreate() {
+    setCommandType(CREATE);
+  }
 };
 
 class SQLDrop : public SQLCommand {
 
 public:
 
-	SQLDrop() {
-    	setCommandType(DROP);
-    }
+  SQLDrop() {
+    setCommandType(DROP);
+  }
 };
 
 class SQLCreateIndex : public SQLCommand {
 
 public:
 
-	SQLCreateIndex() {
-    	setCommandType(CREATE_INDEX);
-    }
+  SQLCreateIndex() {
+    setCommandType(CREATE_INDEX);
+  }
 };
 
 class SQLDropIndex : public SQLCommand {
 
 public:
 
-	SQLDropIndex() {
-    	setCommandType(DROP_INDEX);
-    }
+  SQLDropIndex() {
+    setCommandType(DROP_INDEX);
+  }
 };
 
 }

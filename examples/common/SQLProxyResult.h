@@ -17,51 +17,51 @@
 namespace uSQL {
 
 class SQLProxyResult : public SQLError {
-    
+  
 private:
-    
-    SQLProxyDataSet resultSet;
-    std::string execMessage;
-    bool cached;
-    
+  
+  SQLProxyDataSet resultSet;
+  std::string execMessage;
+  bool cached;
+  
 public:
 
-	SQLProxyResult();
-    virtual ~SQLProxyResult();
+  SQLProxyResult();
+  virtual ~SQLProxyResult();
 
-    void setExecMessage(const std::string &message) {
-        this->execMessage = message;
-    }
-    
-    const std::string &getExecMessage() {
-        return execMessage;
-    }
+  void setExecMessage(const std::string &message) {
+    this->execMessage = message;
+  }
+  
+  const std::string &getExecMessage() {
+    return execMessage;
+  }
 
-    void setCashed(bool flag) {
-        this->cached = flag;
-    }
-    
-    bool isCashed() {
-        return this->cached;
-    }
-    
-    SQLProxyDataSet *getResultSet() {
-        return &resultSet;
-    }
-    
-    bool hasMessage() {
-        return (0 < execMessage.length());
-    }
-    
-    void setErrorMessage(const std::string &message) {
-        setMessage(message);
-    }
-    
-    const std::string &getErrorMessage() {
-        return getMessage();
-    }
-    
-    void clear();
+  void setCashed(bool flag) {
+    this->cached = flag;
+  }
+  
+  bool isCashed() {
+    return this->cached;
+  }
+  
+  SQLProxyDataSet *getResultSet() {
+    return &resultSet;
+  }
+  
+  bool hasMessage() {
+    return (0 < execMessage.length());
+  }
+  
+  void setErrorMessage(const std::string &message) {
+    setMessage(message);
+  }
+  
+  const std::string &getErrorMessage() {
+    return getMessage();
+  }
+  
+  void clear();
 };
 
 }

@@ -19,9 +19,9 @@ class SQL92Parser : public SQLParser {
 
 public:
 
-	SQL92Parser();
+  SQL92Parser();
 
-	bool parse(const std::string &queryString);
+  bool parse(const std::string &queryString);
 };
 
 }

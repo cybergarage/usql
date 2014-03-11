@@ -19,12 +19,12 @@ class SqlEngineTestParser  : public uSQL::SQLParser {
 
 public:
 
-	SqlEngineTestParser() {
-    }
+  SqlEngineTestParser() {
+  }
 
-	bool parse(const std::string &queryString) {
-		return SQLParser::parse(queryString);
-    }
+  bool parse(const std::string &queryString) {
+    return SQLParser::parse(queryString);
+  }
 };
 
 #endif

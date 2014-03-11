@@ -19,38 +19,38 @@
 namespace uSQL {
 
 class LevelDBProxy : public SQLProxy {
-    
+  
 private:
-    
-    leveldb::DB* db;
-    
+  
+  leveldb::DB* db;
+  
 private:
-    
-    bool getInsertStatementKey(SQLStatement *stmt, std::string &key, SQLError &error);
-    bool getStatementKey(SQLStatement *stmt, std::string &key, SQLError &error);
-    
-    bool select(SQLStatement *stmt, SQLProxyResult &result);
-    bool insert(SQLStatement *stmt, SQLError &error);
-    bool update(SQLStatement *stmt, SQLError &error);
-    bool remove(SQLStatement *stmt, SQLError &error);
+  
+  bool getInsertStatementKey(SQLStatement *stmt, std::string &key, SQLError &error);
+  bool getStatementKey(SQLStatement *stmt, std::string &key, SQLError &error);
+  
+  bool select(SQLStatement *stmt, SQLProxyResult &result);
+  bool insert(SQLStatement *stmt, SQLError &error);
+  bool update(SQLStatement *stmt, SQLError &error);
+  bool remove(SQLStatement *stmt, SQLError &error);
 
 public:
 
-	LevelDBProxy();
-    virtual ~LevelDBProxy();
+  LevelDBProxy();
+  virtual ~LevelDBProxy();
 
-	bool open(const std::string &filename);
-    bool close();
-    
-    bool getKey(SQLStatement *stmt, std::string &key, SQLError &error);
-    
+  bool open(const std::string &filename);
+  bool close();
+  
+  bool getKey(SQLStatement *stmt, std::string &key, SQLError &error);
+  
 public:
 
-    bool connect(const std::string &host, const std::string &user, const std::string &passwd, const std::string &db) {
-        return  true;
-    }
-    
-    bool query(SQLStatement *stmt, SQLProxyResult &result);
+  bool connect(const std::string &host, const std::string &user, const std::string &passwd, const std::string &db) {
+    return  true;
+  }
+  
+  bool query(SQLStatement *stmt, SQLProxyResult &result);
 
 };
 

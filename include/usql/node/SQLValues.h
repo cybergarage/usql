@@ -19,15 +19,15 @@ class SQLValues : public SQLExpression {
 
 public:
 
-	SQLValues() {
-    	setType(VALUES);
-    }
-    
-    const char *getTypeName() {
-        return "SQLValues";
-    }
-    
-    std::string &toString(std::string &buf);
+  SQLValues() {
+    setType(VALUES);
+  }
+  
+  const char *getTypeName() {
+    return "SQLValues";
+  }
+  
+  std::string &toString(std::string &buf);
 };
 
 }

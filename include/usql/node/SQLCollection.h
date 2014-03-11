@@ -19,13 +19,13 @@ class SQLCollection : public SQLNode {
 
 public:
 
-	SQLCollection() {
-    	setType(COLLECTION);
-    }
+  SQLCollection() {
+    setType(COLLECTION);
+  }
 
-    const char *getTypeName() {
-        return "SQLCollection";
-    }
+  const char *getTypeName() {
+    return "SQLCollection";
+  }
 };
 
 }

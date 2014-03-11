@@ -23,34 +23,34 @@ static const char *CgSQLOrderStrings[] = {
 
 static const char *CgSQLOrderValueToString(int n)
 {
-	if (n < 0 || (CgSQLOrderStringSize - 1) < n)
-    	return "?";
-	return CgSQLOrderStrings[n];
+  if (n < 0 || (CgSQLOrderStringSize - 1) < n)
+    return "?";
+  return CgSQLOrderStrings[n];
 }
 
 static int CgSQLOrderStringToValue(const std::string value)
 {
-	for (int n=0; n<CgSQLOrderStringSize; n++) {
-    	if (value.compare(CgSQLOrderStrings[n]) == 0)
-        	return n;
-    }
-    return uSQL::SQLOrder::UNKOWN;
+  for (int n=0; n<CgSQLOrderStringSize; n++) {
+    if (value.compare(CgSQLOrderStrings[n]) == 0)
+      return n;
+  }
+  return uSQL::SQLOrder::UNKOWN;
 }
 
 void uSQL::SQLOrder::setOrder(int type) 
 {
-    this->order = type;
+  this->order = type;
 }
 
 void uSQL::SQLOrder::setOrder(const std::string &order)
 {
-	setOrder(CgSQLOrderStringToValue(order));
+  setOrder(CgSQLOrderStringToValue(order));
 }
 
 std::string &uSQL::SQLOrder::toString(std::string &buf) 
 {
-	std::ostringstream oss;
-	oss << getValue() << " " << CgSQLOrderValueToString(getOrder());
-	buf = oss.str();
-	return buf;
+  std::ostringstream oss;
+  oss << getValue() << " " << CgSQLOrderValueToString(getOrder());
+  buf = oss.str();
+  return buf;
 }

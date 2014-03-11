@@ -20,13 +20,13 @@
 
 class SqlEngineTestCase {
 
-	uSQL::SQLParser *sqlParser;
-    
+  uSQL::SQLParser *sqlParser;
+  
 public:
 
-	SqlEngineTestCase(uSQL::SQLParser *sqlParser);
-    
-    void parse(std::vector<std::string> &sqlStrings);
+  SqlEngineTestCase(uSQL::SQLParser *sqlParser);
+  
+  void parse(std::vector<std::string> &sqlStrings);
 };
 
 #endif

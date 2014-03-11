@@ -19,11 +19,11 @@ class SQLDataSet : public SQLExpression {
 
 public:
 
-	SQLDataSet() {
-    }
+  SQLDataSet() {
+  }
 
-    virtual ~SQLDataSet() {
-    }
+  virtual ~SQLDataSet() {
+  }
 
 };
 

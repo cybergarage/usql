@@ -22,11 +22,11 @@ using namespace uSQL;
 
 BOOST_AUTO_TEST_CASE(SQLParserStatementAddTest)
 {
-    SQLStatement sqlStmt;
-    
-    for (int n=0; n<100; n++) {
-        SQLSelect *sqlCmd = new SQLSelect();
-        sqlStmt.addChildNode(sqlCmd);
-        //BOOST_CHECK(sqlStmt.numChildNodes() == (n+1));
-    }
+  SQLStatement sqlStmt;
+  
+  for (int n=0; n<100; n++) {
+    SQLSelect *sqlCmd = new SQLSelect();
+    sqlStmt.addChildNode(sqlCmd);
+    //BOOST_CHECK(sqlStmt.numChildNodes() == (n+1));
+  }
 }

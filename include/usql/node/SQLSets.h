@@ -20,28 +20,28 @@ class SQLSets : public SQLDataSet {
 
 public:
 
-	SQLSets() {
-    	setType(SETS);
-    }
-    
-    const char *getTypeName() {
-        return "SQLSets";
-    }
-    
-    
-    int getSetCount() {
-        return getChildCount();
-    }
-    
-    SQLNodeList *getSets() {
-        return getChildNodes();
-    }
-    
-    SQLSet *getSet(int index) {
-        return (SQLSet *)getChildNode(index);
-    }
-    
-    std::string &toString(std::string &buf);
+  SQLSets() {
+    setType(SETS);
+  }
+  
+  const char *getTypeName() {
+    return "SQLSets";
+  }
+  
+  
+  int getSetCount() {
+    return getChildCount();
+  }
+  
+  SQLNodeList *getSets() {
+    return getChildNodes();
+  }
+  
+  SQLSet *getSet(int index) {
+    return (SQLSet *)getChildNode(index);
+  }
+  
+  std::string &toString(std::string &buf);
 };
 
 }

@@ -25,23 +25,23 @@ using namespace uSQL;
 
 BOOST_AUTO_TEST_CASE(SQLParser92Test)
 {
-	vector<string> sqlStrings;
+  vector<string> sqlStrings;
 
-    sqlStrings.push_back("SELECT * FROM SAMPLE1");
-    sqlStrings.push_back("SELECT * FROM SAMPLE2 WHERE A = B");
-    sqlStrings.push_back("SELECT * FROM SAMPLE3 LIMIT 10");
+  sqlStrings.push_back("SELECT * FROM SAMPLE1");
+  sqlStrings.push_back("SELECT * FROM SAMPLE2 WHERE A = B");
+  sqlStrings.push_back("SELECT * FROM SAMPLE3 LIMIT 10");
 
-    sqlStrings.push_back("INSERT INTO abc VALUES (1234)");
-    sqlStrings.push_back("INSERT INTO abc (age) VALUES (34)");
-    sqlStrings.push_back("INSERT INTO abc (name,age) VALUES (skonno,34)");
-    
-    sqlStrings.push_back("DELETE FROM abc");
-    sqlStrings.push_back("DELETE FROM abc WHERE A = B");
-    
-    sqlStrings.push_back("UPDATE abc SET age = 34");
-    sqlStrings.push_back("UPDATE abc SET age = 34 WHERE name = skonno");
-    
-	SQL92Parser sqlParser;
-    SqlEngineTestCase sqlTestCase(&sqlParser);
-    sqlTestCase.parse(sqlStrings);
+  sqlStrings.push_back("INSERT INTO abc VALUES (1234)");
+  sqlStrings.push_back("INSERT INTO abc (age) VALUES (34)");
+  sqlStrings.push_back("INSERT INTO abc (name,age) VALUES (skonno,34)");
+  
+  sqlStrings.push_back("DELETE FROM abc");
+  sqlStrings.push_back("DELETE FROM abc WHERE A = B");
+  
+  sqlStrings.push_back("UPDATE abc SET age = 34");
+  sqlStrings.push_back("UPDATE abc SET age = 34 WHERE name = skonno");
+  
+  SQL92Parser sqlParser;
+  SqlEngineTestCase sqlTestCase(&sqlParser);
+  sqlTestCase.parse(sqlStrings);
 }

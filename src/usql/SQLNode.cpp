@@ -40,7 +40,7 @@ const int uSQL::SQLNode::SETS = 28;
 
 uSQL::SQLNode::SQLNode()
 {
-	setParentNode(NULL);
+  setParentNode(NULL);
 }
 
 uSQL::SQLNode::~SQLNode()
@@ -49,143 +49,143 @@ uSQL::SQLNode::~SQLNode()
 
 bool uSQL::SQLNode::isStatementType(int type)
 {
-    if ((getRootNode()->isStatementNode())) {
-        uSQL::SQLStatement * stmtNode = (uSQL::SQLStatement *)getRootNode();
-        return stmtNode->isStatementType(type);
-    }
+  if ((getRootNode()->isStatementNode())) {
+    uSQL::SQLStatement * stmtNode = (uSQL::SQLStatement *)getRootNode();
+    return stmtNode->isStatementType(type);
+  }
 
-    return uSQL::SQLStatement::UNKNOWN;
+  return uSQL::SQLStatement::UNKNOWN;
 }
 
 bool uSQL::SQLNode::isUnQLNode()
 {
-    return isStatementType(uSQL::SQLStatement::UNQL);
+  return isStatementType(uSQL::SQLStatement::UNQL);
 }
 
 bool uSQL::SQLNode::isExpressionNode() 
 {
-	return (dynamic_cast<uSQL::SQLExpression *>(this)) ? true : false;
+  return (dynamic_cast<uSQL::SQLExpression *>(this)) ? true : false;
 }
 
 bool uSQL::SQLNode::isOperatorNode() 
 {
-	return (dynamic_cast<uSQL::SQLOperator *>(this)) ? true : false;
+  return (dynamic_cast<uSQL::SQLOperator *>(this)) ? true : false;
 }
 
 bool uSQL::SQLNode::isStatementNode() 
 {
-	return (dynamic_cast<uSQL::SQLStatement *>(this)) ? true : false;
+  return (dynamic_cast<uSQL::SQLStatement *>(this)) ? true : false;
 }
 
 bool uSQL::SQLNode::isDictionaryNode() 
 {
-	return (dynamic_cast<uSQL::SQLSet *>(this)) ? true : false;
+  return (dynamic_cast<uSQL::SQLSet *>(this)) ? true : false;
 }
 
 bool uSQL::SQLNode::isColumnsNode() 
 {
-	return (dynamic_cast<uSQL::SQLColumns *>(this)) ? true : false;
+  return (dynamic_cast<uSQL::SQLColumns *>(this)) ? true : false;
 }
 
 bool uSQL::SQLNode::isCollectionsNode() 
 {
-	return (dynamic_cast<uSQL::SQLCollections *>(this)) ? true : false;
+  return (dynamic_cast<uSQL::SQLCollections *>(this)) ? true : false;
 }
 
 bool uSQL::SQLNode::isValuesNode() 
 {
-	return (dynamic_cast<uSQL::SQLValues *>(this)) ? true : false;
+  return (dynamic_cast<uSQL::SQLValues *>(this)) ? true : false;
 }
 
 uSQL::SQLNode *uSQL::SQLNode::getChildNode(int index) 
 {
-    uSQL::SQLNodeList *childNodes = getChildNodes();
-    int childNodeCount = getChildCount();
-    if ((index < 0) || ((childNodeCount - 1) < index))
-        return NULL;
-    return childNodes->at(index);
+  uSQL::SQLNodeList *childNodes = getChildNodes();
+  int childNodeCount = getChildCount();
+  if ((index < 0) || ((childNodeCount - 1) < index))
+    return NULL;
+  return childNodes->at(index);
 }
 
 uSQL::SQLNode *uSQL::SQLNode::findChildNodeByType(int type)
 {
-    for (SQLNodeList::iterator node = children.begin(); node != children.end(); node++) {
-        if ((*node)->isType(type))
-            return (*node);
-    }
-    return NULL;
+  for (SQLNodeList::iterator node = children.begin(); node != children.end(); node++) {
+    if ((*node)->isType(type))
+      return (*node);
+  }
+  return NULL;
 }
 
 static std::string CgSQLNode2String(uSQL::SQLNode *sqlNode, std::string &buf)
 {
-    std::ostringstream oss;
-    
-	const std::string value = sqlNode->getValue();
-	if (0 < value.length()) {
-	    oss << value;
-    }
-    
-    buf = oss.str();
-    
-    return buf;
+  std::ostringstream oss;
+  
+  const std::string value = sqlNode->getValue();
+  if (0 < value.length()) {
+    oss << value;
+  }
+  
+  buf = oss.str();
+  
+  return buf;
 }
 
 static void CgSQLNodeStringAdd2OutputStream(std::string &nodeString, std::ostringstream &oss)
 {
-	if (nodeString.length() <= 0)
-    	return;
-        
-    std::string ossStr = oss.str();
-    if (0 < ossStr.length()) {
-		char lastChar = ossStr.at((ossStr.length()-1));
-    	if (lastChar != ' ')
-	    	oss << " ";
-    }
+  if (nodeString.length() <= 0)
+    return;
     
-    oss << nodeString;
+  std::string ossStr = oss.str();
+  if (0 < ossStr.length()) {
+    char lastChar = ossStr.at((ossStr.length()-1));
+    if (lastChar != ' ')
+      oss << " ";
+  }
+  
+  oss << nodeString;
 }
 
 static void CgSQLNodeAdd2OutputStream(uSQL::SQLNode *sqlNode, std::ostringstream &oss)
 {
-    std::string nodeStr;
-    CgSQLNode2String(sqlNode, nodeStr);
-    CgSQLNodeStringAdd2OutputStream(nodeStr, oss);
+  std::string nodeStr;
+  CgSQLNode2String(sqlNode, nodeStr);
+  CgSQLNodeStringAdd2OutputStream(nodeStr, oss);
 }
 
 std::string &uSQL::SQLNode::childNodesToString(std::string &buf, std::string delim)
 {
-    std::ostringstream oss;
+  std::ostringstream oss;
 
-    uSQL::SQLNodeList *childNodes = getChildNodes();
-    std::size_t numChildren = childNodes->size();
-    for (int n=0; n<numChildren; n++) {
-        std::string childNodeStr;
-        uSQL::SQLNode *childNode = childNodes->getNode(n);
-        childNode->toString(childNodeStr);
-        if (0 < childNodeStr.length()) {
-            oss << childNodeStr;
-            if (n < (numChildren-1))
-            	oss << delim;
-        }
+  uSQL::SQLNodeList *childNodes = getChildNodes();
+  std::size_t numChildren = childNodes->size();
+  for (int n=0; n<numChildren; n++) {
+    std::string childNodeStr;
+    uSQL::SQLNode *childNode = childNodes->getNode(n);
+    childNode->toString(childNodeStr);
+    if (0 < childNodeStr.length()) {
+      oss << childNodeStr;
+      if (n < (numChildren-1))
+        oss << delim;
     }
-    
-    buf = oss.str();
-    
-    return buf;
+  }
+  
+  buf = oss.str();
+  
+  return buf;
 }
 
 std::string &uSQL::SQLNode::toString(std::string &buf)
 {
-    std::ostringstream oss;
+  std::ostringstream oss;
 
-	CgSQLNodeAdd2OutputStream(this, oss);
+  CgSQLNodeAdd2OutputStream(this, oss);
 
-	if (hasChildNodes() == true) {
-	    std::string childNodeStr;
-    	childNodesToString(childNodeStr);
-    	CgSQLNodeStringAdd2OutputStream(childNodeStr, oss);
-    }
-    
-    buf = oss.str();
-    
-    return buf;
+  if (hasChildNodes() == true) {
+    std::string childNodeStr;
+    childNodesToString(childNodeStr);
+    CgSQLNodeStringAdd2OutputStream(childNodeStr, oss);
+  }
+  
+  buf = oss.str();
+  
+  return buf;
 }

@@ -22,36 +22,36 @@ const int uSQL::SQLCommand::DROP_INDEX = 7;
 
 void uSQL::SQLCommand::setCommandType(int commandType) 
 {
-    this->commandType = commandType;
-    
-    std::string commandValue = "";
-    
-    switch (this->commandType) {
-	case SELECT:
-		commandValue = "SELECT";
-    	break;
-	case UPDATE:
-		commandValue = "UPDATE";
-    	break;
-	case INSERT:
-		commandValue = "INSERT INTO";
-    	break;
-	case DEL:
-		commandValue = "DELETE FROM";
-    	break;
-	case CREATE:
-		commandValue = "CREATE COLLECTION";
-    	break;
-	case DROP:
-		commandValue = "DROP COLLECTION";
-    	break;
-	case CREATE_INDEX:
-		commandValue = "CREATE INDEX";
-    	break;
-	case DROP_INDEX:
-		commandValue = "DROP INDEX";
-    	break;
-	}
-    
-    setValue(commandValue);
+  this->commandType = commandType;
+  
+  std::string commandValue = "";
+  
+  switch (this->commandType) {
+  case SELECT:
+    commandValue = "SELECT";
+    break;
+  case UPDATE:
+    commandValue = "UPDATE";
+    break;
+  case INSERT:
+    commandValue = "INSERT INTO";
+    break;
+  case DEL:
+    commandValue = "DELETE FROM";
+    break;
+  case CREATE:
+    commandValue = "CREATE COLLECTION";
+    break;
+  case DROP:
+    commandValue = "DROP COLLECTION";
+    break;
+  case CREATE_INDEX:
+    commandValue = "CREATE INDEX";
+    break;
+  case DROP_INDEX:
+    commandValue = "DROP INDEX";
+    break;
+  }
+  
+  setValue(commandValue);
 }

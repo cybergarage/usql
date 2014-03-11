@@ -19,23 +19,23 @@ class SQLOrderBy : public SQLNode {
 
 public:
 
-	SQLOrderBy() {
-    	setType(ORDERBY);
-	}
+  SQLOrderBy() {
+    setType(ORDERBY);
+  }
 
-    const char *getTypeName() {
-        return "SQLOrderBy";
-    }
-    
-    
-    std::string &toString(std::string &buf) {
-	    std::ostringstream oss;
-	    std::string childNodeStr;
-	    oss << "ORDER BY " << childNodesToString(childNodeStr, ",");
-    	buf = oss.str();
-		return buf;
-	}
-    
+  const char *getTypeName() {
+    return "SQLOrderBy";
+  }
+  
+  
+  std::string &toString(std::string &buf) {
+    std::ostringstream oss;
+    std::string childNodeStr;
+    oss << "ORDER BY " << childNodesToString(childNodeStr, ",");
+    buf = oss.str();
+    return buf;
+  }
+  
 };
 
 }

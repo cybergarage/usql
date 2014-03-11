@@ -19,9 +19,9 @@ class GQLParser  : public SQLParser {
 
 public:
 
-	GQLParser();
+  GQLParser();
 
-	bool parse(const std::string &queryString);
+  bool parse(const std::string &queryString);
 };
 
 }

@@ -21,42 +21,42 @@ class SQLCollections : public SQLDataSet {
 
 public:
 
-	SQLCollections() {
-    	setType(COLLECTIONS);
-	}
+  SQLCollections() {
+    setType(COLLECTIONS);
+  }
 
-    const char *getTypeName() {
-        return "SQLCollections";
-    }
-    
-    SQLCollection *getCollectionNode(int index) {
-        return (SQLCollection *)getChildNode(index);
-    }
-    
-    std::string &toString(std::string &buf) {
-	    std::ostringstream oss;
-	    std::string childNodeStr;
-	    oss << childNodesToString(childNodeStr, ",");
-    	buf = oss.str();
-		return buf;
-	}
-    
+  const char *getTypeName() {
+    return "SQLCollections";
+  }
+  
+  SQLCollection *getCollectionNode(int index) {
+    return (SQLCollection *)getChildNode(index);
+  }
+  
+  std::string &toString(std::string &buf) {
+    std::ostringstream oss;
+    std::string childNodeStr;
+    oss << childNodesToString(childNodeStr, ",");
+    buf = oss.str();
+    return buf;
+  }
+  
 };
 
 class SQLFrom : public SQLCollections {
 
 public:
 
-	SQLFrom() {
-	}
+  SQLFrom() {
+  }
 
-    std::string &toString(std::string &buf) {
-	    std::ostringstream oss;
-	    std::string childNodeStr;
-	    oss << "FROM " << SQLCollections::toString(childNodeStr);
-    	buf = oss.str();
-		return buf;
-	}
+  std::string &toString(std::string &buf) {
+    std::ostringstream oss;
+    std::string childNodeStr;
+    oss << "FROM " << SQLCollections::toString(childNodeStr);
+    buf = oss.str();
+    return buf;
+  }
 
 };
 

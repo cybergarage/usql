@@ -28,84 +28,84 @@ const int uSQL::SQLExpression::ASTERISK = 14;
 
 void uSQL::SQLExpression::setLiteralType(int type)
 {
-    this->literalType = type;
-    
-    switch (this->literalType) {
-    case NIL:
-    	setValue("NULL");
-        break;
-	}
+  this->literalType = type;
+  
+  switch (this->literalType) {
+  case NIL:
+    setValue("NULL");
+    break;
+  }
 }
 
 void uSQL::SQLExpression::set(uSQL::SQLExpression *exprNode)
 {
-    std::string nodeValue = exprNode->getValue();
-    setValue(nodeValue);
+  std::string nodeValue = exprNode->getValue();
+  setValue(nodeValue);
 }
 
 std::string &uSQL::SQLExpression::toExpressionString(std::string &buf) 
 {
-    std::ostringstream oss;
-    
-    bool isUnQL = isUnQLNode();
-    
-    uSQL::SQLNodeList *expressions = getChildNodes();
-	std::size_t expressionsCount = expressions->size();
+  std::ostringstream oss;
+  
+  bool isUnQL = isUnQLNode();
+  
+  uSQL::SQLNodeList *expressions = getChildNodes();
+  std::size_t expressionsCount = expressions->size();
 
-	bool hasDictionaryValues = false;
-    for (int n=0; n<expressionsCount; n++) {
-        SQLNode *sqlNode = expressions->getNode(n);
-	    if (sqlNode->isExpressionNode() == false)
-        	continue;
-        uSQL::SQLExpression *exprNode = (uSQL::SQLExpression *)sqlNode;
-    	if (exprNode->isDictionaryNode() == true) {
-        	hasDictionaryValues = true;
-            break;
-        }
+  bool hasDictionaryValues = false;
+  for (int n=0; n<expressionsCount; n++) {
+    SQLNode *sqlNode = expressions->getNode(n);
+    if (sqlNode->isExpressionNode() == false)
+      continue;
+    uSQL::SQLExpression *exprNode = (uSQL::SQLExpression *)sqlNode;
+    if (exprNode->isDictionaryNode() == true) {
+      hasDictionaryValues = true;
+      break;
     }
-    
-    bool isAsterisk = false;
-    if (1 == expressionsCount) {
-        SQLNode *sqlNode = expressions->getNode(0);
-	    if (sqlNode->isExpressionNode() == true) {
-            uSQL::SQLExpression *exprNode = (uSQL::SQLExpression *)sqlNode;
-            isAsterisk = exprNode->isAsterisk();
-        }
+  }
+  
+  bool isAsterisk = false;
+  if (1 == expressionsCount) {
+    SQLNode *sqlNode = expressions->getNode(0);
+    if (sqlNode->isExpressionNode() == true) {
+      uSQL::SQLExpression *exprNode = (uSQL::SQLExpression *)sqlNode;
+      isAsterisk = exprNode->isAsterisk();
     }
-    
-    if (isUnQL) {
-        if (1 < expressionsCount) {
-            if (isAsterisk == false)
-                oss << (hasDictionaryValues ? "{" : "[");
-        }
-        else {
-            if (hasDictionaryValues == true)
-                oss << "{";
-        }
-    } else {
-        if (isAsterisk == false)
-            oss << "(";
+  }
+  
+  if (isUnQL) {
+    if (1 < expressionsCount) {
+      if (isAsterisk == false)
+        oss << (hasDictionaryValues ? "{" : "[");
     }
-        
-    std::string childNodeStr;
-    oss << childNodesToString(childNodeStr, ",");
-    
-    
-    if (isUnQL) {
-        if (1 < expressionsCount) {
-            if (isAsterisk == false)
-                oss << (hasDictionaryValues ? "}" : "]");
-        }
-        else {
-            if (hasDictionaryValues == true)
-                oss << "}";
-        }
-    } else {
-        if (isAsterisk == false)
-            oss << ")";
+    else {
+      if (hasDictionaryValues == true)
+        oss << "{";
     }
+  } else {
+    if (isAsterisk == false)
+      oss << "(";
+  }
     
-    buf = oss.str();
-    
-	return buf;
+  std::string childNodeStr;
+  oss << childNodesToString(childNodeStr, ",");
+  
+  
+  if (isUnQL) {
+    if (1 < expressionsCount) {
+      if (isAsterisk == false)
+        oss << (hasDictionaryValues ? "}" : "]");
+    }
+    else {
+      if (hasDictionaryValues == true)
+        oss << "}";
+    }
+  } else {
+    if (isAsterisk == false)
+      oss << ")";
+  }
+  
+  buf = oss.str();
+  
+  return buf;
 }

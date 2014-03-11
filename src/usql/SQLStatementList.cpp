@@ -18,17 +18,17 @@ uSQL::SQLStatementList::SQLStatementList()
 
 uSQL::SQLStatementList::~SQLStatementList()
 {
-    clear();
+  clear();
 }
 
 void uSQL::SQLStatementList::clear()
 {
-    /* FIXME
-    uSQL::SQLStatementList::iterator stmt = begin();
-    while (stmt != end()) {
-        stmt = erase(stmt);
-        delete (*stmt);
-    }
-    */
-    std::vector<SQLStatement *>::clear();
+  /* FIXME
+  uSQL::SQLStatementList::iterator stmt = begin();
+  while (stmt != end()) {
+    stmt = erase(stmt);
+    delete (*stmt);
+  }
+  */
+  std::vector<SQLStatement *>::clear();
 }

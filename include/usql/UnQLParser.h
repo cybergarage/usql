@@ -19,9 +19,9 @@ class UnQLParser  : public SQLParser {
 
 public:
 
-	UnQLParser();
+  UnQLParser();
 
-	bool parse(const std::string &queryString);
+  bool parse(const std::string &queryString);
 };
 
 }

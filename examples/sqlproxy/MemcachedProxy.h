@@ -20,29 +20,29 @@ namespace uSQL {
 
 class MemcachedProxy : public SQLProxy {
 
-    memcached_st *memcd;
-    time_t mmcdExpiration;
-        
+  memcached_st *memcd;
+  time_t mmcdExpiration;
+    
 public:
-    
-	MemcachedProxy();
-    virtual ~MemcachedProxy();
-    
-    void setExpiration(time_t value) {
-        this->mmcdExpiration = value;
-    }
-    
-    time_t getExpiration() {
-        return this->mmcdExpiration;
-    }
-    
-    bool connect(const std::string &host);
-    
+  
+  MemcachedProxy();
+  virtual ~MemcachedProxy();
+  
+  void setExpiration(time_t value) {
+    this->mmcdExpiration = value;
+  }
+  
+  time_t getExpiration() {
+    return this->mmcdExpiration;
+  }
+  
+  bool connect(const std::string &host);
+  
 public:
 
-    bool set(SQLStatement *stmt, SQLProxyDataSet *valuesDict, SQLError &error);
-    bool get(SQLStatement *stmt, SQLProxyResult &result);
-    bool remove(SQLStatement *stmt, SQLProxyResult &result);
+  bool set(SQLStatement *stmt, SQLProxyDataSet *valuesDict, SQLError &error);
+  bool get(SQLStatement *stmt, SQLProxyResult &result);
+  bool remove(SQLStatement *stmt, SQLProxyResult &result);
 };
 
 }

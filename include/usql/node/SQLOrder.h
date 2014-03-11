@@ -20,32 +20,32 @@ class SQLOrder : public SQLExpression {
 
 public:
 
-    static const int UNKOWN;
-    static const int ASC;
-    static const int DESC;
+  static const int UNKOWN;
+  static const int ASC;
+  static const int DESC;
 
 private:
 
-    int order;
-    
+  int order;
+  
 public:
 
-	SQLOrder() {
-    	setType(ORDER);
-    }
+  SQLOrder() {
+    setType(ORDER);
+  }
 
-    const char *getTypeName() {
-        return "SQLOrder";
-    }
-    
-	void setOrder(int type);    
-	void setOrder(const std::string &order);
-    
-	int getOrder() {
-    	return this->order;
-    }
+  const char *getTypeName() {
+    return "SQLOrder";
+  }
+  
+  void setOrder(int type);  
+  void setOrder(const std::string &order);
+  
+  int getOrder() {
+    return this->order;
+  }
 
-    std::string &toString(std::string &buf);
+  std::string &toString(std::string &buf);
 };
 
 }

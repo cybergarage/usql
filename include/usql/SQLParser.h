@@ -26,53 +26,53 @@ class SQLParser {
 
 private:
 
-    SQLStatementList statements;
-    SQLError error;
-    
+  SQLStatementList statements;
+  SQLError error;
+  
 private:
 
-    void clear();
+  void clear();
 
 public:
 
-	SQLParser();
-    
-    virtual ~SQLParser();
+  SQLParser();
+  
+  virtual ~SQLParser();
 
-	virtual bool parse(const std::string &queryString);
-    
-    void setStatementType(int type);
-    
-    void addStatement(SQLStatement *stmt)
-    {
-        statements.push_back(stmt);
-    }
+  virtual bool parse(const std::string &queryString);
+  
+  void setStatementType(int type);
+  
+  void addStatement(SQLStatement *stmt)
+  {
+    statements.push_back(stmt);
+  }
 
-    int getStatementCount() {
-        return (int)statements.size();
-    }
-    
-    SQLStatement *getStatement(int n)
-    {
-        if ((n < 0) || ((statements.size()-1) < n))
-            return NULL;
-        return statements.at(n);
-    }
-    
-    SQLStatement *getStatement()
-    {
-        return getStatement(0);
-    }
+  int getStatementCount() {
+    return (int)statements.size();
+  }
+  
+  SQLStatement *getStatement(int n)
+  {
+    if ((n < 0) || ((statements.size()-1) < n))
+      return NULL;
+    return statements.at(n);
+  }
+  
+  SQLStatement *getStatement()
+  {
+    return getStatement(0);
+  }
 
-    SQLStatementList *getStatements()
-    {
-        return &statements;
-    }
+  SQLStatementList *getStatements()
+  {
+    return &statements;
+  }
 
-    SQLError *getError()
-    {
-        return &error;
-    }
+  SQLError *getError()
+  {
+    return &error;
+  }
 };
 
 }

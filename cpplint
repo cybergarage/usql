@@ -1,0 +1,21 @@
+#!/bin/bash
+source_files=(`find . \( -name "*.h" -or -name "*.cpp" \) -print`)
+cpplint_opt="--linelength=200"
+sed_opts=(
+"s/    /  /g"
+)
+
+for file in ${source_files[@]}
+do
+	work_file=$file.tmp
+	expand -t 4 $file > $work_file
+	mv $work_file $file
+	
+	for n in `seq ${#sed_opts[@]}`
+	do
+		sed_opt=${sed_opts[`expr $n - 1`]}
+		sed -e "$sed_opt" $file > $work_file
+		mv $work_file $file
+	done
+	cpplint.py $cpplint_opt $file
+done

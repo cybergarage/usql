@@ -17,7 +17,7 @@ uSQL::UnQLParser::UnQLParser()
 
 bool uSQL::UnQLParser::parse(const std::string &queryString)
 {
-	bool parseResult = SQLParser::parse(queryString);
-    setStatementType(uSQL::SQLStatement::UNQL);
-    return parseResult;
+  bool parseResult = SQLParser::parse(queryString);
+  setStatementType(uSQL::SQLStatement::UNQL);
+  return parseResult;
 }

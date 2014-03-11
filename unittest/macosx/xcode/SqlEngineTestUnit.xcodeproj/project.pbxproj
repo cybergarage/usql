@@ -295,7 +295,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				OTHER_LDFLAGS = "-lboost_unit_test_framework";
+				OTHER_LDFLAGS = "-lboost_unit_test_framework-mt";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -307,7 +307,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				OTHER_LDFLAGS = "-lboost_unit_test_framework";
+				OTHER_LDFLAGS = "-lboost_unit_test_framework-mt";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

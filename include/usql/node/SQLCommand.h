@@ -28,6 +28,8 @@ public:
   static const int DROP;
   static const int CREATE_INDEX;
   static const int DROP_INDEX;
+  static const int USE;
+  static const int SHOW;
 
 private:
 
@@ -97,6 +99,14 @@ public:
   
   bool isDropIndex() {
     return isCommandType(DROP_INDEX);
+  }
+
+  bool isShow() {
+    return isCommandType(SHOW);
+  }
+
+  bool isUse() {
+    return isCommandType(USE);
   }
 };
 
@@ -170,6 +180,24 @@ public:
 
   SQLDropIndex() {
     setCommandType(DROP_INDEX);
+  }
+};
+
+class SQLShow : public SQLCommand {
+
+public:
+
+  SQLShow() {
+    setCommandType(SHOW);
+  }
+};
+
+class SQLUse : public SQLCommand {
+
+public:
+
+  SQLUse() {
+    setCommandType(USE);
   }
 };
 

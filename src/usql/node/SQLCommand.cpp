@@ -19,6 +19,8 @@ const int uSQL::SQLCommand::CREATE = 4;
 const int uSQL::SQLCommand::DROP = 5;
 const int uSQL::SQLCommand::CREATE_INDEX = 6;
 const int uSQL::SQLCommand::DROP_INDEX = 7;
+const int uSQL::SQLCommand::SHOW = 8;
+const int uSQL::SQLCommand::USE = 9;
 
 void uSQL::SQLCommand::setCommandType(int commandType) 
 {
@@ -50,6 +52,12 @@ void uSQL::SQLCommand::setCommandType(int commandType)
     break;
   case DROP_INDEX:
     commandValue = "DROP INDEX";
+    break;
+  case SHOW:
+    commandValue = "SHOW";
+    break;
+  case USE:
+    commandValue = "USE";
     break;
   }
   

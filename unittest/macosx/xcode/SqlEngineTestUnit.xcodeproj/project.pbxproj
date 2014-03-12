@@ -114,8 +114,8 @@
 		21F69A4F13BAE289004D23C9 = {
 			isa = PBXGroup;
 			children = (
-				21866299146820FC006B1883 /* Frameworks */,
 				213F869A13BAE4B10059444A /* UnitTest */,
+				21866299146820FC006B1883 /* Frameworks */,
 				21F69A5B13BAE289004D23C9 /* Products */,
 			);
 			sourceTree = "<group>";

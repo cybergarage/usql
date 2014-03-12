@@ -26,7 +26,13 @@ using namespace uSQL;
 BOOST_AUTO_TEST_CASE(SQLParserUnQLTest)
 {
   vector<string> unqlStrings;
-  
+
+  unqlStrings.push_back("SHOW abc");
+  unqlStrings.push_back("SHOW def");
+
+  unqlStrings.push_back("USE abc");
+  unqlStrings.push_back("USE def");
+
   unqlStrings.push_back("CREATE COLLECTION abc");
   unqlStrings.push_back("CREATE COLLECTION def");
   

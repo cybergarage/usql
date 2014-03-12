@@ -60,15 +60,143 @@ statement [uSQL::SQLParser *sqlParser]
 		uSQL::SQLStatement *stmt = new uSQL::SQLStatement();
 		sqlParser->addStatement(stmt);
 	}
-	: select_stmt[stmt]
+	: show_stmt[stmt]
+	| use_stmt[stmt]
 	| create_collection_stmt[stmt]
-	| drop_collection_stmt[stmt]
 	| create_index_stmt[stmt]
+	| drop_collection_stmt[stmt]
 	| drop_index_stmt[stmt]
+	| select_stmt[stmt]
 	| insert_stmt[stmt]
 	| update_stmt[stmt]
 	| delete_stmt[stmt]
 	;	
+
+/******************************************************************
+*
+* SHOW
+*
+******************************************************************/
+
+show_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {	
+	}
+	: SHOW collectionNode=collection_section
+	{
+		// SHOW
+		uSQL::SQLShow *sqlCmd = new uSQL::SQLShow();
+		sqlStmt->addChildNode(sqlCmd);
+		
+		// Collection
+		sqlCmd->addChildNode(collectionNode);
+	}
+	;
+
+/******************************************************************
+*
+* USE
+*
+******************************************************************/
+
+use_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {	
+	}
+	: USE collectionNode=collection_section
+	{
+		// USE
+		uSQL::SQLUse *sqlCmd = new uSQL::SQLUse();
+		sqlStmt->addChildNode(sqlCmd);
+		
+		// Collection
+		sqlCmd->addChildNode(collectionNode);
+	}
+	;
+	
+/******************************************************************
+*
+* CREATE
+*
+******************************************************************/
+
+create_collection_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {	
+		uSQL::SQLOption *sqlOpt = new uSQL::SQLOption();
+	}
+	: CREATE COLLECTION collectionNode=collection_section (OPTIONS expression[sqlOpt])? {
+		// CREATE
+		uSQL::SQLCreate *sqlCmd = new uSQL::SQLCreate();
+		sqlStmt->addChildNode(sqlCmd);
+		
+		// Collection
+		sqlCmd->addChildNode(collectionNode);
+
+		// Option 
+		if (sqlOpt->hasExpressions())
+			sqlCmd->addChildNode(sqlOpt);
+		else 
+			delete sqlOpt;
+	  }
+	;
+
+/******************************************************************
+*
+* DROP
+*
+******************************************************************/
+
+drop_collection_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {	
+	}
+	: DROP COLLECTION collectionNode=collection_section
+	{
+		// DROP
+		uSQL::SQLDrop *sqlCmd = new uSQL::SQLDrop();
+		sqlStmt->addChildNode(sqlCmd);
+		
+		// Collection
+		sqlCmd->addChildNode(collectionNode);
+	}
+	;
+
+/******************************************************************
+*
+* CREATE INDEX
+*
+******************************************************************/
+
+create_index_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {	
+	}
+	: CREATE COLLECTION_INDEX indexNode=index_section
+	{
+		// DROP
+		uSQL::SQLCreateIndex *sqlCmd = new uSQL::SQLCreateIndex();
+		sqlStmt->addChildNode(sqlCmd);
+		
+		// Collection
+		sqlCmd->addChildNode(indexNode);
+	}
+	;
+
+/******************************************************************
+*
+* DROP INDEX
+*
+******************************************************************/
+
+drop_index_stmt [uSQL::SQLStatement *sqlStmt]
+	@init {	
+	}
+	: DROP COLLECTION_INDEX indexNode=index_section
+	{
+		// DROP
+		uSQL::SQLDropIndex *sqlCmd = new uSQL::SQLDropIndex();
+		sqlStmt->addChildNode(sqlCmd);
+		
+		// Collection
+		sqlCmd->addChildNode(indexNode);
+	}
+	;
 
 /******************************************************************
 *
@@ -232,92 +360,6 @@ offset_section returns [uSQL::SQLOffset *sqlOffset]
 	: offsetExpr=expression_literal {
 		sqlOffset->addChildNode(offsetExpr);
 	  }
-	;
-	
-/******************************************************************
-*
-* CREATE
-*
-******************************************************************/
-
-create_collection_stmt [uSQL::SQLStatement *sqlStmt]
-	@init {	
-		uSQL::SQLOption *sqlOpt = new uSQL::SQLOption();
-	}
-	: CREATE COLLECTION collectionNode=collection_section (OPTIONS expression[sqlOpt])? {
-		// CREATE
-		uSQL::SQLCreate *sqlCmd = new uSQL::SQLCreate();
-		sqlStmt->addChildNode(sqlCmd);
-		
-		// Collection
-		sqlCmd->addChildNode(collectionNode);
-
-		// Option 
-		if (sqlOpt->hasExpressions())
-			sqlCmd->addChildNode(sqlOpt);
-		else 
-			delete sqlOpt;
-	  }
-	;
-
-/******************************************************************
-*
-* DROP
-*
-******************************************************************/
-
-drop_collection_stmt [uSQL::SQLStatement *sqlStmt]
-	@init {	
-	}
-	: DROP COLLECTION collectionNode=collection_section
-	{
-		// DROP
-		uSQL::SQLDrop *sqlCmd = new uSQL::SQLDrop();
-		sqlStmt->addChildNode(sqlCmd);
-		
-		// Collection
-		sqlCmd->addChildNode(collectionNode);
-	}
-	;
-
-/******************************************************************
-*
-* CREATE INDEX
-*
-******************************************************************/
-
-create_index_stmt [uSQL::SQLStatement *sqlStmt]
-	@init {	
-	}
-	: CREATE COLLECTION_INDEX indexNode=index_section
-	{
-		// DROP
-		uSQL::SQLCreateIndex *sqlCmd = new uSQL::SQLCreateIndex();
-		sqlStmt->addChildNode(sqlCmd);
-		
-		// Collection
-		sqlCmd->addChildNode(indexNode);
-	}
-	;
-
-/******************************************************************
-*
-* DROP INDEX
-*
-******************************************************************/
-
-drop_index_stmt [uSQL::SQLStatement *sqlStmt]
-	@init {	
-	}
-	: DROP COLLECTION_INDEX indexNode=index_section
-	{
-		// DROP
-		uSQL::SQLDropIndex *sqlCmd = new uSQL::SQLDropIndex();
-		sqlStmt->addChildNode(sqlCmd);
-		
-		// Collection
-		sqlCmd->addChildNode(indexNode);
-	}
 	;
 
 /******************************************************************
@@ -1076,8 +1118,16 @@ SET
 	: S E T
 	;
 
+SHOW
+	: S H O W
+	;
+
 SYNC
 	: S Y N C
+	;
+
+USE
+	: U S E
 	;
 
 UNION

@@ -2636,7 +2636,7 @@ am__tar='${AMTAR} chof - "$$tardir"'; am__untar='${AMTAR} xf -'
 ##############################
 
 # ANTLR3C version.
-LIBANTLR3C=3.4
+LIBANTLR3C_VERSION=3.4
 
 ##############################
 # Checks for programs.
@@ -4525,7 +4525,7 @@ _ACEOF
   LIBS="-lantlr3c $LIBS"
 
 else
-  as_fn_error $? "uSQL for C++ needs ANTLR3C >= $LIBANTLR3C" "$LINENO" 5
+  as_fn_error $? "uSQL for C++ needs ANTLR3C >= $LIBANTLR3C_VERSION" "$LINENO" 5
 fi
 
 

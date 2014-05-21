@@ -15,7 +15,7 @@ AM_INIT_AUTOMAKE([subdir-objects])
 ##############################
 
 # ANTLR3C version.
-LIBANTLR3C=3.4
+LIBANTLR3C_VERSION=3.4
 
 ##############################
 # Checks for programs.
@@ -47,7 +47,7 @@ AM_CONDITIONAL(HAVE_LIBTOOL, test $with_libtool = yes)
 # Checks for ANTLR3C
 ##############################
 
-AC_CHECK_LIB([antlr3c],[antlr3StringStreamNew],,[AC_MSG_ERROR(uSQL for C++ needs ANTLR3C >= $LIBANTLR3C)])
+AC_CHECK_LIB([antlr3c],[antlr3StringStreamNew],,[AC_MSG_ERROR(uSQL for C++ needs ANTLR3C >= $LIBANTLR3C_VERSION)])
 
 ##############################
 # Checks for pthread

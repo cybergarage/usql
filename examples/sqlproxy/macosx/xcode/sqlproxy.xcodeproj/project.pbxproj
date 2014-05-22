@@ -8,29 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		21194CAD1530AC9C008C0C5A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21194CAC1530AC9C008C0C5A /* main.cpp */; };
-		2128AB211530A21300F0CC59 /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2106CEAD15309F4A002246F7 /* SqlEngineLib.dylib */; };
 		217F6D9A1532C34800F8437A /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217F6D8F1532C34800F8437A /* MD5.cpp */; };
 		217F6D9B1532C34800F8437A /* SQLProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217F6D911532C34800F8437A /* SQLProxy.cpp */; };
 		217F6D9C1532C34800F8437A /* SQLProxyDataSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217F6D931532C34800F8437A /* SQLProxyDataSet.cpp */; };
 		217F6D9D1532C34800F8437A /* SQLProxyResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217F6D951532C34800F8437A /* SQLProxyResult.cpp */; };
 		217F6DA21532C36300F8437A /* MySQLProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217F6DA01532C36300F8437A /* MySQLProxy.cpp */; };
+		21B7A3F8192DCB5F00A5AF61 /* libusql++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B7A3F5192DCB4B00A5AF61 /* libusql++.a */; };
 		21C2631C1532D076004AD24A /* MemcachedProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C2631A1532D076004AD24A /* MemcachedProxy.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2106CEAC15309F4A002246F7 /* PBXContainerItemProxy */ = {
+		21B7A3F4192DCB4B00A5AF61 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2106CEA815309F49002246F7 /* SqlEngineLib.xcodeproj */;
+			containerPortal = 21B7A3F0192DCB4A00A5AF61 /* libusql++.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 212FB5DA14681D420067F07B;
-			remoteInfo = SqlEngineLib;
+			remoteGlobalIDString = 2147B0C1192DC16E00F06DB4;
+			remoteInfo = "libusql++";
 		};
-		2128AB1F1530A20F00F0CC59 /* PBXContainerItemProxy */ = {
+		21B7A3F6192DCB5A00A5AF61 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2106CEA815309F49002246F7 /* SqlEngineLib.xcodeproj */;
+			containerPortal = 21B7A3F0192DCB4A00A5AF61 /* libusql++.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 212FB5D914681D420067F07B;
-			remoteInfo = SqlEngineLib;
+			remoteGlobalIDString = 2147B0C0192DC16E00F06DB4;
+			remoteInfo = "libusql++";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -47,7 +47,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2106CEA815309F49002246F7 /* SqlEngineLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SqlEngineLib.xcodeproj; path = ../../../../lib/macosx/xcode/SqlEngineLib.xcodeproj; sourceTree = "<group>"; };
 		21194CAC1530AC9C008C0C5A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../main.cpp; sourceTree = "<group>"; };
 		217F6D8F1532C34800F8437A /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MD5.cpp; sourceTree = "<group>"; };
 		217F6D901532C34800F8437A /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5.h; sourceTree = "<group>"; };
@@ -60,6 +59,7 @@
 		217F6DA01532C36300F8437A /* MySQLProxy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MySQLProxy.cpp; path = ../../MySQLProxy.cpp; sourceTree = "<group>"; };
 		217F6DA11532C36300F8437A /* MySQLProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MySQLProxy.h; path = ../../MySQLProxy.h; sourceTree = "<group>"; };
 		21A1FB6514C1538900674BA6 /* sqlproxy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sqlproxy; sourceTree = BUILT_PRODUCTS_DIR; };
+		21B7A3F0192DCB4A00A5AF61 /* libusql++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libusql++.xcodeproj"; path = "../../../../lib/macosx/xcode/libusql++.xcodeproj"; sourceTree = "<group>"; };
 		21C2631A1532D076004AD24A /* MemcachedProxy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MemcachedProxy.cpp; path = ../../MemcachedProxy.cpp; sourceTree = "<group>"; };
 		21C2631B1532D076004AD24A /* MemcachedProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MemcachedProxy.h; path = ../../MemcachedProxy.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,21 +69,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2128AB211530A21300F0CC59 /* SqlEngineLib.dylib in Frameworks */,
+				21B7A3F8192DCB5F00A5AF61 /* libusql++.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2106CEA915309F49002246F7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2106CEAD15309F4A002246F7 /* SqlEngineLib.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		21194CAB1530AC8B008C0C5A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,10 +122,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		21B7A3F1192DCB4A00A5AF61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21B7A3F5192DCB4B00A5AF61 /* libusql++.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		21E7FE4214C15442000DF04E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2106CEA815309F49002246F7 /* SqlEngineLib.xcodeproj */,
+				21B7A3F0192DCB4A00A5AF61 /* libusql++.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -152,7 +152,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				2128AB201530A20F00F0CC59 /* PBXTargetDependency */,
+				21B7A3F7192DCB5A00A5AF61 /* PBXTargetDependency */,
 			);
 			name = sqlproxy;
 			productName = sqlproxy;
@@ -179,8 +179,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 2106CEA915309F49002246F7 /* Products */;
-					ProjectRef = 2106CEA815309F49002246F7 /* SqlEngineLib.xcodeproj */;
+					ProductGroup = 21B7A3F1192DCB4A00A5AF61 /* Products */;
+					ProjectRef = 21B7A3F0192DCB4A00A5AF61 /* libusql++.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -191,11 +191,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		2106CEAD15309F4A002246F7 /* SqlEngineLib.dylib */ = {
+		21B7A3F5192DCB4B00A5AF61 /* libusql++.a */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = SqlEngineLib.dylib;
-			remoteRef = 2106CEAC15309F4A002246F7 /* PBXContainerItemProxy */;
+			fileType = archive.ar;
+			path = "libusql++.a";
+			remoteRef = 21B7A3F4192DCB4B00A5AF61 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -218,10 +218,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2128AB201530A20F00F0CC59 /* PBXTargetDependency */ = {
+		21B7A3F7192DCB5A00A5AF61 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = SqlEngineLib;
-			targetProxy = 2128AB1F1530A20F00F0CC59 /* PBXContainerItemProxy */;
+			name = "libusql++";
+			targetProxy = 21B7A3F6192DCB5A00A5AF61 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

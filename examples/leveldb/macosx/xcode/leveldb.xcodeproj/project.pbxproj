@@ -7,60 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2121E63714EA3F7D00EADC06 /* LevelDBTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2121E63614EA3F7D00EADC06 /* LevelDBTestMain.cpp */; };
-		2121E64F14EA437300EADC06 /* SQLProxyResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6E314E3B5A600939743 /* SQLProxyResult.cpp */; };
-		2121E65014EA437300EADC06 /* SQLProxyResult.h in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6E414E3B5A600939743 /* SQLProxyResult.h */; };
-		2121E65114EA437300EADC06 /* SQLProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6DF14E39EB200939743 /* SQLProxy.cpp */; };
-		2121E65214EA437300EADC06 /* SQLProxy.h in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6E014E39EB200939743 /* SQLProxy.h */; };
-		2121E65314EA437300EADC06 /* SQLProxyDataSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7314DA5F51000BC543 /* SQLProxyDataSet.cpp */; };
-		2121E65414EA437300EADC06 /* SQLProxyDataSet.h in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7414DA5F51000BC543 /* SQLProxyDataSet.h */; };
-		2121E65514EA437300EADC06 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7514DA5F51000BC543 /* MD5.cpp */; };
-		2121E65614EA437300EADC06 /* MD5.h in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7614DA5F51000BC543 /* MD5.h */; };
-		2121E65714EA437300EADC06 /* LevelDBProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2140982E14CD162300FE79B9 /* LevelDBProxy.cpp */; };
-		2121E65814EA437300EADC06 /* LevelDBProxy.h in Sources */ = {isa = PBXBuildFile; fileRef = 2140982F14CD162300FE79B9 /* LevelDBProxy.h */; };
-		2121E65914EA438200EADC06 /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 212ADBC81468246C004E5FBF /* SqlEngineLib.dylib */; };
-		212ADBCB14682496004E5FBF /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 212ADBC81468246C004E5FBF /* SqlEngineLib.dylib */; };
 		212D74891446C232003632AD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212D74881446C232003632AD /* main.cpp */; };
-		213035E21532E25100021CE2 /* LevelDBSQLKeyTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213035E01532E23100021CE2 /* LevelDBSQLKeyTest.cpp */; };
 		2130E6E114E39EB200939743 /* SQLProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6DF14E39EB200939743 /* SQLProxy.cpp */; };
 		2130E6E514E3B5A600939743 /* SQLProxyResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2130E6E314E3B5A600939743 /* SQLProxyResult.cpp */; };
 		2140983014CD162300FE79B9 /* LevelDBProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2140982E14CD162300FE79B9 /* LevelDBProxy.cpp */; };
 		2198DC7714DA5F51000BC543 /* SQLProxyDataSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7314DA5F51000BC543 /* SQLProxyDataSet.cpp */; };
 		2198DC7814DA5F51000BC543 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2198DC7514DA5F51000BC543 /* MD5.cpp */; };
-		21A079F5150780BD00AA4F3E /* SQLProxyTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A079F4150780BD00AA4F3E /* SQLProxyTest.cpp */; };
-		21A079F7150780FB00AA4F3E /* MD5Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A079F6150780FB00AA4F3E /* MD5Test.cpp */; };
-		21A079F91507816A00AA4F3E /* LevelDBSQLTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A079F81507816A00AA4F3E /* LevelDBSQLTest.cpp */; };
-		21C41FC31529D1F30088BCF2 /* LevelDBTest.h in Sources */ = {isa = PBXBuildFile; fileRef = 21B455EE151DD33000C0FE9D /* LevelDBTest.h */; };
-		21C41FC41529D1F30088BCF2 /* LevelDBTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B455EF151DD4FB00C0FE9D /* LevelDBTest.cpp */; };
+		21B7A402192DCBAF00A5AF61 /* libusql++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B7A3FF192DCB9700A5AF61 /* libusql++.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		212ADBC71468246C004E5FBF /* PBXContainerItemProxy */ = {
+		21B7A3FE192DCB9700A5AF61 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 212ADBC31468246A004E5FBF /* SqlEngineLib.xcodeproj */;
+			containerPortal = 21B7A3FA192DCB9700A5AF61 /* libusql++.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 212FB5DA14681D420067F07B;
-			remoteInfo = SqlEngineLib;
+			remoteGlobalIDString = 2147B0C1192DC16E00F06DB4;
+			remoteInfo = "libusql++";
 		};
-		212ADBC914682490004E5FBF /* PBXContainerItemProxy */ = {
+		21B7A400192DCBAA00A5AF61 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 212ADBC31468246A004E5FBF /* SqlEngineLib.xcodeproj */;
+			containerPortal = 21B7A3FA192DCB9700A5AF61 /* libusql++.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 212FB5D914681D420067F07B;
-			remoteInfo = SqlEngineLib;
+			remoteGlobalIDString = 2147B0C0192DC16E00F06DB4;
+			remoteInfo = "libusql++";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		219DB42314EA3E76006BF347 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		21CBB66D1446C13900EC94F5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -74,7 +47,6 @@
 
 /* Begin PBXFileReference section */
 		2121E63614EA3F7D00EADC06 /* LevelDBTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelDBTestMain.cpp; path = ../../unittest/LevelDBTestMain.cpp; sourceTree = "<group>"; };
-		212ADBC31468246A004E5FBF /* SqlEngineLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SqlEngineLib.xcodeproj; path = ../../../../lib/macosx/xcode/SqlEngineLib.xcodeproj; sourceTree = "<group>"; };
 		212D74881446C232003632AD /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../main.cpp; sourceTree = SOURCE_ROOT; };
 		213035E01532E23100021CE2 /* LevelDBSQLKeyTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelDBSQLKeyTest.cpp; path = ../../unittest/LevelDBSQLKeyTest.cpp; sourceTree = "<group>"; };
 		2130E6DF14E39EB200939743 /* SQLProxy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLProxy.cpp; path = ../../../common/SQLProxy.cpp; sourceTree = "<group>"; };
@@ -87,29 +59,21 @@
 		2198DC7414DA5F51000BC543 /* SQLProxyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLProxyDataSet.h; path = ../../../common/SQLProxyDataSet.h; sourceTree = "<group>"; };
 		2198DC7514DA5F51000BC543 /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MD5.cpp; path = ../../../common/MD5.cpp; sourceTree = "<group>"; };
 		2198DC7614DA5F51000BC543 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MD5.h; path = ../../../common/MD5.h; sourceTree = "<group>"; };
-		219DB42514EA3E76006BF347 /* unittest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = unittest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21A079F4150780BD00AA4F3E /* SQLProxyTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLProxyTest.cpp; path = ../../../common/unittest/SQLProxyTest.cpp; sourceTree = "<group>"; };
 		21A079F6150780FB00AA4F3E /* MD5Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MD5Test.cpp; path = ../../../common/unittest/MD5Test.cpp; sourceTree = "<group>"; };
 		21A079F81507816A00AA4F3E /* LevelDBSQLTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelDBSQLTest.cpp; path = ../../unittest/LevelDBSQLTest.cpp; sourceTree = "<group>"; };
 		21B455EE151DD33000C0FE9D /* LevelDBTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelDBTest.h; path = ../../unittest/LevelDBTest.h; sourceTree = "<group>"; };
 		21B455EF151DD4FB00C0FE9D /* LevelDBTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelDBTest.cpp; path = ../../unittest/LevelDBTest.cpp; sourceTree = "<group>"; };
+		21B7A3FA192DCB9700A5AF61 /* libusql++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libusql++.xcodeproj"; path = "../../../../lib/macosx/xcode/libusql++.xcodeproj"; sourceTree = "<group>"; };
 		21CBB66F1446C13900EC94F5 /* leveldb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = leveldb; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		219DB42214EA3E76006BF347 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2121E65914EA438200EADC06 /* SqlEngineLib.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		21CBB66C1446C13900EC94F5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212ADBCB14682496004E5FBF /* SqlEngineLib.dylib in Frameworks */,
+				21B7A402192DCBAF00A5AF61 /* libusql++.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,14 +92,6 @@
 				213035E01532E23100021CE2 /* LevelDBSQLKeyTest.cpp */,
 			);
 			name = UnitTest;
-			sourceTree = "<group>";
-		};
-		212ADBC41468246A004E5FBF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				212ADBC81468246C004E5FBF /* SqlEngineLib.dylib */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		212D74871446C219003632AD /* Src */ = {
@@ -159,9 +115,17 @@
 		213FE63E146821F4000F36F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				212ADBC31468246A004E5FBF /* SqlEngineLib.xcodeproj */,
+				21B7A3FA192DCB9700A5AF61 /* libusql++.xcodeproj */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		21B7A3FB192DCB9700A5AF61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21B7A3FF192DCB9700A5AF61 /* libusql++.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		21CBB6641446C13900EC94F5 = {
@@ -178,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				21CBB66F1446C13900EC94F5 /* leveldb */,
-				219DB42514EA3E76006BF347 /* unittest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,23 +149,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		219DB42414EA3E76006BF347 /* unittest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 219DB42C14EA3E76006BF347 /* Build configuration list for PBXNativeTarget "unittest" */;
-			buildPhases = (
-				219DB42114EA3E76006BF347 /* Sources */,
-				219DB42214EA3E76006BF347 /* Frameworks */,
-				219DB42314EA3E76006BF347 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = unittest;
-			productName = unittest;
-			productReference = 219DB42514EA3E76006BF347 /* unittest */;
-			productType = "com.apple.product-type.tool";
-		};
 		21CBB66E1446C13900EC94F5 /* leveldb */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 21CBB6791446C13900EC94F5 /* Build configuration list for PBXNativeTarget "leveldb" */;
@@ -214,7 +160,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				212ADBCA14682490004E5FBF /* PBXTargetDependency */,
+				21B7A401192DCBAA00A5AF61 /* PBXTargetDependency */,
 			);
 			name = leveldb;
 			productName = leveldb;
@@ -241,53 +187,28 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 212ADBC41468246A004E5FBF /* Products */;
-					ProjectRef = 212ADBC31468246A004E5FBF /* SqlEngineLib.xcodeproj */;
+					ProductGroup = 21B7A3FB192DCB9700A5AF61 /* Products */;
+					ProjectRef = 21B7A3FA192DCB9700A5AF61 /* libusql++.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
 				21CBB66E1446C13900EC94F5 /* leveldb */,
-				219DB42414EA3E76006BF347 /* unittest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		212ADBC81468246C004E5FBF /* SqlEngineLib.dylib */ = {
+		21B7A3FF192DCB9700A5AF61 /* libusql++.a */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = SqlEngineLib.dylib;
-			remoteRef = 212ADBC71468246C004E5FBF /* PBXContainerItemProxy */;
+			fileType = archive.ar;
+			path = "libusql++.a";
+			remoteRef = 21B7A3FE192DCB9700A5AF61 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
-		219DB42114EA3E76006BF347 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				213035E21532E25100021CE2 /* LevelDBSQLKeyTest.cpp in Sources */,
-				21C41FC31529D1F30088BCF2 /* LevelDBTest.h in Sources */,
-				21C41FC41529D1F30088BCF2 /* LevelDBTest.cpp in Sources */,
-				2121E64F14EA437300EADC06 /* SQLProxyResult.cpp in Sources */,
-				2121E65014EA437300EADC06 /* SQLProxyResult.h in Sources */,
-				2121E65114EA437300EADC06 /* SQLProxy.cpp in Sources */,
-				2121E65214EA437300EADC06 /* SQLProxy.h in Sources */,
-				2121E65314EA437300EADC06 /* SQLProxyDataSet.cpp in Sources */,
-				2121E65414EA437300EADC06 /* SQLProxyDataSet.h in Sources */,
-				2121E65514EA437300EADC06 /* MD5.cpp in Sources */,
-				2121E65614EA437300EADC06 /* MD5.h in Sources */,
-				2121E65714EA437300EADC06 /* LevelDBProxy.cpp in Sources */,
-				2121E65814EA437300EADC06 /* LevelDBProxy.h in Sources */,
-				2121E63714EA3F7D00EADC06 /* LevelDBTestMain.cpp in Sources */,
-				21A079F5150780BD00AA4F3E /* SQLProxyTest.cpp in Sources */,
-				21A079F7150780FB00AA4F3E /* MD5Test.cpp in Sources */,
-				21A079F91507816A00AA4F3E /* LevelDBSQLTest.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		21CBB66B1446C13900EC94F5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,46 +225,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		212ADBCA14682490004E5FBF /* PBXTargetDependency */ = {
+		21B7A401192DCBAA00A5AF61 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = SqlEngineLib;
-			targetProxy = 212ADBC914682490004E5FBF /* PBXContainerItemProxy */;
+			name = "libusql++";
+			targetProxy = 21B7A400192DCBAA00A5AF61 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		219DB42D14EA3E76006BF347 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
-				OTHER_LDFLAGS = (
-					"-lboost_unit_test_framework",
-					"-lboost_system",
-					"-lboost_filesystem",
-					"-lcrypto",
-					"-ledit",
-					"-lleveldb",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		219DB42E14EA3E76006BF347 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
-				OTHER_LDFLAGS = (
-					"-lboost_unit_test_framework",
-					"-lboost_system",
-					"-lboost_filesystem",
-					"-lcrypto",
-					"-ledit",
-					"-lleveldb",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		21CBB6771446C13900EC94F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -434,15 +323,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		219DB42C14EA3E76006BF347 /* Build configuration list for PBXNativeTarget "unittest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				219DB42D14EA3E76006BF347 /* Debug */,
-				219DB42E14EA3E76006BF347 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		21CBB6691446C13900EC94F5 /* Build configuration list for PBXProject "leveldb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

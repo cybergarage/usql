@@ -10,28 +10,28 @@
 		213073DA14A95F8400C98535 /* SqlEngineTestExpression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213073D914A95F8300C98535 /* SqlEngineTestExpression.cpp */; };
 		21529E6F144C0FE600F05CDD /* SqlEngineTestUnQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21529E6E144C0FE600F05CDD /* SqlEngineTestUnQLParser.cpp */; };
 		2153464B14342C5C00C748CC /* SqlEngineTestGQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2153464A14342C5C00C748CC /* SqlEngineTestGQLParser.cpp */; };
+		21743C84192DC4BC00234C92 /* libusql++.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218FF47D192DC3E5006EE098 /* libusql++.a */; };
 		217B30A9148F376B00194C2F /* SqlEngineTestCase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217B30A7148F376B00194C2F /* SqlEngineTestCase.cpp */; };
 		217B30AB148F3AD000194C2F /* SqlEngineTestSQL92Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217B30AA148F3AD000194C2F /* SqlEngineTestSQL92Parser.cpp */; };
-		218662A31468213F006B1883 /* SqlEngineLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 218662A214682110006B1883 /* SqlEngineLib.dylib */; };
 		21E7FE62143CD0FF00CB6A56 /* SqlEngineTestBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E7FE61143CD0FF00CB6A56 /* SqlEngineTestBase.cpp */; };
 		21EE498A143AB61B0010A7D1 /* SqlEngineTestMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EE4989143AB61B0010A7D1 /* SqlEngineTestMain.cpp */; };
 		21FFD86C145D543400589229 /* SqlEngineTestCaseReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21FFD86A145D543400589229 /* SqlEngineTestCaseReader.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		213FE64614682371000F36F2 /* PBXContainerItemProxy */ = {
+		21743C81192DC4B500234C92 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2186629A1468210F006B1883 /* SqlEngineLib.xcodeproj */;
+			containerPortal = 218FF478192DC3E5006EE098 /* libusql++.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 212FB5D914681D420067F07B;
-			remoteInfo = SqlEngineLib;
+			remoteGlobalIDString = 2147B0C0192DC16E00F06DB4;
+			remoteInfo = "libusql++";
 		};
-		218662A114682110006B1883 /* PBXContainerItemProxy */ = {
+		218FF47C192DC3E5006EE098 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2186629A1468210F006B1883 /* SqlEngineLib.xcodeproj */;
+			containerPortal = 218FF478192DC3E5006EE098 /* libusql++.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 212FB5DA14681D420067F07B;
-			remoteInfo = SqlEngineLib;
+			remoteGlobalIDString = 2147B0C1192DC16E00F06DB4;
+			remoteInfo = "libusql++";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -56,7 +56,7 @@
 		217B30A7148F376B00194C2F /* SqlEngineTestCase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestCase.cpp; path = ../../SqlEngineTestCase.cpp; sourceTree = "<group>"; };
 		217B30A8148F376B00194C2F /* SqlEngineTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SqlEngineTestCase.h; path = ../../SqlEngineTestCase.h; sourceTree = "<group>"; };
 		217B30AA148F3AD000194C2F /* SqlEngineTestSQL92Parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestSQL92Parser.cpp; path = ../../SqlEngineTestSQL92Parser.cpp; sourceTree = "<group>"; };
-		2186629A1468210F006B1883 /* SqlEngineLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SqlEngineLib.xcodeproj; path = ../../../lib/macosx/xcode/SqlEngineLib.xcodeproj; sourceTree = "<group>"; };
+		218FF478192DC3E5006EE098 /* libusql++.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "libusql++.xcodeproj"; path = "../../../lib/macosx/xcode/libusql++.xcodeproj"; sourceTree = "<group>"; };
 		21E7FE61143CD0FF00CB6A56 /* SqlEngineTestBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestBase.cpp; path = ../../SqlEngineTestBase.cpp; sourceTree = "<group>"; };
 		21EE4989143AB61B0010A7D1 /* SqlEngineTestMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SqlEngineTestMain.cpp; path = ../../SqlEngineTestMain.cpp; sourceTree = "<group>"; };
 		21F69A5A13BAE289004D23C9 /* SqlEngineTestUnit */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SqlEngineTestUnit; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				218662A31468213F006B1883 /* SqlEngineLib.dylib in Frameworks */,
+				21743C84192DC4BC00234C92 /* libusql++.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,15 +98,15 @@
 		21866299146820FC006B1883 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2186629A1468210F006B1883 /* SqlEngineLib.xcodeproj */,
+				218FF478192DC3E5006EE098 /* libusql++.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2186629B1468210F006B1883 /* Products */ = {
+		218FF479192DC3E5006EE098 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				218662A214682110006B1883 /* SqlEngineLib.dylib */,
+				218FF47D192DC3E5006EE098 /* libusql++.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,7 +143,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				213FE64714682371000F36F2 /* PBXTargetDependency */,
+				21743C82192DC4B500234C92 /* PBXTargetDependency */,
 			);
 			name = SqlEngineTestUnit;
 			productName = SqlEngineTestUnit;
@@ -170,8 +170,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 2186629B1468210F006B1883 /* Products */;
-					ProjectRef = 2186629A1468210F006B1883 /* SqlEngineLib.xcodeproj */;
+					ProductGroup = 218FF479192DC3E5006EE098 /* Products */;
+					ProjectRef = 218FF478192DC3E5006EE098 /* libusql++.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -182,11 +182,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		218662A214682110006B1883 /* SqlEngineLib.dylib */ = {
+		218FF47D192DC3E5006EE098 /* libusql++.a */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = SqlEngineLib.dylib;
-			remoteRef = 218662A114682110006B1883 /* PBXContainerItemProxy */;
+			fileType = archive.ar;
+			path = "libusql++.a";
+			remoteRef = 218FF47C192DC3E5006EE098 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -226,10 +226,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		213FE64714682371000F36F2 /* PBXTargetDependency */ = {
+		21743C82192DC4B500234C92 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = SqlEngineLib;
-			targetProxy = 213FE64614682371000F36F2 /* PBXContainerItemProxy */;
+			name = "libusql++";
+			targetProxy = 21743C81192DC4B500234C92 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -237,7 +237,7 @@
 		21F69A6113BAE289004D23C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -266,7 +266,7 @@
 		21F69A6213BAE289004D23C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

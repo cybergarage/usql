@@ -6,3 +6,5 @@ config.*
 *.po
 .DS_Store
 *xcuserdata*
+.deps/
+.dirstamp

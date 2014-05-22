@@ -1,6 +1,0 @@
-//
-// Prefix header for all source files of the 'SqlEngineLib' target in the 'SqlEngineLib' project
-//
-
-#include <iostream>
-

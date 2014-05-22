@@ -1,0 +1,490 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		21685FA8192DC1F8000DDFAF /* GQLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F8B192DC1F8000DDFAF /* GQLParser.h */; };
+		21685FA9192DC1F8000DDFAF /* SQLCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F8D192DC1F8000DDFAF /* SQLCollection.h */; };
+		21685FAA192DC1F8000DDFAF /* SQLCollections.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F8E192DC1F8000DDFAF /* SQLCollections.h */; };
+		21685FAB192DC1F8000DDFAF /* SQLColumns.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F8F192DC1F8000DDFAF /* SQLColumns.h */; };
+		21685FAC192DC1F8000DDFAF /* SQLCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F90192DC1F8000DDFAF /* SQLCommand.h */; };
+		21685FAD192DC1F8000DDFAF /* SQLCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F91192DC1F8000DDFAF /* SQLCondition.h */; };
+		21685FAE192DC1F8000DDFAF /* SQLDataSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F92192DC1F8000DDFAF /* SQLDataSet.h */; };
+		21685FAF192DC1F8000DDFAF /* SQLExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F93192DC1F8000DDFAF /* SQLExpression.h */; };
+		21685FB0192DC1F8000DDFAF /* SQLFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F94192DC1F8000DDFAF /* SQLFunction.h */; };
+		21685FB1192DC1F8000DDFAF /* SQLGroupBy.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F95192DC1F8000DDFAF /* SQLGroupBy.h */; };
+		21685FB2192DC1F8000DDFAF /* SQLIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F96192DC1F8000DDFAF /* SQLIndex.h */; };
+		21685FB3192DC1F8000DDFAF /* SQLLimit.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F97192DC1F8000DDFAF /* SQLLimit.h */; };
+		21685FB4192DC1F8000DDFAF /* SQLOffset.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F98192DC1F8000DDFAF /* SQLOffset.h */; };
+		21685FB5192DC1F8000DDFAF /* SQLOperator.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F99192DC1F8000DDFAF /* SQLOperator.h */; };
+		21685FB6192DC1F8000DDFAF /* SQLOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F9A192DC1F8000DDFAF /* SQLOption.h */; };
+		21685FB7192DC1F8000DDFAF /* SQLOrder.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F9B192DC1F8000DDFAF /* SQLOrder.h */; };
+		21685FB8192DC1F8000DDFAF /* SQLOrderBy.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F9C192DC1F8000DDFAF /* SQLOrderBy.h */; };
+		21685FB9192DC1F8000DDFAF /* SQLSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F9D192DC1F8000DDFAF /* SQLSet.h */; };
+		21685FBA192DC1F8000DDFAF /* SQLSets.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F9E192DC1F8000DDFAF /* SQLSets.h */; };
+		21685FBB192DC1F8000DDFAF /* SQLTransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685F9F192DC1F8000DDFAF /* SQLTransaction.h */; };
+		21685FBC192DC1F8000DDFAF /* SQLValues.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685FA0192DC1F8000DDFAF /* SQLValues.h */; };
+		21685FBD192DC1F8000DDFAF /* SQL92Parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685FA1192DC1F8000DDFAF /* SQL92Parser.h */; };
+		21685FBE192DC1F8000DDFAF /* SQLError.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685FA2192DC1F8000DDFAF /* SQLError.h */; };
+		21685FBF192DC1F8000DDFAF /* SQLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685FA3192DC1F8000DDFAF /* SQLNode.h */; };
+		21685FC0192DC1F8000DDFAF /* SQLNodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685FA4192DC1F8000DDFAF /* SQLNodes.h */; };
+		21685FC1192DC1F8000DDFAF /* SQLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685FA5192DC1F8000DDFAF /* SQLParser.h */; };
+		21685FC2192DC1F8000DDFAF /* SQLStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685FA6192DC1F8000DDFAF /* SQLStatement.h */; };
+		21685FC3192DC1F8000DDFAF /* UnQLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685FA7192DC1F8000DDFAF /* UnQLParser.h */; };
+		21685FF0192DC22C000DDFAF /* GQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FC4192DC22B000DDFAF /* GQLParser.cpp */; };
+		21685FF1192DC22C000DDFAF /* SQLColumns.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FD1192DC22B000DDFAF /* SQLColumns.cpp */; };
+		21685FF2192DC22C000DDFAF /* SQLCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FD2192DC22B000DDFAF /* SQLCommand.cpp */; };
+		21685FF3192DC22C000DDFAF /* SQLDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FD3192DC22B000DDFAF /* SQLDictionary.cpp */; };
+		21685FF4192DC22C000DDFAF /* SQLExpression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FD4192DC22B000DDFAF /* SQLExpression.cpp */; };
+		21685FF5192DC22C000DDFAF /* SQLOperator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FD5192DC22B000DDFAF /* SQLOperator.cpp */; };
+		21685FF6192DC22C000DDFAF /* SQLOrder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FD6192DC22B000DDFAF /* SQLOrder.cpp */; };
+		21685FF7192DC22C000DDFAF /* SQLSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FD7192DC22B000DDFAF /* SQLSet.cpp */; };
+		21685FF8192DC22C000DDFAF /* SQLValues.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FD8192DC22B000DDFAF /* SQLValues.cpp */; };
+		21685FFB192DC22C000DDFAF /* SQLLexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685FE4192DC22C000DDFAF /* SQLLexer.h */; };
+		21685FFC192DC22C000DDFAF /* SQLLexerFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FE5192DC22C000DDFAF /* SQLLexerFunc.cpp */; };
+		21685FFD192DC22C000DDFAF /* SQLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 21685FE6192DC22C000DDFAF /* SQLParser.h */; };
+		21685FFE192DC22C000DDFAF /* SQLParserFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FE7192DC22C000DDFAF /* SQLParserFunc.cpp */; };
+		21685FFF192DC22C000DDFAF /* SQL92Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FE8192DC22C000DDFAF /* SQL92Parser.cpp */; };
+		21686000192DC22C000DDFAF /* SQLError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FE9192DC22C000DDFAF /* SQLError.cpp */; };
+		21686001192DC22C000DDFAF /* SQLNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FEA192DC22C000DDFAF /* SQLNode.cpp */; };
+		21686002192DC22C000DDFAF /* SQLNodeList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FEB192DC22C000DDFAF /* SQLNodeList.cpp */; };
+		21686003192DC22C000DDFAF /* SQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FEC192DC22C000DDFAF /* SQLParser.cpp */; };
+		21686004192DC22C000DDFAF /* SQLStatement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FED192DC22C000DDFAF /* SQLStatement.cpp */; };
+		21686005192DC22C000DDFAF /* SQLStatementList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FEE192DC22C000DDFAF /* SQLStatementList.cpp */; };
+		21686006192DC22C000DDFAF /* UnQLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21685FEF192DC22C000DDFAF /* UnQLParser.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2147B0C1192DC16E00F06DB4 /* libusql++.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libusql++.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21685F8B192DC1F8000DDFAF /* GQLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GQLParser.h; path = ../../../include/usql/GQLParser.h; sourceTree = "<group>"; };
+		21685F8D192DC1F8000DDFAF /* SQLCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLCollection.h; sourceTree = "<group>"; };
+		21685F8E192DC1F8000DDFAF /* SQLCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLCollections.h; sourceTree = "<group>"; };
+		21685F8F192DC1F8000DDFAF /* SQLColumns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLColumns.h; sourceTree = "<group>"; };
+		21685F90192DC1F8000DDFAF /* SQLCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLCommand.h; sourceTree = "<group>"; };
+		21685F91192DC1F8000DDFAF /* SQLCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLCondition.h; sourceTree = "<group>"; };
+		21685F92192DC1F8000DDFAF /* SQLDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLDataSet.h; sourceTree = "<group>"; };
+		21685F93192DC1F8000DDFAF /* SQLExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLExpression.h; sourceTree = "<group>"; };
+		21685F94192DC1F8000DDFAF /* SQLFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLFunction.h; sourceTree = "<group>"; };
+		21685F95192DC1F8000DDFAF /* SQLGroupBy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLGroupBy.h; sourceTree = "<group>"; };
+		21685F96192DC1F8000DDFAF /* SQLIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLIndex.h; sourceTree = "<group>"; };
+		21685F97192DC1F8000DDFAF /* SQLLimit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLLimit.h; sourceTree = "<group>"; };
+		21685F98192DC1F8000DDFAF /* SQLOffset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOffset.h; sourceTree = "<group>"; };
+		21685F99192DC1F8000DDFAF /* SQLOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOperator.h; sourceTree = "<group>"; };
+		21685F9A192DC1F8000DDFAF /* SQLOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOption.h; sourceTree = "<group>"; };
+		21685F9B192DC1F8000DDFAF /* SQLOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOrder.h; sourceTree = "<group>"; };
+		21685F9C192DC1F8000DDFAF /* SQLOrderBy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOrderBy.h; sourceTree = "<group>"; };
+		21685F9D192DC1F8000DDFAF /* SQLSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLSet.h; sourceTree = "<group>"; };
+		21685F9E192DC1F8000DDFAF /* SQLSets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLSets.h; sourceTree = "<group>"; };
+		21685F9F192DC1F8000DDFAF /* SQLTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLTransaction.h; sourceTree = "<group>"; };
+		21685FA0192DC1F8000DDFAF /* SQLValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLValues.h; sourceTree = "<group>"; };
+		21685FA1192DC1F8000DDFAF /* SQL92Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQL92Parser.h; path = ../../../include/usql/SQL92Parser.h; sourceTree = "<group>"; };
+		21685FA2192DC1F8000DDFAF /* SQLError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLError.h; path = ../../../include/usql/SQLError.h; sourceTree = "<group>"; };
+		21685FA3192DC1F8000DDFAF /* SQLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLNode.h; path = ../../../include/usql/SQLNode.h; sourceTree = "<group>"; };
+		21685FA4192DC1F8000DDFAF /* SQLNodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLNodes.h; path = ../../../include/usql/SQLNodes.h; sourceTree = "<group>"; };
+		21685FA5192DC1F8000DDFAF /* SQLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLParser.h; path = ../../../include/usql/SQLParser.h; sourceTree = "<group>"; };
+		21685FA6192DC1F8000DDFAF /* SQLStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLStatement.h; path = ../../../include/usql/SQLStatement.h; sourceTree = "<group>"; };
+		21685FA7192DC1F8000DDFAF /* UnQLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnQLParser.h; path = ../../../include/usql/UnQLParser.h; sourceTree = "<group>"; };
+		21685FC4192DC22B000DDFAF /* GQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GQLParser.cpp; path = ../../../src/usql/GQLParser.cpp; sourceTree = "<group>"; };
+		21685FD1192DC22B000DDFAF /* SQLColumns.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLColumns.cpp; sourceTree = "<group>"; };
+		21685FD2192DC22B000DDFAF /* SQLCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLCommand.cpp; sourceTree = "<group>"; };
+		21685FD3192DC22B000DDFAF /* SQLDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLDictionary.cpp; sourceTree = "<group>"; };
+		21685FD4192DC22B000DDFAF /* SQLExpression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLExpression.cpp; sourceTree = "<group>"; };
+		21685FD5192DC22B000DDFAF /* SQLOperator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLOperator.cpp; sourceTree = "<group>"; };
+		21685FD6192DC22B000DDFAF /* SQLOrder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLOrder.cpp; sourceTree = "<group>"; };
+		21685FD7192DC22B000DDFAF /* SQLSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLSet.cpp; sourceTree = "<group>"; };
+		21685FD8192DC22B000DDFAF /* SQLValues.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLValues.cpp; sourceTree = "<group>"; };
+		21685FE4192DC22C000DDFAF /* SQLLexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLLexer.h; sourceTree = "<group>"; };
+		21685FE5192DC22C000DDFAF /* SQLLexerFunc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLLexerFunc.cpp; sourceTree = "<group>"; };
+		21685FE6192DC22C000DDFAF /* SQLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLParser.h; sourceTree = "<group>"; };
+		21685FE7192DC22C000DDFAF /* SQLParserFunc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLParserFunc.cpp; sourceTree = "<group>"; };
+		21685FE8192DC22C000DDFAF /* SQL92Parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQL92Parser.cpp; path = ../../../src/usql/SQL92Parser.cpp; sourceTree = "<group>"; };
+		21685FE9192DC22C000DDFAF /* SQLError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLError.cpp; path = ../../../src/usql/SQLError.cpp; sourceTree = "<group>"; };
+		21685FEA192DC22C000DDFAF /* SQLNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLNode.cpp; path = ../../../src/usql/SQLNode.cpp; sourceTree = "<group>"; };
+		21685FEB192DC22C000DDFAF /* SQLNodeList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLNodeList.cpp; path = ../../../src/usql/SQLNodeList.cpp; sourceTree = "<group>"; };
+		21685FEC192DC22C000DDFAF /* SQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLParser.cpp; path = ../../../src/usql/SQLParser.cpp; sourceTree = "<group>"; };
+		21685FED192DC22C000DDFAF /* SQLStatement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLStatement.cpp; path = ../../../src/usql/SQLStatement.cpp; sourceTree = "<group>"; };
+		21685FEE192DC22C000DDFAF /* SQLStatementList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SQLStatementList.cpp; path = ../../../src/usql/SQLStatementList.cpp; sourceTree = "<group>"; };
+		21685FEF192DC22C000DDFAF /* UnQLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UnQLParser.cpp; path = ../../../src/usql/UnQLParser.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2147B0BE192DC16E00F06DB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2147B0B8192DC16E00F06DB4 = {
+			isa = PBXGroup;
+			children = (
+				21685F8A192DC1D8000DDFAF /* Headers */,
+				21685F89192DC1CC000DDFAF /* Src */,
+				2147B0C2192DC16E00F06DB4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2147B0C2192DC16E00F06DB4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2147B0C1192DC16E00F06DB4 /* libusql++.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21685F89192DC1CC000DDFAF /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				21685FC4192DC22B000DDFAF /* GQLParser.cpp */,
+				21685FC5192DC22B000DDFAF /* node */,
+				21685FD9192DC22B000DDFAF /* parser */,
+				21685FE8192DC22C000DDFAF /* SQL92Parser.cpp */,
+				21685FE9192DC22C000DDFAF /* SQLError.cpp */,
+				21685FEA192DC22C000DDFAF /* SQLNode.cpp */,
+				21685FEB192DC22C000DDFAF /* SQLNodeList.cpp */,
+				21685FEC192DC22C000DDFAF /* SQLParser.cpp */,
+				21685FED192DC22C000DDFAF /* SQLStatement.cpp */,
+				21685FEE192DC22C000DDFAF /* SQLStatementList.cpp */,
+				21685FEF192DC22C000DDFAF /* UnQLParser.cpp */,
+			);
+			name = Src;
+			sourceTree = "<group>";
+		};
+		21685F8A192DC1D8000DDFAF /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				21685F8B192DC1F8000DDFAF /* GQLParser.h */,
+				21685F8C192DC1F8000DDFAF /* node */,
+				21685FA1192DC1F8000DDFAF /* SQL92Parser.h */,
+				21685FA2192DC1F8000DDFAF /* SQLError.h */,
+				21685FA3192DC1F8000DDFAF /* SQLNode.h */,
+				21685FA4192DC1F8000DDFAF /* SQLNodes.h */,
+				21685FA5192DC1F8000DDFAF /* SQLParser.h */,
+				21685FA6192DC1F8000DDFAF /* SQLStatement.h */,
+				21685FA7192DC1F8000DDFAF /* UnQLParser.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		21685F8C192DC1F8000DDFAF /* node */ = {
+			isa = PBXGroup;
+			children = (
+				21685F8D192DC1F8000DDFAF /* SQLCollection.h */,
+				21685F8E192DC1F8000DDFAF /* SQLCollections.h */,
+				21685F8F192DC1F8000DDFAF /* SQLColumns.h */,
+				21685F90192DC1F8000DDFAF /* SQLCommand.h */,
+				21685F91192DC1F8000DDFAF /* SQLCondition.h */,
+				21685F92192DC1F8000DDFAF /* SQLDataSet.h */,
+				21685F93192DC1F8000DDFAF /* SQLExpression.h */,
+				21685F94192DC1F8000DDFAF /* SQLFunction.h */,
+				21685F95192DC1F8000DDFAF /* SQLGroupBy.h */,
+				21685F96192DC1F8000DDFAF /* SQLIndex.h */,
+				21685F97192DC1F8000DDFAF /* SQLLimit.h */,
+				21685F98192DC1F8000DDFAF /* SQLOffset.h */,
+				21685F99192DC1F8000DDFAF /* SQLOperator.h */,
+				21685F9A192DC1F8000DDFAF /* SQLOption.h */,
+				21685F9B192DC1F8000DDFAF /* SQLOrder.h */,
+				21685F9C192DC1F8000DDFAF /* SQLOrderBy.h */,
+				21685F9D192DC1F8000DDFAF /* SQLSet.h */,
+				21685F9E192DC1F8000DDFAF /* SQLSets.h */,
+				21685F9F192DC1F8000DDFAF /* SQLTransaction.h */,
+				21685FA0192DC1F8000DDFAF /* SQLValues.h */,
+			);
+			name = node;
+			path = ../../../include/usql/node;
+			sourceTree = "<group>";
+		};
+		21685FC5192DC22B000DDFAF /* node */ = {
+			isa = PBXGroup;
+			children = (
+				21685FD1192DC22B000DDFAF /* SQLColumns.cpp */,
+				21685FD2192DC22B000DDFAF /* SQLCommand.cpp */,
+				21685FD3192DC22B000DDFAF /* SQLDictionary.cpp */,
+				21685FD4192DC22B000DDFAF /* SQLExpression.cpp */,
+				21685FD5192DC22B000DDFAF /* SQLOperator.cpp */,
+				21685FD6192DC22B000DDFAF /* SQLOrder.cpp */,
+				21685FD7192DC22B000DDFAF /* SQLSet.cpp */,
+				21685FD8192DC22B000DDFAF /* SQLValues.cpp */,
+			);
+			name = node;
+			path = ../../../src/usql/node;
+			sourceTree = "<group>";
+		};
+		21685FD9192DC22B000DDFAF /* parser */ = {
+			isa = PBXGroup;
+			children = (
+				21685FDA192DC22B000DDFAF /* antlr */,
+			);
+			name = parser;
+			path = ../../../src/usql/parser;
+			sourceTree = "<group>";
+		};
+		21685FDA192DC22B000DDFAF /* antlr */ = {
+			isa = PBXGroup;
+			children = (
+				21685FE4192DC22C000DDFAF /* SQLLexer.h */,
+				21685FE5192DC22C000DDFAF /* SQLLexerFunc.cpp */,
+				21685FE6192DC22C000DDFAF /* SQLParser.h */,
+				21685FE7192DC22C000DDFAF /* SQLParserFunc.cpp */,
+			);
+			path = antlr;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2147B0BF192DC16E00F06DB4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21685FA8192DC1F8000DDFAF /* GQLParser.h in Headers */,
+				21685FAD192DC1F8000DDFAF /* SQLCondition.h in Headers */,
+				21685FA9192DC1F8000DDFAF /* SQLCollection.h in Headers */,
+				21685FB6192DC1F8000DDFAF /* SQLOption.h in Headers */,
+				21685FB3192DC1F8000DDFAF /* SQLLimit.h in Headers */,
+				21685FAA192DC1F8000DDFAF /* SQLCollections.h in Headers */,
+				21685FFD192DC22C000DDFAF /* SQLParser.h in Headers */,
+				21685FAE192DC1F8000DDFAF /* SQLDataSet.h in Headers */,
+				21685FC0192DC1F8000DDFAF /* SQLNodes.h in Headers */,
+				21685FB0192DC1F8000DDFAF /* SQLFunction.h in Headers */,
+				21685FBB192DC1F8000DDFAF /* SQLTransaction.h in Headers */,
+				21685FB2192DC1F8000DDFAF /* SQLIndex.h in Headers */,
+				21685FB4192DC1F8000DDFAF /* SQLOffset.h in Headers */,
+				21685FC2192DC1F8000DDFAF /* SQLStatement.h in Headers */,
+				21685FAF192DC1F8000DDFAF /* SQLExpression.h in Headers */,
+				21685FBE192DC1F8000DDFAF /* SQLError.h in Headers */,
+				21685FAC192DC1F8000DDFAF /* SQLCommand.h in Headers */,
+				21685FBA192DC1F8000DDFAF /* SQLSets.h in Headers */,
+				21685FBC192DC1F8000DDFAF /* SQLValues.h in Headers */,
+				21685FBD192DC1F8000DDFAF /* SQL92Parser.h in Headers */,
+				21685FC3192DC1F8000DDFAF /* UnQLParser.h in Headers */,
+				21685FB7192DC1F8000DDFAF /* SQLOrder.h in Headers */,
+				21685FB5192DC1F8000DDFAF /* SQLOperator.h in Headers */,
+				21685FFB192DC22C000DDFAF /* SQLLexer.h in Headers */,
+				21685FB1192DC1F8000DDFAF /* SQLGroupBy.h in Headers */,
+				21685FAB192DC1F8000DDFAF /* SQLColumns.h in Headers */,
+				21685FC1192DC1F8000DDFAF /* SQLParser.h in Headers */,
+				21685FBF192DC1F8000DDFAF /* SQLNode.h in Headers */,
+				21685FB9192DC1F8000DDFAF /* SQLSet.h in Headers */,
+				21685FB8192DC1F8000DDFAF /* SQLOrderBy.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2147B0C0192DC16E00F06DB4 /* libusql++ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2147B0C5192DC16E00F06DB4 /* Build configuration list for PBXNativeTarget "libusql++" */;
+			buildPhases = (
+				2147B0BD192DC16E00F06DB4 /* Sources */,
+				2147B0BE192DC16E00F06DB4 /* Frameworks */,
+				2147B0BF192DC16E00F06DB4 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "libusql++";
+			productName = "libusql++";
+			productReference = 2147B0C1192DC16E00F06DB4 /* libusql++.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2147B0B9192DC16E00F06DB4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Satoshi Konno";
+			};
+			buildConfigurationList = 2147B0BC192DC16E00F06DB4 /* Build configuration list for PBXProject "libusql++" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2147B0B8192DC16E00F06DB4;
+			productRefGroup = 2147B0C2192DC16E00F06DB4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2147B0C0192DC16E00F06DB4 /* libusql++ */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2147B0BD192DC16E00F06DB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21686006192DC22C000DDFAF /* UnQLParser.cpp in Sources */,
+				21686004192DC22C000DDFAF /* SQLStatement.cpp in Sources */,
+				21685FF5192DC22C000DDFAF /* SQLOperator.cpp in Sources */,
+				21686002192DC22C000DDFAF /* SQLNodeList.cpp in Sources */,
+				21686005192DC22C000DDFAF /* SQLStatementList.cpp in Sources */,
+				21685FF3192DC22C000DDFAF /* SQLDictionary.cpp in Sources */,
+				21685FF1192DC22C000DDFAF /* SQLColumns.cpp in Sources */,
+				21685FF8192DC22C000DDFAF /* SQLValues.cpp in Sources */,
+				21686000192DC22C000DDFAF /* SQLError.cpp in Sources */,
+				21685FFC192DC22C000DDFAF /* SQLLexerFunc.cpp in Sources */,
+				21685FF0192DC22C000DDFAF /* GQLParser.cpp in Sources */,
+				21685FFE192DC22C000DDFAF /* SQLParserFunc.cpp in Sources */,
+				21686003192DC22C000DDFAF /* SQLParser.cpp in Sources */,
+				21685FF4192DC22C000DDFAF /* SQLExpression.cpp in Sources */,
+				21685FF2192DC22C000DDFAF /* SQLCommand.cpp in Sources */,
+				21685FFF192DC22C000DDFAF /* SQL92Parser.cpp in Sources */,
+				21686001192DC22C000DDFAF /* SQLNode.cpp in Sources */,
+				21685FF6192DC22C000DDFAF /* SQLOrder.cpp in Sources */,
+				21685FF7192DC22C000DDFAF /* SQLSet.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2147B0C3192DC16E00F06DB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+					../../../include/,
+					../../../src/,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lantlr3c";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2147B0C4192DC16E00F06DB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+					../../../include/,
+					../../../src/,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = "-lantlr3c";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2147B0C6192DC16E00F06DB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				EXECUTABLE_PREFIX = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2147B0C7192DC16E00F06DB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				EXECUTABLE_PREFIX = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2147B0BC192DC16E00F06DB4 /* Build configuration list for PBXProject "libusql++" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2147B0C3192DC16E00F06DB4 /* Debug */,
+				2147B0C4192DC16E00F06DB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2147B0C5192DC16E00F06DB4 /* Build configuration list for PBXNativeTarget "libusql++" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2147B0C6192DC16E00F06DB4 /* Debug */,
+				2147B0C7192DC16E00F06DB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2147B0B9192DC16E00F06DB4 /* Project object */;
+}

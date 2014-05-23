@@ -29,7 +29,7 @@ public:
     push_back(stmt);
   }
 
-  SQLStatement *getStatement(int index) {
+  SQLStatement *getStatement(size_t index) {
     return at(index);
   }
 

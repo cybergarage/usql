@@ -37,7 +37,7 @@ public:
     return getChildNodes();
   }
   
-  SQLSet *getSet(int index) {
+  SQLSet *getSet(size_t index) {
     return (SQLSet *)getChildNode(index);
   }
   

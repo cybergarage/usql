@@ -29,7 +29,7 @@ public:
     return "SQLCollections";
   }
   
-  SQLCollection *getCollectionNode(int index) {
+  SQLCollection *getCollectionNode(size_t index) {
     return (SQLCollection *)getChildNode(index);
   }
   

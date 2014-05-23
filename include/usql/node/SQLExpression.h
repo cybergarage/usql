@@ -110,7 +110,7 @@ public:
     return getChildNodes();
   }
   
-  SQLExpression *getExpression(int index) {
+  SQLExpression *getExpression(size_t index) {
     return (SQLExpression *)getChildNode(index);
   }
   

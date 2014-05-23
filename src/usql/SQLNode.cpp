@@ -97,11 +97,11 @@ bool uSQL::SQLNode::isValuesNode()
   return (dynamic_cast<uSQL::SQLValues *>(this)) ? true : false;
 }
 
-uSQL::SQLNode *uSQL::SQLNode::getChildNode(int index) 
+uSQL::SQLNode *uSQL::SQLNode::getChildNode(size_t index) 
 {
   uSQL::SQLNodeList *childNodes = getChildNodes();
   int childNodeCount = getChildCount();
-  if ((index < 0) || ((childNodeCount - 1) < index))
+  if (((childNodeCount - 1) < index))
     return NULL;
   return childNodes->at(index);
 }

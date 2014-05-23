@@ -155,7 +155,7 @@ public:
     return &children;
   }
 
-  SQLNode *getChildNode(int index);  
+  SQLNode *getChildNode(size_t index);  
   SQLNode *findChildNodeByType(int type);
 
   void clearChildNodes()

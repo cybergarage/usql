@@ -47,7 +47,7 @@ AM_CONDITIONAL(HAVE_LIBTOOL, test $with_libtool = yes)
 # Checks for ANTLR3C
 ##############################
 
-AC_CHECK_LIB([antlr3c],[antlr3StringStreamNew],,[AC_MSG_ERROR(uSQL for C++ needs ANTLR3C >= $LIBANTLR3C_VERSION)])
+AC_CHECK_LIB([antlr3c],[main],,[AC_MSG_ERROR(uSQL for C++ needs ANTLR3C >= $LIBANTLR3C_VERSION)])
 
 ##############################
 # Checks for pthread

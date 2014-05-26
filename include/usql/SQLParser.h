@@ -52,7 +52,7 @@ public:
     return (int)statements.size();
   }
   
-  SQLStatement *getStatement(int n)
+  SQLStatement *getStatement(size_t n)
   {
     if ((n < 0) || ((statements.size()-1) < n))
       return NULL;

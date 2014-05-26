@@ -53,7 +53,7 @@ std::string &uSQL::SQLExpression::toExpressionString(std::string &buf)
   std::size_t expressionsCount = expressions->size();
 
   bool hasDictionaryValues = false;
-  for (int n=0; n<expressionsCount; n++) {
+  for (size_t n=0; n<expressionsCount; n++) {
     SQLNode *sqlNode = expressions->getNode(n);
     if (sqlNode->isExpressionNode() == false)
       continue;

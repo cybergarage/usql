@@ -15,10 +15,10 @@
 
 static int SQLNodeListGetIncompleteLogicalOperatorIndex(uSQL::SQLNodeList *nodeList)
 {
-  int expressionsCnt = (int)nodeList->size();
+  size_t expressionsCnt = (int)nodeList->size();
   
   // Find only 'AND' nodes.
-  for (int n=0; n<expressionsCnt; n++) {
+  for (size_t n=0; n<expressionsCnt; n++) {
     uSQL::SQLNode *node = nodeList->at(n);
     if (node->isOperatorNode() == false)
       continue;
@@ -30,7 +30,7 @@ static int SQLNodeListGetIncompleteLogicalOperatorIndex(uSQL::SQLNodeList *nodeL
   }
   
   // Find other operator nodes such as 'OR'.
-  for (int n=0; n<expressionsCnt; n++) {
+  for (size_t n=0; n<expressionsCnt; n++) {
     uSQL::SQLNode *node = nodeList->at(n);
     if (node->isOperatorNode() == false)
       continue;

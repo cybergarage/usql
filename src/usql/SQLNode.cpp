@@ -157,7 +157,7 @@ std::string &uSQL::SQLNode::childNodesToString(std::string &buf, std::string del
 
   uSQL::SQLNodeList *childNodes = getChildNodes();
   std::size_t numChildren = childNodes->size();
-  for (int n=0; n<numChildren; n++) {
+  for (size_t n=0; n<numChildren; n++) {
     std::string childNodeStr;
     uSQL::SQLNode *childNode = childNodes->getNode(n);
     childNode->toString(childNodeStr);

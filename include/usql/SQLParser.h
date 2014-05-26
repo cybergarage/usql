@@ -54,7 +54,7 @@ public:
   
   SQLStatement *getStatement(size_t n)
   {
-    if ((n < 0) || ((statements.size()-1) < n))
+    if ((statements.size()-1) < n)
       return NULL;
     return statements.at(n);
   }

@@ -13,7 +13,7 @@
 #include <usql/SQLNode.h>
 #include <usql/SQLNodes.h>
 
-static int SQLNodeListGetIncompleteLogicalOperatorIndex(uSQL::SQLNodeList *nodeList)
+static size_t SQLNodeListGetIncompleteLogicalOperatorIndex(uSQL::SQLNodeList *nodeList)
 {
   size_t expressionsCnt = (int)nodeList->size();
   
@@ -42,7 +42,7 @@ static int SQLNodeListGetIncompleteLogicalOperatorIndex(uSQL::SQLNodeList *nodeL
   return -1;
 }
 
-static bool SQLNodeListAddAsChildNode(uSQL::SQLNodeList *nodeList, uSQL::SQLNode *parentNode, int childNodeIndex) 
+static bool SQLNodeListAddAsChildNode(uSQL::SQLNodeList *nodeList, uSQL::SQLNode *parentNode, size_t childNodeIndex)
 {
   if (nodeList->size() < (childNodeIndex + 1))
     return false;
@@ -66,14 +66,14 @@ uSQL::SQLNodeList::~SQLNodeList()
 void uSQL::SQLNodeList::sort()
 {
   std::string buf; 
-  std::size_t l = size();
+  size_t l = size();
   if (l <= 1)
     return;
   for (uSQL::SQLNodeList::iterator node = begin(); node != end(); node++) {
     //std::cout << "SORT[" << (++n) << "] : " << (*node)->toString(buf) << std::endl;
   }
   
-  int logicalOperIndex = SQLNodeListGetIncompleteLogicalOperatorIndex(this);
+  size_t logicalOperIndex = SQLNodeListGetIncompleteLogicalOperatorIndex(this);
   while (1 <= logicalOperIndex) {
     uSQL::SQLNode *logicalOperNode = at(logicalOperIndex);
     SQLNodeListAddAsChildNode(this, logicalOperNode, (logicalOperIndex - 1));

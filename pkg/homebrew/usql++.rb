@@ -3,7 +3,7 @@ class Usqlxx < Formula
   url "https://github.com/cybergarage/uSQL4CC.git"
   sha1 "0bf051150500074da675cac16e8b8a66d9d3d62c"
 
-  depends_on "readline"
+  depends_on "libantlr3c"
 
   def install
     system "./configure", "--disable-debug",

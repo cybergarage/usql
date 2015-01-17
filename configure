@@ -2815,7 +2815,7 @@ fi
 ##############################
 
 # ANTLR3C version.
-LIBANTLR3C_VERSION=3.4
+LIBANTLR3C_VERSION=3.2
 
 ##############################
 # Checks for programs.
@@ -4889,6 +4889,46 @@ _ACEOF
 fi
 done
 
+
+##############################
+# Checks for ANTLR 3.4
+##############################
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking antlr3StringStreamNew" >&5
+$as_echo_n "checking antlr3StringStreamNew... " >&6; }
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+#include <antlr3.h>
+void func()
+{
+  antlr3StringStreamNew(
+        (pANTLR3_UINT8)"",
+        ANTLR3_ENC_UTF8,
+        (ANTLR3_UINT32)0,
+        (pANTLR3_UINT8)"");
+}
+
+int
+main ()
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_compile "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define USQL_USE_ANTLR3_STRINGSTREAMNEW 1" >>confdefs.h
+
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
 
 ##############################
 # Checks for enable options.

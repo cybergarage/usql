@@ -15,7 +15,7 @@ AM_INIT_AUTOMAKE([subdir-objects])
 ##############################
 
 # ANTLR3C version.
-LIBANTLR3C_VERSION=3.4
+LIBANTLR3C_VERSION=3.2
 
 ##############################
 # Checks for programs.
@@ -66,6 +66,28 @@ AC_CHECK_HEADERS([stdint.h])
 ##############################
 
 AC_CHECK_FUNCS([fopen])
+
+##############################
+# Checks for ANTLR 3.4
+##############################
+
+AC_MSG_CHECKING(antlr3StringStreamNew)
+AC_TRY_COMPILE([
+#include <antlr3.h>
+void func()
+{
+  antlr3StringStreamNew(
+        (pANTLR3_UINT8)"", 
+        ANTLR3_ENC_UTF8,
+        (ANTLR3_UINT32)0,
+        (pANTLR3_UINT8)"");
+}
+],
+[],
+[AC_MSG_RESULT(yes)
+AC_DEFINE([USQL_USE_ANTLR3_STRINGSTREAMNEW],1,[antlr3StringStreamNew])],
+[AC_MSG_RESULT(no)]
+)
 
 ##############################
 # Checks for enable options.

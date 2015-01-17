@@ -11,6 +11,7 @@
 #include <strstream>
 
 #include <antlr3.h>
+#include <usql/platform.h>
 #include <usql/SQLParser.h>
 #include <usql/parser/antlr/SQLLexer.h>
 #include <usql/parser/antlr/SQLParser.h>
@@ -59,7 +60,7 @@ bool uSQL::SQLParser::parse(const std::string &queryString)
 {
   clear();
 
-#if defined(USE_ANTLR3_STRINGSTREAMNEW)  
+#if defined(USQL_USE_ANTLR3_STRINGSTREAMNEW)
   pANTLR3_INPUT_STREAM input  = antlr3StringStreamNew(
         (pANTLR3_UINT8)queryString.c_str(), 
         ANTLR3_ENC_UTF8,

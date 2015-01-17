@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLINDEX_H
-#define CG_USQL_SQLINDEX_H
+#ifndef _USQL_SQLINDEX_H_
+#define _USQL_SQLINDEX_H_
 
 #include <usql/SQLNode.h>
 

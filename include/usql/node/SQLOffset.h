@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLOFFSET_H
-#define CG_USQL_SQLOFFSET_H
+#ifndef _USQL_SQLOFFSET_H_
+#define _USQL_SQLOFFSET_H_
 
 #include <usql/SQLNode.h>
 

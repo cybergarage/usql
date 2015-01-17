@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLORDER_H
-#define CG_USQL_SQLORDER_H
+#ifndef _USQL_SQLORDER_H_
+#define _USQL_SQLORDER_H_
 
 #include <string>
 #include <usql/node/SQLExpression.h>

@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLORDERBY_H
-#define CG_USQL_SQLORDERBY_H
+#ifndef _USQL_SQLORDERBY_H_
+#define _USQL_SQLORDERBY_H_
 
 #include <usql/SQLNode.h>
 

@@ -10,8 +10,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_TESTCASE_H
-#define CG_USQL_TESTCASE_H
+#ifndef _USQL_TESTCASE_H_
+#define _USQL_TESTCASE_H_
 
 #include <string>
 #include <vector>

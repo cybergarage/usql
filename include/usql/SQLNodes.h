@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLNODES_H
-#define CG_USQL_SQLNODES_H
+#ifndef _USQL_SQLNODES_H_
+#define _USQL_SQLNODES_H_
 
 #include <usql/node/SQLCollection.h>
 #include <usql/node/SQLCollections.h>

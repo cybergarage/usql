@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLEXPRESSION_H
-#define CG_USQL_SQLEXPRESSION_H
+#ifndef _USQL_SQLEXPRESSION_H_
+#define _USQL_SQLEXPRESSION_H_
 
 #include <usql/SQLNode.h>
 

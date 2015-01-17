@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLLIMIT_H
-#define CG_USQL_SQLLIMIT_H
+#ifndef _USQL_SQLLIMIT_H_
+#define _USQL_SQLLIMIT_H_
 
 #include <usql/SQLNode.h>
 

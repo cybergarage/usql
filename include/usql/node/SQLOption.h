@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLOPTION_H
-#define CG_USQL_SQLOPTION_H
+#ifndef _USQL_SQLOPTION_H_
+#define _USQL_SQLOPTION_H_
 
 #include <usql/node/SQLExpression.h>
 

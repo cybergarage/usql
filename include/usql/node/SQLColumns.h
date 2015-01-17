@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLCOLUMNS_H
-#define CG_USQL_SQLCOLUMNS_H
+#ifndef _USQL_SQLCOLUMNS_H_
+#define _USQL_SQLCOLUMNS_H_
 
 #include <string>
 #include <usql/node/SQLDataSet.h>

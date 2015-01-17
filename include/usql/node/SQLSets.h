@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLSETS_H
-#define CG_USQL_SQLSETS_H
+#ifndef _USQL_SQLSETS_H_
+#define _USQL_SQLSETS_H_
 
 #include <usql/node/SQLDataSet.h>
 #include <usql/node/SQLSet.h>

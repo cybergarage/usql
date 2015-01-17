@@ -10,8 +10,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_TESTCASEPARSER_H
-#define CG_USQL_TESTCASEPARSER_H
+#ifndef _USQL_TESTCASEPARSER_H_
+#define _USQL_TESTCASEPARSER_H_
 
 #include <usql/SQLParser.h>
 

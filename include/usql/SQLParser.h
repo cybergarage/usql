@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLPARSER_H
-#define CG_USQL_SQLPARSER_H
+#ifndef _USQL_SQLPARSER_H_
+#define _USQL_SQLPARSER_H_
 
 #include <string>
 #include <vector>

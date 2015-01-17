@@ -364,8 +364,8 @@ has the callable functions (rules) shown below,
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef	_SQLLexer_H
-#define _SQLLexer_H
+#ifndef	_SQLLexer_H_
+#define _SQLLexer_H_
 /* =============================================================================
  * Standard antlr3 C runtime definitions
  */

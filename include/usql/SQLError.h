@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLERROR_H
-#define CG_USQL_SQLERROR_H
+#ifndef _USQL_SQLERROR_H_
+#define _USQL_SQLERROR_H_
 
 #include <string>
 

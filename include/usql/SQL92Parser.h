@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQL92PARSER_H
-#define CG_USQL_SQL92PARSER_H
+#ifndef _USQL_SQL92PARSER_H_
+#define _USQL_SQL92PARSER_H_
 
 #include <usql/SQLParser.h>
 

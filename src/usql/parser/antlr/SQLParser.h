@@ -244,8 +244,8 @@ has the callable functions (rules) shown below,
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef	_SQLParser_H
-#define _SQLParser_H
+#ifndef	_SQLParser_H_
+#define _SQLParser_H_
 /* =============================================================================
  * Standard antlr3 C runtime definitions
  */

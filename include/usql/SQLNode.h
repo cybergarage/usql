@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLNODE_H
-#define CG_USQL_SQLNODE_H
+#ifndef _USQL_SQLNODE_H_
+#define _USQL_SQLNODE_H_
 
 #include <vector>
 #include <iostream>

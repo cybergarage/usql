@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLCOMMAND_H
-#define CG_USQL_SQLCOMMAND_H
+#ifndef _USQL_SQLCOMMAND_H_
+#define _USQL_SQLCOMMAND_H_
 
 #include <usql/SQLNode.h>
 

@@ -10,8 +10,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_TESTCASEREADER_H
-#define CG_USQL_TESTCASEREADER_H
+#ifndef _USQL_TESTCASEREADER_H_
+#define _USQL_TESTCASEREADER_H_
 
 #include <string>
 

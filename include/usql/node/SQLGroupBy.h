@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLGROUPBY_H
-#define CG_USQL_SQLGROUPBY_H
+#ifndef _USQL_SQLGROUPBY_H_
+#define _USQL_SQLGROUPBY_H_
 
 #include <usql/node/SQLExpression.h>
 

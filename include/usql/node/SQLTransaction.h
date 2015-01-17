@@ -8,8 +8,8 @@
 *
 ******************************************************************/
 
-#ifndef CG_USQL_SQLTRANSACTION_H
-#define CG_USQL_SQLTRANSACTION_H
+#ifndef _USQL_SQLTRANSACTION_H_
+#define _USQL_SQLTRANSACTION_H_
 
 #include <usql/SQLNode.h>
 

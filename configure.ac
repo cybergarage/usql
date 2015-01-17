@@ -104,9 +104,9 @@ if [ test "$build_examples" = yes ]; then
 	AC_CHECK_LIB([boost_filesystem],[main],,[AC_MSG_ERROR(uSQL unittests need boost::filesystem)])
 fi
 
-AC_ARG_ENABLE([unittests], AC_HELP_STRING([--enable-unittests], [ builds unittests (default = no) ]), [build_unittests="yes"], [])
-AM_CONDITIONAL(UNITTESTS,test "$build_unittests" = yes)
-if [ test "$build_unittests" = yes ]; then
+AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ builds tests (default = no) ]), [build_tests="yes"], [])
+AM_CONDITIONAL(UNITTESTS,test "$build_tests" = yes)
+if [ test "$build_tests" = yes ]; then
 	AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(uSQL unittests need boost::unit_test_framework)])
 	AC_CHECK_LIB([boost_system],[main],,[AC_MSG_ERROR(uSQL unittests need boost::system)])
 	AC_CHECK_LIB([boost_filesystem],[main],,[AC_MSG_ERROR(uSQL unittests need boost::filesystem)])

@@ -58,12 +58,19 @@ void uSQL::SQLParser::clear()
 bool uSQL::SQLParser::parse(const std::string &queryString)
 {
   clear();
-  
+
+#if defined(USE_ANTLR3_STRINGSTREAMNEW)  
   pANTLR3_INPUT_STREAM input  = antlr3StringStreamNew(
         (pANTLR3_UINT8)queryString.c_str(), 
         ANTLR3_ENC_UTF8,
         (ANTLR3_UINT32)queryString.length(),
         (pANTLR3_UINT8)"");
+#else  
+  pANTLR3_INPUT_STREAM input  = antlr3NewAsciiStringInPlaceStream(
+        (pANTLR3_UINT8)queryString.c_str(), 
+        (ANTLR3_UINT32)queryString.length(),
+        (pANTLR3_UINT8)"");
+#endif
   
   pSQLLexer lexer = SQLLexerNew(input);
   

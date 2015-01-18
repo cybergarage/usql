@@ -11,7 +11,7 @@
 #ifndef _USQL_PLATFORM_H_
 #define _USQL_PLATFORM_H_
 
-#ifdef HAVE_CONFIG_H_
+#ifdef HAVE_CONFIG_H
 #  include "config.h"
 #else
 #define USQL_USE_ANTLR3_STRINGSTREAMNEW 1

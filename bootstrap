@@ -1,12 +1,18 @@
 #!/bin/sh
+
+cd include; ./Makefile.am.build > Makefile.am; cd ..
+cd lib/unix; ./Makefile.am.build > Makefile.am; cd ../..
 cd tests/unix; ./Makefile.am.build > Makefile.am; cd ../..
+
 if [ ! -d config ]; then
     mkdir config
 fi
 if [ ! -d autom4te.cache ]; then
 	rm -rf autom4te.cache/*
 fi
+
 #libtoolize --automake --force --copy
+
 aclocal
 autoheader
 automake --foreign --add-missing --copy

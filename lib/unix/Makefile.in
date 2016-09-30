@@ -14,6 +14,16 @@
 
 @SET_MAKE@
 
+##################################################################
+#
+# uSQL for C++
+#
+# Copyright (C) Satoshi Konno 2012
+#
+# This is licensed under BSD-style license, see file COPYING.
+#
+##################################################################
+
 VPATH = @srcdir@
 am__is_gnu_make = { \
   if test -z '$(MAKELEVEL)'; then \
@@ -134,15 +144,7 @@ am__v_AR_1 =
 libusql___a_AR = $(AR) $(ARFLAGS)
 libusql___a_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = ../../src/usql/SQL92Parser.$(OBJEXT) \
-	../../src/usql/SQLError.$(OBJEXT) \
-	../../src/usql/SQLNode.$(OBJEXT) \
-	../../src/usql/SQLNodeList.$(OBJEXT) \
-	../../src/usql/SQLParser.$(OBJEXT) \
-	../../src/usql/SQLStatement.$(OBJEXT) \
-	../../src/usql/SQLStatementList.$(OBJEXT) \
-	../../src/usql/UnQLParser.$(OBJEXT) \
-	../../src/usql/GQLParser.$(OBJEXT) \
+am__objects_1 = ../../src/usql/GQLParser.$(OBJEXT) \
 	../../src/usql/node/SQLColumns.$(OBJEXT) \
 	../../src/usql/node/SQLCommand.$(OBJEXT) \
 	../../src/usql/node/SQLDictionary.$(OBJEXT) \
@@ -152,7 +154,15 @@ am__objects_1 = ../../src/usql/SQL92Parser.$(OBJEXT) \
 	../../src/usql/node/SQLSet.$(OBJEXT) \
 	../../src/usql/node/SQLValues.$(OBJEXT) \
 	../../src/usql/parser/antlr/SQLLexerFunc.$(OBJEXT) \
-	../../src/usql/parser/antlr/SQLParserFunc.$(OBJEXT)
+	../../src/usql/parser/antlr/SQLParserFunc.$(OBJEXT) \
+	../../src/usql/SQL92Parser.$(OBJEXT) \
+	../../src/usql/SQLError.$(OBJEXT) \
+	../../src/usql/SQLNode.$(OBJEXT) \
+	../../src/usql/SQLNodeList.$(OBJEXT) \
+	../../src/usql/SQLParser.$(OBJEXT) \
+	../../src/usql/SQLStatement.$(OBJEXT) \
+	../../src/usql/SQLStatementList.$(OBJEXT) \
+	../../src/usql/UnQLParser.$(OBJEXT)
 am_libusql___a_OBJECTS = $(am__objects_1)
 libusql___a_OBJECTS = $(am_libusql___a_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -305,20 +315,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LIBRARIES = libusql++.a
-AM_CPPFLAGS = -I$(top_builddir)/include -I$(top_builddir)/src/
-
-########################################
-# uSQL for C++
-########################################
-usqlcc_source = \
-	../../src/usql/SQL92Parser.cpp \
-	../../src/usql/SQLError.cpp \
-	../../src/usql/SQLNode.cpp \
-	../../src/usql/SQLNodeList.cpp \
-	../../src/usql/SQLParser.cpp \
-	../../src/usql/SQLStatement.cpp \
-	../../src/usql/SQLStatementList.cpp \
-	../../src/usql/UnQLParser.cpp \
+AM_CFLAGS = -I$(top_builddir)/include -I$(top_builddir)/src
+usqlcc_sources = \
 	../../src/usql/GQLParser.cpp \
 	../../src/usql/node/SQLColumns.cpp \
 	../../src/usql/node/SQLCommand.cpp \
@@ -329,10 +327,18 @@ usqlcc_source = \
 	../../src/usql/node/SQLSet.cpp \
 	../../src/usql/node/SQLValues.cpp \
 	../../src/usql/parser/antlr/SQLLexerFunc.cpp \
-	../../src/usql/parser/antlr/SQLParserFunc.cpp
+	../../src/usql/parser/antlr/SQLParserFunc.cpp \
+	../../src/usql/SQL92Parser.cpp \
+	../../src/usql/SQLError.cpp \
+	../../src/usql/SQLNode.cpp \
+	../../src/usql/SQLNodeList.cpp \
+	../../src/usql/SQLParser.cpp \
+	../../src/usql/SQLStatement.cpp \
+	../../src/usql/SQLStatementList.cpp \
+	../../src/usql/UnQLParser.cpp
 
 libusql___a_SOURCES = \
-        $(usqlcc_source)
+    $(usqlcc_sources)
 
 all: all-am
 
@@ -404,23 +410,6 @@ clean-libLIBRARIES:
 ../../src/usql/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) ../../src/usql/$(DEPDIR)
 	@: > ../../src/usql/$(DEPDIR)/$(am__dirstamp)
-../../src/usql/SQL92Parser.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
-	../../src/usql/$(DEPDIR)/$(am__dirstamp)
-../../src/usql/SQLError.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
-	../../src/usql/$(DEPDIR)/$(am__dirstamp)
-../../src/usql/SQLNode.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
-	../../src/usql/$(DEPDIR)/$(am__dirstamp)
-../../src/usql/SQLNodeList.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
-	../../src/usql/$(DEPDIR)/$(am__dirstamp)
-../../src/usql/SQLParser.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
-	../../src/usql/$(DEPDIR)/$(am__dirstamp)
-../../src/usql/SQLStatement.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
-	../../src/usql/$(DEPDIR)/$(am__dirstamp)
-../../src/usql/SQLStatementList.$(OBJEXT):  \
-	../../src/usql/$(am__dirstamp) \
-	../../src/usql/$(DEPDIR)/$(am__dirstamp)
-../../src/usql/UnQLParser.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
-	../../src/usql/$(DEPDIR)/$(am__dirstamp)
 ../../src/usql/GQLParser.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
 	../../src/usql/$(DEPDIR)/$(am__dirstamp)
 ../../src/usql/node/$(am__dirstamp):
@@ -465,6 +454,23 @@ clean-libLIBRARIES:
 ../../src/usql/parser/antlr/SQLParserFunc.$(OBJEXT):  \
 	../../src/usql/parser/antlr/$(am__dirstamp) \
 	../../src/usql/parser/antlr/$(DEPDIR)/$(am__dirstamp)
+../../src/usql/SQL92Parser.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
+	../../src/usql/$(DEPDIR)/$(am__dirstamp)
+../../src/usql/SQLError.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
+	../../src/usql/$(DEPDIR)/$(am__dirstamp)
+../../src/usql/SQLNode.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
+	../../src/usql/$(DEPDIR)/$(am__dirstamp)
+../../src/usql/SQLNodeList.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
+	../../src/usql/$(DEPDIR)/$(am__dirstamp)
+../../src/usql/SQLParser.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
+	../../src/usql/$(DEPDIR)/$(am__dirstamp)
+../../src/usql/SQLStatement.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
+	../../src/usql/$(DEPDIR)/$(am__dirstamp)
+../../src/usql/SQLStatementList.$(OBJEXT):  \
+	../../src/usql/$(am__dirstamp) \
+	../../src/usql/$(DEPDIR)/$(am__dirstamp)
+../../src/usql/UnQLParser.$(OBJEXT): ../../src/usql/$(am__dirstamp) \
+	../../src/usql/$(DEPDIR)/$(am__dirstamp)
 
 libusql++.a: $(libusql___a_OBJECTS) $(libusql___a_DEPENDENCIES) $(EXTRA_libusql___a_DEPENDENCIES) 
 	$(AM_V_at)-rm -f libusql++.a

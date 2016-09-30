@@ -1,0 +1,13 @@
+language: c
+
+compiler:
+    - clang
+    - gcc
+
+before_script:
+    - sudo apt-get update -qq
+    - sudo apt-get install libboost-all-dev
+    - sudo apt-get install libantlr3c-dev
+
+script:
+    - ./bootstrap && ./configure --enable-tests && make && make check

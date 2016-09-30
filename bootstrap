@@ -1,4 +1,5 @@
 #!/bin/sh
+cd tests/unix; ./Makefile.am.build > Makefile.am; cd ../..
 if [ ! -d config ]; then
     mkdir config
 fi

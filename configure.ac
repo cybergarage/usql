@@ -121,8 +121,8 @@ Makefile
 include/Makefile
 lib/Makefile
 lib/unix/Makefile
-unittest/Makefile
-unittest/unix/Makefile
+tests/Makefile
+tests/unix/Makefile
 examples/Makefile
 examples/leveldb/Makefile
 examples/leveldb/unix/Makefile

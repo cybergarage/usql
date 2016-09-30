@@ -1,8 +1,8 @@
 if UNITTESTS
 if EXAMPLES
-SUBDIRS = include lib unittest examples
+SUBDIRS = include lib tests examples
 else
-SUBDIRS = include lib unittest
+SUBDIRS = include lib tests
 endif
 else
 if EXAMPLES

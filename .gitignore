@@ -8,3 +8,7 @@ config.*
 *xcuserdata*
 .deps/
 .dirstamp
+
+# ANTLR4
+*.interp
+*.tokens

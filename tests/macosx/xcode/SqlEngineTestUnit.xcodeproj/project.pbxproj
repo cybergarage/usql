@@ -276,10 +276,7 @@
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-lboost_unit_test_framework-mt",
-					"-lantlr3c",
-				);
+				OTHER_LDFLAGS = "-lboost_unit_test_framework-mt";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -321,10 +318,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				OTHER_LDFLAGS = (
-					"-lboost_unit_test_framework-mt",
-					"-lantlr3c",
-				);
+				OTHER_LDFLAGS = "-lboost_unit_test_framework-mt";
 				SDKROOT = macosx;
 			};
 			name = Release;
